@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
 <title>AURA ♥ EDANUR</title>
 
 <style>
@@ -89,7 +90,7 @@ body{
     }
 }
 
-/* ANA UYGULAMA */
+/* UYGULAMA */
 
 .app{
     position:relative;
@@ -98,7 +99,7 @@ body{
     z-index:2;
 }
 
-/* ÜST BAR */
+/* ÜST */
 
 .top{
     position:absolute;
@@ -275,6 +276,7 @@ body{
     0%,100%{
         transform:rotate(-45deg) scale(1);
     }
+
     50%{
         transform:rotate(-45deg) scale(1.08);
     }
@@ -305,7 +307,6 @@ body{
     overflow-y:auto;
     scrollbar-width:none;
     z-index:5;
-    pointer-events:auto;
 }
 
 .chatArea::-webkit-scrollbar{
@@ -327,7 +328,6 @@ body{
     line-height:1.4;
     word-break:break-word;
     white-space:pre-wrap;
-    box-shadow:0 0 12px rgba(255,20,147,.08);
 }
 
 .auraMessage{
@@ -351,7 +351,146 @@ body{
     font-style:italic;
 }
 
-/* EN ALT */
+/* REGL BUTONU */
+
+.periodButton{
+    position:absolute;
+    right:14px;
+    bottom:122px;
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,120,190,.4);
+    border-radius:50%;
+    background:rgba(40,0,27,.88);
+    color:#ffb6d8;
+    font-size:19px;
+    cursor:pointer;
+    z-index:25;
+    box-shadow:
+        0 0 15px rgba(255,20,147,.22);
+}
+
+.periodButton:active{
+    transform:scale(.91);
+}
+
+/* REGL PANELİ */
+
+.periodOverlay{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    padding:12px;
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(5px);
+    z-index:100;
+}
+
+.periodOverlay.show{
+    display:flex;
+}
+
+.periodPanel{
+    width:min(430px,100%);
+    padding:18px;
+    border-radius:24px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(71,4,43,.98),
+            rgba(25,0,17,.98)
+        );
+    border:1px solid rgba(255,120,190,.38);
+    box-shadow:
+        0 0 35px rgba(255,20,147,.25);
+}
+
+.periodHeader{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.periodTitle{
+    font-family:Georgia,serif;
+    font-size:19px;
+    color:#ffd5e8;
+}
+
+.closePeriod{
+    width:32px;
+    height:32px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    color:#ffc5df;
+    font-size:18px;
+}
+
+.periodResult{
+    text-align:center;
+    padding:13px;
+    margin-bottom:13px;
+    border-radius:17px;
+    background:rgba(255,105,180,.08);
+    border:1px solid rgba(255,105,180,.18);
+}
+
+.periodDays{
+    font-size:25px;
+    font-weight:bold;
+    color:#ff9dcb;
+}
+
+.periodDate{
+    margin-top:5px;
+    font-size:12px;
+    color:#ffd1e5;
+}
+
+.periodLabel{
+    display:block;
+    margin:10px 0 6px;
+    font-size:11px;
+    color:#ffc2dd;
+}
+
+.periodInput{
+    width:100%;
+    height:43px;
+    padding:0 12px;
+    border:1px solid rgba(255,105,180,.25);
+    border-radius:13px;
+    outline:0;
+    background:rgba(255,255,255,.06);
+    color:white;
+    font-size:14px;
+}
+
+.periodInput::-webkit-calendar-picker-indicator{
+    filter:invert(1);
+}
+
+.periodSave{
+    width:100%;
+    height:44px;
+    margin-top:14px;
+    border:0;
+    border-radius:14px;
+    background:linear-gradient(
+        135deg,
+        #ff76ba,
+        #d40070
+    );
+    color:white;
+    font-weight:bold;
+    font-size:14px;
+}
+
+/* ALT MESAJ ALANI */
 
 .bottom{
     position:absolute;
@@ -385,9 +524,6 @@ body{
     border:1px solid rgba(255,91,173,.4);
     border-radius:30px;
     background:rgba(30,0,20,.92);
-    box-shadow:
-        0 0 20px rgba(255,20,147,.13),
-        inset 0 0 15px rgba(255,105,180,.04);
 }
 
 .iconButton{
@@ -433,16 +569,10 @@ body{
     color:white;
     font-size:20px;
     cursor:pointer;
-    box-shadow:0 0 15px rgba(255,20,147,.4);
 }
 
 .actionButton:disabled{
     opacity:.45;
-}
-
-.iconButton:active,
-.actionButton:active{
-    transform:scale(.92);
 }
 
 @media(max-width:500px){
@@ -462,6 +592,14 @@ body{
     .bottom{
         height:105px;
         padding:9px;
+    }
+
+    .periodButton{
+        bottom:113px;
+    }
+
+    .heartSystem{
+        transform:scale(.82);
     }
 
     .inputBar{
@@ -486,10 +624,6 @@ body{
         height:38px;
         font-size:13px;
     }
-
-    .heartSystem{
-        transform:scale(.82);
-    }
 }
 </style>
 </head>
@@ -497,6 +631,7 @@ body{
 <body>
 
 <div class="background">
+
     <div class="glow one"></div>
     <div class="glow two"></div>
 
@@ -510,7 +645,9 @@ body{
     <div class="star s8"></div>
     <div class="star s9"></div>
     <div class="star s10"></div>
+
 </div>
+
 
 <div class="app">
 
@@ -568,7 +705,101 @@ body{
     </main>
 
 
-    <!-- HER ZAMAN EN ALTTA -->
+    <!-- KÜÇÜK REGL BUTONU -->
+
+    <button
+        class="periodButton"
+        id="periodButton"
+        type="button"
+        aria-label="Regl takibi"
+    >🌸</button>
+
+
+    <!-- REGL PANELİ -->
+
+    <div
+        class="periodOverlay"
+        id="periodOverlay"
+    >
+
+        <div class="periodPanel">
+
+            <div class="periodHeader">
+
+                <div class="periodTitle">
+                    🌸 Regl Takibi
+                </div>
+
+                <button
+                    class="closePeriod"
+                    id="closePeriod"
+                    type="button"
+                >×</button>
+
+            </div>
+
+
+            <div class="periodResult">
+
+                <div
+                    class="periodDays"
+                    id="periodDays"
+                >Bilgi gerekli</div>
+
+                <div
+                    class="periodDate"
+                    id="periodDate"
+                >Son regl tarihini gir</div>
+
+            </div>
+
+
+            <label
+                class="periodLabel"
+                for="lastPeriod"
+            >
+                Son regl başlangıcı
+            </label>
+
+            <input
+                class="periodInput"
+                id="lastPeriod"
+                type="date"
+            >
+
+
+            <label
+                class="periodLabel"
+                for="cycleLength"
+            >
+                Ortalama döngü uzunluğu
+            </label>
+
+            <input
+                class="periodInput"
+                id="cycleLength"
+                type="number"
+                min="15"
+                max="60"
+                value="28"
+                inputmode="numeric"
+            >
+
+
+            <button
+                class="periodSave"
+                id="periodSave"
+                type="button"
+            >
+                Kaydet
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- MESAJ ALANI -->
 
     <div class="bottom">
 
@@ -621,7 +852,7 @@ body{
 <script src="https://js.puter.com/v2/"></script><script>
 
 /* =====================================================
-   AURA - TEMEL SİSTEM
+   AURA MESAJ SİSTEMİ
 ===================================================== */
 
 const input =
@@ -648,13 +879,10 @@ const heartButton =
 const emojiButton =
     document.getElementById("emojiButton");
 
-
 let busy = false;
 
 
-/* =====================================================
-   MESAJ EKLEME
-===================================================== */
+/* MESAJ EKLE */
 
 function addMessage(text,type){
 
@@ -681,154 +909,94 @@ function addMessage(text,type){
 }
 
 
-/* =====================================================
-   AURA'NIN CEVABI
-===================================================== */
+/* AI */
 
 async function askAura(text){
-
-    /*
-       Burada web araması YOK.
-
-       Önce normal mesaj gönderme
-       sistemini sağlamlaştırıyoruz.
-    */
 
     if(
         typeof puter === "undefined" ||
         !puter.ai ||
         !puter.ai.chat
     ){
-
         throw new Error(
             "Puter AI hazır değil."
         );
     }
 
-
     const prompt = `
 Sen AURA'sın.
 
 Edanur için hazırlanmış özel,
-nazik, doğal ve akıllı bir yapay
-zeka asistanısın.
+nazik ve doğal konuşan bir
+yapay zeka asistanısın.
 
 Türkçe konuş.
 
 Kullanıcının adını gereksiz yere
 tekrar etme.
 
-Kısa ama doğal cevaplar ver.
+Kısa ve doğal cevaplar ver.
 
 Kullanıcı:
 ${text}
 `;
 
-
     const response =
         await puter.ai.chat(prompt);
 
-
     if(!response){
-
-        throw new Error(
-            "Boş AI cevabı."
-        );
+        throw new Error("Boş cevap.");
     }
 
-
-    if(
-        typeof response ===
-        "string"
-    ){
-
+    if(typeof response === "string"){
         return response.trim();
     }
 
-
     if(
         response.message &&
-        typeof response.message.content ===
-        "string"
+        typeof response.message.content === "string"
     ){
-
         return response.message.content.trim();
     }
 
-
-    if(
-        typeof response.text ===
-        "string"
-    ){
-
+    if(typeof response.text === "string"){
         return response.text.trim();
     }
-
 
     return String(response);
 }
 
 
-/* =====================================================
-   ASIL GÖNDERME FONKSİYONU
-===================================================== */
+/* GÖNDER */
 
 async function sendMessage(){
 
-    /*
-       Çift tıklama / aynı anda iki istek
-       engelleniyor.
-    */
-
     if(busy){
-
         return;
     }
-
 
     const text =
         input.value.trim();
 
-
     if(!text){
-
         input.focus();
-
         return;
     }
-
-
-    /*
-       KULLANICI MESAJINI HEMEN GÖSTER.
-       Böylece buton kesin olarak çalışıyor.
-    */
 
     addMessage(
         text,
         "user"
     );
 
+    input.value = "";
 
-    input.value =
-        "";
+    busy = true;
 
-
-    input.focus();
-
-
-    busy =
-        true;
-
-    sendButton.disabled =
-        true;
-
-    micButton.disabled =
-        true;
-
+    sendButton.disabled = true;
+    micButton.disabled = true;
 
     statusText.textContent =
         "DÜŞÜNÜYOR";
-
 
     const typing =
         addMessage(
@@ -836,69 +1004,51 @@ async function sendMessage(){
             "aura"
         );
 
-    typing.classList.add(
-        "typing"
-    );
-
+    typing.classList.add("typing");
 
     try{
 
         const answer =
             await askAura(text);
 
-
         typing.remove();
-
 
         addMessage(
             answer,
             "aura"
         );
 
-
         statusText.textContent =
             "ONLINE";
-
 
     }catch(error){
 
         console.error(
-            "AURA HATASI:",
+            "AURA:",
             error
         );
 
-
         typing.remove();
 
-
         addMessage(
-            "Şu anda yapay zekâ bağlantısında bir sorun oluştu. Lütfen tekrar dene.",
+            "Şu anda bağlantıda bir sorun oluştu. Lütfen tekrar dene.",
             "aura"
         );
 
-
         statusText.textContent =
             "BAĞLANTI HATASI";
-
     }
 
+    busy = false;
 
-    busy =
-        false;
-
-    sendButton.disabled =
-        false;
-
-    micButton.disabled =
-        false;
+    sendButton.disabled = false;
+    micButton.disabled = false;
 
     input.focus();
 }
 
 
-/* =====================================================
-   GÖNDER BUTONU
-===================================================== */
+/* BUTON */
 
 sendButton.onclick =
     function(event){
@@ -909,9 +1059,7 @@ sendButton.onclick =
     };
 
 
-/* =====================================================
-   ENTER İLE GÖNDER
-===================================================== */
+/* ENTER */
 
 input.onkeydown =
     function(event){
@@ -928,9 +1076,7 @@ input.onkeydown =
     };
 
 
-/* =====================================================
-   KALP BUTONU
-===================================================== */
+/* KALP */
 
 heartButton.onclick =
     function(){
@@ -942,15 +1088,12 @@ heartButton.onclick =
     };
 
 
-/* =====================================================
-   EMOJI
-===================================================== */
+/* EMOJI */
 
 emojiButton.onclick =
     function(){
 
-        input.value +=
-            " ❤️";
+        input.value += " ❤️";
 
         input.focus();
     };
@@ -960,12 +1103,8 @@ emojiButton.onclick =
    MİKROFON
 ===================================================== */
 
-let recognition =
-    null;
-
-let listening =
-    false;
-
+let recognition = null;
+let listening = false;
 
 const SpeechRecognition =
     window.SpeechRecognition ||
@@ -986,22 +1125,16 @@ if(SpeechRecognition){
     recognition.interimResults =
         false;
 
-    recognition.maxAlternatives =
-        1;
-
-
     recognition.onstart =
         function(){
 
-            listening =
-                true;
+            listening = true;
 
             micButton.textContent =
                 "🔴";
 
             statusText.textContent =
                 "DİNLİYOR";
-
         };
 
 
@@ -1012,16 +1145,13 @@ if(SpeechRecognition){
                 !event.results ||
                 !event.results[0]
             ){
-
                 return;
             }
-
 
             const spoken =
                 event.results[0][0]
                     .transcript
                     .trim();
-
 
             if(spoken){
 
@@ -1034,15 +1164,14 @@ if(SpeechRecognition){
 
 
     recognition.onerror =
-        function(event){
+        function(error){
 
             console.error(
                 "Mikrofon:",
-                event.error
+                error
             );
 
-            listening =
-                false;
+            listening = false;
 
             micButton.textContent =
                 "🎤";
@@ -1055,8 +1184,7 @@ if(SpeechRecognition){
     recognition.onend =
         function(){
 
-            listening =
-                false;
+            listening = false;
 
             micButton.textContent =
                 "🎤";
@@ -1065,9 +1193,28 @@ if(SpeechRecognition){
                 statusText.textContent ===
                 "DİNLİYOR"
             ){
-
                 statusText.textContent =
                     "ONLINE";
+            }
+        };
+
+
+    micButton.onclick =
+        function(){
+
+            if(listening){
+
+                try{
+                    recognition.stop();
+                }catch(error){}
+
+                return;
+            }
+
+            try{
+                recognition.start();
+            }catch(error){
+                console.error(error);
             }
         };
 
@@ -1084,37 +1231,358 @@ if(SpeechRecognition){
 }
 
 
-if(recognition){
+/* =====================================================
+   REGL TAKİP SİSTEMİ
+===================================================== */
 
-    micButton.onclick =
-        function(){
+const periodButton =
+    document.getElementById(
+        "periodButton"
+    );
 
-            if(listening){
+const periodOverlay =
+    document.getElementById(
+        "periodOverlay"
+    );
 
-                try{
-                    recognition.stop();
-                }catch(e){}
+const closePeriod =
+    document.getElementById(
+        "closePeriod"
+    );
 
-                return;
-            }
+const lastPeriod =
+    document.getElementById(
+        "lastPeriod"
+    );
+
+const cycleLength =
+    document.getElementById(
+        "cycleLength"
+    );
+
+const periodSave =
+    document.getElementById(
+        "periodSave"
+    );
+
+const periodDays =
+    document.getElementById(
+        "periodDays"
+    );
+
+const periodDate =
+    document.getElementById(
+        "periodDate"
+    );
 
 
-            try{
+/* PANELİ AÇ */
 
-                recognition.start();
+periodButton.onclick =
+    function(){
 
-            }catch(error){
+        periodOverlay.classList.add(
+            "show"
+        );
 
-                console.error(
-                    error
-                );
-            }
-        };
+        loadPeriodData();
+    };
+
+
+/* PANELİ KAPAT */
+
+closePeriod.onclick =
+    function(){
+
+        periodOverlay.classList.remove(
+            "show"
+        );
+    };
+
+
+/* DIŞARI TIKLAYINCA KAPAT */
+
+periodOverlay.onclick =
+    function(event){
+
+        if(
+            event.target ===
+            periodOverlay
+        ){
+
+            periodOverlay.classList.remove(
+                "show"
+            );
+        }
+    };
+
+
+/* TARİH FORMAT */
+
+function formatDate(date){
+
+    return date.toLocaleDateString(
+        "tr-TR",
+        {
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        }
+    );
 }
 
 
+/* TARİHİ GÜNE ÇEVİR */
+
+function dateOnly(date){
+
+    return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+    );
+}
+
+
+/* SONRAKİ REGLİ HESAPLA */
+
+function calculatePeriod(){
+
+    const savedDate =
+        localStorage.getItem(
+            "edAnurLastPeriod"
+        );
+
+    const savedCycle =
+        localStorage.getItem(
+            "edAnurCycleLength"
+        );
+
+
+    if(!savedDate){
+
+        periodDays.textContent =
+            "Bilgi gerekli";
+
+        periodDate.textContent =
+            "Son regl tarihini gir";
+
+        return;
+    }
+
+
+    const cycle =
+        parseInt(
+            savedCycle || "28",
+            10
+        );
+
+
+    if(
+        isNaN(cycle) ||
+        cycle < 15 ||
+        cycle > 60
+    ){
+
+        periodDays.textContent =
+            "Döngü bilgisi hatalı";
+
+        periodDate.textContent =
+            "15-60 gün arasında gir";
+
+        return;
+    }
+
+
+    /*
+       Tarihi yerel saatle oluşturuyoruz.
+       Böylece saat dilimi nedeniyle
+       bir gün kayma ihtimali azaltılıyor.
+    */
+
+    const parts =
+        savedDate.split("-");
+
+
+    const year =
+        parseInt(parts[0],10);
+
+    const month =
+        parseInt(parts[1],10) - 1;
+
+    const day =
+        parseInt(parts[2],10);
+
+
+    const nextDate =
+        new Date(
+            year,
+            month,
+            day
+        );
+
+
+    nextDate.setDate(
+        nextDate.getDate() + cycle
+    );
+
+
+    const today =
+        dateOnly(
+            new Date()
+        );
+
+
+    const target =
+        dateOnly(
+            nextDate
+        );
+
+
+    const difference =
+        Math.ceil(
+            (
+                target.getTime() -
+                today.getTime()
+            ) /
+            86400000
+        );
+
+
+    if(difference > 0){
+
+        periodDays.textContent =
+            difference +
+            " gün kaldı";
+
+    }else if(difference === 0){
+
+        periodDays.textContent =
+            "Bugün bekleniyor";
+
+    }else{
+
+        periodDays.textContent =
+            Math.abs(difference) +
+            " gün geçti";
+
+    }
+
+
+    periodDate.textContent =
+        "Tahmini başlangıç: " +
+        formatDate(nextDate);
+}
+
+
+/* VERİLERİ YÜKLE */
+
+function loadPeriodData(){
+
+    const savedDate =
+        localStorage.getItem(
+            "edAnurLastPeriod"
+        );
+
+    const savedCycle =
+        localStorage.getItem(
+            "edAnurCycleLength"
+        );
+
+
+    if(savedDate){
+        lastPeriod.value =
+            savedDate;
+    }
+
+    cycleLength.value =
+        savedCycle || "28";
+
+
+    calculatePeriod();
+}
+
+
+/* KAYDET */
+
+periodSave.onclick =
+    function(){
+
+        const date =
+            lastPeriod.value;
+
+        const cycle =
+            parseInt(
+                cycleLength.value,
+                10
+            );
+
+
+        if(!date){
+
+            periodDays.textContent =
+                "Tarih gerekli";
+
+            periodDate.textContent =
+                "Son regl başlangıcını seç";
+
+            return;
+        }
+
+
+        if(
+            isNaN(cycle) ||
+            cycle < 15 ||
+            cycle > 60
+        ){
+
+            periodDays.textContent =
+                "Döngü hatalı";
+
+            periodDate.textContent =
+                "15-60 gün arasında gir";
+
+            return;
+        }
+
+
+        /*
+           Sadece bu telefonda saklanır.
+        */
+
+        localStorage.setItem(
+            "edAnurLastPeriod",
+            date
+        );
+
+        localStorage.setItem(
+            "edAnurCycleLength",
+            String(cycle)
+        );
+
+
+        calculatePeriod();
+
+
+        /*
+           Kısa süre sonra panel kapanır.
+        */
+
+        setTimeout(
+            function(){
+
+                periodOverlay.classList.remove(
+                    "show"
+                );
+
+            },
+            500
+        );
+    };
+
+
 /* =====================================================
-   İLK MESAJ
+   BAŞLANGIÇ
 ===================================================== */
 
 addMessage(
@@ -1122,10 +1590,7 @@ addMessage(
     "aura"
 );
 
-
-/* =====================================================
-   SAYFA HAZIR
-===================================================== */
+loadPeriodData();
 
 statusText.textContent =
     "ONLINE";
@@ -1133,9 +1598,7 @@ statusText.textContent =
 input.focus();
 
 
-/* =====================================================
-   GLOBAL HATA
-===================================================== */
+/* HATA YAKALAMA */
 
 window.onerror =
     function(
@@ -1147,14 +1610,13 @@ window.onerror =
     ){
 
         console.error(
-            "AURA GLOBAL ERROR:",
+            "AURA HATASI:",
             message,
             error
         );
 
         return false;
     };
-
 
 </script>
 
