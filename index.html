@@ -3,2599 +3,1088 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-
 <title>AURA ♥ EDANUR</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
-}
-
-html,body{
-    width:100%;
-    height:100%;
-    margin:0;
-    overflow:hidden;
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;margin:0;overflow:hidden}
 body{
-    font-family:Arial,sans-serif;
-    color:#ffe6f3;
-    background:
-        radial-gradient(circle at 50% 30%,#74134f 0%,#35071f 32%,#10000b 72%,#030003 100%);
+font-family:Arial,sans-serif;color:#ffe6f3;
+background:radial-gradient(circle at 50% 30%,#74134f 0%,#35071f 32%,#10000b 72%,#030003 100%)
 }
+.background{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.glow{position:absolute;border-radius:50%;filter:blur(70px);opacity:.35}
+.glow.one{width:300px;height:300px;background:#ff258f;left:-120px;top:80px}
+.glow.two{width:330px;height:330px;background:#a000ff;right:-130px;bottom:50px}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 8px #ff69b4;animation:twinkle 2.5s infinite}
+.s1{top:12%;left:9%}.s2{top:20%;left:83%;animation-delay:.5s}
+.s3{top:34%;left:17%;animation-delay:1s}.s4{top:42%;right:10%;animation-delay:1.5s}
+.s5{top:67%;left:8%;animation-delay:.3s}.s6{top:74%;right:14%;animation-delay:1.2s}
+.s7{top:8%;left:52%;animation-delay:1.8s}.s8{top:55%;left:91%;animation-delay:.8s}
+.s9{top:82%;left:27%;animation-delay:1.4s}.s10{top:29%;left:64%;animation-delay:.2s}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.5)}}
 
-.background{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
-}
-
-.glow{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(70px);
-    opacity:.35;
-}
-
-.glow.one{
-    width:300px;
-    height:300px;
-    background:#ff258f;
-    left:-120px;
-    top:80px;
-}
-
-.glow.two{
-    width:330px;
-    height:330px;
-    background:#a000ff;
-    right:-130px;
-    bottom:50px;
-}
-
-.star{
-    position:absolute;
-    width:3px;
-    height:3px;
-    border-radius:50%;
-    background:#fff;
-    box-shadow:0 0 8px #ff69b4;
-    animation:twinkle 2.5s infinite;
-}
-
-.s1{top:12%;left:9%}
-.s2{top:20%;left:83%;animation-delay:.5s}
-.s3{top:34%;left:17%;animation-delay:1s}
-.s4{top:42%;right:10%;animation-delay:1.5s}
-.s5{top:67%;left:8%;animation-delay:.3s}
-.s6{top:74%;right:14%;animation-delay:1.2s}
-.s7{top:8%;left:52%;animation-delay:1.8s}
-.s8{top:55%;left:91%;animation-delay:.8s}
-.s9{top:82%;left:27%;animation-delay:1.4s}
-.s10{top:29%;left:64%;animation-delay:.2s}
-
-@keyframes twinkle{
-    0%,100%{
-        opacity:.2;
-        transform:scale(.7);
-    }
-    50%{
-        opacity:1;
-        transform:scale(1.5);
-    }
-}
-
-.app{
-    position:relative;
-    width:100%;
-    height:100%;
-    z-index:2;
-}
-
+.app{position:relative;width:100%;height:100%;z-index:2}
 .top{
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    height:58px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 18px;
-    background:rgba(12,0,10,.76);
-    border-bottom:1px solid rgba(255,92,175,.38);
-    backdrop-filter:blur(14px);
-    z-index:20;
+position:absolute;top:0;left:0;right:0;height:58px;
+display:flex;align-items:center;justify-content:space-between;padding:0 18px;
+background:rgba(12,0,10,.76);border-bottom:1px solid rgba(255,92,175,.38);
+backdrop-filter:blur(14px);z-index:20
 }
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.crown{
-    color:#ff8ac5;
-    font-size:20px;
-    text-shadow:0 0 10px #ff1493;
-}
-
-.logoText{
-    font-family:Georgia,serif;
-    font-size:24px;
-    letter-spacing:4px;
-    color:#fff0f8;
-    text-shadow:
-        0 0 8px #ff69b4,
-        0 0 20px #ff1493;
-}
-
-.status{
-    font-size:10px;
-    letter-spacing:2px;
-    color:#ffc0dc;
-}
-
-.statusDot{
-    display:inline-block;
-    width:7px;
-    height:7px;
-    margin-right:6px;
-    border-radius:50%;
-    background:#ff4fa8;
-    box-shadow:0 0 9px #ff1493;
-}
+.logo{display:flex;align-items:center;gap:10px}
+.crown{color:#ff8ac5;font-size:20px;text-shadow:0 0 10px #ff1493}
+.logoText{font-family:Georgia,serif;font-size:24px;letter-spacing:4px;color:#fff0f8;text-shadow:0 0 8px #ff69b4,0 0 20px #ff1493}
+.status{font-size:10px;letter-spacing:2px;color:#ffc0dc}
+.statusDot{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:#ff4fa8;box-shadow:0 0 9px #ff1493}
 
 .center{
-    position:absolute;
-    top:58px;
-    left:0;
-    right:0;
-    bottom:118px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    pointer-events:none;
+position:absolute;top:58px;left:0;right:0;bottom:118px;
+display:flex;align-items:center;justify-content:center;pointer-events:none
 }
-
-.heartSystem{
-    position:relative;
-    width:190px;
-    height:190px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.orbit{
-    position:absolute;
-    border:1px solid rgba(255,110,185,.4);
-    border-radius:50%;
-}
-
-.orbit1{
-    width:145px;
-    height:145px;
-    animation:spin 9s linear infinite;
-}
-
-.orbit2{
-    width:180px;
-    height:180px;
-    border-top-color:transparent;
-    border-bottom-color:transparent;
-    animation:spinReverse 13s linear infinite;
-}
-
-.orbit3{
-    width:215px;
-    height:215px;
-    border-left-color:transparent;
-    border-right-color:transparent;
-    animation:spin 17s linear infinite;
-}
-
+.heartSystem{position:relative;width:190px;height:190px;display:flex;align-items:center;justify-content:center}
+.orbit{position:absolute;border:1px solid rgba(255,110,185,.4);border-radius:50%}
+.orbit1{width:145px;height:145px;animation:spin 9s linear infinite}
+.orbit2{width:180px;height:180px;border-top-color:transparent;border-bottom-color:transparent;animation:spinReverse 13s linear infinite}
+.orbit3{width:215px;height:215px;border-left-color:transparent;border-right-color:transparent;animation:spin 17s linear infinite}
 .heart{
-    position:relative;
-    width:86px;
-    height:86px;
-    transform:rotate(-45deg);
-    background:linear-gradient(
-        135deg,
-        #ffb5da,
-        #ff4ca7 48%,
-        #df006e
-    );
-    border-radius:9px;
-    box-shadow:
-        0 0 12px #ff8aca,
-        0 0 28px #ff1493,
-        0 0 55px rgba(255,20,147,.65);
-    animation:heartbeat 1.8s infinite ease-in-out;
+position:relative;width:86px;height:86px;transform:rotate(-45deg);
+background:linear-gradient(135deg,#ffb5da,#ff4ca7 48%,#df006e);
+border-radius:9px;
+box-shadow:0 0 12px #ff8aca,0 0 28px #ff1493,0 0 55px rgba(255,20,147,.65);
+animation:heartbeat 1.8s infinite ease-in-out
 }
-
-.heart:before,
-.heart:after{
-    content:"";
-    position:absolute;
-    width:86px;
-    height:86px;
-    border-radius:50%;
-    background:linear-gradient(
-        135deg,
-        #ffb5da,
-        #ff4ca7 48%,
-        #df006e
-    );
+.heart:before,.heart:after{
+content:"";position:absolute;width:86px;height:86px;border-radius:50%;
+background:linear-gradient(135deg,#ffb5da,#ff4ca7 48%,#df006e)
 }
-
-.heart:before{
-    top:-43px;
-    left:0;
-}
-
-.heart:after{
-    top:0;
-    left:43px;
-}
-
+.heart:before{top:-43px;left:0}
+.heart:after{top:0;left:43px}
 .heartText{
-    position:absolute;
-    z-index:5;
-    width:125px;
-    left:-20px;
-    top:34px;
-    transform:rotate(45deg);
-    text-align:center;
-    color:white;
-    font-family:Georgia,serif;
-    font-size:11px;
-    font-weight:bold;
-    line-height:1.25;
-    letter-spacing:1px;
-    white-space:nowrap;
-    text-shadow:
-        0 0 4px white,
-        0 0 10px #ffb5dc;
+position:absolute;z-index:5;width:125px;left:-20px;top:34px;
+transform:rotate(45deg);text-align:center;color:white;font-family:Georgia,serif;
+font-size:11px;font-weight:bold;line-height:1.25;letter-spacing:1px;white-space:nowrap;
+text-shadow:0 0 4px white,0 0 10px #ffb5dc
 }
-
-@keyframes heartbeat{
-    0%,100%{
-        transform:rotate(-45deg) scale(1);
-    }
-    50%{
-        transform:rotate(-45deg) scale(1.08);
-    }
-}
-
-@keyframes spin{
-    from{transform:rotate(0)}
-    to{transform:rotate(360deg)}
-}
-
-@keyframes spinReverse{
-    from{transform:rotate(360deg)}
-    to{transform:rotate(0)}
-}
+@keyframes heartbeat{0%,100%{transform:rotate(-45deg) scale(1)}50%{transform:rotate(-45deg) scale(1.08)}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes spinReverse{from{transform:rotate(360deg)}to{transform:rotate(0)}}
 
 .chatArea{
-    position:absolute;
-    left:0;
-    right:0;
-    top:58px;
-    bottom:118px;
-    padding:
-        12px
-        max(12px,calc((100% - 720px)/2))
-        12px;
-    overflow-y:auto;
-    scrollbar-width:none;
-    z-index:5;
+position:absolute;left:0;right:0;top:58px;bottom:118px;
+padding:12px max(12px,calc((100% - 720px)/2)) 12px;overflow-y:auto;
+scrollbar-width:none;z-index:5
 }
+.chatArea::-webkit-scrollbar{display:none}
+.chat{display:flex;flex-direction:column;gap:8px;padding-bottom:20px}
+.message{max-width:78%;padding:10px 14px;border-radius:17px;font-size:14px;line-height:1.4;word-break:break-word;white-space:pre-wrap}
+.auraMessage{align-self:flex-start;background:rgba(48,3,32,.86);border:1px solid rgba(255,105,180,.25)}
+.userMessage{align-self:flex-end;background:linear-gradient(135deg,#a91465,#e43c91);border:1px solid rgba(255,170,215,.3)}
+.typing{opacity:.7;font-style:italic}
 
-.chatArea::-webkit-scrollbar{
-    display:none;
+.periodButton,.specialButton{
+position:absolute;width:42px;height:42px;border:1px solid rgba(255,120,190,.4);
+border-radius:50%;background:rgba(40,0,27,.88);color:#ffb6d8;font-size:19px;
+cursor:pointer;z-index:25;box-shadow:0 0 15px rgba(255,20,147,.22)
 }
-
-.chat{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    padding-bottom:20px;
-}
-
-.message{
-    max-width:78%;
-    padding:10px 14px;
-    border-radius:17px;
-    font-size:14px;
-    line-height:1.4;
-    word-break:break-word;
-    white-space:pre-wrap;
-}
-
-.auraMessage{
-    align-self:flex-start;
-    background:rgba(48,3,32,.86);
-    border:1px solid rgba(255,105,180,.25);
-}
-
-.userMessage{
-    align-self:flex-end;
-    background:linear-gradient(
-        135deg,
-        #a91465,
-        #e43c91
-    );
-    border:1px solid rgba(255,170,215,.3);
-}
-
-.typing{
-    opacity:.7;
-    font-style:italic;
-}
-
-.periodButton,
-.specialButton{
-    position:absolute;
-    width:42px;
-    height:42px;
-    border:1px solid rgba(255,120,190,.4);
-    border-radius:50%;
-    background:rgba(40,0,27,.88);
-    color:#ffb6d8;
-    font-size:19px;
-    cursor:pointer;
-    z-index:25;
-    box-shadow:
-        0 0 15px rgba(255,20,147,.22);
-}
-
-.periodButton{
-    right:14px;
-    bottom:122px;
-}
-
-.specialButton{
-    right:64px;
-    bottom:122px;
-}
-
-.periodButton:active,
-.specialButton:active{
-    transform:scale(.91);
-}
+.periodButton{right:14px;bottom:122px}
+.specialButton{right:64px;bottom:122px}
+.periodButton:active,.specialButton:active{transform:scale(.91)}
 
 .overlay{
-    position:fixed;
-    inset:0;
-    display:none;
-    align-items:flex-end;
-    justify-content:center;
-    padding:12px;
-    background:rgba(0,0,0,.58);
-    backdrop-filter:blur(5px);
-    z-index:100;
+position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;padding:12px;
+background:rgba(0,0,0,.58);backdrop-filter:blur(5px);z-index:100
 }
-
-.overlay.show{
-    display:flex;
-}
-
+.overlay.show{display:flex}
 .panel{
-    width:min(440px,100%);
-    max-height:88vh;
-    overflow-y:auto;
-    padding:18px;
-    border-radius:24px;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(71,4,43,.99),
-            rgba(25,0,17,.99)
-        );
-    border:1px solid rgba(255,120,190,.38);
-    box-shadow:
-        0 0 35px rgba(255,20,147,.25);
-    scrollbar-width:none;
+width:min(440px,100%);max-height:88vh;overflow-y:auto;padding:18px;border-radius:24px;
+background:linear-gradient(145deg,rgba(71,4,43,.99),rgba(25,0,17,.99));
+border:1px solid rgba(255,120,190,.38);box-shadow:0 0 35px rgba(255,20,147,.25);
+scrollbar-width:none
 }
+.panel::-webkit-scrollbar{display:none}
+.panelHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.panelTitle{font-family:Georgia,serif;font-size:19px;color:#ffd5e8}
+.closeButton{width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:#ffc5df;font-size:18px}
+.tabs{display:flex;gap:7px;margin-bottom:15px}
+.tab{flex:1;height:40px;border:1px solid rgba(255,105,180,.22);border-radius:12px;background:rgba(255,255,255,.05);color:#ffc7df;font-size:12px}
+.tab.active{background:linear-gradient(135deg,rgba(255,104,181,.38),rgba(190,0,105,.45));border-color:rgba(255,130,195,.5)}
+.tabContent{display:none}.tabContent.active{display:block}
 
-.panel::-webkit-scrollbar{
-    display:none;
-}
-
-.panelHeader{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:15px;
-}
-
-.panelTitle{
-    font-family:Georgia,serif;
-    font-size:19px;
-    color:#ffd5e8;
-}
-
-.closeButton{
-    width:32px;
-    height:32px;
-    border:0;
-    border-radius:50%;
-    background:rgba(255,255,255,.08);
-    color:#ffc5df;
-    font-size:18px;
-}
-
-.tabs{
-    display:flex;
-    gap:7px;
-    margin-bottom:15px;
-}
-
-.tab{
-    flex:1;
-    height:40px;
-    border:1px solid rgba(255,105,180,.22);
-    border-radius:12px;
-    background:rgba(255,255,255,.05);
-    color:#ffc7df;
-    font-size:12px;
-}
-
-.tab.active{
-    background:linear-gradient(
-        135deg,
-        rgba(255,104,181,.38),
-        rgba(190,0,105,.45)
-    );
-    border-color:rgba(255,130,195,.5);
-}
-
-.tabContent{
-    display:none;
-}
-
-.tabContent.active{
-    display:block;
-}
-
-.periodResult{
-    text-align:center;
-    padding:13px;
-    margin-bottom:13px;
-    border-radius:17px;
-    background:rgba(255,105,180,.08);
-    border:1px solid rgba(255,105,180,.18);
-}
-
-.periodDays{
-    font-size:25px;
-    font-weight:bold;
-    color:#ff9dcb;
-}
-
-.periodDate{
-    margin-top:5px;
-    font-size:12px;
-    color:#ffd1e5;
-}
-
-.label{
-    display:block;
-    margin:10px 0 6px;
-    font-size:11px;
-    color:#ffc2dd;
-}
-
+.periodResult{text-align:center;padding:13px;margin-bottom:13px;border-radius:17px;background:rgba(255,105,180,.08);border:1px solid rgba(255,105,180,.18)}
+.periodDays{font-size:25px;font-weight:bold;color:#ff9dcb}
+.periodDate{margin-top:5px;font-size:12px;color:#ffd1e5}
+.label{display:block;margin:10px 0 6px;font-size:11px;color:#ffc2dd}
 .input{
-    width:100%;
-    height:43px;
-    padding:0 12px;
-    border:1px solid rgba(255,105,180,.25);
-    border-radius:13px;
-    outline:0;
-    background:rgba(255,255,255,.06);
-    color:white;
-    font-size:14px;
+width:100%;height:43px;padding:0 12px;border:1px solid rgba(255,105,180,.25);
+border-radius:13px;outline:0;background:rgba(255,255,255,.06);color:white;font-size:14px
 }
-
-.input::placeholder,
-.textarea::placeholder{
-    color:rgba(255,190,220,.48);
-}
-
-.input::-webkit-calendar-picker-indicator{
-    filter:invert(1);
-}
-
+.input::placeholder,.textarea::placeholder{color:rgba(255,190,220,.48)}
+.input::-webkit-calendar-picker-indicator{filter:invert(1)}
 .saveButton{
-    width:100%;
-    height:44px;
-    margin-top:14px;
-    border:0;
-    border-radius:14px;
-    background:linear-gradient(
-        135deg,
-        #ff76ba,
-        #d40070
-    );
-    color:white;
-    font-weight:bold;
-    font-size:14px;
+width:100%;height:44px;margin-top:14px;border:0;border-radius:14px;
+background:linear-gradient(135deg,#ff76ba,#d40070);color:white;font-weight:bold;font-size:14px
 }
 
-.eventForm{
-    padding:13px;
-    margin-bottom:15px;
-    border-radius:17px;
-    background:rgba(255,105,180,.07);
-    border:1px solid rgba(255,105,180,.16);
-}
-
-.eventList{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-
-.eventItem{
-    position:relative;
-    padding:12px 42px 12px 13px;
-    border-radius:15px;
-    background:rgba(255,255,255,.055);
-    border:1px solid rgba(255,105,180,.17);
-}
-
-.eventName{
-    color:#ffe1ef;
-    font-weight:bold;
-    font-size:14px;
-}
-
-.eventDate{
-    margin-top:4px;
-    color:#ffb8d8;
-    font-size:11px;
-}
-
-.eventCountdown{
-    margin-top:6px;
-    color:#ff78ba;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.deleteItem{
-    position:absolute;
-    right:9px;
-    top:50%;
-    transform:translateY(-50%);
-    width:29px;
-    height:29px;
-    border:0;
-    border-radius:50%;
-    background:rgba(255,60,130,.13);
-    color:#ff9bc8;
-    font-size:14px;
-}
+.eventForm{padding:13px;margin-bottom:15px;border-radius:17px;background:rgba(255,105,180,.07);border:1px solid rgba(255,105,180,.16)}
+.eventList{display:flex;flex-direction:column;gap:8px}
+.eventItem{position:relative;padding:12px 42px 12px 13px;border-radius:15px;background:rgba(255,255,255,.055);border:1px solid rgba(255,105,180,.17)}
+.eventName{color:#ffe1ef;font-weight:bold;font-size:14px}
+.eventDate{margin-top:4px;color:#ffb8d8;font-size:11px}
+.eventCountdown{margin-top:6px;color:#ff78ba;font-size:12px;font-weight:bold}
+.deleteItem{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:29px;height:29px;border:0;border-radius:50%;background:rgba(255,60,130,.13);color:#ff9bc8;font-size:14px}
 
 .textarea{
-    width:100%;
-    min-height:100px;
-    resize:none;
-    padding:12px;
-    border:1px solid rgba(255,105,180,.25);
-    border-radius:13px;
-    outline:0;
-    background:rgba(255,255,255,.06);
-    color:white;
-    font-family:Arial,sans-serif;
-    font-size:13px;
-    line-height:1.45;
+width:100%;min-height:100px;resize:none;padding:12px;border:1px solid rgba(255,105,180,.25);
+border-radius:13px;outline:0;background:rgba(255,255,255,.06);color:white;
+font-family:Arial,sans-serif;font-size:13px;line-height:1.45
 }
-
-.noteList{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-    margin-top:15px;
-}
-
-.noteItem{
-    position:relative;
-    padding:13px 42px 13px 13px;
-    border-radius:15px;
-    background:rgba(255,255,255,.055);
-    border:1px solid rgba(255,105,180,.17);
-}
-
-.noteTitle{
-    color:#ffe0ed;
-    font-weight:bold;
-    font-size:14px;
-}
-
-.noteText{
-    margin-top:6px;
-    color:#ffc4dc;
-    font-size:12px;
-    line-height:1.45;
-    white-space:pre-wrap;
-    word-break:break-word;
-}
-
-.noteDate{
-    margin-top:7px;
-    color:#b985a2;
-    font-size:10px;
-}
+.noteList{display:flex;flex-direction:column;gap:9px;margin-top:15px}
+.noteItem{position:relative;padding:13px 42px 13px 13px;border-radius:15px;background:rgba(255,255,255,.055);border:1px solid rgba(255,105,180,.17)}
+.noteTitle{color:#ffe0ed;font-weight:bold;font-size:14px}
+.noteText{margin-top:6px;color:#ffc4dc;font-size:12px;line-height:1.45;white-space:pre-wrap;word-break:break-word}
+.noteDate{margin-top:7px;color:#b985a2;font-size:10px}
 
 .bottom{
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    height:110px;
-    padding:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:
-        linear-gradient(
-            to top,
-            rgba(9,0,7,.98),
-            rgba(20,0,14,.94)
-        );
-    border-top:1px solid rgba(255,92,175,.42);
-    box-shadow:0 -10px 35px rgba(0,0,0,.4);
-    backdrop-filter:blur(16px);
-    z-index:30;
+position:absolute;left:0;right:0;bottom:0;height:110px;padding:12px;
+display:flex;align-items:center;justify-content:center;
+background:linear-gradient(to top,rgba(9,0,7,.98),rgba(20,0,14,.94));
+border-top:1px solid rgba(255,92,175,.42);box-shadow:0 -10px 35px rgba(0,0,0,.4);
+backdrop-filter:blur(16px);z-index:30
 }
-
 .inputBar{
-    width:min(720px,100%);
-    height:58px;
-    display:flex;
-    align-items:center;
-    gap:7px;
-    padding:7px;
-    border:1px solid rgba(255,91,173,.4);
-    border-radius:30px;
-    background:rgba(30,0,20,.92);
+width:min(720px,100%);height:58px;display:flex;align-items:center;gap:7px;padding:7px;
+border:1px solid rgba(255,91,173,.4);border-radius:30px;background:rgba(30,0,20,.92)
 }
-
 .iconButton{
-    width:43px;
-    height:43px;
-    flex:0 0 43px;
-    border:1px solid rgba(255,105,180,.3);
-    border-radius:50%;
-    background:rgba(255,90,170,.09);
-    color:#ffc4df;
-    font-size:19px;
-    cursor:pointer;
+width:43px;height:43px;flex:0 0 43px;border:1px solid rgba(255,105,180,.3);
+border-radius:50%;background:rgba(255,90,170,.09);color:#ffc4df;font-size:19px;cursor:pointer
 }
-
-.textInput{
-    min-width:0;
-    flex:1;
-    height:43px;
-    padding:0 12px;
-    border:0;
-    outline:0;
-    border-radius:18px;
-    background:rgba(255,255,255,.045);
-    color:white;
-    font-size:14px;
-}
-
-.textInput::placeholder{
-    color:rgba(255,190,220,.55);
-}
-
+.textInput{min-width:0;flex:1;height:43px;padding:0 12px;border:0;outline:0;border-radius:18px;background:rgba(255,255,255,.045);color:white;font-size:14px}
+.textInput::placeholder{color:rgba(255,190,220,.55)}
 .actionButton{
-    width:45px;
-    height:45px;
-    flex:0 0 45px;
-    border:0;
-    border-radius:50%;
-    background:linear-gradient(
-        135deg,
-        #ff77bb,
-        #d40070
-    );
-    color:white;
-    font-size:20px;
-    cursor:pointer;
+width:45px;height:45px;flex:0 0 45px;border:0;border-radius:50%;
+background:linear-gradient(135deg,#ff77bb,#d40070);color:white;font-size:20px;cursor:pointer
 }
-
-.actionButton:disabled{
-    opacity:.45;
-}
+.actionButton:disabled{opacity:.45}
 
 @media(max-width:500px){
-
-    .logoText{
-        font-size:20px;
-    }
-
-    .center{
-        bottom:105px;
-    }
-
-    .chatArea{
-        bottom:105px;
-    }
-
-    .bottom{
-        height:105px;
-        padding:9px;
-    }
-
-    .periodButton,
-    .specialButton{
-        bottom:113px;
-    }
-
-    .heartSystem{
-        transform:scale(.82);
-    }
-
-    .inputBar{
-        height:54px;
-        gap:5px;
-    }
-
-    .iconButton{
-        width:38px;
-        height:38px;
-        flex-basis:38px;
-        font-size:17px;
-    }
-
-    .actionButton{
-        width:40px;
-        height:40px;
-        flex-basis:40px;
-    }
-
-    .textInput{
-        height:38px;
-        font-size:13px;
-    }
+.logoText{font-size:20px}
+.center,.chatArea{bottom:105px}
+.bottom{height:105px;padding:9px}
+.periodButton,.specialButton{bottom:113px}
+.heartSystem{transform:scale(.82)}
+.inputBar{height:54px;gap:5px}
+.iconButton{width:38px;height:38px;flex-basis:38px;font-size:17px}
+.actionButton{width:40px;height:40px;flex-basis:40px}
+.textInput{height:38px;font-size:13px}
 }
 </style>
 </head>
 
 <body>
-
 <div class="background">
-
-    <div class="glow one"></div>
-    <div class="glow two"></div>
-
-    <div class="star s1"></div>
-    <div class="star s2"></div>
-    <div class="star s3"></div>
-    <div class="star s4"></div>
-    <div class="star s5"></div>
-    <div class="star s6"></div>
-    <div class="star s7"></div>
-    <div class="star s8"></div>
-    <div class="star s9"></div>
-    <div class="star s10"></div>
-
+<div class="glow one"></div><div class="glow two"></div>
+<div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
+<div class="star s4"></div><div class="star s5"></div><div class="star s6"></div>
+<div class="star s7"></div><div class="star s8"></div><div class="star s9"></div><div class="star s10"></div>
 </div>
-
 
 <div class="app">
 
 <header class="top">
-
-    <div class="logo">
-        <span class="crown">♕</span>
-        <span class="logoText">AURA</span>
-    </div>
-
-    <div class="status">
-        <span class="statusDot"></span>
-        <span id="statusText">ONLINE</span>
-    </div>
-
+<div class="logo"><span class="crown">♕</span><span class="logoText">AURA</span></div>
+<div class="status"><span class="statusDot"></span><span id="statusText">ONLINE</span></div>
 </header>
 
-
 <div class="center">
-
-    <div class="heartSystem">
-
-        <div class="orbit orbit1"></div>
-        <div class="orbit orbit2"></div>
-        <div class="orbit orbit3"></div>
-
-        <div class="heart">
-
-            <div class="heartText">
-                I LOVE<br>
-                YOU 300
-            </div>
-
-        </div>
-
-    </div>
-
+<div class="heartSystem">
+<div class="orbit orbit1"></div><div class="orbit orbit2"></div><div class="orbit orbit3"></div>
+<div class="heart"><div class="heartText">I LOVE<br>YOU 300</div></div>
+</div>
 </div>
 
+<div class="chatArea" id="chatArea"><div class="chat" id="chat"></div></div>
 
-<div
-    class="chatArea"
-    id="chatArea"
->
+<button class="specialButton" id="specialButton" type="button">👑</button>
+<button class="periodButton" id="periodButton" type="button">🌸</button>
 
-    <div
-        class="chat"
-        id="chat"
-    ></div>
+<div class="overlay" id="specialOverlay">
+<div class="panel">
+<div class="panelHeader"><div class="panelTitle">👑 Özel Alan</div><button class="closeButton" id="closeSpecial" type="button">×</button></div>
 
+<div class="tabs">
+<button class="tab active" id="eventsTab" type="button">🎀 Özel Günler</button>
+<button class="tab" id="notesTab" type="button">💌 Gizli Notlar</button>
 </div>
 
+<div class="tabContent active" id="eventsContent">
+<div class="eventForm">
+<label class="label" for="eventName">Özel gün adı</label>
+<input class="input" id="eventName" type="text" maxlength="60" placeholder="Doğum günü, yıldönümü...">
+<label class="label" for="eventDate">Tarih</label>
+<input class="input" id="eventDate" type="date">
+<button class="saveButton" id="addEvent" type="button">🎀 Özel Gün Ekle</button>
+</div>
+<div class="eventList" id="eventList"></div>
+</div><div class="tabContent" id="notesContent">
+<div class="eventForm">
 
-<button
-    class="specialButton"
-    id="specialButton"
-    type="button"
-    aria-label="Özel alan"
->👑</button>
+<label class="label" for="noteTitle">Not başlığı</label>
+<input class="input" id="noteTitle" type="text" maxlength="60" placeholder="Bugün, aklımdaki şey...">
 
-<button
-    class="periodButton"
-    id="periodButton"
-    type="button"
-    aria-label="Regl takibi"
->🌸</button>
+<label class="label" for="noteText">Not</label>
+<textarea class="textarea" id="noteText" maxlength="1000" placeholder="Buraya özel notunu yaz..."></textarea>
 
-
-<div
-    class="overlay"
-    id="specialOverlay"
->
-
-    <div class="panel">
-
-        <div class="panelHeader">
-
-            <div class="panelTitle">
-                👑 Özel Alan
-            </div>
-
-            <button
-                class="closeButton"
-                id="closeSpecial"
-                type="button"
-            >×</button>
-
-        </div>
-
-
-        <div class="tabs">
-
-            <button
-                class="tab active"
-                id="eventsTab"
-                type="button"
-            >
-                🎀 Özel Günler
-            </button>
-
-            <button
-                class="tab"
-                id="notesTab"
-                type="button"
-            >
-                💌 Gizli Notlar
-            </button>
-
-        </div>
-
-
-        <div
-            class="tabContent active"
-            id="eventsContent"
-        >
-
-            <div class="eventForm">
-
-                <label
-                    class="label"
-                    for="eventName"
-                >
-                    Özel gün adı
-                </label>
-
-                <input
-                    class="input"
-                    id="eventName"
-                    type="text"
-                    maxlength="60"
-                    placeholder="Doğum günü, yıldönümü..."
-                >
-
-
-                <label
-                    class="label"
-                    for="eventDate"
-                >
-                    Tarih
-                </label>
-
-                <input
-                    class="input"
-                    id="eventDate"
-                    type="date"
-                >
-
-
-                <button
-                    class="saveButton"
-                    id="addEvent"
-                    type="button"
-                >
-                    🎀 Özel Gün Ekle
-                </button>
-
-            </div>
-
-
-            <div
-                class="eventList"
-                id="eventList"
-            ></div>
-
-    </div>        <div
-            class="tabContent"
-            id="notesContent"
-        >
-
-            <div class="eventForm">
-
-                <label
-                    class="label"
-                    for="noteTitle"
-                >
-                    Not başlığı
-                </label>
-
-                <input
-                    class="input"
-                    id="noteTitle"
-                    type="text"
-                    maxlength="60"
-                    placeholder="Bugün, aklımdaki şey..."
-                >
-
-
-                <label
-                    class="label"
-                    for="noteText"
-                >
-                    Not
-                </label>
-
-                <textarea
-                    class="textarea"
-                    id="noteText"
-                    maxlength="1000"
-                    placeholder="Buraya özel notunu yaz..."
-                ></textarea>
-
-
-                <button
-                    class="saveButton"
-                    id="addNote"
-                    type="button"
-                >
-                    💌 Notu Kaydet
-                </button>
-
-            </div>
-
-
-            <div
-                class="noteList"
-                id="noteList"
-            ></div>
-
-        </div>
-
-    </div>
-
+<button class="saveButton" id="addNote" type="button">💌 Notu Kaydet</button>
 </div>
 
-
-<div
-    class="overlay"
-    id="periodOverlay"
->
-
-    <div class="panel">
-
-        <div class="panelHeader">
-
-            <div class="panelTitle">
-                🌸 Regl Takibi
-            </div>
-
-            <button
-                class="closeButton"
-                id="closePeriod"
-                type="button"
-            >×</button>
-
-        </div>
-
-
-        <div class="periodResult">
-
-            <div
-                class="periodDays"
-                id="periodDays"
-            >
-                Bilgi gerekli
-            </div>
-
-            <div
-                class="periodDate"
-                id="periodDate"
-            >
-                Son regl tarihini gir
-            </div>
-
-        </div>
-
-
-        <label
-            class="label"
-            for="lastPeriod"
-        >
-            Son regl başlangıcı
-        </label>
-
-        <input
-            class="input"
-            id="lastPeriod"
-            type="date"
-        >
-
-
-        <label
-            class="label"
-            for="cycleLength"
-        >
-            Ortalama döngü uzunluğu
-        </label>
-
-        <input
-            class="input"
-            id="cycleLength"
-            type="number"
-            min="15"
-            max="60"
-            value="28"
-            inputmode="numeric"
-        >
-
-
-        <button
-            class="saveButton"
-            id="periodSave"
-            type="button"
-        >
-            Kaydet
-        </button>
-
-    </div>
-
+<div class="noteList" id="noteList"></div>
+</div>
+</div>
+</div>
 </div>
 
+<div class="overlay" id="periodOverlay">
+<div class="panel">
+
+<div class="panelHeader">
+<div class="panelTitle">🌸 Regl Takibi</div>
+<button class="closeButton" id="closePeriod" type="button">×</button>
+</div>
+
+<div class="periodResult">
+<div class="periodDays" id="periodDays">Bilgi gerekli</div>
+<div class="periodDate" id="periodDate">Son regl tarihini gir</div>
+</div>
+
+<label class="label" for="lastPeriod">Son regl başlangıcı</label>
+<input class="input" id="lastPeriod" type="date">
+
+<label class="label" for="cycleLength">Ortalama döngü uzunluğu</label>
+<input class="input" id="cycleLength" type="number" min="15" max="60" value="28" inputmode="numeric">
+
+<button class="saveButton" id="periodSave" type="button">Kaydet</button>
+</div>
+</div>
 
 <div class="bottom">
+<div class="inputBar">
 
-    <div class="inputBar">
+<button class="iconButton" id="heartButton" type="button">♡</button>
 
-        <button
-            class="iconButton"
-            id="heartButton"
-            type="button"
-        >♡</button>
+<input class="textInput" id="messageInput" type="text"
+placeholder="AURA’ya bir şey söyle..." autocomplete="off" enterkeyhint="send">
 
-
-        <input
-            class="textInput"
-            id="messageInput"
-            type="text"
-            placeholder="AURA’ya bir şey söyle..."
-            autocomplete="off"
-            enterkeyhint="send"
-        >
-
-
-        <button
-            class="iconButton"
-            id="emojiButton"
-            type="button"
-        >☺</button>
-
-
-        <button
-            class="iconButton"
-            id="micButton"
-            type="button"
-        >🎤</button>
-
-
-        <button
-            class="actionButton"
-            id="sendButton"
-            type="button"
-        >➤</button>
-
-    </div>
+<button class="iconButton" id="emojiButton" type="button">☺</button>
+<button class="iconButton" id="micButton" type="button">🎤</button>
+<button class="actionButton" id="sendButton" type="button">➤</button>
 
 </div>
-
 </div>
-
+</div>
 
 <script src="https://js.puter.com/v2/"></script>
 
 <script>
+const input=document.getElementById("messageInput");
+const sendButton=document.getElementById("sendButton");
+const micButton=document.getElementById("micButton");
+const chat=document.getElementById("chat");
+const chatArea=document.getElementById("chatArea");
+const statusText=document.getElementById("statusText");
+const heartButton=document.getElementById("heartButton");
+const emojiButton=document.getElementById("emojiButton");
 
-const input =
-    document.getElementById("messageInput");
-
-const sendButton =
-    document.getElementById("sendButton");
-
-const micButton =
-    document.getElementById("micButton");
-
-const chat =
-    document.getElementById("chat");
-
-const chatArea =
-    document.getElementById("chatArea");
-
-const statusText =
-    document.getElementById("statusText");
-
-const heartButton =
-    document.getElementById("heartButton");
-
-const emojiButton =
-    document.getElementById("emojiButton");
-
-
-let busy = false;
-
+let busy=false;
 
 function addMessage(text,type){
-
-    const message =
-        document.createElement("div");
-
-    message.className =
-        "message " +
-        (
-            type === "user"
-            ? "userMessage"
-            : "auraMessage"
-        );
-
-    message.textContent =
-        String(text);
-
-    chat.appendChild(message);
-
-    chatArea.scrollTop =
-        chatArea.scrollHeight;
-
-    return message;
+const message=document.createElement("div");
+message.className="message "+(type==="user"?"userMessage":"auraMessage");
+message.textContent=String(text);
+chat.appendChild(message);
+chatArea.scrollTop=chatArea.scrollHeight;
+return message;
 }
 
 
+/* AURA'NIN BEYİN / KİŞİSEL BİLGİLERİ */
+
 async function askAura(text){
 
-    if(
-        typeof puter === "undefined" ||
-        !puter.ai ||
-        !puter.ai.chat
-    ){
-        throw new Error(
-            "Puter AI hazır değil."
-        );
-    }
+if(typeof puter==="undefined" || !puter.ai || !puter.ai.chat){
+throw new Error("Puter AI hazır değil.");
+}
 
-    const prompt = `
+const prompt=`
 Sen AURA'sın.
 
-Edanur için hazırlanmış özel,
-nazik ve doğal konuşan bir
-yapay zeka asistanısın.
+Sen Edanur için hazırlanmış özel bir yapay zeka
+asistanısın.
 
-Türkçe konuş.
+KİŞİSEL BİLGİLER:
 
-Kullanıcının adını gereksiz yere
-tekrar etme.
+- Kullanıcının adı Edanur.
+- Edanur'un sevgilisinin adı Bedirhan.
+- Bedirhan, AURA'nın sahibidir.
+- Bedirhan, bu asistanı Edanur için hazırlamıştır.
+- Edanur sana Bedirhan hakkında soru sorarsa,
+  bildiğin bilgileri doğal ve samimi şekilde anlat.
+- Bedirhan hakkında sana verilmemiş bilgileri kesinlikle
+  uydurma.
+- Bilmediğin bir Bedirhan bilgisi sorulursa,
+  "Bu konuda bana bilgi verilmedi" şeklinde dürüstçe cevap ver.
+- Bedirhan'ın kişisel bilgilerini kullanıcı söylemediği
+  sürece tahmin etmeye çalışma.
+- Kullanıcı "Bedirhan kim?", "Benim sevgilim kim?",
+  "Sevgilim kim?", "Bedirhan benim neyim?",
+  "Bedirhan hakkında ne biliyorsun?" gibi sorular sorarsa
+  yukarıdaki bilgileri kullan.
 
-Kısa ve doğal cevaplar ver.
+DAVRANIŞ:
 
-Kullanıcı:
+- Her zaman Türkçe konuş.
+- Doğal, sıcak ve nazik konuş.
+- Gereksiz uzun cevaplar verme.
+- Kullanıcı sana soru sorduğunda doğrudan cevap ver.
+- Kullanıcının adını her cümlede tekrar etme.
+- Kendini AURA olarak tanıtabilirsin.
+- Sen gerçek bir insan olduğunu iddia etme.
+- Bilmediğin şeyleri uydurma.
+- Kullanıcının mesajındaki soruyu cevaplamaya odaklan.
+
+Kullanıcının mesajı:
 ${text}
 `;
 
-    const response =
-        await puter.ai.chat(prompt);
+const response=await puter.ai.chat(prompt);
 
-    if(!response){
-        throw new Error("Boş cevap.");
-    }
+if(!response){
+throw new Error("Boş cevap.");
+}
 
-    if(typeof response === "string"){
-        return response.trim();
-    }
+if(typeof response==="string"){
+return response.trim();
+}
 
-    if(
-        response.message &&
-        typeof response.message.content === "string"
-    ){
-        return response.message.content.trim();
-    }
+if(response.message && typeof response.message.content==="string"){
+return response.message.content.trim();
+}
 
-    if(typeof response.text === "string"){
-        return response.text.trim();
-    }
+if(typeof response.text==="string"){
+return response.text.trim();
+}
 
-    return String(response);
+return String(response);
 }
 
 
 async function sendMessage(){
 
-    if(busy){
-        return;
-    }
+if(busy)return;
 
-    const text =
-        input.value.trim();
+const text=input.value.trim();
 
-    if(!text){
-        input.focus();
-        return;
-    }
+if(!text){
+input.focus();
+return;
+}
 
-    addMessage(
-        text,
-        "user"
-    );
+addMessage(text,"user");
+input.value="";
 
-    input.value = "";
+busy=true;
+sendButton.disabled=true;
+micButton.disabled=true;
+statusText.textContent="DÜŞÜNÜYOR";
 
-    busy = true;
+const typing=addMessage("AURA düşünüyor...","aura");
+typing.classList.add("typing");
 
-    sendButton.disabled = true;
-    micButton.disabled = true;
+try{
 
-    statusText.textContent =
-        "DÜŞÜNÜYOR";
+const answer=await askAura(text);
 
-    const typing =
-        addMessage(
-            "AURA düşünüyor...",
-            "aura"
-        );
+typing.remove();
+addMessage(answer,"aura");
+statusText.textContent="ONLINE";
 
-    typing.classList.add("typing");
+}catch(error){
 
-    try{
+console.error("AURA:",error);
 
-        const answer =
-            await askAura(text);
+typing.remove();
 
-        typing.remove();
+addMessage(
+"Şu anda bağlantıda bir sorun oluştu. Lütfen tekrar dene.",
+"aura"
+);
 
-        addMessage(
-            answer,
-            "aura"
-        );
+statusText.textContent="BAĞLANTI HATASI";
+}
 
-        statusText.textContent =
-            "ONLINE";
-
-    }catch(error){
-
-        console.error(
-            "AURA:",
-            error
-        );
-
-        typing.remove();
-
-        addMessage(
-            "Şu anda bağlantıda bir sorun oluştu. Lütfen tekrar dene.",
-            "aura"
-        );
-
-        statusText.textContent =
-            "BAĞLANTI HATASI";
-    }
-
-    busy = false;
-
-    sendButton.disabled = false;
-    micButton.disabled = false;
-
-    input.focus();
+busy=false;
+sendButton.disabled=false;
+micButton.disabled=false;
+input.focus();
 }
 
 
-sendButton.onclick =
-    function(event){
-
-        event.preventDefault();
-
-        sendMessage();
-    };
+sendButton.onclick=function(event){
+event.preventDefault();
+sendMessage();
+};
 
 
-input.onkeydown =
-    function(event){
-
-        if(
-            event.key === "Enter" &&
-            !event.shiftKey
-        ){
-
-            event.preventDefault();
-
-            sendMessage();
-        }
-    };
+input.onkeydown=function(event){
+if(event.key==="Enter" && !event.shiftKey){
+event.preventDefault();
+sendMessage();
+}
+};
 
 
-heartButton.onclick =
-    function(){
-
-        input.value =
-            "Seni seviyorum ❤️";
-
-        input.focus();
-    };
+heartButton.onclick=function(){
+input.value="Seni seviyorum ❤️";
+input.focus();
+};
 
 
-emojiButton.onclick =
-    function(){
-
-        input.value += " ❤️";
-
-        input.focus();
-    };
+emojiButton.onclick=function(){
+input.value+=" ❤️";
+input.focus();
+};
 
 
-let recognition = null;
-let listening = false;
+/* SESLİ MESAJ */
 
-const SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
+let recognition=null;
+let listening=false;
 
+const SpeechRecognition=
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
 
 if(SpeechRecognition){
 
-    recognition =
-        new SpeechRecognition();
+recognition=new SpeechRecognition();
+recognition.lang="tr-TR";
+recognition.continuous=false;
+recognition.interimResults=false;
 
-    recognition.lang =
-        "tr-TR";
+recognition.onstart=function(){
+listening=true;
+micButton.textContent="🔴";
+statusText.textContent="DİNLİYOR";
+};
 
-    recognition.continuous =
-        false;
+recognition.onresult=function(event){
 
-    recognition.interimResults =
-        false;
+if(!event.results || !event.results[0])return;
 
+const spoken=
+event.results[0][0].transcript.trim();
 
-    recognition.onstart =
-        function(){
+if(spoken){
+input.value=spoken;
+sendMessage();
+}
+};
 
-            listening = true;
+recognition.onerror=function(error){
 
-            micButton.textContent =
-                "🔴";
+console.error("Mikrofon:",error);
 
-            statusText.textContent =
-                "DİNLİYOR";
-        };
+listening=false;
+micButton.textContent="🎤";
+statusText.textContent="ONLINE";
+};
 
+recognition.onend=function(){
 
-    recognition.onresult =
-        function(event){
+listening=false;
+micButton.textContent="🎤";
 
-            if(
-                !event.results ||
-                !event.results[0]
-            ){
-                return;
-            }
+if(statusText.textContent==="DİNLİYOR"){
+statusText.textContent="ONLINE";
+}
+};
 
-            const spoken =
-                event.results[0][0]
-                    .transcript
-                    .trim();
+micButton.onclick=function(){
 
-            if(spoken){
+if(listening){
 
-                input.value =
-                    spoken;
+try{recognition.stop()}catch(error){}
 
-                sendMessage();
-            }
-        };
+return;
+}
 
-
-    recognition.onerror =
-        function(error){
-
-            console.error(
-                "Mikrofon:",
-                error
-            );
-
-            listening = false;
-
-            micButton.textContent =
-                "🎤";
-
-            statusText.textContent =
-                "ONLINE";
-        };
-
-
-    recognition.onend =
-        function(){
-
-            listening = false;
-
-            micButton.textContent =
-                "🎤";
-
-            if(
-                statusText.textContent ===
-                "DİNLİYOR"
-            ){
-
-                statusText.textContent =
-                    "ONLINE";
-            }
-        };
-
-
-    micButton.onclick =
-        function(){
-
-            if(listening){
-
-                try{
-                    recognition.stop();
-                }catch(error){}
-
-                return;
-            }
-
-            try{
-                recognition.start();
-            }catch(error){
-                console.error(error);
-            }
-        };
+try{
+recognition.start();
+}catch(error){
+console.error(error);
+}
+};
 
 }else{
 
-    micButton.onclick =
-        function(){
+micButton.onclick=function(){
+addMessage(
+"Bu tarayıcı sesli konuşmayı desteklemiyor.",
+"aura"
+);
+};
 
-            addMessage(
-                "Bu tarayıcı sesli konuşmayı desteklemiyor.",
-                "aura"
-            );
-        };
 }
 
 
 /* REGL TAKİBİ */
 
-const periodButton =
-    document.getElementById(
-        "periodButton"
-    );
+const periodButton=document.getElementById("periodButton");
+const periodOverlay=document.getElementById("periodOverlay");
+const closePeriod=document.getElementById("closePeriod");
+const lastPeriod=document.getElementById("lastPeriod");
+const cycleLength=document.getElementById("cycleLength");
+const periodSave=document.getElementById("periodSave");
+const periodDays=document.getElementById("periodDays");
+const periodDate=document.getElementById("periodDate");
 
-const periodOverlay =
-    document.getElementById(
-        "periodOverlay"
-    );
+periodButton.onclick=function(){
+periodOverlay.classList.add("show");
+loadPeriodData();
+};
 
-const closePeriod =
-    document.getElementById(
-        "closePeriod"
-    );
+closePeriod.onclick=function(){
+periodOverlay.classList.remove("show");
+};
 
-const lastPeriod =
-    document.getElementById(
-        "lastPeriod"
-    );
-
-const cycleLength =
-    document.getElementById(
-        "cycleLength"
-    );
-
-const periodSave =
-    document.getElementById(
-        "periodSave"
-    );
-
-const periodDays =
-    document.getElementById(
-        "periodDays"
-    );
-
-const periodDate =
-    document.getElementById(
-        "periodDate"
-    );
-
-
-periodButton.onclick =
-    function(){
-
-        periodOverlay.classList.add(
-            "show"
-        );
-
-        loadPeriodData();
-    };
-
-
-closePeriod.onclick =
-    function(){
-
-        periodOverlay.classList.remove(
-            "show"
-        );
-    };
-
-
-periodOverlay.onclick =
-    function(event){
-
-        if(
-            event.target ===
-            periodOverlay
-        ){
-
-            periodOverlay.classList.remove(
-                "show"
-            );
-        }
-    };
-
+periodOverlay.onclick=function(event){
+if(event.target===periodOverlay){
+periodOverlay.classList.remove("show");
+}
+};
 
 function formatDate(date){
-
-    return date.toLocaleDateString(
-        "tr-TR",
-        {
-            day:"numeric",
-            month:"long",
-            year:"numeric"
-        }
-    );
+return date.toLocaleDateString("tr-TR",{
+day:"numeric",
+month:"long",
+year:"numeric"
+});
 }
-
 
 function dateOnly(date){
-
-    return new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate()
-    );
+return new Date(
+date.getFullYear(),
+date.getMonth(),
+date.getDate()
+);
 }
-
 
 function calculatePeriod(){
 
-    const savedDate =
-        localStorage.getItem(
-            "edAnurLastPeriod"
-        );
+const savedDate=localStorage.getItem("edAnurLastPeriod");
+const savedCycle=localStorage.getItem("edAnurCycleLength");
 
-    const savedCycle =
-        localStorage.getItem(
-            "edAnurCycleLength"
-        );
+if(!savedDate){
 
-
-    if(!savedDate){
-
-        periodDays.textContent =
-            "Bilgi gerekli";
-
-        periodDate.textContent =
-            "Son regl tarihini gir";
-
-        return;
-    }
-
-
-    const cycle =
-        parseInt(
-            savedCycle || "28",
-            10
-        );
-
-
-    if(
-        isNaN(cycle) ||
-        cycle < 15 ||
-        cycle > 60
-    ){
-
-        periodDays.textContent =
-            "Döngü bilgisi hatalı";
-
-        periodDate.textContent =
-            "15-60 gün arasında gir";
-
-        return;
-    }
-
-
-    const parts =
-        savedDate.split("-");
-
-
-    if(parts.length !== 3){
-        return;
-    }
-
-
-    const nextDate =
-        new Date(
-            parseInt(parts[0],10),
-            parseInt(parts[1],10) - 1,
-            parseInt(parts[2],10)
-        );
-
-
-    if(isNaN(nextDate.getTime())){
-        return;
-    }
-
-
-    nextDate.setDate(
-        nextDate.getDate() + cycle
-    );
-
-
-    const today =
-        dateOnly(new Date());
-
-    const target =
-        dateOnly(nextDate);
-
-
-    const difference =
-        Math.ceil(
-            (
-                target.getTime() -
-                today.getTime()
-            ) /
-            86400000
-        );
-
-
-    if(difference > 0){
-
-        periodDays.textContent =
-            difference + " gün kaldı";
-
-    }else if(difference === 0){
-
-        periodDays.textContent =
-            "Bugün bekleniyor";
-
-    }else{
-
-        periodDays.textContent =
-            Math.abs(difference) +
-            " gün geçti";
-    }
-
-
-    periodDate.textContent =
-        "Tahmini başlangıç: " +
-        formatDate(nextDate);
+periodDays.textContent="Bilgi gerekli";
+periodDate.textContent="Son regl tarihini gir";
+return;
 }
 
+const cycle=parseInt(savedCycle||"28",10);
+
+if(isNaN(cycle)||cycle<15||cycle>60){
+
+periodDays.textContent="Döngü bilgisi hatalı";
+periodDate.textContent="15-60 gün arasında gir";
+return;
+}
+
+const parts=savedDate.split("-");
+
+if(parts.length!==3)return;
+
+const nextDate=new Date(
+parseInt(parts[0],10),
+parseInt(parts[1],10)-1,
+parseInt(parts[2],10)
+);
+
+if(isNaN(nextDate.getTime()))return;
+
+nextDate.setDate(nextDate.getDate()+cycle);
+
+const today=dateOnly(new Date());
+const target=dateOnly(nextDate);
+
+const difference=Math.ceil(
+(target.getTime()-today.getTime())/86400000
+);
+
+if(difference>0){
+periodDays.textContent=difference+" gün kaldı";
+}else if(difference===0){
+periodDays.textContent="Bugün bekleniyor";
+}else{
+periodDays.textContent=Math.abs(difference)+" gün geçti";
+}
+
+periodDate.textContent=
+"Tahmini başlangıç: "+formatDate(nextDate);
+}
 
 function loadPeriodData(){
 
-    const savedDate =
-        localStorage.getItem(
-            "edAnurLastPeriod"
-        );
+const savedDate=
+localStorage.getItem("edAnurLastPeriod");
 
-    const savedCycle =
-        localStorage.getItem(
-            "edAnurCycleLength"
-        );
+const savedCycle=
+localStorage.getItem("edAnurCycleLength");
 
+if(savedDate)lastPeriod.value=savedDate;
 
-    if(savedDate){
-        lastPeriod.value =
-            savedDate;
-    }
+cycleLength.value=savedCycle||"28";
 
-    cycleLength.value =
-        savedCycle || "28";
+calculatePeriod();
+}periodSave.onclick=function(){
 
+const date=lastPeriod.value;
+const cycle=parseInt(cycleLength.value,10);
 
-    calculatePeriod();
-}periodSave.onclick =
-    function(){
+if(!date){
 
-        const date =
-            lastPeriod.value;
+periodDays.textContent="Tarih gerekli";
+periodDate.textContent="Son regl başlangıcını seç";
+return;
+}
 
-        const cycle =
-            parseInt(
-                cycleLength.value,
-                10
-            );
+if(isNaN(cycle)||cycle<15||cycle>60){
 
+periodDays.textContent="Döngü hatalı";
+periodDate.textContent="15-60 gün arasında gir";
+return;
+}
 
-        if(!date){
+localStorage.setItem("edAnurLastPeriod",date);
+localStorage.setItem("edAnurCycleLength",String(cycle));
 
-            periodDays.textContent =
-                "Tarih gerekli";
+calculatePeriod();
 
-            periodDate.textContent =
-                "Son regl başlangıcını seç";
-
-            return;
-        }
-
-
-        if(
-            isNaN(cycle) ||
-            cycle < 15 ||
-            cycle > 60
-        ){
-
-            periodDays.textContent =
-                "Döngü hatalı";
-
-            periodDate.textContent =
-                "15-60 gün arasında gir";
-
-            return;
-        }
-
-
-        localStorage.setItem(
-            "edAnurLastPeriod",
-            date
-        );
-
-        localStorage.setItem(
-            "edAnurCycleLength",
-            String(cycle)
-        );
-
-
-        calculatePeriod();
-
-
-        setTimeout(
-            function(){
-
-                periodOverlay.classList.remove(
-                    "show"
-                );
-
-            },
-            500
-        );
-    };
+setTimeout(function(){
+periodOverlay.classList.remove("show");
+},500);
+};
 
 
 /* ÖZEL ALAN */
 
-const specialButton =
-    document.getElementById(
-        "specialButton"
-    );
+const specialButton=document.getElementById("specialButton");
+const specialOverlay=document.getElementById("specialOverlay");
+const closeSpecial=document.getElementById("closeSpecial");
+const eventsTab=document.getElementById("eventsTab");
+const notesTab=document.getElementById("notesTab");
+const eventsContent=document.getElementById("eventsContent");
+const notesContent=document.getElementById("notesContent");
 
-const specialOverlay =
-    document.getElementById(
-        "specialOverlay"
-    );
+specialButton.onclick=function(){
 
-const closeSpecial =
-    document.getElementById(
-        "closeSpecial"
-    );
+specialOverlay.classList.add("show");
 
-const eventsTab =
-    document.getElementById(
-        "eventsTab"
-    );
+renderEvents();
+renderNotes();
+};
 
-const notesTab =
-    document.getElementById(
-        "notesTab"
-    );
+closeSpecial.onclick=function(){
+specialOverlay.classList.remove("show");
+};
 
-const eventsContent =
-    document.getElementById(
-        "eventsContent"
-    );
+specialOverlay.onclick=function(event){
 
-const notesContent =
-    document.getElementById(
-        "notesContent"
-    );
+if(event.target===specialOverlay){
+specialOverlay.classList.remove("show");
+}
+};
 
+eventsTab.onclick=function(){
 
-specialButton.onclick =
-    function(){
+eventsTab.classList.add("active");
+notesTab.classList.remove("active");
 
-        specialOverlay.classList.add(
-            "show"
-        );
+eventsContent.classList.add("active");
+notesContent.classList.remove("active");
+};
 
-        renderEvents();
-        renderNotes();
-    };
+notesTab.onclick=function(){
 
+notesTab.classList.add("active");
+eventsTab.classList.remove("active");
 
-closeSpecial.onclick =
-    function(){
-
-        specialOverlay.classList.remove(
-            "show"
-        );
-    };
-
-
-specialOverlay.onclick =
-    function(event){
-
-        if(
-            event.target ===
-            specialOverlay
-        ){
-
-            specialOverlay.classList.remove(
-                "show"
-            );
-        }
-    };
-
-
-eventsTab.onclick =
-    function(){
-
-        eventsTab.classList.add(
-            "active"
-        );
-
-        notesTab.classList.remove(
-            "active"
-        );
-
-        eventsContent.classList.add(
-            "active"
-        );
-
-        notesContent.classList.remove(
-            "active"
-        );
-    };
-
-
-notesTab.onclick =
-    function(){
-
-        notesTab.classList.add(
-            "active"
-        );
-
-        eventsTab.classList.remove(
-            "active"
-        );
-
-        notesContent.classList.add(
-            "active"
-        );
-
-        eventsContent.classList.remove(
-            "active"
-        );
-    };
+notesContent.classList.add("active");
+eventsContent.classList.remove("active");
+};
 
 
 /* ÖZEL GÜNLER */
 
-const eventName =
-    document.getElementById(
-        "eventName"
-    );
-
-const eventDate =
-    document.getElementById(
-        "eventDate"
-    );
-
-const addEvent =
-    document.getElementById(
-        "addEvent"
-    );
-
-const eventList =
-    document.getElementById(
-        "eventList"
-    );
-
+const eventName=document.getElementById("eventName");
+const eventDate=document.getElementById("eventDate");
+const addEvent=document.getElementById("addEvent");
+const eventList=document.getElementById("eventList");
 
 function getEvents(){
 
-    try{
+try{
 
-        const data =
-            localStorage.getItem(
-                "edanurSpecialEvents"
-            );
+const data=localStorage.getItem("edanurSpecialEvents");
 
-        if(!data){
-            return [];
-        }
+if(!data)return [];
 
-        const parsed =
-            JSON.parse(data);
+const parsed=JSON.parse(data);
 
-        return Array.isArray(parsed)
-            ? parsed
-            : [];
+return Array.isArray(parsed)?parsed:[];
 
-    }catch(error){
+}catch(error){
 
-        console.error(
-            "Özel gün verisi:",
-            error
-        );
-
-        return [];
-    }
+console.error("Özel gün verisi:",error);
+return [];
 }
-
+}
 
 function saveEvents(events){
 
-    localStorage.setItem(
-        "edanurSpecialEvents",
-        JSON.stringify(events)
-    );
+localStorage.setItem(
+"edanurSpecialEvents",
+JSON.stringify(events)
+);
 }
-
 
 function eventNextDate(dateString){
 
-    const parts =
-        dateString.split("-");
+const parts=dateString.split("-");
 
-    if(parts.length !== 3){
-        return null;
-    }
+if(parts.length!==3)return null;
 
-    const year =
-        parseInt(parts[0],10);
+const year=parseInt(parts[0],10);
+const month=parseInt(parts[1],10)-1;
+const day=parseInt(parts[2],10);
 
-    const month =
-        parseInt(parts[1],10) - 1;
+let date=new Date(year,month,day);
 
-    const day =
-        parseInt(parts[2],10);
+if(isNaN(date.getTime()))return null;
 
+const today=dateOnly(new Date());
 
-    let date =
-        new Date(
-            year,
-            month,
-            day
-        );
+if(dateOnly(date)<today){
 
+date=new Date(
+today.getFullYear(),
+month,
+day
+);
 
-    if(isNaN(date.getTime())){
-        return null;
-    }
-
-
-    const today =
-        dateOnly(new Date());
-
-
-    if(dateOnly(date) < today){
-
-        date =
-            new Date(
-                today.getFullYear(),
-                month,
-                day
-            );
-
-
-        if(dateOnly(date) < today){
-
-            date.setFullYear(
-                date.getFullYear() + 1
-            );
-        }
-    }
-
-
-    return date;
+if(dateOnly(date)<today){
+date.setFullYear(date.getFullYear()+1);
+}
 }
 
+return date;
+}
 
 function daysUntil(date){
 
-    const today =
-        dateOnly(new Date());
+const today=dateOnly(new Date());
+const target=dateOnly(date);
 
-    const target =
-        dateOnly(date);
-
-
-    return Math.ceil(
-        (
-            target.getTime() -
-            today.getTime()
-        ) /
-        86400000
-    );
+return Math.ceil(
+(target.getTime()-today.getTime())/86400000
+);
 }
-
 
 function renderEvents(){
 
-    const events =
-        getEvents();
+const events=getEvents();
 
-    eventList.innerHTML = "";
+eventList.innerHTML="";
 
+if(events.length===0){
 
-    if(events.length === 0){
+const empty=document.createElement("div");
 
-        const empty =
-            document.createElement("div");
+empty.className="eventItem";
+empty.textContent="Henüz özel gün eklenmemiş.";
 
-        empty.className =
-            "eventItem";
-
-        empty.textContent =
-            "Henüz özel gün eklenmemiş.";
-
-        eventList.appendChild(
-            empty
-        );
-
-        return;
-    }
-
-
-    events.sort(
-        function(a,b){
-
-            const dateA =
-                eventNextDate(a.date);
-
-            const dateB =
-                eventNextDate(b.date);
-
-            if(!dateA){
-                return 1;
-            }
-
-            if(!dateB){
-                return -1;
-            }
-
-            return dateA - dateB;
-        }
-    );
-
-
-    events.forEach(
-        function(item){
-
-            const next =
-                eventNextDate(
-                    item.date
-                );
-
-
-            const wrapper =
-                document.createElement(
-                    "div"
-                );
-
-            wrapper.className =
-                "eventItem";
-
-
-            const name =
-                document.createElement(
-                    "div"
-                );
-
-            name.className =
-                "eventName";
-
-            name.textContent =
-                "🎀 " + item.name;
-
-
-            const date =
-                document.createElement(
-                    "div"
-                );
-
-            date.className =
-                "eventDate";
-
-            date.textContent =
-                formatDate(next);
-
-
-            const countdown =
-                document.createElement(
-                    "div"
-                );
-
-            countdown.className =
-                "eventCountdown";
-
-
-            const remaining =
-                daysUntil(next);
-
-
-            if(remaining === 0){
-
-                countdown.textContent =
-                    "Bugün! 💗";
-
-            }else{
-
-                countdown.textContent =
-                    remaining +
-                    " gün kaldı";
-            }
-
-
-            const remove =
-                document.createElement(
-                    "button"
-                );
-
-            remove.className =
-                "deleteItem";
-
-            remove.type =
-                "button";
-
-            remove.textContent =
-                "×";
-
-            remove.onclick =
-                function(){
-
-                    deleteEvent(
-                        item.id
-                    );
-                };
-
-
-            wrapper.appendChild(name);
-            wrapper.appendChild(date);
-            wrapper.appendChild(countdown);
-            wrapper.appendChild(remove);
-
-            eventList.appendChild(
-                wrapper
-            );
-        }
-    );
+eventList.appendChild(empty);
+return;
 }
 
+events.sort(function(a,b){
+
+const dateA=eventNextDate(a.date);
+const dateB=eventNextDate(b.date);
+
+if(!dateA)return 1;
+if(!dateB)return -1;
+
+return dateA-dateB;
+});
+
+events.forEach(function(item){
+
+const next=eventNextDate(item.date);
+
+const wrapper=document.createElement("div");
+wrapper.className="eventItem";
+
+const name=document.createElement("div");
+name.className="eventName";
+name.textContent="🎀 "+item.name;
+
+const date=document.createElement("div");
+date.className="eventDate";
+date.textContent=formatDate(next);
+
+const countdown=document.createElement("div");
+countdown.className="eventCountdown";
+
+const remaining=daysUntil(next);
+
+if(remaining===0){
+countdown.textContent="Bugün! 💗";
+}else{
+countdown.textContent=remaining+" gün kaldı";
+}
+
+const remove=document.createElement("button");
+remove.className="deleteItem";
+remove.type="button";
+remove.textContent="×";
+
+remove.onclick=function(){
+deleteEvent(item.id);
+};
+
+wrapper.appendChild(name);
+wrapper.appendChild(date);
+wrapper.appendChild(countdown);
+wrapper.appendChild(remove);
+
+eventList.appendChild(wrapper);
+});
+}
 
 function deleteEvent(id){
 
-    const events =
-        getEvents().filter(
-            function(item){
-                return item.id !== id;
-            }
-        );
+const events=getEvents().filter(function(item){
+return item.id!==id;
+});
 
-    saveEvents(events);
-
-    renderEvents();
+saveEvents(events);
+renderEvents();
 }
 
+addEvent.onclick=function(){
 
-addEvent.onclick =
-    function(){
+const name=eventName.value.trim();
+const date=eventDate.value;
 
-        const name =
-            eventName.value.trim();
+if(!name){
+eventName.focus();
+return;
+}
 
-        const date =
-            eventDate.value;
+if(!date){
+eventDate.focus();
+return;
+}
 
+const events=getEvents();
 
-        if(!name){
+events.push({
 
-            eventName.focus();
+id:
+Date.now().toString()+
+Math.random().toString(36).slice(2),
 
-            return;
-        }
+name:name,
+date:date
+});
 
+saveEvents(events);
 
-        if(!date){
+eventName.value="";
+eventDate.value="";
 
-            eventDate.focus();
-
-            return;
-        }
-
-
-        const events =
-            getEvents();
-
-
-        events.push({
-            id:
-                Date.now().toString() +
-                Math.random()
-                    .toString(36)
-                    .slice(2),
-
-            name:name,
-
-            date:date
-        });
-
-
-        saveEvents(events);
-
-
-        eventName.value = "";
-        eventDate.value = "";
-
-
-        renderEvents();
-    };
+renderEvents();
+};
 
 
 /* GİZLİ NOTLAR */
 
-const noteTitle =
-    document.getElementById(
-        "noteTitle"
-    );
-
-const noteText =
-    document.getElementById(
-        "noteText"
-    );
-
-const addNote =
-    document.getElementById(
-        "addNote"
-    );
-
-const noteList =
-    document.getElementById(
-        "noteList"
-    );
-
+const noteTitle=document.getElementById("noteTitle");
+const noteText=document.getElementById("noteText");
+const addNote=document.getElementById("addNote");
+const noteList=document.getElementById("noteList");
 
 function getNotes(){
 
-    try{
+try{
 
-        const data =
-            localStorage.getItem(
-                "edanurPrivateNotes"
-            );
+const data=
+localStorage.getItem("edanurPrivateNotes");
 
-        if(!data){
-            return [];
-        }
+if(!data)return [];
 
-        const parsed =
-            JSON.parse(data);
+const parsed=JSON.parse(data);
 
-        return Array.isArray(parsed)
-            ? parsed
-            : [];
+return Array.isArray(parsed)?parsed:[];
 
-    }catch(error){
+}catch(error){
 
-        console.error(
-            "Not verisi:",
-            error
-        );
-
-        return [];
-    }
+console.error("Not verisi:",error);
+return [];
 }
-
+}
 
 function saveNotes(notes){
 
-    localStorage.setItem(
-        "edanurPrivateNotes",
-        JSON.stringify(notes)
-    );
+localStorage.setItem(
+"edanurPrivateNotes",
+JSON.stringify(notes)
+);
 }
-
 
 function renderNotes(){
 
-    const notes =
-        getNotes();
+const notes=getNotes();
 
-    noteList.innerHTML = "";
+noteList.innerHTML="";
 
+if(notes.length===0){
 
-    if(notes.length === 0){
+const empty=document.createElement("div");
 
-        const empty =
-            document.createElement(
-                "div"
-            );
+empty.className="noteItem";
+empty.textContent="Henüz gizli not eklenmemiş.";
 
-        empty.className =
-            "noteItem";
-
-        empty.textContent =
-            "Henüz gizli not eklenmemiş.";
-
-        noteList.appendChild(
-            empty
-        );
-
-        return;
-    }
-
-
-    notes.forEach(
-        function(item){
-
-            const wrapper =
-                document.createElement(
-                    "div"
-                );
-
-            wrapper.className =
-                "noteItem";
-
-
-            const title =
-                document.createElement(
-                    "div"
-                );
-
-            title.className =
-                "noteTitle";
-
-            title.textContent =
-                "💌 " + item.title;
-
-
-            const text =
-                document.createElement(
-                    "div"
-                );
-
-            text.className =
-                "noteText";
-
-            text.textContent =
-                item.text;
-
-
-            const date =
-                document.createElement(
-                    "div"
-                );
-
-            date.className =
-                "noteDate";
-
-            date.textContent =
-                item.date;
-
-
-            const remove =
-                document.createElement(
-                    "button"
-                );
-
-            remove.className =
-                "deleteItem";
-
-            remove.type =
-                "button";
-
-            remove.textContent =
-                "×";
-
-
-            remove.onclick =
-                function(){
-
-                    deleteNote(
-                        item.id
-                    );
-                };
-
-
-            wrapper.appendChild(title);
-            wrapper.appendChild(text);
-            wrapper.appendChild(date);
-            wrapper.appendChild(remove);
-
-
-            noteList.appendChild(
-                wrapper
-            );
-        }
-    );
+noteList.appendChild(empty);
+return;
 }
 
+notes.forEach(function(item){
+
+const wrapper=document.createElement("div");
+wrapper.className="noteItem";
+
+const title=document.createElement("div");
+title.className="noteTitle";
+title.textContent="💌 "+item.title;
+
+const text=document.createElement("div");
+text.className="noteText";
+text.textContent=item.text;
+
+const date=document.createElement("div");
+date.className="noteDate";
+date.textContent=item.date;
+
+const remove=document.createElement("button");
+remove.className="deleteItem";
+remove.type="button";
+remove.textContent="×";
+
+remove.onclick=function(){
+deleteNote(item.id);
+};
+
+wrapper.appendChild(title);
+wrapper.appendChild(text);
+wrapper.appendChild(date);
+wrapper.appendChild(remove);
+
+noteList.appendChild(wrapper);
+});
+}
 
 function deleteNote(id){
 
-    const notes =
-        getNotes().filter(
-            function(item){
-                return item.id !== id;
-            }
-        );
+const notes=getNotes().filter(function(item){
+return item.id!==id;
+});
 
-
-    saveNotes(notes);
-
-    renderNotes();
+saveNotes(notes);
+renderNotes();
 }
 
+addNote.onclick=function(){
 
-addNote.onclick =
-    function(){
+const title=noteTitle.value.trim();
+const text=noteText.value.trim();
 
-        const title =
-            noteTitle.value.trim();
+if(!title){
+noteTitle.focus();
+return;
+}
 
-        const text =
-            noteText.value.trim();
+if(!text){
+noteText.focus();
+return;
+}
 
+const notes=getNotes();
 
-        if(!title){
+notes.unshift({
 
-            noteTitle.focus();
+id:
+Date.now().toString()+
+Math.random().toString(36).slice(2),
 
-            return;
-        }
+title:title,
+text:text,
 
+date:new Date().toLocaleDateString(
+"tr-TR",
+{
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+)
+});
 
-        if(!text){
+saveNotes(notes);
 
-            noteText.focus();
+noteTitle.value="";
+noteText.value="";
 
-            return;
-        }
-
-
-        const notes =
-            getNotes();
-
-
-        notes.unshift({
-
-            id:
-                Date.now().toString() +
-                Math.random()
-                    .toString(36)
-                    .slice(2),
-
-            title:title,
-
-            text:text,
-
-            date:
-                new Date()
-                    .toLocaleDateString(
-                        "tr-TR",
-                        {
-                            day:"numeric",
-                            month:"long",
-                            year:"numeric"
-                        }
-                    )
-        });
-
-
-        saveNotes(notes);
-
-
-        noteTitle.value = "";
-        noteText.value = "";
-
-
-        renderNotes();
-    };
+renderNotes();
+};
 
 
 /* BAŞLANGIÇ */
 
 renderEvents();
-
 renderNotes();
-
 loadPeriodData();
 
-
 addMessage(
-    "Merhaba. Ben AURA. Hazırım. ❤️",
-    "aura"
+"Merhaba. Ben AURA. Hazırım. ❤️",
+"aura"
 );
 
-
-statusText.textContent =
-    "ONLINE";
-
+statusText.textContent="ONLINE";
 
 input.focus();
 
-
 window.addEventListener(
-    "error",
-    function(event){
+"error",
+function(event){
 
-        console.error(
-            "AURA HATASI:",
-            event.error ||
-            event.message
-        );
-    }
+console.error(
+"AURA HATASI:",
+event.error||event.message
+);
+
+}
 );
 
 </script>
