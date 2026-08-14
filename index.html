@@ -26,8 +26,6 @@ body{
         radial-gradient(circle at 50% 30%,#74134f 0%,#35071f 32%,#10000b 72%,#030003 100%);
 }
 
-/* ARKA PLAN */
-
 .background{
     position:fixed;
     inset:0;
@@ -90,16 +88,12 @@ body{
     }
 }
 
-/* UYGULAMA */
-
 .app{
     position:relative;
     width:100%;
     height:100%;
     z-index:2;
 }
-
-/* ÜST */
 
 .top{
     position:absolute;
@@ -155,8 +149,6 @@ body{
     box-shadow:0 0 9px #ff1493;
 }
 
-/* MERKEZ */
-
 .center{
     position:absolute;
     top:58px;
@@ -168,8 +160,6 @@ body{
     justify-content:center;
     pointer-events:none;
 }
-
-/* KALP */
 
 .heartSystem{
     position:relative;
@@ -276,7 +266,6 @@ body{
     0%,100%{
         transform:rotate(-45deg) scale(1);
     }
-
     50%{
         transform:rotate(-45deg) scale(1.08);
     }
@@ -291,8 +280,6 @@ body{
     from{transform:rotate(360deg)}
     to{transform:rotate(0)}
 }
-
-/* SOHBET */
 
 .chatArea{
     position:absolute;
@@ -351,12 +338,9 @@ body{
     font-style:italic;
 }
 
-/* REGL BUTONU */
-
-.periodButton{
+.periodButton,
+.specialButton{
     position:absolute;
-    right:14px;
-    bottom:122px;
     width:42px;
     height:42px;
     border:1px solid rgba(255,120,190,.4);
@@ -370,57 +354,73 @@ body{
         0 0 15px rgba(255,20,147,.22);
 }
 
-.periodButton:active{
+.periodButton{
+    right:14px;
+    bottom:122px;
+}
+
+.specialButton{
+    right:64px;
+    bottom:122px;
+}
+
+.periodButton:active,
+.specialButton:active{
     transform:scale(.91);
 }
 
-/* REGL PANELİ */
-
-.periodOverlay{
+.overlay{
     position:fixed;
     inset:0;
     display:none;
     align-items:flex-end;
     justify-content:center;
     padding:12px;
-    background:rgba(0,0,0,.55);
+    background:rgba(0,0,0,.58);
     backdrop-filter:blur(5px);
     z-index:100;
 }
 
-.periodOverlay.show{
+.overlay.show{
     display:flex;
 }
 
-.periodPanel{
-    width:min(430px,100%);
+.panel{
+    width:min(440px,100%);
+    max-height:88vh;
+    overflow-y:auto;
     padding:18px;
     border-radius:24px;
     background:
         linear-gradient(
             145deg,
-            rgba(71,4,43,.98),
-            rgba(25,0,17,.98)
+            rgba(71,4,43,.99),
+            rgba(25,0,17,.99)
         );
     border:1px solid rgba(255,120,190,.38);
     box-shadow:
         0 0 35px rgba(255,20,147,.25);
+    scrollbar-width:none;
 }
 
-.periodHeader{
+.panel::-webkit-scrollbar{
+    display:none;
+}
+
+.panelHeader{
     display:flex;
     align-items:center;
     justify-content:space-between;
     margin-bottom:15px;
 }
 
-.periodTitle{
+.panelTitle{
     font-family:Georgia,serif;
     font-size:19px;
     color:#ffd5e8;
 }
 
-.closePeriod{
+.closeButton{
     width:32px;
     height:32px;
     border:0;
@@ -428,6 +428,39 @@ body{
     background:rgba(255,255,255,.08);
     color:#ffc5df;
     font-size:18px;
+}
+
+.tabs{
+    display:flex;
+    gap:7px;
+    margin-bottom:15px;
+}
+
+.tab{
+    flex:1;
+    height:40px;
+    border:1px solid rgba(255,105,180,.22);
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    color:#ffc7df;
+    font-size:12px;
+}
+
+.tab.active{
+    background:linear-gradient(
+        135deg,
+        rgba(255,104,181,.38),
+        rgba(190,0,105,.45)
+    );
+    border-color:rgba(255,130,195,.5);
+}
+
+.tabContent{
+    display:none;
+}
+
+.tabContent.active{
+    display:block;
 }
 
 .periodResult{
@@ -451,14 +484,14 @@ body{
     color:#ffd1e5;
 }
 
-.periodLabel{
+.label{
     display:block;
     margin:10px 0 6px;
     font-size:11px;
     color:#ffc2dd;
 }
 
-.periodInput{
+.input{
     width:100%;
     height:43px;
     padding:0 12px;
@@ -470,11 +503,16 @@ body{
     font-size:14px;
 }
 
-.periodInput::-webkit-calendar-picker-indicator{
+.input::placeholder,
+.textarea::placeholder{
+    color:rgba(255,190,220,.48);
+}
+
+.input::-webkit-calendar-picker-indicator{
     filter:invert(1);
 }
 
-.periodSave{
+.saveButton{
     width:100%;
     height:44px;
     margin-top:14px;
@@ -490,7 +528,111 @@ body{
     font-size:14px;
 }
 
-/* ALT MESAJ ALANI */
+.eventForm{
+    padding:13px;
+    margin-bottom:15px;
+    border-radius:17px;
+    background:rgba(255,105,180,.07);
+    border:1px solid rgba(255,105,180,.16);
+}
+
+.eventList{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.eventItem{
+    position:relative;
+    padding:12px 42px 12px 13px;
+    border-radius:15px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,105,180,.17);
+}
+
+.eventName{
+    color:#ffe1ef;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.eventDate{
+    margin-top:4px;
+    color:#ffb8d8;
+    font-size:11px;
+}
+
+.eventCountdown{
+    margin-top:6px;
+    color:#ff78ba;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.deleteItem{
+    position:absolute;
+    right:9px;
+    top:50%;
+    transform:translateY(-50%);
+    width:29px;
+    height:29px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,60,130,.13);
+    color:#ff9bc8;
+    font-size:14px;
+}
+
+.textarea{
+    width:100%;
+    min-height:100px;
+    resize:none;
+    padding:12px;
+    border:1px solid rgba(255,105,180,.25);
+    border-radius:13px;
+    outline:0;
+    background:rgba(255,255,255,.06);
+    color:white;
+    font-family:Arial,sans-serif;
+    font-size:13px;
+    line-height:1.45;
+}
+
+.noteList{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+    margin-top:15px;
+}
+
+.noteItem{
+    position:relative;
+    padding:13px 42px 13px 13px;
+    border-radius:15px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,105,180,.17);
+}
+
+.noteTitle{
+    color:#ffe0ed;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.noteText{
+    margin-top:6px;
+    color:#ffc4dc;
+    font-size:12px;
+    line-height:1.45;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+.noteDate{
+    margin-top:7px;
+    color:#b985a2;
+    font-size:10px;
+}
 
 .bottom{
     position:absolute;
@@ -594,7 +736,8 @@ body{
         padding:9px;
     }
 
-    .periodButton{
+    .periodButton,
+    .specialButton{
         bottom:113px;
     }
 
@@ -651,196 +794,35 @@ body{
 
 <div class="app">
 
-    <header class="top">
+<header class="top">
 
-        <div class="logo">
-            <span class="crown">♕</span>
-            <span class="logoText">AURA</span>
-        </div>
-
-        <div class="status">
-            <span class="statusDot"></span>
-            <span id="statusText">ONLINE</span>
-        </div>
-
-    </header>
-
-
-    <main>
-
-        <div class="center">
-
-            <div class="heartSystem">
-
-                <div class="orbit orbit1"></div>
-                <div class="orbit orbit2"></div>
-                <div class="orbit orbit3"></div>
-
-                <div class="heart">
-
-                    <div class="heartText">
-                        I LOVE<br>
-                        YOU 300
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div
-            class="chatArea"
-            id="chatArea"
-        >
-
-            <div
-                class="chat"
-                id="chat"
-            ></div>
-
-        </div>
-
-    </main>
-
-
-    <!-- KÜÇÜK REGL BUTONU -->
-
-    <button
-        class="periodButton"
-        id="periodButton"
-        type="button"
-        aria-label="Regl takibi"
-    >🌸</button>
-
-
-    <!-- REGL PANELİ -->
-
-    <div
-        class="periodOverlay"
-        id="periodOverlay"
-    >
-
-        <div class="periodPanel">
-
-            <div class="periodHeader">
-
-                <div class="periodTitle">
-                    🌸 Regl Takibi
-                </div>
-
-                <button
-                    class="closePeriod"
-                    id="closePeriod"
-                    type="button"
-                >×</button>
-
-            </div>
-
-
-            <div class="periodResult">
-
-                <div
-                    class="periodDays"
-                    id="periodDays"
-                >Bilgi gerekli</div>
-
-                <div
-                    class="periodDate"
-                    id="periodDate"
-                >Son regl tarihini gir</div>
-
-            </div>
-
-
-            <label
-                class="periodLabel"
-                for="lastPeriod"
-            >
-                Son regl başlangıcı
-            </label>
-
-            <input
-                class="periodInput"
-                id="lastPeriod"
-                type="date"
-            >
-
-
-            <label
-                class="periodLabel"
-                for="cycleLength"
-            >
-                Ortalama döngü uzunluğu
-            </label>
-
-            <input
-                class="periodInput"
-                id="cycleLength"
-                type="number"
-                min="15"
-                max="60"
-                value="28"
-                inputmode="numeric"
-            >
-
-
-            <button
-                class="periodSave"
-                id="periodSave"
-                type="button"
-            >
-                Kaydet
-            </button>
-
-        </div>
-
+    <div class="logo">
+        <span class="crown">♕</span>
+        <span class="logoText">AURA</span>
     </div>
 
+    <div class="status">
+        <span class="statusDot"></span>
+        <span id="statusText">ONLINE</span>
+    </div>
 
-    <!-- MESAJ ALANI -->
-
-    <div class="bottom">
-
-        <div class="inputBar">
-
-            <button
-                class="iconButton"
-                id="heartButton"
-                type="button"
-            >♡</button>
+</header>
 
 
-            <input
-                class="textInput"
-                id="messageInput"
-                type="text"
-                placeholder="AURA’ya bir şey söyle..."
-                autocomplete="off"
-                enterkeyhint="send"
-            >
+<div class="center">
 
+    <div class="heartSystem">
 
-            <button
-                class="iconButton"
-                id="emojiButton"
-                type="button"
-            >☺</button>
+        <div class="orbit orbit1"></div>
+        <div class="orbit orbit2"></div>
+        <div class="orbit orbit3"></div>
 
+        <div class="heart">
 
-            <button
-                class="iconButton"
-                id="micButton"
-                type="button"
-            >🎤</button>
-
-
-            <button
-                class="actionButton"
-                id="sendButton"
-                type="button"
-            >➤</button>
+            <div class="heartText">
+                I LOVE<br>
+                YOU 300
+            </div>
 
         </div>
 
@@ -849,11 +831,328 @@ body{
 </div>
 
 
-<script src="https://js.puter.com/v2/"></script><script>
+<div
+    class="chatArea"
+    id="chatArea"
+>
 
-/* =====================================================
-   AURA MESAJ SİSTEMİ
-===================================================== */
+    <div
+        class="chat"
+        id="chat"
+    ></div>
+
+</div>
+
+
+<button
+    class="specialButton"
+    id="specialButton"
+    type="button"
+    aria-label="Özel alan"
+>👑</button>
+
+<button
+    class="periodButton"
+    id="periodButton"
+    type="button"
+    aria-label="Regl takibi"
+>🌸</button>
+
+
+<div
+    class="overlay"
+    id="specialOverlay"
+>
+
+    <div class="panel">
+
+        <div class="panelHeader">
+
+            <div class="panelTitle">
+                👑 Özel Alan
+            </div>
+
+            <button
+                class="closeButton"
+                id="closeSpecial"
+                type="button"
+            >×</button>
+
+        </div>
+
+
+        <div class="tabs">
+
+            <button
+                class="tab active"
+                id="eventsTab"
+                type="button"
+            >
+                🎀 Özel Günler
+            </button>
+
+            <button
+                class="tab"
+                id="notesTab"
+                type="button"
+            >
+                💌 Gizli Notlar
+            </button>
+
+        </div>
+
+
+        <div
+            class="tabContent active"
+            id="eventsContent"
+        >
+
+            <div class="eventForm">
+
+                <label
+                    class="label"
+                    for="eventName"
+                >
+                    Özel gün adı
+                </label>
+
+                <input
+                    class="input"
+                    id="eventName"
+                    type="text"
+                    maxlength="60"
+                    placeholder="Doğum günü, yıldönümü..."
+                >
+
+
+                <label
+                    class="label"
+                    for="eventDate"
+                >
+                    Tarih
+                </label>
+
+                <input
+                    class="input"
+                    id="eventDate"
+                    type="date"
+                >
+
+
+                <button
+                    class="saveButton"
+                    id="addEvent"
+                    type="button"
+                >
+                    🎀 Özel Gün Ekle
+                </button>
+
+            </div>
+
+
+            <div
+                class="eventList"
+                id="eventList"
+            ></div>
+
+    </div>        <div
+            class="tabContent"
+            id="notesContent"
+        >
+
+            <div class="eventForm">
+
+                <label
+                    class="label"
+                    for="noteTitle"
+                >
+                    Not başlığı
+                </label>
+
+                <input
+                    class="input"
+                    id="noteTitle"
+                    type="text"
+                    maxlength="60"
+                    placeholder="Bugün, aklımdaki şey..."
+                >
+
+
+                <label
+                    class="label"
+                    for="noteText"
+                >
+                    Not
+                </label>
+
+                <textarea
+                    class="textarea"
+                    id="noteText"
+                    maxlength="1000"
+                    placeholder="Buraya özel notunu yaz..."
+                ></textarea>
+
+
+                <button
+                    class="saveButton"
+                    id="addNote"
+                    type="button"
+                >
+                    💌 Notu Kaydet
+                </button>
+
+            </div>
+
+
+            <div
+                class="noteList"
+                id="noteList"
+            ></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="overlay"
+    id="periodOverlay"
+>
+
+    <div class="panel">
+
+        <div class="panelHeader">
+
+            <div class="panelTitle">
+                🌸 Regl Takibi
+            </div>
+
+            <button
+                class="closeButton"
+                id="closePeriod"
+                type="button"
+            >×</button>
+
+        </div>
+
+
+        <div class="periodResult">
+
+            <div
+                class="periodDays"
+                id="periodDays"
+            >
+                Bilgi gerekli
+            </div>
+
+            <div
+                class="periodDate"
+                id="periodDate"
+            >
+                Son regl tarihini gir
+            </div>
+
+        </div>
+
+
+        <label
+            class="label"
+            for="lastPeriod"
+        >
+            Son regl başlangıcı
+        </label>
+
+        <input
+            class="input"
+            id="lastPeriod"
+            type="date"
+        >
+
+
+        <label
+            class="label"
+            for="cycleLength"
+        >
+            Ortalama döngü uzunluğu
+        </label>
+
+        <input
+            class="input"
+            id="cycleLength"
+            type="number"
+            min="15"
+            max="60"
+            value="28"
+            inputmode="numeric"
+        >
+
+
+        <button
+            class="saveButton"
+            id="periodSave"
+            type="button"
+        >
+            Kaydet
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="bottom">
+
+    <div class="inputBar">
+
+        <button
+            class="iconButton"
+            id="heartButton"
+            type="button"
+        >♡</button>
+
+
+        <input
+            class="textInput"
+            id="messageInput"
+            type="text"
+            placeholder="AURA’ya bir şey söyle..."
+            autocomplete="off"
+            enterkeyhint="send"
+        >
+
+
+        <button
+            class="iconButton"
+            id="emojiButton"
+            type="button"
+        >☺</button>
+
+
+        <button
+            class="iconButton"
+            id="micButton"
+            type="button"
+        >🎤</button>
+
+
+        <button
+            class="actionButton"
+            id="sendButton"
+            type="button"
+        >➤</button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script src="https://js.puter.com/v2/"></script>
+
+<script>
 
 const input =
     document.getElementById("messageInput");
@@ -879,10 +1178,9 @@ const heartButton =
 const emojiButton =
     document.getElementById("emojiButton");
 
+
 let busy = false;
 
-
-/* MESAJ EKLE */
 
 function addMessage(text,type){
 
@@ -908,8 +1206,6 @@ function addMessage(text,type){
     return message;
 }
 
-
-/* AI */
 
 async function askAura(text){
 
@@ -966,8 +1262,6 @@ ${text}
     return String(response);
 }
 
-
-/* GÖNDER */
 
 async function sendMessage(){
 
@@ -1048,8 +1342,6 @@ async function sendMessage(){
 }
 
 
-/* BUTON */
-
 sendButton.onclick =
     function(event){
 
@@ -1058,8 +1350,6 @@ sendButton.onclick =
         sendMessage();
     };
 
-
-/* ENTER */
 
 input.onkeydown =
     function(event){
@@ -1076,8 +1366,6 @@ input.onkeydown =
     };
 
 
-/* KALP */
-
 heartButton.onclick =
     function(){
 
@@ -1088,8 +1376,6 @@ heartButton.onclick =
     };
 
 
-/* EMOJI */
-
 emojiButton.onclick =
     function(){
 
@@ -1098,10 +1384,6 @@ emojiButton.onclick =
         input.focus();
     };
 
-
-/* =====================================================
-   MİKROFON
-===================================================== */
 
 let recognition = null;
 let listening = false;
@@ -1124,6 +1406,7 @@ if(SpeechRecognition){
 
     recognition.interimResults =
         false;
+
 
     recognition.onstart =
         function(){
@@ -1193,6 +1476,7 @@ if(SpeechRecognition){
                 statusText.textContent ===
                 "DİNLİYOR"
             ){
+
                 statusText.textContent =
                     "ONLINE";
             }
@@ -1231,9 +1515,7 @@ if(SpeechRecognition){
 }
 
 
-/* =====================================================
-   REGL TAKİP SİSTEMİ
-===================================================== */
+/* REGL TAKİBİ */
 
 const periodButton =
     document.getElementById(
@@ -1276,8 +1558,6 @@ const periodDate =
     );
 
 
-/* PANELİ AÇ */
-
 periodButton.onclick =
     function(){
 
@@ -1289,8 +1569,6 @@ periodButton.onclick =
     };
 
 
-/* PANELİ KAPAT */
-
 closePeriod.onclick =
     function(){
 
@@ -1299,8 +1577,6 @@ closePeriod.onclick =
         );
     };
 
-
-/* DIŞARI TIKLAYINCA KAPAT */
 
 periodOverlay.onclick =
     function(event){
@@ -1317,8 +1593,6 @@ periodOverlay.onclick =
     };
 
 
-/* TARİH FORMAT */
-
 function formatDate(date){
 
     return date.toLocaleDateString(
@@ -1332,8 +1606,6 @@ function formatDate(date){
 }
 
 
-/* TARİHİ GÜNE ÇEVİR */
-
 function dateOnly(date){
 
     return new Date(
@@ -1343,8 +1615,6 @@ function dateOnly(date){
     );
 }
 
-
-/* SONRAKİ REGLİ HESAPLA */
 
 function calculatePeriod(){
 
@@ -1394,32 +1664,26 @@ function calculatePeriod(){
     }
 
 
-    /*
-       Tarihi yerel saatle oluşturuyoruz.
-       Böylece saat dilimi nedeniyle
-       bir gün kayma ihtimali azaltılıyor.
-    */
-
     const parts =
         savedDate.split("-");
 
 
-    const year =
-        parseInt(parts[0],10);
-
-    const month =
-        parseInt(parts[1],10) - 1;
-
-    const day =
-        parseInt(parts[2],10);
+    if(parts.length !== 3){
+        return;
+    }
 
 
     const nextDate =
         new Date(
-            year,
-            month,
-            day
+            parseInt(parts[0],10),
+            parseInt(parts[1],10) - 1,
+            parseInt(parts[2],10)
         );
+
+
+    if(isNaN(nextDate.getTime())){
+        return;
+    }
 
 
     nextDate.setDate(
@@ -1428,15 +1692,10 @@ function calculatePeriod(){
 
 
     const today =
-        dateOnly(
-            new Date()
-        );
-
+        dateOnly(new Date());
 
     const target =
-        dateOnly(
-            nextDate
-        );
+        dateOnly(nextDate);
 
 
     const difference =
@@ -1452,8 +1711,7 @@ function calculatePeriod(){
     if(difference > 0){
 
         periodDays.textContent =
-            difference +
-            " gün kaldı";
+            difference + " gün kaldı";
 
     }else if(difference === 0){
 
@@ -1465,7 +1723,6 @@ function calculatePeriod(){
         periodDays.textContent =
             Math.abs(difference) +
             " gün geçti";
-
     }
 
 
@@ -1474,8 +1731,6 @@ function calculatePeriod(){
         formatDate(nextDate);
 }
 
-
-/* VERİLERİ YÜKLE */
 
 function loadPeriodData(){
 
@@ -1500,12 +1755,7 @@ function loadPeriodData(){
 
 
     calculatePeriod();
-}
-
-
-/* KAYDET */
-
-periodSave.onclick =
+}periodSave.onclick =
     function(){
 
         const date =
@@ -1546,10 +1796,6 @@ periodSave.onclick =
         }
 
 
-        /*
-           Sadece bu telefonda saklanır.
-        */
-
         localStorage.setItem(
             "edAnurLastPeriod",
             date
@@ -1564,10 +1810,6 @@ periodSave.onclick =
         calculatePeriod();
 
 
-        /*
-           Kısa süre sonra panel kapanır.
-        */
-
         setTimeout(
             function(){
 
@@ -1581,42 +1823,780 @@ periodSave.onclick =
     };
 
 
-/* =====================================================
-   BAŞLANGIÇ
-===================================================== */
+/* ÖZEL ALAN */
+
+const specialButton =
+    document.getElementById(
+        "specialButton"
+    );
+
+const specialOverlay =
+    document.getElementById(
+        "specialOverlay"
+    );
+
+const closeSpecial =
+    document.getElementById(
+        "closeSpecial"
+    );
+
+const eventsTab =
+    document.getElementById(
+        "eventsTab"
+    );
+
+const notesTab =
+    document.getElementById(
+        "notesTab"
+    );
+
+const eventsContent =
+    document.getElementById(
+        "eventsContent"
+    );
+
+const notesContent =
+    document.getElementById(
+        "notesContent"
+    );
+
+
+specialButton.onclick =
+    function(){
+
+        specialOverlay.classList.add(
+            "show"
+        );
+
+        renderEvents();
+        renderNotes();
+    };
+
+
+closeSpecial.onclick =
+    function(){
+
+        specialOverlay.classList.remove(
+            "show"
+        );
+    };
+
+
+specialOverlay.onclick =
+    function(event){
+
+        if(
+            event.target ===
+            specialOverlay
+        ){
+
+            specialOverlay.classList.remove(
+                "show"
+            );
+        }
+    };
+
+
+eventsTab.onclick =
+    function(){
+
+        eventsTab.classList.add(
+            "active"
+        );
+
+        notesTab.classList.remove(
+            "active"
+        );
+
+        eventsContent.classList.add(
+            "active"
+        );
+
+        notesContent.classList.remove(
+            "active"
+        );
+    };
+
+
+notesTab.onclick =
+    function(){
+
+        notesTab.classList.add(
+            "active"
+        );
+
+        eventsTab.classList.remove(
+            "active"
+        );
+
+        notesContent.classList.add(
+            "active"
+        );
+
+        eventsContent.classList.remove(
+            "active"
+        );
+    };
+
+
+/* ÖZEL GÜNLER */
+
+const eventName =
+    document.getElementById(
+        "eventName"
+    );
+
+const eventDate =
+    document.getElementById(
+        "eventDate"
+    );
+
+const addEvent =
+    document.getElementById(
+        "addEvent"
+    );
+
+const eventList =
+    document.getElementById(
+        "eventList"
+    );
+
+
+function getEvents(){
+
+    try{
+
+        const data =
+            localStorage.getItem(
+                "edanurSpecialEvents"
+            );
+
+        if(!data){
+            return [];
+        }
+
+        const parsed =
+            JSON.parse(data);
+
+        return Array.isArray(parsed)
+            ? parsed
+            : [];
+
+    }catch(error){
+
+        console.error(
+            "Özel gün verisi:",
+            error
+        );
+
+        return [];
+    }
+}
+
+
+function saveEvents(events){
+
+    localStorage.setItem(
+        "edanurSpecialEvents",
+        JSON.stringify(events)
+    );
+}
+
+
+function eventNextDate(dateString){
+
+    const parts =
+        dateString.split("-");
+
+    if(parts.length !== 3){
+        return null;
+    }
+
+    const year =
+        parseInt(parts[0],10);
+
+    const month =
+        parseInt(parts[1],10) - 1;
+
+    const day =
+        parseInt(parts[2],10);
+
+
+    let date =
+        new Date(
+            year,
+            month,
+            day
+        );
+
+
+    if(isNaN(date.getTime())){
+        return null;
+    }
+
+
+    const today =
+        dateOnly(new Date());
+
+
+    if(dateOnly(date) < today){
+
+        date =
+            new Date(
+                today.getFullYear(),
+                month,
+                day
+            );
+
+
+        if(dateOnly(date) < today){
+
+            date.setFullYear(
+                date.getFullYear() + 1
+            );
+        }
+    }
+
+
+    return date;
+}
+
+
+function daysUntil(date){
+
+    const today =
+        dateOnly(new Date());
+
+    const target =
+        dateOnly(date);
+
+
+    return Math.ceil(
+        (
+            target.getTime() -
+            today.getTime()
+        ) /
+        86400000
+    );
+}
+
+
+function renderEvents(){
+
+    const events =
+        getEvents();
+
+    eventList.innerHTML = "";
+
+
+    if(events.length === 0){
+
+        const empty =
+            document.createElement("div");
+
+        empty.className =
+            "eventItem";
+
+        empty.textContent =
+            "Henüz özel gün eklenmemiş.";
+
+        eventList.appendChild(
+            empty
+        );
+
+        return;
+    }
+
+
+    events.sort(
+        function(a,b){
+
+            const dateA =
+                eventNextDate(a.date);
+
+            const dateB =
+                eventNextDate(b.date);
+
+            if(!dateA){
+                return 1;
+            }
+
+            if(!dateB){
+                return -1;
+            }
+
+            return dateA - dateB;
+        }
+    );
+
+
+    events.forEach(
+        function(item){
+
+            const next =
+                eventNextDate(
+                    item.date
+                );
+
+
+            const wrapper =
+                document.createElement(
+                    "div"
+                );
+
+            wrapper.className =
+                "eventItem";
+
+
+            const name =
+                document.createElement(
+                    "div"
+                );
+
+            name.className =
+                "eventName";
+
+            name.textContent =
+                "🎀 " + item.name;
+
+
+            const date =
+                document.createElement(
+                    "div"
+                );
+
+            date.className =
+                "eventDate";
+
+            date.textContent =
+                formatDate(next);
+
+
+            const countdown =
+                document.createElement(
+                    "div"
+                );
+
+            countdown.className =
+                "eventCountdown";
+
+
+            const remaining =
+                daysUntil(next);
+
+
+            if(remaining === 0){
+
+                countdown.textContent =
+                    "Bugün! 💗";
+
+            }else{
+
+                countdown.textContent =
+                    remaining +
+                    " gün kaldı";
+            }
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+            remove.className =
+                "deleteItem";
+
+            remove.type =
+                "button";
+
+            remove.textContent =
+                "×";
+
+            remove.onclick =
+                function(){
+
+                    deleteEvent(
+                        item.id
+                    );
+                };
+
+
+            wrapper.appendChild(name);
+            wrapper.appendChild(date);
+            wrapper.appendChild(countdown);
+            wrapper.appendChild(remove);
+
+            eventList.appendChild(
+                wrapper
+            );
+        }
+    );
+}
+
+
+function deleteEvent(id){
+
+    const events =
+        getEvents().filter(
+            function(item){
+                return item.id !== id;
+            }
+        );
+
+    saveEvents(events);
+
+    renderEvents();
+}
+
+
+addEvent.onclick =
+    function(){
+
+        const name =
+            eventName.value.trim();
+
+        const date =
+            eventDate.value;
+
+
+        if(!name){
+
+            eventName.focus();
+
+            return;
+        }
+
+
+        if(!date){
+
+            eventDate.focus();
+
+            return;
+        }
+
+
+        const events =
+            getEvents();
+
+
+        events.push({
+            id:
+                Date.now().toString() +
+                Math.random()
+                    .toString(36)
+                    .slice(2),
+
+            name:name,
+
+            date:date
+        });
+
+
+        saveEvents(events);
+
+
+        eventName.value = "";
+        eventDate.value = "";
+
+
+        renderEvents();
+    };
+
+
+/* GİZLİ NOTLAR */
+
+const noteTitle =
+    document.getElementById(
+        "noteTitle"
+    );
+
+const noteText =
+    document.getElementById(
+        "noteText"
+    );
+
+const addNote =
+    document.getElementById(
+        "addNote"
+    );
+
+const noteList =
+    document.getElementById(
+        "noteList"
+    );
+
+
+function getNotes(){
+
+    try{
+
+        const data =
+            localStorage.getItem(
+                "edanurPrivateNotes"
+            );
+
+        if(!data){
+            return [];
+        }
+
+        const parsed =
+            JSON.parse(data);
+
+        return Array.isArray(parsed)
+            ? parsed
+            : [];
+
+    }catch(error){
+
+        console.error(
+            "Not verisi:",
+            error
+        );
+
+        return [];
+    }
+}
+
+
+function saveNotes(notes){
+
+    localStorage.setItem(
+        "edanurPrivateNotes",
+        JSON.stringify(notes)
+    );
+}
+
+
+function renderNotes(){
+
+    const notes =
+        getNotes();
+
+    noteList.innerHTML = "";
+
+
+    if(notes.length === 0){
+
+        const empty =
+            document.createElement(
+                "div"
+            );
+
+        empty.className =
+            "noteItem";
+
+        empty.textContent =
+            "Henüz gizli not eklenmemiş.";
+
+        noteList.appendChild(
+            empty
+        );
+
+        return;
+    }
+
+
+    notes.forEach(
+        function(item){
+
+            const wrapper =
+                document.createElement(
+                    "div"
+                );
+
+            wrapper.className =
+                "noteItem";
+
+
+            const title =
+                document.createElement(
+                    "div"
+                );
+
+            title.className =
+                "noteTitle";
+
+            title.textContent =
+                "💌 " + item.title;
+
+
+            const text =
+                document.createElement(
+                    "div"
+                );
+
+            text.className =
+                "noteText";
+
+            text.textContent =
+                item.text;
+
+
+            const date =
+                document.createElement(
+                    "div"
+                );
+
+            date.className =
+                "noteDate";
+
+            date.textContent =
+                item.date;
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+            remove.className =
+                "deleteItem";
+
+            remove.type =
+                "button";
+
+            remove.textContent =
+                "×";
+
+
+            remove.onclick =
+                function(){
+
+                    deleteNote(
+                        item.id
+                    );
+                };
+
+
+            wrapper.appendChild(title);
+            wrapper.appendChild(text);
+            wrapper.appendChild(date);
+            wrapper.appendChild(remove);
+
+
+            noteList.appendChild(
+                wrapper
+            );
+        }
+    );
+}
+
+
+function deleteNote(id){
+
+    const notes =
+        getNotes().filter(
+            function(item){
+                return item.id !== id;
+            }
+        );
+
+
+    saveNotes(notes);
+
+    renderNotes();
+}
+
+
+addNote.onclick =
+    function(){
+
+        const title =
+            noteTitle.value.trim();
+
+        const text =
+            noteText.value.trim();
+
+
+        if(!title){
+
+            noteTitle.focus();
+
+            return;
+        }
+
+
+        if(!text){
+
+            noteText.focus();
+
+            return;
+        }
+
+
+        const notes =
+            getNotes();
+
+
+        notes.unshift({
+
+            id:
+                Date.now().toString() +
+                Math.random()
+                    .toString(36)
+                    .slice(2),
+
+            title:title,
+
+            text:text,
+
+            date:
+                new Date()
+                    .toLocaleDateString(
+                        "tr-TR",
+                        {
+                            day:"numeric",
+                            month:"long",
+                            year:"numeric"
+                        }
+                    )
+        });
+
+
+        saveNotes(notes);
+
+
+        noteTitle.value = "";
+        noteText.value = "";
+
+
+        renderNotes();
+    };
+
+
+/* BAŞLANGIÇ */
+
+renderEvents();
+
+renderNotes();
+
+loadPeriodData();
+
 
 addMessage(
     "Merhaba. Ben AURA. Hazırım. ❤️",
     "aura"
 );
 
-loadPeriodData();
 
 statusText.textContent =
     "ONLINE";
 
+
 input.focus();
 
 
-/* HATA YAKALAMA */
-
-window.onerror =
-    function(
-        message,
-        source,
-        line,
-        column,
-        error
-    ){
+window.addEventListener(
+    "error",
+    function(event){
 
         console.error(
             "AURA HATASI:",
-            message,
-            error
+            event.error ||
+            event.message
         );
-
-        return false;
-    };
+    }
+);
 
 </script>
 
