@@ -15,6 +15,10 @@ content="#12000d">
 
 <style>
 
+/* =========================
+   TEMEL
+========================= */
+
 * {
     box-sizing: border-box;
 }
@@ -34,15 +38,165 @@ body {
         Arial,
         sans-serif;
 
-    color: #ff69b4;
+    color: #ffd1e8;
 
     background:
         radial-gradient(
-            circle at center,
-            #3b0927 0%,
-            #17000f 45%,
-            #050005 100%
+            circle at 50% 30%,
+            #5b1746 0%,
+            #2b0823 28%,
+            #12000f 62%,
+            #040003 100%
         );
+
+    position: relative;
+}
+
+
+/* =========================
+   ARKA PLAN IŞIKLARI
+========================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 280px;
+    height: 280px;
+
+    top: 5%;
+    left: -100px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,80,170,0.15);
+
+    filter: blur(70px);
+
+    pointer-events: none;
+}
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    right: -100px;
+    bottom: 10%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(180,80,255,0.13);
+
+    filter: blur(80px);
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   YILDIZLAR
+========================= */
+
+.stars {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 0;
+}
+
+.star {
+
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: #ffd9ee;
+
+    box-shadow:
+        0 0 6px #ff69b4,
+        0 0 12px #ff69b4;
+
+    animation:
+        twinkle 2s infinite ease-in-out;
+}
+
+.star:nth-child(1) {
+    top: 12%;
+    left: 12%;
+}
+
+.star:nth-child(2) {
+    top: 20%;
+    left: 82%;
+    animation-delay: .5s;
+}
+
+.star:nth-child(3) {
+    top: 35%;
+    left: 7%;
+    animation-delay: 1s;
+}
+
+.star:nth-child(4) {
+    top: 44%;
+    left: 91%;
+    animation-delay: 1.4s;
+}
+
+.star:nth-child(5) {
+    top: 8%;
+    left: 55%;
+    animation-delay: .8s;
+}
+
+.star:nth-child(6) {
+    top: 52%;
+    left: 18%;
+    animation-delay: 1.7s;
+}
+
+.star:nth-child(7) {
+    top: 30%;
+    left: 72%;
+    animation-delay: .3s;
+}
+
+.star:nth-child(8) {
+    top: 63%;
+    left: 88%;
+    animation-delay: 1.1s;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: .25;
+        transform: scale(.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
 }
 
 
@@ -63,35 +217,46 @@ body {
     padding: 0 18px;
 
     background:
-        rgba(15,0,10,0.9);
+        rgba(15,0,12,0.82);
 
     border-bottom:
         1px solid
-        rgba(255,80,170,0.45);
+        rgba(255,105,180,0.35);
+
+    backdrop-filter:
+        blur(12px);
+
+    position: relative;
+
+    z-index: 5;
 }
 
 .logo {
 
-    font-size: 21px;
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 22px;
 
     font-weight: bold;
 
     letter-spacing: 4px;
 
-    color: #ff69b4;
+    color: #ffd6eb;
 
     text-shadow:
-        0 0 10px #ff1493,
-        0 0 25px #ff1493;
+        0 0 8px #ff69b4,
+        0 0 20px #ff1493;
 }
 
 .status {
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 2px;
 
-    color: #ff9dcc;
+    color: #ffafd2;
 }
 
 .status::before {
@@ -101,7 +266,6 @@ body {
     display: inline-block;
 
     width: 7px;
-
     height: 7px;
 
     margin-right: 7px;
@@ -111,8 +275,8 @@ body {
     background: #ff69b4;
 
     box-shadow:
-        0 0 8px #ff1493,
-        0 0 15px #ff1493;
+        0 0 7px #ff1493,
+        0 0 14px #ff1493;
 }
 
 
@@ -128,13 +292,23 @@ body {
     height:
         calc(100dvh - 60px);
 
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    align-items: center;
+    align-items:
+        center;
 
-    min-height: 0;
+    min-height:
+        0;
+
+    position:
+        relative;
+
+    z-index:
+        2;
 }
 
 
@@ -144,44 +318,60 @@ body {
 
 .heart-area {
 
-    width: 250px;
+    width:
+        230px;
 
-    height: 250px;
+    height:
+        205px;
 
-    margin-top: 15px;
+    margin-top:
+        5px;
 
-    position: relative;
+    position:
+        relative;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    flex-shrink: 0;
+    flex-shrink:
+        0;
 }
 
 
 /* =========================
-   IŞIK HALKALARI
+   HALKALAR
 ========================= */
 
 .heart-ring {
 
-    position: absolute;
+    position:
+        absolute;
 
-    border-radius: 50%;
+    border-radius:
+        50%;
 
     border:
         1px solid
-        rgba(255,105,180,0.7);
+        rgba(255,140,200,0.38);
+
+    box-shadow:
+        0 0 8px
+        rgba(255,80,170,0.15);
 }
 
 .ring1 {
 
-    width: 170px;
+    width:
+        135px;
 
-    height: 170px;
+    height:
+        135px;
 
     border-left-color:
         transparent;
@@ -190,14 +380,16 @@ body {
         transparent;
 
     animation:
-        rotate1 7s linear infinite;
+        rotate1 9s linear infinite;
 }
 
 .ring2 {
 
-    width: 215px;
+    width:
+        170px;
 
-    height: 215px;
+    height:
+        170px;
 
     border-top-color:
         transparent;
@@ -206,14 +398,16 @@ body {
         transparent;
 
     animation:
-        rotate2 10s linear infinite;
+        rotate2 13s linear infinite;
 }
 
 .ring3 {
 
-    width: 250px;
+    width:
+        205px;
 
-    height: 250px;
+    height:
+        205px;
 
     border-left-color:
         transparent;
@@ -222,7 +416,7 @@ body {
         transparent;
 
     animation:
-        rotate1 14s linear infinite;
+        rotate1 17s linear infinite;
 }
 
 
@@ -232,64 +426,92 @@ body {
 
 .heart {
 
-    position: relative;
+    width:
+        88px;
 
-    width: 125px;
+    height:
+        88px;
 
-    height: 125px;
+    position:
+        relative;
 
     transform:
         rotate(-45deg);
 
     background:
-        #ff1493;
+        linear-gradient(
+            135deg,
+            #ff9ed0,
+            #ff3f9e 45%,
+            #e60073
+        );
+
+    border-radius:
+        9px;
 
     box-shadow:
 
-        0 0 15px #ff1493,
+        0 0 10px
+        #ff69b4,
 
-        0 0 35px #ff1493,
+        0 0 25px
+        rgba(255,20,147,0.8),
 
-        0 0 70px
-        rgba(255,20,147,0.8);
+        0 0 50px
+        rgba(255,20,147,0.45);
 
     animation:
-        heartbeat 1.8s
+        heartbeat 1.9s
         infinite
         ease-in-out;
 
-    z-index: 5;
+    z-index:
+        5;
 }
 
 .heart::before,
 .heart::after {
 
-    content: "";
+    content:
+        "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    width: 125px;
+    width:
+        88px;
 
-    height: 125px;
+    height:
+        88px;
 
-    border-radius: 50%;
+    border-radius:
+        50%;
 
     background:
-        #ff1493;
+        linear-gradient(
+            135deg,
+            #ff9ed0,
+            #ff3f9e 45%,
+            #e60073
+        );
 }
 
 .heart::before {
 
-    top: -62px;
+    top:
+        -44px;
 
-    left: 0;
+    left:
+        0;
 }
 
 .heart::after {
 
-    top: 0;
+    top:
+        0;
 
-    left: 62px;
+    left:
+        44px;
 }
 
 
@@ -299,35 +521,68 @@ body {
 
 .heart-text {
 
-    position: absolute;
+    position:
+        absolute;
 
-    z-index: 10;
+    z-index:
+        20;
 
-    color: white;
+    width:
+        125px;
 
-    font-size: 11px;
+    left:
+        -18px;
 
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    white-space: nowrap;
+    top:
+        36px;
 
     transform:
         rotate(45deg);
 
+    text-align:
+        center;
+
+    color:
+        #fff7fb;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        10px;
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        1px;
+
+    line-height:
+        1.25;
+
+    white-space:
+        nowrap;
+
     text-shadow:
 
-        0 0 5px white,
+        0 0 4px
+        #ffffff,
 
-        0 0 10px white;
+        0 0 9px
+        #ffb6d9,
 
-    pointer-events: none;
+        0 0 15px
+        #ff69b4;
+
+    pointer-events:
+        none;
 }
 
 
 /* =========================
-   ANİMASYONLAR
+   KALP ANİMASYON
 ========================= */
 
 @keyframes heartbeat {
@@ -344,7 +599,7 @@ body {
 
         transform:
             rotate(-45deg)
-            scale(1.08);
+            scale(1.07);
     }
 }
 
@@ -376,29 +631,6 @@ body {
 
 
 /* =========================
-   DURUM
-========================= */
-
-.aura-status {
-
-    margin-top:
-        -5px;
-
-    margin-bottom:
-        8px;
-
-    font-size:
-        10px;
-
-    letter-spacing:
-        3px;
-
-    color:
-        #ff9dcc;
-}
-
-
-/* =========================
    SOHBET
 ========================= */
 
@@ -407,14 +639,24 @@ body {
     width:
         min(92%, 600px);
 
-    flex: 1;
+    flex:
+        1;
 
-    min-height: 0;
+    min-height:
+        0;
 
-    overflow-y: auto;
+    overflow-y:
+        auto;
 
     padding:
         5px 5px 10px;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        #c93479
+        transparent;
 }
 
 .message {
@@ -429,7 +671,7 @@ body {
         10px;
 
     border-radius:
-        12px;
+        14px;
 
     line-height:
         1.4;
@@ -439,31 +681,45 @@ body {
 
     font-size:
         14px;
+
+    backdrop-filter:
+        blur(8px);
 }
 
 .aura {
 
     background:
-        rgba(70,0,40,0.8);
+        rgba(70,5,45,0.72);
 
     margin-right:
         auto;
 
     border:
         1px solid
-        rgba(255,105,180,0.3);
+        rgba(255,105,180,0.28);
+
+    color:
+        #ffd9ea;
 }
 
 .user {
 
     background:
-        rgba(150,20,90,0.8);
+        linear-gradient(
+            135deg,
+            rgba(170,35,105,0.82),
+            rgba(110,20,80,0.82)
+        );
 
     margin-left:
         auto;
 
     color:
         white;
+
+    border:
+        1px solid
+        rgba(255,150,210,0.3);
 }
 
 
@@ -492,11 +748,17 @@ body {
         10px;
 
     background:
-        rgba(15,0,10,0.97);
+        rgba(15,0,12,0.94);
 
     border-top:
         1px solid
-        rgba(255,105,180,0.4);
+        rgba(255,105,180,0.35);
+
+    backdrop-filter:
+        blur(12px);
+
+    z-index:
+        10;
 }
 
 #input {
@@ -511,32 +773,36 @@ body {
         45px;
 
     padding:
-        12px;
+        12px 14px;
 
     border-radius:
-        9px;
+        13px;
 
     border:
         1px solid
-        rgba(255,105,180,0.5);
+        rgba(255,105,180,0.45);
 
     outline:
         none;
 
     background:
-        rgba(45,0,25,0.95);
+        rgba(45,2,30,0.9);
 
     color:
-        #ff9dcc;
+        #ffd5e8;
 
     font-size:
         14px;
+
+    box-shadow:
+        inset 0 0 12px
+        rgba(255,20,147,0.08);
 }
 
 #input::placeholder {
 
     color:
-        #a95d83;
+        #a96787;
 }
 
 button {
@@ -549,22 +815,30 @@ button {
         #ff69b4;
 
     border-radius:
-        9px;
+        13px;
 
     padding:
-        0 14px;
+        0 15px;
 
     background:
-        rgba(100,0,55,0.9);
+        linear-gradient(
+            135deg,
+            #8e175d,
+            #bd2879
+        );
 
     color:
-        #ff9dcc;
+        #fff0f7;
 
     font-size:
         14px;
 
     cursor:
         pointer;
+
+    box-shadow:
+        0 0 12px
+        rgba(255,20,147,0.25);
 }
 
 button:active {
@@ -573,18 +847,23 @@ button:active {
         scale(0.94);
 }
 
+
+/* =========================
+   MOBİL
+========================= */
+
 @media (max-width: 500px) {
 
     .heart-area {
 
         transform:
-            scale(0.82);
+            scale(0.86);
 
         margin-top:
-            -5px;
+            -2px;
 
         margin-bottom:
-            -20px;
+            -17px;
     }
 
     .logo {
@@ -598,6 +877,12 @@ button:active {
         padding:
             0 11px;
     }
+
+    .message {
+
+        font-size:
+            13px;
+    }
 }
 
 </style>
@@ -607,6 +892,24 @@ button:active {
 
 <body>
 
+
+<!-- YILDIZLAR -->
+
+<div class="stars">
+
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+
+</div>
+
+
+<!-- ÜST BAR -->
 
 <div class="top-bar">
 
@@ -621,8 +924,12 @@ button:active {
 </div>
 
 
+<!-- ANA -->
+
 <div class="main">
 
+
+    <!-- KALP -->
 
     <div class="heart-area">
 
@@ -644,13 +951,12 @@ button:active {
     </div>
 
 
-    <div class="aura-status">
-        LOVE SYSTEM READY
-    </div>
-
+    <!-- SOHBET -->
 
     <div id="chat"></div>
 
+
+    <!-- ALT PANEL -->
 
     <div id="bottom">
 
@@ -661,7 +967,9 @@ button:active {
             autocomplete="off"
         >
 
-        <button id="sendButton">
+        <button
+            id="sendButton"
+            type="button">
             Gönder
         </button>
 
@@ -673,6 +981,11 @@ button:active {
 
 <script>
 
+
+/* =========================
+   ELEMENTLER
+========================= */
+
 const chat =
     document.getElementById("chat");
 
@@ -682,6 +995,10 @@ const input =
 const sendButton =
     document.getElementById("sendButton");
 
+
+/* =========================
+   MESAJ
+========================= */
 
 function addMessage(
     text,
@@ -697,12 +1014,18 @@ function addMessage(
     message.textContent =
         text;
 
-    chat.appendChild(message);
+    chat.appendChild(
+        message
+    );
 
     chat.scrollTop =
         chat.scrollHeight;
 }
 
+
+/* =========================
+   DEMO GÖNDER
+========================= */
 
 function sendMessage() {
 
@@ -710,6 +1033,7 @@ function sendMessage() {
         input.value.trim();
 
     if (!text) {
+
         return;
     }
 
@@ -720,25 +1044,22 @@ function sendMessage() {
 
     input.value = "";
 
-    setTimeout(
-        function() {
-
-            addMessage(
-                "Merhaba. Ben AURA. Seni dinliyorum.",
-                "aura"
-            );
-
-        },
-        400
-    );
 }
 
+
+/* =========================
+   BUTON
+========================= */
 
 sendButton.addEventListener(
     "click",
     sendMessage
 );
 
+
+/* =========================
+   ENTER
+========================= */
 
 input.addEventListener(
     "keydown",
@@ -757,10 +1078,15 @@ input.addEventListener(
 );
 
 
+/* =========================
+   İLK MESAJ
+========================= */
+
 addMessage(
-    "Merhaba. Ben AURA.\n\nLove system hazır.",
+    "Merhaba. Ben AURA. Seni dinliyorum.",
     "aura"
 );
+
 
 </script>
 
