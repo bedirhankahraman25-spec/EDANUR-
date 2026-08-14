@@ -201,6 +201,209 @@ body::after {
 
 
 /* =========================
+   PRENSES DEKORASYONU
+========================= */
+
+.princess-decor {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+/* KRİSTAL PARILTILAR */
+
+.gem {
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    transform: rotate(45deg);
+
+    background: #fff1fa;
+
+    box-shadow:
+        0 0 5px #ffffff,
+        0 0 12px #ff9dce,
+        0 0 22px #ff69b4;
+
+    opacity: .65;
+
+    animation:
+        gemFloat 4s infinite ease-in-out;
+}
+
+.gem1 {
+    top: 16%;
+    left: 8%;
+}
+
+.gem2 {
+    top: 24%;
+    right: 9%;
+    animation-delay: 1.2s;
+}
+
+.gem3 {
+    bottom: 25%;
+    left: 11%;
+    animation-delay: 2s;
+}
+
+.gem4 {
+    bottom: 18%;
+    right: 13%;
+    animation-delay: .7s;
+}
+
+
+/* İNCİLER */
+
+.pearl {
+
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #fff7fc;
+
+    box-shadow:
+        0 0 7px #ffffff,
+        0 0 14px #ffc4e2;
+
+    animation:
+        pearlGlow 3s infinite ease-in-out;
+}
+
+.pearl1 {
+    top: 31%;
+    left: 23%;
+}
+
+.pearl2 {
+    top: 13%;
+    right: 28%;
+    animation-delay: .8s;
+}
+
+.pearl3 {
+    bottom: 31%;
+    right: 25%;
+    animation-delay: 1.5s;
+}
+
+.pearl4 {
+    bottom: 14%;
+    left: 27%;
+    animation-delay: 2.2s;
+}
+
+
+/* TAÇ */
+
+.crown-glow {
+
+    position: absolute;
+
+    top: 72px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 42px;
+
+    color:
+        rgba(255,220,240,0.16);
+
+    text-shadow:
+        0 0 12px
+        rgba(255,105,180,0.35),
+
+        0 0 30px
+        rgba(255,20,147,0.25);
+
+    animation:
+        crownGlow 4s
+        infinite
+        ease-in-out;
+}
+
+
+/* PRENSES ANİMASYONLARI */
+
+@keyframes gemFloat {
+
+    0%,
+    100% {
+        opacity: .3;
+
+        transform:
+            rotate(45deg)
+            scale(.7);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            rotate(45deg)
+            scale(1.25);
+    }
+}
+
+@keyframes pearlGlow {
+
+    0%,
+    100% {
+        opacity: .25;
+        transform: scale(.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+@keyframes crownGlow {
+
+    0%,
+    100% {
+        opacity: .35;
+
+        transform:
+            translateX(-50%)
+            scale(.95);
+    }
+
+    50% {
+        opacity: .8;
+
+        transform:
+            translateX(-50%)
+            scale(1.05);
+    }
+}
+
+
+/* =========================
    ÜST BAR
 ========================= */
 
@@ -345,7 +548,7 @@ body::after {
 
 
 /* =========================
-   HALKALAR
+   KALP HALKALARI
 ========================= */
 
 .heart-ring {
@@ -893,7 +1096,9 @@ button:active {
 <body>
 
 
-<!-- YILDIZLAR -->
+<!-- =========================
+     ARKA PLAN YILDIZLARI
+========================= -->
 
 <div class="stars">
 
@@ -909,7 +1114,32 @@ button:active {
 </div>
 
 
-<!-- ÜST BAR -->
+<!-- =========================
+     PRENSES DEKORASYONLARI
+========================= -->
+
+<div class="princess-decor">
+
+    <span class="gem gem1"></span>
+    <span class="gem gem2"></span>
+    <span class="gem gem3"></span>
+    <span class="gem gem4"></span>
+
+    <span class="pearl pearl1"></span>
+    <span class="pearl pearl2"></span>
+    <span class="pearl pearl3"></span>
+    <span class="pearl pearl4"></span>
+
+    <div class="crown-glow">
+        ♕
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ÜST BAR
+========================= -->
 
 <div class="top-bar">
 
@@ -924,7 +1154,9 @@ button:active {
 </div>
 
 
-<!-- ANA -->
+<!-- =========================
+     ANA ALAN
+========================= -->
 
 <div class="main">
 
@@ -997,7 +1229,7 @@ const sendButton =
 
 
 /* =========================
-   MESAJ
+   MESAJ EKLE
 ========================= */
 
 function addMessage(
@@ -1024,7 +1256,7 @@ function addMessage(
 
 
 /* =========================
-   DEMO GÖNDER
+   MESAJ GÖNDER
 ========================= */
 
 function sendMessage() {
@@ -1044,11 +1276,12 @@ function sendMessage() {
 
     input.value = "";
 
+    input.focus();
 }
 
 
 /* =========================
-   BUTON
+   GÖNDER BUTONU
 ========================= */
 
 sendButton.addEventListener(
@@ -1079,7 +1312,7 @@ input.addEventListener(
 
 
 /* =========================
-   İLK MESAJ
+   BAŞLANGIÇ MESAJI
 ========================= */
 
 addMessage(
