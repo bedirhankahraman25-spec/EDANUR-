@@ -15,10 +15,6 @@ content="#12000d">
 
 <style>
 
-/* =========================
-   TEMEL
-========================= */
-
 * {
     box-sizing: border-box;
 }
@@ -31,13 +27,8 @@ body {
 }
 
 body {
-
     overflow: hidden;
-
-    font-family:
-        Arial,
-        sans-serif;
-
+    font-family: Arial, sans-serif;
     color: #ffd1e8;
 
     background:
@@ -52,15 +43,8 @@ body {
     position: relative;
 }
 
-
-/* =========================
-   ARKA PLAN IŞIKLARI
-========================= */
-
 body::before {
-
     content: "";
-
     position: fixed;
 
     width: 280px;
@@ -80,9 +64,7 @@ body::before {
 }
 
 body::after {
-
     content: "";
-
     position: fixed;
 
     width: 300px;
@@ -101,15 +83,8 @@ body::after {
     pointer-events: none;
 }
 
-
-/* =========================
-   YILDIZLAR
-========================= */
-
 .stars {
-
     position: fixed;
-
     inset: 0;
 
     pointer-events: none;
@@ -120,7 +95,6 @@ body::after {
 }
 
 .star {
-
     position: absolute;
 
     width: 3px;
@@ -186,9 +160,7 @@ body::after {
 }
 
 @keyframes twinkle {
-
-    0%,
-    100% {
+    0%,100% {
         opacity: .25;
         transform: scale(.7);
     }
@@ -199,15 +171,8 @@ body::after {
     }
 }
 
-
-/* =========================
-   PRENSES DEKORASYONU
-========================= */
-
 .princess-decor {
-
     position: fixed;
-
     inset: 0;
 
     pointer-events: none;
@@ -217,11 +182,7 @@ body::after {
     z-index: 1;
 }
 
-
-/* KRİSTAL PARILTILAR */
-
 .gem {
-
     position: absolute;
 
     width: 7px;
@@ -265,11 +226,7 @@ body::after {
     animation-delay: .7s;
 }
 
-
-/* İNCİLER */
-
 .pearl {
-
     position: absolute;
 
     width: 4px;
@@ -310,11 +267,7 @@ body::after {
     animation-delay: 2.2s;
 }
 
-
-/* TAÇ */
-
 .crown-glow {
-
     position: absolute;
 
     top: 72px;
@@ -341,19 +294,12 @@ body::after {
 
     animation:
         crownGlow 4s
-        infinite
-        ease-in-out;
+        infinite ease-in-out;
 }
 
-
-/* PRENSES ANİMASYONLARI */
-
 @keyframes gemFloat {
-
-    0%,
-    100% {
+    0%,100% {
         opacity: .3;
-
         transform:
             rotate(45deg)
             scale(.7);
@@ -361,7 +307,6 @@ body::after {
 
     50% {
         opacity: 1;
-
         transform:
             rotate(45deg)
             scale(1.25);
@@ -369,9 +314,7 @@ body::after {
 }
 
 @keyframes pearlGlow {
-
-    0%,
-    100% {
+    0%,100% {
         opacity: .25;
         transform: scale(.7);
     }
@@ -383,11 +326,8 @@ body::after {
 }
 
 @keyframes crownGlow {
-
-    0%,
-    100% {
+    0%,100% {
         opacity: .35;
-
         transform:
             translateX(-50%)
             scale(.95);
@@ -395,20 +335,13 @@ body::after {
 
     50% {
         opacity: .8;
-
         transform:
             translateX(-50%)
             scale(1.05);
     }
 }
 
-
-/* =========================
-   ÜST BAR
-========================= */
-
 .top-bar {
-
     height: 60px;
 
     display: flex;
@@ -435,7 +368,6 @@ body::after {
 }
 
 .logo {
-
     font-family:
         Georgia,
         serif;
@@ -454,7 +386,6 @@ body::after {
 }
 
 .status {
-
     font-size: 10px;
 
     letter-spacing: 2px;
@@ -463,7 +394,6 @@ body::after {
 }
 
 .status::before {
-
     content: "";
 
     display: inline-block;
@@ -482,13 +412,7 @@ body::after {
         0 0 14px #ff1493;
 }
 
-
-/* =========================
-   ANA ALAN
-========================= */
-
 .main {
-
     height:
         calc(100vh - 60px);
 
@@ -514,50 +438,26 @@ body::after {
         2;
 }
 
-
-/* =========================
-   KALP ALANI
-========================= */
-
 .heart-area {
+    width: 230px;
+    height: 205px;
 
-    width:
-        230px;
+    margin-top: 5px;
 
-    height:
-        205px;
+    position: relative;
 
-    margin-top:
-        5px;
+    display: flex;
 
-    position:
-        relative;
+    align-items: center;
+    justify-content: center;
 
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    flex-shrink:
-        0;
+    flex-shrink: 0;
 }
 
-
-/* =========================
-   KALP HALKALARI
-========================= */
-
 .heart-ring {
+    position: absolute;
 
-    position:
-        absolute;
-
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     border:
         1px solid
@@ -569,74 +469,43 @@ body::after {
 }
 
 .ring1 {
+    width: 135px;
+    height: 135px;
 
-    width:
-        135px;
-
-    height:
-        135px;
-
-    border-left-color:
-        transparent;
-
-    border-right-color:
-        transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
 
     animation:
         rotate1 9s linear infinite;
 }
 
 .ring2 {
+    width: 170px;
+    height: 170px;
 
-    width:
-        170px;
-
-    height:
-        170px;
-
-    border-top-color:
-        transparent;
-
-    border-bottom-color:
-        transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
 
     animation:
         rotate2 13s linear infinite;
 }
 
 .ring3 {
+    width: 205px;
+    height: 205px;
 
-    width:
-        205px;
-
-    height:
-        205px;
-
-    border-left-color:
-        transparent;
-
-    border-bottom-color:
-        transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
 
     animation:
         rotate1 17s linear infinite;
 }
 
-
-/* =========================
-   KALP
-========================= */
-
 .heart {
+    width: 88px;
+    height: 88px;
 
-    width:
-        88px;
-
-    height:
-        88px;
-
-    position:
-        relative;
+    position: relative;
 
     transform:
         rotate(-45deg);
@@ -649,46 +518,31 @@ body::after {
             #e60073
         );
 
-    border-radius:
-        9px;
+    border-radius: 9px;
 
     box-shadow:
-
-        0 0 10px
-        #ff69b4,
-
-        0 0 25px
-        rgba(255,20,147,0.8),
-
-        0 0 50px
-        rgba(255,20,147,0.45);
+        0 0 10px #ff69b4,
+        0 0 25px rgba(255,20,147,0.8),
+        0 0 50px rgba(255,20,147,0.45);
 
     animation:
         heartbeat 1.9s
         infinite
         ease-in-out;
 
-    z-index:
-        5;
+    z-index: 5;
 }
 
 .heart::before,
 .heart::after {
+    content: "";
 
-    content:
-        "";
+    position: absolute;
 
-    position:
-        absolute;
+    width: 88px;
+    height: 88px;
 
-    width:
-        88px;
-
-    height:
-        88px;
-
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     background:
         linear-gradient(
@@ -700,106 +554,63 @@ body::after {
 }
 
 .heart::before {
-
-    top:
-        -44px;
-
-    left:
-        0;
+    top: -44px;
+    left: 0;
 }
 
 .heart::after {
-
-    top:
-        0;
-
-    left:
-        44px;
+    top: 0;
+    left: 44px;
 }
 
-
-/* =========================
-   KALP YAZISI
-========================= */
-
 .heart-text {
+    position: absolute;
 
-    position:
-        absolute;
+    z-index: 20;
 
-    z-index:
-        20;
+    width: 125px;
 
-    width:
-        125px;
-
-    left:
-        -18px;
-
-    top:
-        36px;
+    left: -18px;
+    top: 36px;
 
     transform:
         rotate(45deg);
 
-    text-align:
-        center;
+    text-align: center;
 
-    color:
-        #fff7fb;
+    color: #fff7fb;
 
     font-family:
         Georgia,
         "Times New Roman",
         serif;
 
-    font-size:
-        10px;
+    font-size: 10px;
 
-    font-weight:
-        bold;
+    font-weight: bold;
 
-    letter-spacing:
-        1px;
+    letter-spacing: 1px;
 
-    line-height:
-        1.25;
+    line-height: 1.25;
 
-    white-space:
-        nowrap;
+    white-space: nowrap;
 
     text-shadow:
+        0 0 4px #ffffff,
+        0 0 9px #ffb6d9,
+        0 0 15px #ff69b4;
 
-        0 0 4px
-        #ffffff,
-
-        0 0 9px
-        #ffb6d9,
-
-        0 0 15px
-        #ff69b4;
-
-    pointer-events:
-        none;
+    pointer-events: none;
 }
 
-
-/* =========================
-   KALP ANİMASYON
-========================= */
-
 @keyframes heartbeat {
-
-    0%,
-    100% {
-
+    0%,100% {
         transform:
             rotate(-45deg)
             scale(1);
     }
 
     50% {
-
         transform:
             rotate(-45deg)
             scale(1.07);
@@ -807,106 +618,76 @@ body::after {
 }
 
 @keyframes rotate1 {
-
     from {
-        transform:
-            rotate(0deg);
+        transform: rotate(0deg);
     }
 
     to {
-        transform:
-            rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
 @keyframes rotate2 {
-
     from {
-        transform:
-            rotate(360deg);
+        transform: rotate(360deg);
     }
 
     to {
-        transform:
-            rotate(0deg);
+        transform: rotate(0deg);
     }
 }
 
-
-/* =========================
-   SOHBET
-========================= */
-
 #chat {
+    width: min(92%, 600px);
 
-    width:
-        min(92%, 600px);
+    flex: 1;
 
-    flex:
-        1;
+    min-height: 0;
 
-    min-height:
-        0;
-
-    overflow-y:
-        auto;
+    overflow-y: auto;
 
     padding:
         5px 5px 10px;
 
-    scrollbar-width:
-        thin;
+    scrollbar-width: thin;
 
     scrollbar-color:
-        #c93479
-        transparent;
+        #c93479 transparent;
 }
 
 .message {
-
-    max-width:
-        85%;
+    max-width: 85%;
 
     padding:
         10px 13px;
 
-    margin-bottom:
-        10px;
+    margin-bottom: 10px;
 
-    border-radius:
-        14px;
+    border-radius: 14px;
 
-    line-height:
-        1.4;
+    line-height: 1.4;
 
-    white-space:
-        pre-wrap;
+    white-space: pre-wrap;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
-    backdrop-filter:
-        blur(8px);
+    backdrop-filter: blur(8px);
 }
 
 .aura {
-
     background:
         rgba(70,5,45,0.72);
 
-    margin-right:
-        auto;
+    margin-right: auto;
 
     border:
         1px solid
         rgba(255,105,180,0.28);
 
-    color:
-        #ffd9ea;
+    color: #ffd9ea;
 }
 
 .user {
-
     background:
         linear-gradient(
             135deg,
@@ -914,41 +695,27 @@ body::after {
             rgba(110,20,80,0.82)
         );
 
-    margin-left:
-        auto;
+    margin-left: auto;
 
-    color:
-        white;
+    color: white;
 
     border:
         1px solid
         rgba(255,150,210,0.3);
 }
 
-
-/* =========================
-   ALT PANEL
-========================= */
-
 #bottom {
+    width: 100%;
 
-    width:
-        100%;
+    min-height: 65px;
 
-    min-height:
-        65px;
+    display: flex;
 
-    display:
-        flex;
+    align-items: center;
 
-    align-items:
-        center;
+    gap: 8px;
 
-    gap:
-        8px;
-
-    padding:
-        10px;
+    padding: 10px;
 
     background:
         rgba(15,0,12,0.94);
@@ -960,42 +727,32 @@ body::after {
     backdrop-filter:
         blur(12px);
 
-    z-index:
-        10;
+    z-index: 10;
 }
 
 #input {
+    flex: 1;
 
-    flex:
-        1;
+    min-width: 0;
 
-    min-width:
-        0;
+    height: 45px;
 
-    height:
-        45px;
+    padding: 12px 14px;
 
-    padding:
-        12px 14px;
-
-    border-radius:
-        13px;
+    border-radius: 13px;
 
     border:
         1px solid
         rgba(255,105,180,0.45);
 
-    outline:
-        none;
+    outline: none;
 
     background:
         rgba(45,2,30,0.9);
 
-    color:
-        #ffd5e8;
+    color: #ffd5e8;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
     box-shadow:
         inset 0 0 12px
@@ -1003,25 +760,19 @@ body::after {
 }
 
 #input::placeholder {
-
-    color:
-        #a96787;
+    color: #a96787;
 }
 
 button {
-
-    height:
-        45px;
+    height: 45px;
 
     border:
         1px solid
         #ff69b4;
 
-    border-radius:
-        13px;
+    border-radius: 13px;
 
-    padding:
-        0 15px;
+    padding: 0 15px;
 
     background:
         linear-gradient(
@@ -1030,14 +781,11 @@ button {
             #bd2879
         );
 
-    color:
-        #fff0f7;
+    color: #fff0f7;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
     box-shadow:
         0 0 12px
@@ -1045,46 +793,38 @@ button {
 }
 
 button:active {
-
-    transform:
-        scale(0.94);
+    transform: scale(.94);
 }
 
+button:disabled {
+    opacity: .55;
+}
 
-/* =========================
-   MOBİL
-========================= */
+#micButton {
+    width: 45px;
+    padding: 0;
+    font-size: 19px;
+}
 
-@media (max-width: 500px) {
+@media (max-width:500px) {
 
     .heart-area {
+        transform: scale(.86);
 
-        transform:
-            scale(0.86);
-
-        margin-top:
-            -2px;
-
-        margin-bottom:
-            -17px;
+        margin-top: -2px;
+        margin-bottom: -17px;
     }
 
     .logo {
-
-        font-size:
-            18px;
+        font-size: 18px;
     }
 
     button {
-
-        padding:
-            0 11px;
+        padding: 0 11px;
     }
 
     .message {
-
-        font-size:
-            13px;
+        font-size: 13px;
     }
 }
 
@@ -1092,13 +832,7 @@ button:active {
 
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     ARKA PLAN YILDIZLARI
-========================= -->
 
 <div class="stars">
 
@@ -1106,17 +840,13 @@ button:active {
     <div class="star"></div>
     <div class="star"></div>
     <div class="star"></div>
+
     <div class="star"></div>
     <div class="star"></div>
     <div class="star"></div>
     <div class="star"></div>
 
 </div>
-
-
-<!-- =========================
-     PRENSES DEKORASYONLARI
-========================= -->
 
 <div class="princess-decor">
 
@@ -1136,41 +866,25 @@ button:active {
 
 </div>
 
-
-<!-- =========================
-     ÜST BAR
-========================= -->
-
 <div class="top-bar">
 
     <div class="logo">
         AURA
     </div>
 
-    <div class="status">
+    <div class="status" id="status">
         ONLINE
     </div>
 
 </div>
 
-
-<!-- =========================
-     ANA ALAN
-========================= -->
-
 <div class="main">
-
-
-    <!-- KALP -->
 
     <div class="heart-area">
 
         <div class="heart-ring ring1"></div>
-
         <div class="heart-ring ring2"></div>
-
         <div class="heart-ring ring3"></div>
-
 
         <div class="heart">
 
@@ -1182,13 +896,7 @@ button:active {
 
     </div>
 
-
-    <!-- SOHBET -->
-
     <div id="chat"></div>
-
-
-    <!-- ALT PANEL -->
 
     <div id="bottom">
 
@@ -1200,6 +908,12 @@ button:active {
         >
 
         <button
+            id="micButton"
+            type="button">
+            🎤
+        </button>
+
+        <button
             id="sendButton"
             type="button">
             Gönder
@@ -1207,15 +921,13 @@ button:active {
 
     </div>
 
-
 </div>
 
-
+<script src="https://js.puter.com/v2/"></script>
 <script>
 
-
 /* =========================
-   ELEMENTLER
+   AURA AI — TEMEL SİSTEM
 ========================= */
 
 const chat =
@@ -1227,31 +939,1131 @@ const input =
 const sendButton =
     document.getElementById("sendButton");
 
+const micButton =
+    document.getElementById("micButton");
+
+const statusElement =
+    document.getElementById("status");
+
 
 /* =========================
-   MESAJ EKLE
+   KALICI HAFIZA
 ========================= */
 
-function addMessage(
-    text,
-    type
+const MEMORY_KEY =
+    "EDANUR_AURA_MEMORY_V1";
+
+const CHAT_KEY =
+    "EDANUR_AURA_CHAT_V1";
+
+
+function emptyMemory() {
+
+    return {
+        facts: [],
+        preferences: [],
+        notes: [],
+        reminders: [],
+        learnedStyle: []
+    };
+}
+
+
+function loadMemory() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                MEMORY_KEY
+            );
+
+        if (!saved) {
+            return emptyMemory();
+        }
+
+        const data =
+            JSON.parse(saved);
+
+        return {
+
+            facts:
+                Array.isArray(data.facts)
+                    ? data.facts
+                    : [],
+
+            preferences:
+                Array.isArray(data.preferences)
+                    ? data.preferences
+                    : [],
+
+            notes:
+                Array.isArray(data.notes)
+                    ? data.notes
+                    : [],
+
+            reminders:
+                Array.isArray(data.reminders)
+                    ? data.reminders
+                    : [],
+
+            learnedStyle:
+                Array.isArray(data.learnedStyle)
+                    ? data.learnedStyle
+                    : []
+        };
+
+    } catch (error) {
+
+        console.error(
+            "H
+           <script>
+
+/* =========================
+   WEB ARAMA SİSTEMİ
+========================= */
+
+async function webSearch(query) {
+
+    try {
+
+        const cleanQuery =
+            String(query)
+                .trim();
+
+        if (!cleanQuery) {
+
+            return {
+                success: false,
+                text: "Aranacak bir şey belirtilmedi."
+            };
+        }
+
+
+        /*
+           DuckDuckGo Instant Answer API
+        */
+
+        const url =
+            "https://api.duckduckgo.com/" +
+            "?q=" +
+            encodeURIComponent(
+                cleanQuery
+            ) +
+            "&format=json" +
+            "&no_html=1" +
+            "&skip_disambig=1";
+
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method: "GET"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Web servisi yanıt vermedi."
+            );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        let results = [];
+
+
+        if (
+            data.AbstractText
+        ) {
+
+            results.push(
+                data.AbstractText
+            );
+        }
+
+
+        if (
+            Array.isArray(
+                data.RelatedTopics
+            )
+        ) {
+
+            data.RelatedTopics
+                .forEach(
+                    function(item) {
+
+                        if (
+                            results.length >= 5
+                        ) {
+                            return;
+                        }
+
+                        if (
+                            item &&
+                            item.Text
+                        ) {
+
+                            results.push(
+                                item.Text
+                            );
+                        }
+                    }
+                );
+        }
+
+
+        if (!results.length) {
+
+            return {
+
+                success: false,
+
+                text:
+                    "Bu arama için doğrudan sonuç bulamadım."
+            };
+        }
+
+
+        return {
+
+            success: true,
+
+            text:
+                results
+                    .slice(0, 5)
+                    .join("\n\n")
+        };
+
+
+    } catch (error) {
+
+        console.error(
+            "WEB ARAMA HATASI:",
+            error
+        );
+
+
+        return {
+
+            success: false,
+
+            text:
+                "Web aramasına şu anda erişemedim."
+        };
+    }
+}
+
+
+/* =========================
+   WEB ARAMA GEREKİYOR MU?
+========================= */
+
+function needsWebSearch(text) {
+
+    const lower =
+        text
+            .toLocaleLowerCase(
+                "tr-TR"
+            );
+
+
+    const keywords = [
+
+        "internette",
+
+        "internetten",
+
+        "internette ara",
+
+        "webde ara",
+
+        "web'de ara",
+
+        "google'da ara",
+
+        "google da ara",
+
+        "araştır",
+
+        "araştırsana",
+
+        "güncel",
+
+        "son dakika",
+
+        "bugün",
+
+        "şu an",
+
+        "şuan",
+
+        "hava durumu",
+
+        "hava nasıl",
+
+        "hava kaç derece",
+
+        "haberler",
+
+        "haber",
+
+        "kur",
+
+        "dolar",
+
+        "euro",
+
+        "bitcoin",
+
+        "btc",
+
+        "altın",
+
+        "kim kazandı",
+
+        "maç sonucu",
+
+        "puan durumu",
+
+        "ne zaman",
+
+        "hangi gün",
+
+        "kaç yılında",
+
+        "2026",
+
+        "2025"
+    ];
+
+
+    return keywords.some(
+        function(keyword) {
+
+            return lower.includes(
+                keyword
+            );
+        }
+    );
+}
+
+
+/* =========================
+   ARAMA SORGUSU TEMİZLE
+========================= */
+
+function createSearchQuery(
+    text
 ) {
 
-    const message =
-        document.createElement("div");
+    let query =
+        String(text)
+            .trim();
 
-    message.className =
-        "message " + type;
 
-    message.textContent =
-        text;
+    query =
+        query.replace(
+            /^(internette|internetten|webde|web'de|google'da|google da)\s*/i,
+            ""
+        );
 
-    chat.appendChild(
-        message
+
+    query =
+        query.replace(
+            /^(ara|araştır|araştırsana)\s*/i,
+            ""
+        );
+
+
+    return query.trim();
+}
+
+
+/* =========================
+   HAVA DURUMU
+========================= */
+
+async function getWeather(
+    city
+) {
+
+    try {
+
+        const location =
+            String(city || "")
+                .trim();
+
+
+        if (!location) {
+
+            return {
+
+                success: false,
+
+                text:
+                    "Hangi şehir için hava durumuna bakmamı istediğini söyle."
+            };
+        }
+
+
+        /*
+           Open-Meteo geocoding
+        */
+
+        const geoUrl =
+            "https://geocoding-api.open-meteo.com/" +
+            "v1/search?name=" +
+            encodeURIComponent(
+                location
+            ) +
+            "&count=1&language=tr&format=json";
+
+
+        const geoResponse =
+            await fetch(
+                geoUrl
+            );
+
+
+        if (!geoResponse.ok) {
+
+            throw new Error(
+                "Konum bulunamadı."
+            );
+        }
+
+
+        const geoData =
+            await geoResponse.json();
+
+
+        if (
+            !geoData.results ||
+            !geoData.results.length
+        ) {
+
+            return {
+
+                success: false,
+
+                text:
+                    location +
+                    " için konum bulamadım."
+            };
+        }
+
+
+        const place =
+            geoData.results[0];
+
+
+        const weatherUrl =
+            "https://api.open-meteo.com/" +
+            "v1/forecast" +
+            "?latitude=" +
+            place.latitude +
+            "&longitude=" +
+            place.longitude +
+            "&current=" +
+            "temperature_2m," +
+            "relative_humidity_2m," +
+            "apparent_temperature," +
+            "weather_code," +
+            "wind_speed_10m" +
+            "&timezone=auto";
+
+
+        const weatherResponse =
+            await fetch(
+                weatherUrl
+            );
+
+
+        if (!weatherResponse.ok) {
+
+            throw new Error(
+                "Hava verisi alınamadı."
+            );
+        }
+
+
+        const weather =
+            await weatherResponse.json();
+
+
+        const current =
+            weather.current;
+
+
+        const description =
+            weatherCodeToTurkish(
+                current.weather_code
+            );
+
+
+        return {
+
+            success: true,
+
+            text:
+                place.name +
+                " için güncel hava durumu:\n\n" +
+
+                "Sıcaklık: " +
+                current.temperature_2m +
+                " °C\n" +
+
+                "Hissedilen: " +
+                current.apparent_temperature +
+                " °C\n" +
+
+                "Durum: " +
+                description +
+                "\n" +
+
+                "Nem: " +
+                current.relative_humidity_2m +
+                "%\n" +
+
+                "Rüzgâr: " +
+                current.wind_speed_10m +
+                " km/sa"
+        };
+
+
+    } catch (error) {
+
+        console.error(
+            "HAVA DURUMU HATASI:",
+            error
+        );
+
+
+        return {
+
+            success: false,
+
+            text:
+                "Hava durumunu şu anda alamadım."
+        };
+    }
+}
+
+
+/* =========================
+   HAVA KODU
+========================= */
+
+function weatherCodeToTurkish(
+    code
+) {
+
+    const map = {
+
+        0:
+            "Açık",
+
+        1:
+            "Çoğunlukla açık",
+
+        2:
+            "Parçalı bulutlu",
+
+        3:
+            "Kapalı",
+
+        45:
+            "Sisli",
+
+        48:
+            "Kırağılı sis",
+
+        51:
+            "Hafif çiseleme",
+
+        53:
+            "Çiseleme",
+
+        55:
+            "Yoğun çiseleme",
+
+        61:
+            "Hafif yağmur",
+
+        63:
+            "Yağmurlu",
+
+        65:
+            "Kuvvetli yağmur",
+
+        71:
+            "Hafif kar",
+
+        73:
+            "Kar yağışı",
+
+        75:
+            "Yoğun kar",
+
+        80:
+            "Hafif sağanak",
+
+        81:
+            "Sağanak",
+
+        82:
+            "Kuvvetli sağanak",
+
+        95:
+            "Gök gürültülü fırtına",
+
+        96:
+            "Dolu ihtimalli fırtına",
+
+        99:
+            "Kuvvetli dolulu fırtına
+           <script>
+
+/* =========================
+   PUTER AI BAĞLANTISI
+========================= */
+
+async function callPuterAI(
+    messages
+) {
+
+    try {
+
+        if (
+            typeof puter === "undefined" ||
+            !puter.ai ||
+            typeof puter.ai.chat !==
+            "function"
+        ) {
+
+            throw new Error(
+                "Puter AI hazır değil."
+            );
+        }
+
+
+        const response =
+            await puter.ai.chat(
+                messages,
+                {
+                    model:
+                        "gpt-5.4-nano"
+                }
+            );
+
+
+        let answer = "";
+
+
+        if (
+            response &&
+            response.message &&
+            typeof response.message.content ===
+            "string"
+        ) {
+
+            answer =
+                response.message.content;
+        }
+
+        else if (
+            response &&
+            typeof response.text ===
+            "string"
+        ) {
+
+            answer =
+                response.text;
+        }
+
+        else if (
+            typeof response ===
+            "string"
+        ) {
+
+            answer =
+                response;
+        }
+
+        else {
+
+            answer =
+                String(response);
+        }
+
+
+        answer =
+            answer.trim();
+
+
+        if (!answer) {
+
+            throw new Error(
+                "AI boş cevap verdi."
+            );
+        }
+
+
+        return answer;
+
+
+    } catch (error) {
+
+        console.error(
+            "AURA AI HATASI:",
+            error
+        );
+
+
+        throw error;
+    }
+}
+
+
+/* =========================
+   NORMAL AI SORGUSU
+========================= */
+
+async function askAI(
+    userText
+) {
+
+    const messages = [
+
+        {
+            role: "system",
+
+            content:
+                buildSystemPrompt()
+        },
+
+        ...conversation.slice(-12),
+
+        {
+            role: "user",
+
+            content: userText
+        }
+    ];
+
+
+    return await callPuterAI(
+        messages
+    );
+}
+
+
+/* =========================
+   ANA CEVAP MOTORU
+========================= */
+
+async function getAuraResponse(
+    userText
+) {
+
+    /*
+       Önce yerel komutlar
+    */
+
+    const localResult =
+        handleLocalCommand(
+            userText
+        );
+
+
+    if (
+        localResult.handled
+    ) {
+
+        return localResult.response;
+    }
+
+
+    /*
+       Sonra akıllı komutlar
+    */
+
+    const smartResult =
+        await handleSmartCommand(
+            userText
+        );
+
+
+    if (
+        smartResult &&
+        smartResult.success
+    ) {
+
+        /*
+           Hava durumu gibi
+           kesin verileri direkt
+           döndür.
+        */
+
+        return smartResult.text;
+    }
+
+
+    /*
+       Kullanıcının verdiği
+       önemli bilgileri öğren.
+    */
+
+    learnFromMessage(
+        userText
     );
 
-    chat.scrollTop =
-        chat.scrollHeight;
+
+    /*
+       Güncel bilgi gerekiyorsa
+       web araması yap.
+    */
+
+    if (
+        needsWebSearch(
+            userText
+        )
+    ) {
+
+        const query =
+            createSearchQuery(
+                userText
+            );
+
+
+        const webResult =
+            await webSearch(
+                query
+            );
+
+
+        if (
+            webResult.success
+        ) {
+
+            try {
+
+                return await askAIWithWeb(
+                    userText,
+                    webResult.text
+                );
+
+            } catch (error) {
+
+                /*
+                   Web sonucu var ama
+                   AI tekrar çalışmazsa
+                   sonucu kaybetme.
+                */
+
+                return (
+                    "Web aramasından bulduğum bilgiler:\n\n" +
+                    webResult.text
+                );
+            }
+        }
+    }
+
+
+    /*
+       Normal AI
+    */
+
+    return await askAI(
+        userText
+    );
+}
+
+
+/* =========================
+   SES TEMİZLEME
+========================= */
+
+function cleanTextForSpeech(
+    text
+) {
+
+    return String(text)
+
+        .replace(
+            /https?:\/\/\S+/gi,
+            ""
+        )
+
+        .replace(
+            /[`*_#>]/g,
+            ""
+        )
+
+        .replace(
+            /\[[^\]]*\]/g,
+            ""
+        )
+
+        .replace(
+            /\s+/g,
+            " "
+        )
+
+        .trim();
+}
+
+
+/* =========================
+   SESLİ CEVAP
+========================= */
+
+function speak(
+    text
+) {
+
+    if (
+        !("speechSynthesis" in window)
+    ) {
+
+        return;
+    }
+
+
+    const clean =
+        cleanTextForSpeech(
+            text
+        );
+
+
+    if (!clean) {
+        return;
+    }
+
+
+    try {
+
+        window.speechSynthesis.cancel();
+
+
+        const utterance =
+            new SpeechSynthesisUtterance(
+                clean
+            );
+
+
+        utterance.lang =
+            "tr-TR";
+
+        utterance.rate =
+            0.95;
+
+        utterance.pitch =
+            1.05;
+
+        utterance.volume =
+            1;
+
+
+        window.speechSynthesis.speak(
+            utterance
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Ses hatası:",
+            error
+        );
+    }
+}
+
+
+/* =========================
+   SES TANIMA
+========================= */
+
+let recognition = null;
+
+let isListening = false;
+
+let voiceMode = false;
+
+
+function setupSpeechRecognition() {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    if (
+        !SpeechRecognition
+    ) {
+
+        return false;
+    }
+
+
+    recognition =
+        new SpeechRecognition();
+
+
+    recognition.lang =
+        "tr-TR";
+
+
+    recognition.continuous =
+        false;
+
+
+    recognition.interimResults =
+        false;
+
+
+    recognition.maxAlternatives =
+        1;
+
+
+    recognition.onstart =
+        function() {
+
+            isListening =
+                true;
+
+            micButton.textContent =
+                "🔴";
+
+            statusElement.textContent =
+                "LISTENING";
+        };
+
+
+    recognition.onresult =
+        async function(event) {
+
+            const result =
+                event.results[0][0];
+
+
+            if (!result) {
+                return;
+            }
+
+
+            const spokenText =
+                result.transcript.trim();
+
+
+            if (!spokenText) {
+                return;
+            }
+
+
+            input.value =
+                spokenText;
+
+
+            await sendMessage(
+                true
+            );
+        };
+
+
+    recognition.onerror =
+        function(event) {
+
+            console.error(
+                "Ses tanıma hatası:",
+                event.error
+            );
+
+
+            isListening =
+                false;
+
+            micButton.textContent =
+                "🎤";
+
+            statusElement.textContent =
+                "ONLINE";
+        };
+
+
+    recognition.onend =
+        function() {
+
+            isListening =
+                false;
+
+            micButton.textContent =
+                "🎤";
+
+            statusElement.textContent =
+                "ONLINE";
+        };
+
+
+    return true;
+}
+
+
+setupSpeechRecognition();
+
+
+/* =========================
+   AURA UYANDIRMA
+========================= */
+
+function containsWakeWord(
+    text
+) {
+
+    const lower =
+        text
+            .toLocaleLowerCase(
+                "tr-TR"
+            );
+
+
+    return (
+
+        lower.includes(
+            "aura"
+        )
+
+        ||
+
+        lower.includes(
+            "aura "
+        )
+
+        ||
+
+        lower.startsWith(
+            "aura"
+        )
+    );
+}
+
+
+function removeWakeWord(
+    text
+) {
+
+    return String(text)
+        .replace(
+            /^aura[\s,:-]*/i,
+            ""
+        )
+        .trim();
 }
 
 
@@ -1259,22 +2071,199 @@ function addMessage(
    MESAJ GÖNDER
 ========================= */
 
-function sendMessage() {
+let sending = false;
 
-    const text =
-        input.value.trim();
 
-    if (!text) {
+async function sendMessage(
+    useVoice = false
+) {
 
+    if (sending) {
         return;
     }
+
+
+    let text =
+        input.value.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    /*
+       "AURA ..." şeklindeki
+       konuşmalarda AURA kelimesini
+       komuttan ayır.
+    */
+
+    if (
+        containsWakeWord(
+            text
+        )
+    ) {
+
+        const cleaned =
+            removeWakeWord(
+                text
+            );
+
+
+        if (cleaned) {
+
+            text =
+                cleaned;
+        }
+    }
+
 
     addMessage(
         text,
         "user"
     );
 
-    input.value = "";
+
+    input.value =
+        "";
+
+
+    /*
+       Kullanıcı mesajını
+       geçmişe kaydet.
+    */
+
+    conversation.push({
+
+        role: "user",
+
+        content: text
+    });
+
+
+    conversation =
+        conversation.slice(-20);
+
+
+    saveConversation();
+
+
+    sending =
+        true;
+
+
+    sendButton.disabled =
+        true;
+
+    micButton.disabled =
+        true;
+
+
+    const loading =
+        addMessage(
+            "Düşünüyorum...",
+            "aura"
+        );
+
+
+    try {
+
+        const answer =
+            await getAuraResponse(
+                text
+            );
+
+
+        if (loading) {
+
+            loading.remove();
+        }
+
+
+        addMessage(
+            answer,
+            "aura"
+        );
+
+
+        conversation.push({
+
+            role:
+                "assistant",
+
+            content:
+                answer
+        });
+
+
+        conversation =
+            conversation.slice(-20);
+
+
+        saveConversation();
+
+
+        /*
+           Sesli komut geldiyse
+           cevap seslendir.
+        */
+
+        if (useVoice) {
+
+            speak(
+                answer
+            );
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "MESAJ HATASI:",
+            error
+        );
+
+
+        if (loading) {
+
+            loading.remove();
+        }
+
+
+        const errorMessage =
+            "Şu anda bağlantıda bir sorun oluştu. " +
+            "İnternet bağlantını veya AI bağlantısını kontrol edip tekrar deneyebiliriz.";
+
+
+        addMessage(
+            errorMessage,
+            "aura"
+        );
+
+
+        if (useVoice) {
+
+            speak(
+                errorMessage
+            );
+        }
+    }
+
+
+    sending =
+        false;
+
+
+    sendButton.disabled =
+        false;
+
+    micButton.disabled =
+        false;
+
+
+    statusElement.textContent =
+        "ONLINE";
+
 
     input.focus();
 }
@@ -1286,7 +2275,10 @@ function sendMessage() {
 
 sendButton.addEventListener(
     "click",
-    sendMessage
+    function() {
+
+        sendMessage(false);
+    }
 );
 
 
@@ -1299,30 +2291,107 @@ input.addEventListener(
     function(event) {
 
         if (
-            event.key === "Enter"
+            event.key ===
+            "Enter"
         ) {
 
             event.preventDefault();
 
-            sendMessage();
+            sendMessage(false);
         }
-
     }
 );
 
 
 /* =========================
-   BAŞLANGIÇ MESAJI
+   MİKROFON
 ========================= */
 
-addMessage(
-    "Merhaba. Ben AURA. Seni dinliyorum.",
-    "aura"
+micButton.addEventListener(
+    "click",
+    function() {
+
+        if (!recognition) {
+
+            addMessage(
+                "Bu tarayıcı sesli konuşmayı desteklemiyor.",
+                "aura"
+            );
+
+            return;
+        }
+
+
+        if (isListening) {
+
+            try {
+
+                recognition.stop();
+
+            } catch (error) {
+
+                console.error(error);
+            }
+
+            return;
+        }
+
+
+        try {
+
+            recognition.start();
+
+        } catch (error) {
+
+            console.error(
+                "Mikrofon başlatılamadı:",
+                error
+            );
+        }
+    }
 );
 
 
-</script>
+/* =========================
+   AÇILIŞ DURUMU
+========================= */
 
+statusElement.textContent =
+    "ONLINE";
+
+
+input.focus();
+
+
+/* =========================
+   GLOBAL HATA YAKALAMA
+========================= */
+
+window.addEventListener(
+    "error",
+    function(event) {
+
+        console.error(
+            "AURA GLOBAL HATA:",
+            event.error ||
+            event.message
+        );
+    }
+);
+
+
+window.addEventListener(
+    "unhandledrejection",
+    function(event) {
+
+        console.error(
+            "AURA ASYNC HATA:",
+            event.reason
+        );
+    }
+);
+
+</script>
 
 </body>
 
