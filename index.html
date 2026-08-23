@@ -2,11 +2,24 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<meta name="theme-color" content="#08030c">
+
+<meta
+    name="viewport"
+    content="width=device-width,
+    initial-scale=1.0,
+    maximum-scale=1.0,
+    user-scalable=no"
+>
+
+<meta
+    name="theme-color"
+    content="#08030d"
+>
+
 <title>AURA • EDANUR</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -14,27 +27,37 @@
     -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
     width:100%;
     height:100%;
     overflow:hidden;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     color:#fff;
+
     background:
-        radial-gradient(circle at 50% 35%,
-            rgba(255,75,180,.18),
-            transparent 32%),
-        radial-gradient(circle at 20% 80%,
-            rgba(150,50,255,.14),
-            transparent 35%),
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255,70,190,.16),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 20% 85%,
+            rgba(120,40,255,.13),
+            transparent 35%
+        ),
         linear-gradient(
             145deg,
-            #030105,
-            #100615 45%,
-            #050208
+            #020105,
+            #100611 48%,
+            #030107
         );
 }
 
@@ -46,506 +69,881 @@ input{
 button{
     border:0;
     outline:0;
+    cursor:pointer;
 }
 
 #app{
+    position:relative;
     width:100%;
     height:100%;
-    position:relative;
     overflow:hidden;
 }
 
-#topBar{
+/* =========================
+   ÜST BAR
+========================= */
+
+.topbar{
+
     position:absolute;
+
     top:0;
     left:0;
     right:0;
-    height:58px;
-    z-index:30;
+
+    height:52px;
+
+    z-index:20;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 16px;
-    background:rgba(5,2,9,.72);
-    border-bottom:1px solid rgba(255,105,205,.13);
-    backdrop-filter:blur(16px);
+
+    padding:
+        0 15px;
+
+    background:
+        rgba(5,2,10,.78);
+
+    border-bottom:
+        1px solid
+        rgba(255,100,210,.12);
+
+    backdrop-filter:
+        blur(14px);
 }
 
-.brand{
+.logo{
+
     display:flex;
     align-items:center;
-    gap:9px;
+
+    gap:8px;
 }
 
-.crown{
-    color:#ff8bdc;
-    font-size:17px;
-    text-shadow:
-        0 0 8px #ff35b8,
-        0 0 20px #ff35b8;
-}
+.logoText{
 
-.brandText{
-    font-family:Georgia,serif;
-    font-size:20px;
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:19px;
+
     letter-spacing:4px;
+
     color:#fff;
+
     text-shadow:
         0 0 8px #ff4bc4,
-        0 0 22px #d400ff;
+        0 0 20px #c91aff;
 }
 
 .online{
+
     display:flex;
     align-items:center;
+
     gap:6px;
-    color:#ffb9e9;
+
     font-size:8px;
+
     letter-spacing:2px;
+
+    color:#ffb6e6;
 }
 
 .onlineDot{
+
     width:7px;
     height:7px;
+
     border-radius:50%;
+
     background:#ff4fc7;
+
     box-shadow:
         0 0 8px #ff4fc7,
         0 0 16px #ff4fc7;
 }
-  <style>
-#main{
+
+/* =========================
+   ANA ALAN
+========================= */
+
+.main{
+
     position:absolute;
-    top:58px;
+
+    top:52px;
     left:0;
     right:0;
     bottom:0;
+
     overflow:hidden;
 }
 
-#heartArea{
+</style>
+    <style>
+
+/* =========================
+   AURA KALP ALANI
+========================= */
+
+.coreArea{
+
     position:absolute;
-    inset:0;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:
+        calc(100% - 82px);
+
     display:flex;
+
     align-items:center;
     justify-content:center;
-    transition:
-        transform .45s ease,
-        filter .35s ease;
-}
 
-#app.chat-open #heartArea{
-    transform:translateY(-23%);
+    transition:
+        transform .4s ease,
+        opacity .3s ease;
+
+    z-index:5;
+
+    pointer-events:none;
 }
 
 .heart{
+
     position:relative;
-    width:205px;
-    height:185px;
+
+    width:185px;
+    height:165px;
+
+    pointer-events:auto;
+
     cursor:pointer;
-    user-select:none;
-    filter:
-        drop-shadow(0 0 12px rgba(255,45,180,.9))
-        drop-shadow(0 0 42px rgba(200,30,255,.45));
+
     animation:
-        heartFloat 3.2s ease-in-out infinite;
+        heartFloat
+        3.2s
+        ease-in-out
+        infinite;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(255,40,180,.85)
+        )
+        drop-shadow(
+            0 0 35px
+            rgba(180,30,255,.45)
+        );
 }
 
-.heart:before,
-.heart:after{
-    content:"";
+/*
+Gerçek kalp şekli
+*/
+
+.heartShape{
+
     position:absolute;
-    top:0;
-    width:105px;
-    height:165px;
+
+    left:50%;
+    top:50%;
+
+    width:150px;
+    height:150px;
+
+    transform:
+        translate(-50%,-42%)
+        rotate(-45deg);
+
     border-radius:
-        100px 100px 0 0;
+        18px 0 18px 0;
+
     background:
         linear-gradient(
             145deg,
-            #ffb4e8,
-            #ff38b8 38%,
-            #b000ff 78%,
-            #5d0b82
+            #ffb8e9,
+            #ff43bc 38%,
+            #c02aff 72%,
+            #68128e
         );
+
+    box-shadow:
+        inset
+        8px 8px 18px
+        rgba(255,255,255,.16),
+
+        inset
+        -10px -12px 25px
+        rgba(50,0,70,.3),
+
+        0 0 25px
+        rgba(255,50,190,.45);
 }
 
-.heart:before{
-    left:50px;
-    transform:
-        rotate(-45deg);
-    transform-origin:
-        0 100%;
-}
+.heartShape::before,
+.heartShape::after{
 
-.heart:after{
-    right:50px;
-    transform:
-        rotate(45deg);
-    transform-origin:
-        100% 100%;
-}
+    content:"";
 
-.heartGlow{
     position:absolute;
-    inset:20px;
-    z-index:3;
+
+    width:150px;
+    height:150px;
+
     border-radius:50%;
+
     background:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.9) 0%,
-            rgba(255,130,220,.45) 8%,
-            rgba(255,30,170,.18) 35%,
-            transparent 70%
+        linear-gradient(
+            145deg,
+            #ffb8e9,
+            #ff43bc 38%,
+            #c02aff 72%,
+            #68128e
         );
-    filter:blur(7px);
-    animation:
-        glowPulse 2.4s ease-in-out infinite;
-    pointer-events:none;
+}
+
+.heartShape::before{
+
+    top:-75px;
+    left:0;
+}
+
+.heartShape::after{
+
+    top:0;
+    left:75px;
 }
 
 .heartText{
+
     position:absolute;
+
     z-index:8;
+
     left:50%;
-    top:54%;
-    transform:translate(-50%,-50%);
-    width:150px;
-    text-align:center;
-    font-family:Georgia,serif;
-    font-size:18px;
-    line-height:1.15;
-    letter-spacing:2px;
-    color:#fff;
-    text-shadow:
-        0 0 5px #fff,
-        0 0 14px #ff57c9,
-        0 0 28px #ff22b4;
-    pointer-events:none;
-}
+    top:53%;
 
-.orbit{
-    position:absolute;
-    inset:-18px;
-    border:1px solid rgba(255,115,216,.38);
-    border-radius:50%;
-    transform:rotate(-12deg) scaleY(.46);
-    animation:
-        orbitSpin 9s linear infinite;
-    pointer-events:none;
-}
-
-.orbit2{
-    inset:-30px;
-    border-color:rgba(187,75,255,.22);
     transform:
-        rotate(48deg) scaleY(.42);
+        translate(-50%,-50%);
+
+    width:130px;
+
+    text-align:center;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 6px #fff,
+        0 0 15px #ff58c9,
+        0 0 28px #d819ff;
+
+    pointer-events:none;
+}
+
+/* =========================
+   HALKALAR
+========================= */
+
+.ring{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,100,210,.35);
+
+    pointer-events:none;
+}
+
+.ringOne{
+
+    width:205px;
+    height:78px;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(-14deg);
+
     animation:
-        orbitSpinReverse 13s linear infinite;
+        ringOne
+        8s
+        linear
+        infinite;
+}
+
+.ringTwo{
+
+    width:235px;
+    height:88px;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(42deg);
+
+    border-color:
+        rgba(177,76,255,.22);
+
+    animation:
+        ringTwo
+        12s
+        linear
+        infinite;
+}
+
+@keyframes ringOne{
+
+    from{
+        transform:
+            translate(-50%,-50%)
+            rotate(-14deg);
+    }
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotate(346deg);
+    }
+}
+
+@keyframes ringTwo{
+
+    from{
+        transform:
+            translate(-50%,-50%)
+            rotate(42deg);
+    }
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotate(-318deg);
+    }
 }
 
 @keyframes heartFloat{
-    0%,100%{
-        transform:translateY(0) scale(1);
+
+    0%,
+    100%{
+        transform:
+            translateY(0)
+            scale(1);
     }
+
     50%{
-        transform:translateY(-7px) scale(1.025);
+        transform:
+            translateY(-7px)
+            scale(1.025);
     }
 }
 
-@keyframes glowPulse{
-    0%,100%{opacity:.55;transform:scale(.92)}
-    50%{opacity:1;transform:scale(1.08)}
-}
+    </style>
+    <style>
 
-@keyframes orbitSpin{
-    from{transform:rotate(-12deg) scaleY(.46)}
-    to{transform:rotate(348deg) scaleY(.46)}
-}
+/* =========================
+   ALT ÖZELLİKLER
+========================= */
 
-@keyframes orbitSpinReverse{
-    from{transform:rotate(48deg) scaleY(.42)}
-    to{transform:rotate(-312deg) scaleY(.42)}
-}
-  <style>
-#quickTools{
+.featureBar{
+
     position:absolute;
-    left:50%;
-    bottom:20px;
-    transform:translateX(-50%);
-    z-index:20;
-    display:flex;
-    gap:8px;
-}
 
-.quickButton{
-    min-width:48px;
-    height:38px;
-    padding:0 12px;
-    border-radius:14px;
-    color:#ffb7e9;
+    left:10px;
+    right:10px;
+    bottom:10px;
+
+    height:62px;
+
+    z-index:30;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:7px;
+
+    padding:7px;
+
+    border-radius:19px;
+
     background:
-        rgba(255,70,190,.07);
+        rgba(8,3,13,.9);
+
     border:
         1px solid
-        rgba(255,100,210,.18);
+        rgba(255,100,210,.13);
+
     box-shadow:
-        inset 0 0 12px
-        rgba(255,40,190,.03);
-    font-size:10px;
+        0 8px 35px
+        rgba(0,0,0,.45);
+
+    backdrop-filter:
+        blur(16px);
 }
 
-.quickButton:active{
-    transform:scale(.94);
-}
+.featureButton{
 
-#fairyButton{
-    font-size:17px;
-    width:48px;
-    padding:0;
-}
-
-#storyButton{
     display:flex;
+
     align-items:center;
     justify-content:center;
-    gap:6px;
+
+    gap:5px;
+
+    min-width:0;
+
+    height:46px;
+
+    border-radius:13px;
+
+    color:#ffb7e9;
+
+    background:
+        rgba(255,70,190,.055);
+
+    border:
+        1px solid
+        rgba(255,100,210,.12);
+
+    font-size:9px;
+
+    white-space:nowrap;
+
+    transition:
+        background .2s,
+        transform .15s;
 }
 
+.featureButton:active{
+
+    transform:
+        scale(.94);
+
+    background:
+        rgba(255,70,190,.13);
+}
+
+.featureIcon{
+
+    font-size:15px;
+
+    line-height:1;
+}
+
+/* =========================
+   SOHBET PANELİ
+========================= */
+
 .chatPanel{
+
     position:absolute;
+
     left:8px;
     right:8px;
+
     bottom:8px;
-    height:min(61%,590px);
-    z-index:60;
+
+    height:
+        min(62%,560px);
+
+    z-index:50;
+
     display:flex;
     flex-direction:column;
+
     overflow:hidden;
+
     border-radius:22px;
+
     background:
         linear-gradient(
             180deg,
-            rgba(24,7,27,.98),
-            rgba(5,2,10,.99)
+            rgba(22,6,25,.98),
+            rgba(5,2,9,.99)
         );
+
     border:
         1px solid
-        rgba(255,91,202,.18);
+        rgba(255,100,210,.17);
+
     box-shadow:
-        0 0 50px rgba(0,0,0,.55),
-        0 0 30px rgba(190,30,220,.08);
-    backdrop-filter:blur(18px);
+        0 12px 50px
+        rgba(0,0,0,.65),
+
+        0 0 35px
+        rgba(190,30,220,.08);
+
+    backdrop-filter:
+        blur(20px);
+
     transform:
-        translateY(calc(100% + 30px));
+        translateY(
+            calc(100% + 25px)
+        );
+
     opacity:0;
+
     pointer-events:none;
+
     transition:
-        transform .38s ease,
+        transform .4s ease,
         opacity .25s ease;
 }
 
-#app.chat-open .chatPanel{
-    transform:translateY(0);
+.chatPanel.open{
+
+    transform:
+        translateY(0);
+
     opacity:1;
+
     pointer-events:auto;
 }
 
-.drag{
+.dragHandle{
+
     width:42px;
     height:4px;
-    margin:7px auto;
+
+    margin:
+        7px auto;
+
     border-radius:10px;
-    background:rgba(255,180,230,.32);
+
+    background:
+        rgba(255,180,230,.3);
+
     flex-shrink:0;
 }
 
-.chatHead{
-    min-height:38px;
-    padding:0 12px;
+.chatHeader{
+
+    min-height:39px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
+    padding:
+        0 12px;
+
     border-bottom:
         1px solid
         rgba(255,100,210,.08);
 }
 
 .chatTitle{
-    color:#ff8bd9;
-    font-size:10px;
+
+    color:#ff91dc;
+
+    font-size:9px;
+
     letter-spacing:2px;
 }
 
-.closeChat{
-    width:29px;
-    height:29px;
+.closeButton{
+
+    width:30px;
+    height:30px;
+
     border-radius:9px;
-    color:#d7a6c8;
-    background:rgba(255,255,255,.045);
+
+    color:#e0a5c9;
+
+    background:
+        rgba(255,255,255,.045);
 }
-  <style>
-#chat{
+
+             </style>
+    <style>
+
+#chatMessages{
+
     flex:1;
+
     min-height:0;
+
     overflow-y:auto;
-    padding:10px;
+
+    padding:
+        10px;
+
+    scroll-behavior:smooth;
 }
 
 .message{
+
     display:flex;
+
+    width:100%;
+
     margin-bottom:9px;
-    animation:messageIn .2s ease;
+
+    animation:
+        messageIn
+        .2s
+        ease;
 }
 
 .message.user{
+
     justify-content:flex-end;
 }
 
+.message.aura{
+
+    justify-content:flex-start;
+}
+
 .bubble{
-    max-width:86%;
-    padding:10px 12px;
+
+    max-width:84%;
+
+    padding:
+        10px 12px;
+
     border-radius:14px;
+
     font-size:12px;
-    line-height:1.55;
+
+    line-height:1.5;
+
     white-space:pre-wrap;
+
     word-break:break-word;
 }
 
-.message.aura .bubble{
+.message.user
+.bubble{
+
     background:
-        rgba(190,35,160,.11);
+        linear-gradient(
+            135deg,
+            rgba(135,40,185,.34),
+            rgba(85,30,125,.25)
+        );
+
     border:
         1px solid
-        rgba(255,95,210,.12);
+        rgba(190,100,255,.18);
+
+    border-bottom-right-radius:5px;
 }
 
-.message.user .bubble{
+.message.aura
+.bubble{
+
     background:
-        rgba(111,31,155,.24);
+        rgba(255,70,190,.075);
+
     border:
         1px solid
-        rgba(190,90,255,.2);
+        rgba(255,100,210,.12);
+
+    border-bottom-left-radius:5px;
 }
 
-.label{
+.messageLabel{
+
     display:block;
-    margin-bottom:3px;
-    color:#ff8bdc;
+
+    margin-bottom:4px;
+
     font-size:8px;
+
     font-weight:700;
+
     letter-spacing:1px;
+
+    color:#ff8ed9;
 }
 
-.message.user .label{
+.message.user
+.messageLabel{
+
     text-align:right;
-    color:#c996ff;
+
+    color:#c998ff;
 }
 
 #typing{
+
     display:none;
+
     padding:
-        0 12px 6px;
-    color:#9d728f;
+        0 12px 5px;
+
+    color:#966c87;
+
     font-size:9px;
 }
 
 #typing.show{
+
     display:block;
 }
 
 .inputArea{
+
     display:flex;
+
     align-items:center;
-    gap:6px;
+
+    gap:7px;
+
     padding:8px;
+
     border-top:
         1px solid
         rgba(255,100,210,.08);
 }
 
 .inputWrap{
+
     position:relative;
+
     flex:1;
+
     min-width:0;
+
     height:44px;
 }
 
 #userInput{
+
     width:100%;
     height:100%;
+
     padding:
         0 43px 0 12px;
+
     border-radius:13px;
+
     border:
         1px solid
         rgba(255,100,210,.16);
+
     outline:none;
+
     background:
         rgba(255,255,255,.035);
+
     color:#fff;
+
     font-size:12px;
 }
 
 #userInput::placeholder{
-    color:#8f687e;
+
+    color:#876578;
 }
 
 #sendButton{
+
     position:absolute;
-    right:4px;
+
     top:4px;
+    right:4px;
+
     width:36px;
     height:36px;
+
     border-radius:10px;
+
+    color:#fff;
+
     background:
         linear-gradient(
             135deg,
-            #ff55c5,
-            #b53aff
+            #ff52c3,
+            #a63aff
         );
-    color:#fff;
+
     font-size:15px;
-    font-weight:bold;
 }
 
 .toolButton{
+
     width:43px;
     height:43px;
+
     flex:0 0 43px;
+
     border-radius:12px;
-    color:#ff9cdf;
+
+    color:#ff9dde;
+
     background:
-        rgba(255,75,195,.06);
+        rgba(255,70,190,.06);
+
     border:
         1px solid
-        rgba(255,100,210,.16);
+        rgba(255,100,210,.15);
 }
 
 @keyframes messageIn{
+
     from{
         opacity:0;
-        transform:translateY(6px);
+        transform:
+            translateY(6px);
     }
+
     to{
         opacity:1;
-        transform:translateY(0);
+        transform:
+            translateY(0);
     }
 }
-  <style>
-.storyPanel{
+
+    </style>
+    <style>
+
+/* =========================
+   MASALLAR
+========================= */
+
+.fullPanel{
+
     position:absolute;
+
     inset:0;
+
     z-index:100;
+
     display:none;
+
     flex-direction:column;
+
     padding:
-        14px 12px 18px;
+        14px 12px;
+
     background:
         radial-gradient(
             circle at 50% 15%,
-            rgba(255,70,190,.16),
+            rgba(255,70,190,.15),
             transparent 35%
         ),
         linear-gradient(
@@ -555,365 +953,413 @@ button{
         );
 }
 
-.storyPanel.open{
+.fullPanel.open{
+
     display:flex;
 }
 
-.storyTop{
+.panelTop{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
-    padding-bottom:12px;
+
+    padding-bottom:13px;
 }
 
-.storyHeading{
-    font-family:Georgia,serif;
+.panelTitle{
+
+    font-family:
+        Georgia,
+        serif;
+
     color:#fff;
+
     font-size:20px;
+
     letter-spacing:2px;
+
     text-shadow:
-        0 0 12px #ff42bc;
+        0 0 12px
+        #ff42bc;
 }
 
-.storySub{
-    color:#9d718f;
-    font-size:9px;
+.panelSub{
+
     margin-top:3px;
+
+    color:#967084;
+
+    font-size:9px;
 }
 
-.storyClose{
+.panelClose{
+
     width:34px;
     height:34px;
+
     border-radius:11px;
+
     color:#ff9bdc;
+
     background:
         rgba(255,255,255,.05);
-    border:
-        1px solid
-        rgba(255,100,210,.14);
-}
 
-.storyList{
-    flex:1;
-    min-height:0;
-    overflow-y:auto;
-    padding-top:5px;
-}
-
-.storyCard{
-    position:relative;
-    margin-bottom:9px;
-    padding:11px;
-    border-radius:15px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,70,190,.08),
-            rgba(135,45,220,.07)
-        );
     border:
         1px solid
         rgba(255,100,210,.13);
 }
 
+.storyList{
+
+    flex:1;
+
+    min-height:0;
+
+    overflow-y:auto;
+
+    padding-top:5px;
+}
+
+.storyCard{
+
+    padding:11px;
+
+    margin-bottom:9px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,70,190,.075),
+            rgba(135,45,220,.065)
+        );
+
+    border:
+        1px solid
+        rgba(255,100,210,.12);
+}
+
 .storyName{
+
     color:#fff;
+
     font-size:12px;
+
     font-weight:700;
 }
 
 .storyMeta{
-    color:#8f6d81;
-    font-size:8px;
+
     margin-top:3px;
+
+    color:#8c6a80;
+
+    font-size:8px;
 }
 
 .storyControls{
+
     display:flex;
+
     align-items:center;
+
     gap:7px;
+
     margin-top:9px;
 }
 
 .storyPlay{
+
     width:34px;
     height:34px;
+
+    flex:0 0 34px;
+
     border-radius:10px;
+
     color:#fff;
+
     background:
         linear-gradient(
             135deg,
-            #ff4fbd,
-            #a939ff
+            #ff50bd,
+            #a43aff
         );
 }
 
 .storyProgress{
+
     flex:1;
+
+    min-width:0;
+
     height:4px;
+
     appearance:none;
+
     border-radius:5px;
-    background:#301328;
-    outline:none;
+
+    background:#321429;
 }
 
 .storyProgress::-webkit-slider-thumb{
+
     appearance:none;
+
     width:12px;
     height:12px;
+
     border-radius:50%;
+
     background:#ff65c8;
-    box-shadow:0 0 8px #ff65c8;
+
+    box-shadow:
+        0 0 8px
+        #ff65c8;
 }
 
 .storyTime{
-    width:67px;
+
+    width:50px;
+
     text-align:right;
-    color:#a98098;
+
+    color:#a37b96;
+
     font-size:8px;
 }
-  <style>
+
 .storyVolume{
-    width:62px;
-    appearance:none;
+
+    width:55px;
+
     height:3px;
+
+    appearance:none;
+
     border-radius:5px;
+
     background:#35142d;
 }
 
 .storyVolume::-webkit-slider-thumb{
+
     appearance:none;
+
     width:10px;
     height:10px;
+
     border-radius:50%;
+
     background:#d958ff;
 }
 
-.storyEmpty{
-    padding:25px;
-    text-align:center;
-    color:#866477;
-    font-size:10px;
+    </style>
+    
+<style>
+
+/* =========================
+   REGL + ÖZEL GÜNLER
+========================= */
+
+.simpleContent{
+
+    flex:1;
+
+    min-height:0;
+
+    overflow-y:auto;
+
+    padding:
+        8px 2px;
 }
 
-.storyFooter{
-    padding-top:10px;
-    color:#704f62;
-    font-size:8px;
-    text-align:center;
-}
+.infoBox{
 
-.reglButton{
-    position:absolute;
-    right:14px;
-    bottom:18px;
-    z-index:25;
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    color:#ffb7e5;
+    padding:14px;
+
+    margin-bottom:9px;
+
+    border-radius:15px;
+
     background:
-        rgba(255,70,180,.08);
+        rgba(255,70,190,.055);
+
     border:
         1px solid
-        rgba(255,100,210,.18);
-    box-shadow:
-        0 0 16px
-        rgba(255,60,190,.12);
+        rgba(255,100,210,.12);
 }
 
-.reglPanel{
-    position:absolute;
-    left:10px;
-    right:10px;
-    bottom:10px;
-    z-index:150;
-    display:none;
-    padding:16px;
-    border-radius:18px;
-    background:
-        rgba(17,5,17,.98);
-    border:
-        1px solid
-        rgba(255,100,210,.18);
-    box-shadow:
-        0 0 35px
-        rgba(0,0,0,.55);
-}
+.infoBoxTitle{
 
-.reglPanel.open{
-    display:block;
-}
+    color:#ff91dc;
 
-.reglTitle{
-    color:#ff8bd9;
-    font-family:Georgia,serif;
-    font-size:16px;
-    margin-bottom:12px;
-}
+    font-family:
+        Georgia,
+        serif;
 
-.reglField{
+    font-size:15px;
+
     margin-bottom:10px;
 }
 
-.reglField label{
+.field{
+
+    margin-bottom:10px;
+}
+
+.field label{
+
     display:block;
-    color:#a98096;
-    font-size:8px;
+
     margin-bottom:5px;
+
+    color:#a57a92;
+
+    font-size:8px;
 }
 
-.reglField input{
+.field input{
+
     width:100%;
-    height:38px;
-    padding:0 10px;
-    border-radius:10px;
-    border:
-        1px solid
-        rgba(255,100,210,.15);
-    background:rgba(255,255,255,.04);
-    color:#fff;
-    outline:none;
-}
 
-.reglActions{
-    display:flex;
-    gap:7px;
-    margin-top:10px;
-}
+    height:39px;
 
-.reglActions button{
-    flex:1;
-    height:38px;
-    border-radius:10px;
-}
-
-.reglSave{
-    color:#fff;
-    background:
-        linear-gradient(
-            135deg,
-            #ff52bd,
-            #a438ff
-        );
-}
-
-.reglClose{
-    color:#c89ab7;
-    background:
-        rgba(255,255,255,.05);
-}
-  <style>
-.securityModal{
-    position:absolute;
-    inset:0;
-    z-index:300;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:
-        rgba(0,0,0,.78);
-    backdrop-filter:blur(8px);
-}
-
-.securityModal.open{
-    display:flex;
-}
-
-.securityBox{
-    width:min(92%,370px);
-    padding:18px;
-    border-radius:18px;
-    background:#100711;
-    border:
-        1px solid
-        rgba(255,100,210,.18);
-}
-
-.securityBox h3{
-    color:#ff8bd9;
-    font-size:15px;
-    margin-bottom:8px;
-}
-
-.securityBox p{
-    color:#aa829b;
-    font-size:10px;
-    line-height:1.5;
-}
-
-.securityActions{
-    display:flex;
-    gap:8px;
-    margin-top:15px;
-}
-
-.securityActions button{
-    flex:1;
-    height:38px;
-    border-radius:10px;
-}
-
-#securityCancel{
-    color:#c6a6b8;
-    background:rgba(255,255,255,.05);
-}
-
-#securityConfirm{
-    color:#fff;
-    background:
-        linear-gradient(
-            135deg,
-            #ff4fbd,
-            #a83bff
-        );
-}
-
-#toast{
-    position:absolute;
-    left:50%;
-    bottom:17px;
-    z-index:500;
-    transform:
-        translate(-50%,25px);
-    opacity:0;
-    pointer-events:none;
     padding:
-        9px 13px;
+        0 10px;
+
     border-radius:10px;
+
+    outline:none;
+
     color:#fff;
-    background:#160a16;
+
+    background:
+        rgba(255,255,255,.04);
+
     border:
         1px solid
-        rgba(255,100,210,.16);
-    font-size:9px;
-    transition:.25s;
+        rgba(255,100,210,.14);
 }
 
-#toast.show{
-    opacity:1;
-    transform:
-        translate(-50%,0);
+.actionButton{
+
+    width:100%;
+
+    height:40px;
+
+    border-radius:11px;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff50bd,
+            #a43aff
+        );
 }
 
-.hiddenFile{
-    display:none;
+.specialItem{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:12px;
+
+    margin-bottom:8px;
+
+    border-radius:13px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,100,210,.09);
 }
+
+.specialName{
+
+    color:#fff;
+
+    font-size:11px;
+}
+
+.specialDate{
+
+    color:#9a7289;
+
+    font-size:8px;
+}
+
+.emptyText{
+
+    padding:30px 10px;
+
+    text-align:center;
+
+    color:#816075;
+
+    font-size:10px;
+}
+
+/* =========================
+   MOBİL
+========================= */
 
 @media(max-height:650px){
+
     .heart{
-        transform:scale(.82);
+
+        transform:
+            scale(.82);
     }
 
-    #app.chat-open #heartArea{
-        transform:translateY(-28%);
+    .featureBar{
+
+        height:58px;
+    }
+
+    .featureButton{
+
+        height:42px;
     }
 
     .chatPanel{
+
         height:66%;
     }
 }
+
+@media(max-width:350px){
+
+    .featureButton{
+
+        font-size:8px;
+    }
+
+    .featureIcon{
+
+        font-size:13px;
+    }
+
+    .heart{
+
+        transform:
+            scale(.9);
+    }
+}
+
 </style>
 </head>
 
@@ -921,185 +1367,229 @@ button{
 
 <div id="app">
 
-    <header id="topBar">
+<header class="topbar">
 
-        <div class="brand">
-            <span class="crown">♕</span>
-            <span class="brandText">AURA</span>
+    <div class="logo">
+        <span>♡</span>
+        <span class="logoText">AURA</span>
+    </div>
+
+    <div class="online">
+        <span class="onlineDot"></span>
+        ONLINE
+    </div>
+
+</header>
+
+<main class="main">
+
+<section class="coreArea">
+
+    <div
+        id="auraHeart"
+        class="heart"
+    >
+
+        <div class="ring ringOne"></div>
+
+        <div class="ring ringTwo"></div>
+
+        <div class="heartShape"></div>
+
+        <div class="heartText">
+            AURA
         </div>
 
-        <div class="online">
-            <span class="onlineDot"></span>
-            ONLINE
-        </div>
+    </div>
 
-    </header>
+</section>
 
-    <main id="main">
+<nav class="featureBar">
 
-        <section id="heartArea">
+    <button
+        id="periodButton"
+        class="featureButton"
+    >
+        <span class="featureIcon">🌸</span>
+        <span>Regl</span>
+    </button>
 
-            <div
-                id="auraHeart"
-                class="heart"
-                aria-label="AURA'yı aç">
+    <button
+        id="specialButton"
+        class="featureButton"
+    >
+        <span class="featureIcon">♡</span>
+        <span>Özel Günler</span>
+    </button>
 
-                <div class="orbit"></div>
-                <div class="orbit orbit2"></div>
-                <div class="heartGlow"></div>
+    <button
+        id="storiesButton"
+        class="featureButton"
+    >
+        <span class="featureIcon">📖</span>
+        <span>Masallarım</span>
+    </button>
 
-                <div class="heartText">
-                    I LOVE<br>
-                    YOU 3000
-                </div>
+</nav>
+<section
+    id="chatPanel"
+    class="chatPanel"
+>
 
-            </div>
+    <div
+        id="chatHandle"
+        class="dragHandle"
+    ></div>
 
-        </section>
+    <div class="chatHeader">
+
+        <span class="chatTitle">
+            AURA • EDANUR
+        </span>
 
         <button
-            id="reglButton"
-            class="reglButton">
-            🌸
+            id="closeChat"
+            class="closeButton"
+        >
+            ×
         </button>
 
-        <div id="quickTools">
+    </div>
+
+    <div
+        id="chatMessages"
+    ></div>
+
+    <div
+        id="typing"
+    >
+        AURA düşünüyor...
+    </div>
+
+    <div class="inputArea">
+
+        <input
+            id="fileInput"
+            type="file"
+            hidden
+        >
+
+        <button
+            id="fileButton"
+            class="toolButton"
+        >
+            +
+        </button>
+
+        <div class="inputWrap">
+
+            <input
+                id="userInput"
+                type="text"
+                autocomplete="off"
+                placeholder="AURA'ya bir şey söyle..."
+            >
 
             <button
-                id="storyButton"
-                class="quickButton">
-                📖 Masallarım
-            </button>
-
-            <button
-                id="fairyButton"
-                class="quickButton"
-                aria-label="Kalp">
-                ♡
+                id="sendButton"
+            >
+                ➤
             </button>
 
         </div>
 
-        <section
-            id="chatPanel"
-            class="chatPanel">
+    </div>
 
-            <div
-                id="chatDrag"
-                class="drag">
+</section>
+
+<section
+    id="storiesPanel"
+    class="fullPanel"
+>
+
+    <div class="panelTop">
+
+        <div>
+
+            <div class="panelTitle">
+                Masallarım
             </div>
 
-            <div class="chatHead">
-
-                <span class="chatTitle">
-                    AURA • EDANUR
-                </span>
-
-                <button
-                    id="closeChat"
-                    class="closeChat">
-                    ×
-                </button>
-
+            <div class="panelSub">
+                Senin sesinden masallar
             </div>
 
-            <div id="chat"></div>
+        </div>
 
-            <div id="typing">
-                AURA düşünüyor...
+        <button
+            id="closeStories"
+            class="panelClose"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div
+        id="storyList"
+        class="storyList"
+    ></div>
+
+</section>
+
+<section
+    id="periodPanel"
+    class="fullPanel"
+>
+
+    <div class="panelTop">
+
+        <div>
+
+            <div class="panelTitle">
+                Regl Takibi
             </div>
 
-            <div class="inputArea">
-
-                <input
-                    id="fileInput"
-                    class="hiddenFile"
-                    type="file">
-
-                <button
-                    id="fileButton"
-                    class="toolButton">
-                    +
-                </button>
-
-                <div class="inputWrap">
-
-                    <input
-                        id="userInput"
-                        type="text"
-                        autocomplete="off"
-                        placeholder="AURA'ya bir şey söyle...">
-
-                    <button
-                        id="sendButton">
-                        ➤
-                    </button>
-
-                </div>
-
+            <div class="panelSub">
+                Kişisel takip alanı
             </div>
 
-        </section>
+        </div>
 
-        <section
-            id="storyPanel"
-            class="storyPanel">
+        <button
+            id="closePeriod"
+            class="panelClose"
+        >
+            ×
+        </button>
 
-            <div class="storyTop">
+    </div>
 
-                <div>
-                    <div class="storyHeading">
-                        Masallarım
-                    </div>
+    <div class="simpleContent">
 
-                    <div class="storySub">
-                        Senin sesinden masallar
-                    </div>
-                </div>
+        <div class="infoBox">
 
-                <button
-                    id="closeStories"
-                    class="storyClose">
-                    ×
-                </button>
-
+            <div class="infoBoxTitle">
+                Döngü Bilgileri
             </div>
 
-            <div
-                id="storyList"
-                class="storyList">
-            </div>
-
-            <div class="storyFooter">
-                Dinlenen masallar cihazda saklanabilir.
-            </div>
-
-        </section>
-
-        <section
-            id="reglPanel"
-            class="reglPanel">
-
-            <div class="reglTitle">
-                🌸 Regl Takibi
-            </div>
-
-            <div class="reglField">
+            <div class="field">
 
                 <label>
-                    Son regl başlangıç tarihi
+                    Son başlangıç tarihi
                 </label>
 
                 <input
                     id="periodDate"
-                    type="date">
+                    type="date"
+                >
 
             </div>
 
-            <div class="reglField">
+            <div class="field">
 
                 <label>
-                    Döngü uzunluğu (gün)
+                    Döngü uzunluğu
                 </label>
 
                 <input
@@ -1107,296 +1597,361 @@ button{
                     type="number"
                     min="15"
                     max="60"
-                    value="28">
+                    value="28"
+                >
 
             </div>
+
+            <button
+                id="savePeriod"
+                class="actionButton"
+            >
+                Kaydet
+            </button>
 
             <div
-                id="periodResult">
+                id="periodResult"
+                style="
+                    margin-top:10px;
+                    color:#ff9ddd;
+                    font-size:10px;
+                "
+            ></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section
+    id="specialPanel"
+    class="fullPanel"
+>
+
+    <div class="panelTop">
+
+        <div>
+
+            <div class="panelTitle">
+                Özel Günler
             </div>
 
-            <div class="reglActions">
-
-                <button
-                    id="savePeriod"
-                    class="reglSave">
-                    Kaydet
-                </button>
-
-                <button
-                    id="closePeriod"
-                    class="reglClose">
-                    Kapat
-                </button>
-
-            </div>
-
-        </section>
-
-        <div
-            id="securityModal"
-            class="securityModal">
-
-            <div class="securityBox">
-
-                <h3>
-                    Güvenlik Onayı
-                </h3>
-
-                <p id="securityText">
-                    Bu işlem için onay gerekiyor.
-                </p>
-
-                <div class="securityActions">
-
-                    <button id="securityCancel">
-                        İptal
-                    </button>
-
-                    <button id="securityConfirm">
-                        Onayla
-                    </button>
-
-                </div>
-
+            <div class="panelSub">
+                Hatırlamak istediğin günler
             </div>
 
         </div>
 
-        <div id="toast"></div>
+        <button
+            id="closeSpecial"
+            class="panelClose"
+        >
+            ×
+        </button>
 
-    </main>
+    </div>
+
+    <div class="simpleContent">
+
+        <div class="infoBox">
+
+            <div class="infoBoxTitle">
+                Yeni Özel Gün
+            </div>
+
+            <div class="field">
+
+                <label>
+                    Günün adı
+                </label>
+
+                <input
+                    id="specialName"
+                    type="text"
+                    placeholder="Örneğin tanışma yıldönümü"
+                >
+
+            </div>
+
+            <div class="field">
+
+                <label>
+                    Tarih
+                </label>
+
+                <input
+                    id="specialDate"
+                    type="date"
+                >
+
+            </div>
+
+            <button
+                id="saveSpecial"
+                class="actionButton"
+            >
+                Özel Günü Kaydet
+            </button>
+
+        </div>
+
+        <div
+            id="specialList"
+        ></div>
+
+    </div>
+
+</section>
+
+</main>
 
 </div>
 <script src="https://js.puter.com/v2/"></script>
 
 <script>
+
 "use strict";
 
-const VERSION="EDANUR-AURA-STORY-1.0";
+const STORAGE = {
 
-const USER_NAME=
-    (localStorage.getItem(
-        "aura_user_name"
-    ) || "Bedirhan Kahraman").trim();
+    memories:
+        "ed_aura_memories_v2",
 
-const GIRLFRIEND_NAME=
-    (localStorage.getItem(
-        "aura_girlfriend_name"
-    ) || "Edanur Kahraman").trim();
+    history:
+        "ed_aura_history_v2",
 
-const STORAGE={
-    memories:"ed_aura_memories_v1",
-    history:"ed_aura_history_v1",
-    tasks:"ed_aura_tasks_v1",
-    voice:"ed_aura_voice_v1",
-    period:"ed_aura_period_v1",
-    storyProgress:"ed_aura_story_progress_v1",
-    storyVolume:"ed_aura_story_volume_v1"
+    period:
+        "ed_aura_period_v2",
+
+    special:
+        "ed_aura_special_v2",
+
+    stories:
+        "ed_aura_story_progress_v2",
+
+    volume:
+        "ed_aura_story_volume_v2"
+
 };
 
-const AURA={
-    online:navigator.onLine,
-    chatOpen:false,
-    processing:false,
-    listening:false,
-    speaking:false,
-    voiceEnabled:
-        localStorage.getItem(
-            STORAGE.voice
-        )==="true",
-    memories:[],
-    history:[],
-    tasks:[],
-    recognition:null,
-    activeStory:null,
-    activeAudio:null,
-    pendingSecurity:null
-};
+const USER_NAME =
+    "Bedirhan Kahraman";
 
-const app=
-    document.getElementById("app");
+const GIRLFRIEND_NAME =
+    "Edanur Kahraman";
 
-const heart=
-    document.getElementById("auraHeart");
-
-const chatPanel=
-    document.getElementById("chatPanel");
-
-const chat=
-    document.getElementById("chat");
-
-const input=
-    document.getElementById("userInput");
-
-const sendButton=
-    document.getElementById("sendButton");
-
-const typing=
-    document.getElementById("typing");
-
-const storyPanel=
-    document.getElementById("storyPanel");
-
-const storyList=
-    document.getElementById("storyList");
-
-const fileInput=
-    document.getElementById("fileInput");
-  function loadJSON(key,fallback){
-    try{
-        const value=
-            localStorage.getItem(key);
-
-        return value
-            ? JSON.parse(value)
-            : fallback;
-    }catch{
-        return fallback;
-    }
-}
-
-function saveJSON(key,value){
-    try{
-        localStorage.setItem(
-            key,
-            JSON.stringify(value)
-        );
-    }catch(error){
-        console.error(error);
-    }
-}
-
-AURA.memories=
+let memories =
     loadJSON(
         STORAGE.memories,
         []
     );
 
-AURA.history=
+let history =
     loadJSON(
         STORAGE.history,
         []
     );
 
-AURA.tasks=
+let specialDays =
     loadJSON(
-        STORAGE.tasks,
+        STORAGE.special,
         []
     );
 
-function toast(text){
-
-    const element=
-        document.getElementById(
-            "toast"
-        );
-
-    element.textContent=
-        String(text);
-
-    element.classList.add(
-        "show"
+let storyProgress =
+    loadJSON(
+        STORAGE.stories,
+        {}
     );
 
-    clearTimeout(
-        window.__edAuraToast
+let activeAudio = null;
+let activeStory = null;
+
+const heart =
+    document.getElementById(
+        "auraHeart"
     );
 
-    window.__edAuraToast=
-        setTimeout(
-            ()=>{
-                element.classList.remove(
-                    "show"
-                );
-            },
-            2200
-        );
-}
-
-function toggleChat(force){
-
-    const state=
-        typeof force==="boolean"
-            ? force
-            : !AURA.chatOpen;
-
-    AURA.chatOpen=state;
-
-    app.classList.toggle(
-        "chat-open",
-        state
+const chatPanel =
+    document.getElementById(
+        "chatPanel"
     );
 
-    if(state){
+const chatMessages =
+    document.getElementById(
+        "chatMessages"
+    );
 
-        setTimeout(
-            ()=>{
-                input.focus();
-                scrollChat();
-            },
-            250
-        );
+const userInput =
+    document.getElementById(
+        "userInput"
+    );
+
+const sendButton =
+    document.getElementById(
+        "sendButton"
+    );
+
+const typing =
+    document.getElementById(
+        "typing"
+    );
+
+const storiesPanel =
+    document.getElementById(
+        "storiesPanel"
+    );
+
+const periodPanel =
+    document.getElementById(
+        "periodPanel"
+    );
+
+const specialPanel =
+    document.getElementById(
+        "specialPanel"
+    );
+
+function loadJSON(
+    key,
+    fallback
+){
+
+    try{
+
+        const value =
+            localStorage.getItem(
+                key
+            );
+
+        return value
+            ? JSON.parse(value)
+            : fallback;
+
+    }catch{
+
+        return fallback;
     }
 }
 
-function scrollChat(){
+function saveJSON(
+    key,
+    value
+){
 
-    chat.scrollTop=
-        chat.scrollHeight;
+    try{
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(value)
+        );
+
+    }catch(error){
+
+        console.error(error);
+    }
+}
+
+function closeAllPanels(){
+
+    chatPanel.classList.remove(
+        "open"
+    );
+
+    storiesPanel.classList.remove(
+        "open"
+    );
+
+    periodPanel.classList.remove(
+        "open"
+    );
+
+    specialPanel.classList.remove(
+        "open"
+    );
+}
+
+function openChat(){
+
+    closeAllPanels();
+
+    chatPanel.classList.add(
+        "open"
+    );
+
+    setTimeout(
+        ()=>{
+            userInput.focus();
+            scrollChat();
+        },
+        250
+    );
+}
+
+function closeChat(){
+
+    chatPanel.classList.remove(
+        "open"
+    );
 }
 
 heart.addEventListener(
     "click",
-    ()=>{
-        toggleChat(true);
-    }
+    openChat
 );
 
 document
     .getElementById("closeChat")
     .addEventListener(
         "click",
-        ()=>{
-            toggleChat(false);
-        }
+        closeChat
     );
-  function addMessage(
+
+function scrollChat(){
+
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+}
+
+function addMessage(
     text,
-    sender="aura",
-    speakIt=false
+    type
 ){
 
-    const wrap=
+    const row =
         document.createElement(
             "div"
         );
 
-    wrap.className=
-        "message "+sender;
+    row.className =
+        "message " +
+        type;
 
-    const bubble=
+    const bubble =
         document.createElement(
             "div"
         );
 
-    bubble.className=
+    bubble.className =
         "bubble";
 
-    const label=
+    const label =
         document.createElement(
             "span"
         );
 
-    label.className=
-        "label";
+    label.className =
+        "messageLabel";
 
-    label.textContent=
-        sender==="user"
+    label.textContent =
+        type === "user"
             ? "EDANUR"
             : "AURA";
 
-    bubble.appendChild(label);
+    bubble.appendChild(
+        label
+    );
 
     bubble.appendChild(
         document.createTextNode(
@@ -1404,232 +1959,108 @@ document
         )
     );
 
-    wrap.appendChild(bubble);
+    row.appendChild(
+        bubble
+    );
 
-    chat.appendChild(wrap);
+    chatMessages.appendChild(
+        row
+    );
 
     scrollChat();
-
-    if(
-        sender==="aura" &&
-        speakIt
-    ){
-        speak(text);
-    }
 }
 
-function recordHistory(
-    user,
-    answer
+function cleanSpeech(
+    text
 ){
 
-    AURA.history.push({
-        time:
-            new Date().toISOString(),
-        user:
-            String(user),
-        aura:
-            String(answer)
-    });
+    return String(text)
 
-    if(
-        AURA.history.length>200
-    ){
-        AURA.history=
-            AURA.history.slice(-200);
-    }
-
-    saveJSON(
-        STORAGE.history,
-        AURA.history
-    );
-}
-
-function memoryContext(){
-
-    if(
-        !AURA.memories.length
-    ){
-        return "Kayıtlı özel bilgi yok.";
-    }
-
-    return AURA.memories
-        .slice(-40)
-        .map(
-            item=>
-                `${item.key}: ${item.value}`
+        .replace(
+            /https?:\/\/\S+/gi,
+            " "
         )
-        .join("\n");
+
+        .replace(
+            /[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu,
+            " "
+        )
+
+        .replace(
+            /[*_`#~[\]{}<>|\\/+=@#$%^&;:"'“”‘’!?.,…-]/g,
+            " "
+        )
+
+        .replace(
+            /\s+/g,
+            " "
+        )
+
+        .trim();
 }
 
-function addMemory(
-    key,
-    value
+function speak(
+    text
 ){
 
     if(
-        !String(key).trim() ||
-        !String(value).trim()
+        !("speechSynthesis" in window)
     ){
         return;
     }
 
-    const existing=
-        AURA.memories.find(
-            item=>
-                item.key.toLocaleLowerCase(
-                    "tr-TR"
-                )===
-                String(key)
-                    .toLocaleLowerCase(
-                        "tr-TR"
-                    )
+    const clean =
+        cleanSpeech(text);
+
+    if(!clean){
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const utterance =
+        new SpeechSynthesisUtterance(
+            clean
         );
 
-    if(existing){
+    utterance.lang =
+        "tr-TR";
 
-        existing.value=
-            String(value);
+    utterance.rate =
+        .92;
 
-        existing.updated=
-            Date.now();
+    utterance.pitch =
+        1;
 
-    }else{
-
-        AURA.memories.push({
-            id:
-                Date.now()+"_"+Math.random(),
-            key:
-                String(key),
-            value:
-                String(value),
-            created:
-                Date.now()
-        });
-    }
-
-    saveJSON(
-        STORAGE.memories,
-        AURA.memories
+    speechSynthesis.speak(
+        utterance
     );
 }
-  const STORIES=[
-    {
-        id:"masal01",
-        title:"Masal 1",
-        file:"masallar/masal1.mp3"
-    },
-    {
-        id:"masal02",
-        title:"Masal 2",
-        file:"masallar/masal2.mp3"
-    },
-    {
-        id:"masal03",
-        title:"Masal 3",
-        file:"masallar/masal3.mp3"
-    },
-    {
-        id:"masal04",
-        title:"Masal 4",
-        file:"masallar/masal4.mp3"
-    },
-    {
-        id:"masal05",
-        title:"Masal 5",
-        file:"masallar/masal5.mp3"
-    },
-    {
-        id:"masal06",
-        title:"Masal 6",
-        file:"masallar/masal6.mp3"
-    },
-    {
-        id:"masal07",
-        title:"Masal 7",
-        file:"masallar/masal7.mp3"
-    },
-    {
-        id:"masal08",
-        title:"Masal 8",
-        file:"masallar/masal8.mp3"
-    },
-    {
-        id:"masal09",
-        title:"Masal 9",
-        file:"masallar/masal9.mp3"
-    },
-    {
-        id:"masal10",
-        title:"Masal 10",
-        file:"masallar/masal10.mp3"
-    },
-    {
-        id:"masal11",
-        title:"Masal 11",
-        file:"masallar/masal11.mp3"
-    },
-    {
-        id:"masal12",
-        title:"Masal 12",
-        file:"masallar/masal12.mp3"
-    },
-    {
-        id:"masal13",
-        title:"Masal 13",
-        file:"masallar/masal13.mp3"
-    },
-    {
-        id:"masal14",
-        title:"Masal 14",
-        file:"masallar/masal14.mp3"
-    },
-    {
-        id:"masal15",
-        title:"Masal 15",
-        file:"masallar/masal15.mp3"
-    },
-    {
-        id:"masal16",
-        title:"Masal 16",
-        file:"masallar/masal16.mp3"
-    },
-    {
-        id:"masal17",
-        title:"Masal 17",
-        file:"masallar/masal17.mp3"
-    },
-    {
-        id:"masal18",
-        title:"Masal 18",
-        file:"masallar/masal18.mp3"
-    },
-    {
-        id:"masal19",
-        title:"Masal 19",
-        file:"masallar/masal19.mp3"
-    },
-    {
-        id:"masal20",
-        title:"Masal 20",
-        file:"masallar/masal20.mp3"
-    }
-];
 
-const storyProgress=
-    loadJSON(
-        STORAGE.storyProgress,
-        {}
-    );
+</script>
+<script>
 
-const savedVolume=
-    Number(
-        localStorage.getItem(
-            STORAGE.storyVolume
-        ) || ".9"
-    );
+const STORIES = Array.from(
+    {length:20},
+    (_,index)=>({
 
-function formatTime(seconds){
+        id:
+            "story_"+(index+1),
+
+        title:
+            "Masal "+(index+1),
+
+        file:
+            "masallar/masal"+
+            (index+1)+
+            ".mp3"
+
+    })
+);
+
+function formatTime(
+    seconds
+){
 
     if(
         !Number.isFinite(seconds)
@@ -1637,41 +2068,55 @@ function formatTime(seconds){
         return "00:00";
     }
 
-    const mins=
-        Math.floor(seconds/60);
+    const min =
+        Math.floor(
+            seconds / 60
+        );
 
-    const secs=
-        Math.floor(seconds%60);
+    const sec =
+        Math.floor(
+            seconds % 60
+        );
 
-    return String(mins).padStart(2,"0")
-        +":"+
-        String(secs).padStart(2,"0");
+    return (
+        String(min)
+            .padStart(2,"0")
+        +
+        ":"
+        +
+        String(sec)
+            .padStart(2,"0")
+    );
 }
-  function renderStories(){
 
-    storyList.innerHTML="";
+function renderStories(){
+
+    const list =
+        document.getElementById(
+            "storyList"
+        );
+
+    list.innerHTML = "";
 
     STORIES.forEach(
         story=>{
 
-            const card=
+            const card =
                 document.createElement(
-                    "article"
+                    "div"
                 );
 
-            card.className=
+            card.className =
                 "storyCard";
 
-            card.dataset.id=
-                story.id;
+            card.innerHTML = `
 
-            card.innerHTML=`
                 <div class="storyName">
                     ${story.title}
                 </div>
 
                 <div class="storyMeta">
-                    Senin sesinden • Çevrimdışı dinlenebilir
+                    Senin sesinden
                 </div>
 
                 <div class="storyControls">
@@ -1688,7 +2133,8 @@ function formatTime(seconds){
                         min="0"
                         max="100"
                         value="0"
-                        data-progress="${story.id}">
+                        data-progress="${story.id}"
+                    >
 
                     <span
                         class="storyTime"
@@ -1696,104 +2142,61 @@ function formatTime(seconds){
                         00:00
                     </span>
 
-                    <input
-                        class="storyVolume"
-                        type="range"
-                        min="0"
-                        max="1"
-                        step=".01"
-                        value="${savedVolume}"
-                        data-volume="${story.id}">
-
                 </div>
             `;
 
-            storyList.appendChild(card);
+            list.appendChild(
+                card
+            );
         }
     );
 }
 
-function openStories(){
-
-    renderStories();
-
-    storyPanel.classList.add(
-        "open"
-    );
-
-    stopChatForStories();
-}
-
-function closeStories(){
-
-    storyPanel.classList.remove(
-        "open"
-    );
-}
-
-function stopChatForStories(){
-
-    app.classList.remove(
-        "chat-open"
-    );
-
-    AURA.chatOpen=false;
-}
-
-document
-    .getElementById("storyButton")
-    .addEventListener(
-        "click",
-        openStories
-    );
-
-document
-    .getElementById("closeStories")
-    .addEventListener(
-        "click",
-        closeStories
-    );
-  async function getOfflineAudio(
+async function getStoryAudio(
     story
 ){
 
-    const cacheName=
-        "ed-aura-story-audio-v1";
-
-    const cache=
+    const cache =
         await caches.open(
-            cacheName
+            "ed-aura-stories-v2"
         );
 
-    const cached=
+    const cached =
         await cache.match(
             story.file
         );
 
     if(cached){
 
-        return await cached.blob();
+        const blob =
+            await cached.blob();
+
+        return {
+            blob,
+            cached:true
+        };
     }
 
-    if(!navigator.onLine){
+    if(
+        !navigator.onLine
+    ){
 
         throw new Error(
-            "Bu masal henüz cihazda önbelleğe alınmamış."
+            "offline"
         );
     }
 
-    const response=
+    const response =
         await fetch(
-            story.file,
-            {
-                cache:"no-cache"
-            }
+            story.file
         );
 
-    if(!response.ok){
+    if(
+        !response.ok
+    ){
 
         throw new Error(
-            "Ses dosyası bulunamadı."
+            "missing"
         );
     }
 
@@ -1802,186 +2205,151 @@ document
         response.clone()
     );
 
-    return await response.blob();
-}
-
-async function createAudio(
-    story
-){
-
-    const blob=
-        await getOfflineAudio(
-            story
-        );
-
-    const url=
-        URL.createObjectURL(
-            blob
-        );
-
-    const audio=
-        new Audio(url);
-
-    audio.volume=
-        Number.isFinite(savedVolume)
-            ? savedVolume
-            : .9;
-
-    audio.preload=
-        "auto";
-
     return {
-        audio,
-        url
+        blob:
+            await response.blob(),
+
+        cached:false
     };
 }
 
 async function playStory(
-    storyId
+    id
 ){
 
-    const story=
+    const story =
         STORIES.find(
-            item=>item.id===storyId
+            item =>
+                item.id === id
         );
 
-    if(!story)return;
-
-    if(
-        AURA.activeAudio &&
-        AURA.activeStory!==storyId
-    ){
-
-        AURA.activeAudio.pause();
-
-        AURA.activeAudio.currentTime=0;
-
-        if(
-            AURA.activeAudio.__url
-        ){
-            URL.revokeObjectURL(
-                AURA.activeAudio.__url
-            );
-        }
+    if(!story){
+        return;
     }
 
     if(
-        AURA.activeAudio &&
-        AURA.activeStory===storyId
+        activeAudio &&
+        activeStory === id
     ){
 
         if(
-            AURA.activeAudio.paused
+            activeAudio.paused
         ){
-            await AURA.activeAudio.play();
+
+            await activeAudio.play();
+
         }else{
-            AURA.activeAudio.pause();
+
+            activeAudio.pause();
         }
+
+        updateStoryButtons();
 
         return;
     }
 
+    if(activeAudio){
+
+        activeAudio.pause();
+
+        activeAudio = null;
+    }
+
     try{
 
-        const result=
-            await createAudio(
+        const result =
+            await getStoryAudio(
                 story
             );
 
-        const audio=
-            result.audio;
+        const url =
+            URL.createObjectURL(
+                result.blob
+            );
 
-        audio.__url=
-            result.url;
+        const audio =
+            new Audio(url);
 
-        AURA.activeAudio=
+        audio.volume =
+            Number(
+                localStorage.getItem(
+                    STORAGE.volume
+                ) || ".9"
+            );
+
+        activeAudio =
             audio;
 
-        AURA.activeStory=
-            storyId;
+        activeStory =
+            id;
 
-        const saved=
+        const saved =
             Number(
-                storyProgress[storyId] || 0
+                storyProgress[id] || 0
             );
 
         audio.addEventListener(
             "loadedmetadata",
             ()=>{
+
                 if(
-                    saved>0 &&
-                    saved<audio.duration
+                    saved > 0 &&
+                    saved < audio.duration
                 ){
-                    audio.currentTime=
+
+                    audio.currentTime =
                         saved;
                 }
 
                 updateStoryCard(
-                    storyId,
+                    id,
                     audio
                 );
             }
         );
-      audio.addEventListener(
+
+        audio.addEventListener(
             "timeupdate",
             ()=>{
-                if(
-                    audio.duration>0
-                ){
 
-                    storyProgress[
-                        storyId
-                    ]=
-                        audio.currentTime;
+                storyProgress[id] =
+                    audio.currentTime;
 
-                    saveJSON(
-                        STORAGE.storyProgress,
-                        storyProgress
-                    );
+                saveJSON(
+                    STORAGE.stories,
+                    storyProgress
+                );
 
-                    updateStoryCard(
-                        storyId,
-                        audio
-                    );
-                }
+                updateStoryCard(
+                    id,
+                    audio
+                );
             }
         );
 
         audio.addEventListener(
             "play",
-            ()=>{
-                updateStoryButtons();
-            }
+            updateStoryButtons
         );
 
         audio.addEventListener(
             "pause",
-            ()=>{
-                updateStoryButtons();
-            }
+            updateStoryButtons
         );
 
         audio.addEventListener(
             "ended",
             ()=>{
 
-                storyProgress[
-                    storyId
-                ]=0;
+                storyProgress[id] =
+                    0;
 
                 saveJSON(
-                    STORAGE.storyProgress,
+                    STORAGE.stories,
                     storyProgress
                 );
 
-                audio.currentTime=0;
-
                 updateStoryButtons();
-
-                updateStoryCard(
-                    storyId,
-                    audio
-                );
             }
         );
 
@@ -1992,14 +2360,13 @@ async function playStory(
     }catch(error){
 
         console.error(
-            "MASAL HATASI:",
             error
         );
 
-        toast(
+        alert(
             navigator.onLine
                 ? "Masal dosyası bulunamadı."
-                : "Bu masal henüz çevrimdışı kaydedilmemiş."
+                : "Bu masal henüz internetsiz dinleme için kaydedilmemiş."
         );
     }
 }
@@ -2013,762 +2380,173 @@ function updateStoryButtons(){
         .forEach(
             button=>{
 
-                const id=
-                    button.dataset.story;
+                const active =
+                    activeAudio &&
+                    activeStory ===
+                        button.dataset.story &&
+                    !activeAudio.paused;
 
-                button.textContent=
-                    (
-                        AURA.activeAudio &&
-                        AURA.activeStory===id &&
-                        !AURA.activeAudio.paused
-                    )
-                    ? "Ⅱ"
-                    : "▶";
+                button.textContent =
+                    active
+                        ? "Ⅱ"
+                        : "▶";
             }
         );
 }
 
 function updateStoryCard(
-    storyId,
+    id,
     audio
 ){
 
-    const progress=
+    const slider =
         document.querySelector(
-            `[data-progress="${storyId}"]`
+            `[data-progress="${id}"]`
         );
 
-    const time=
+    const time =
         document.querySelector(
-            `[data-time="${storyId}"]`
+            `[data-time="${id}"]`
         );
-
-    if(!progress||!time)return;
 
     if(
-        audio.duration>0
+        !slider ||
+        !time
     ){
-
-        progress.value=
-            (
-                audio.currentTime/
-                audio.duration
-            )*100;
+        return;
     }
 
-    time.textContent=
+    if(
+        audio.duration > 0
+    ){
+
+        slider.value =
+            (
+                audio.currentTime /
+                audio.duration
+            ) * 100;
+    }
+
+    time.textContent =
         formatTime(
             audio.currentTime
-        );
-}
-  storyList.addEventListener(
-    "click",
-    event=>{
-
-        const button=
-            event.target.closest(
-                ".storyPlay"
-            );
-
-        if(!button)return;
-
-        playStory(
-            button.dataset.story
-        );
-    }
-);
-
-storyList.addEventListener(
-    "input",
-    event=>{
-
-        const progress=
-            event.target.closest(
-                ".storyProgress"
-            );
-
-        if(
-            progress &&
-            AURA.activeAudio &&
-            AURA.activeStory===
-                progress.dataset.progress
-        ){
-
-            const percent=
-                Number(
-                    progress.value
-                );
-
-            if(
-                AURA.activeAudio.duration>0
-            ){
-
-                AURA.activeAudio.currentTime=
-                    AURA.activeAudio.duration*
-                    percent/
-                    100;
-            }
-
-            return;
-        }
-
-        const volume=
-            event.target.closest(
-                ".storyVolume"
-            );
-
-        if(volume){
-
-            const value=
-                Number(
-                    volume.value
-                );
-
-            localStorage.setItem(
-                STORAGE.storyVolume,
-                String(value)
-            );
-
-            if(
-                AURA.activeAudio &&
-                AURA.activeStory===
-                    volume.dataset.volume
-            ){
-
-                AURA.activeAudio.volume=
-                    value;
-            }
-        }
-    }
-);
-
-async function cacheAllStories(){
-
-    if(!navigator.onLine){
-        return;
-    }
-
-    let success=0;
-
-    for(
-        const story of STORIES
-    ){
-
-        try{
-
-            const cache=
-                await caches.open(
-                    "ed-aura-story-audio-v1"
-                );
-
-            const existing=
-                await cache.match(
-                    story.file
-                );
-
-            if(existing){
-                success++;
-                continue;
-            }
-
-            const response=
-                await fetch(
-                    story.file,
-                    {
-                        cache:"no-cache"
-                    }
-                );
-
-            if(response.ok){
-
-                await cache.put(
-                    story.file,
-                    response.clone()
-                );
-
-                success++;
-            }
-
-        }catch(error){
-
-            console.warn(
-                "Masal önbelleğe alınamadı:",
-                story.file
-            );
-        }
-    }
-
-    if(success>0){
-
-        toast(
-            `${success} masal cihaz için hazırlandı.`
-        );
-    }
-}
-  function cleanSpeechText(text){
-
-    return String(text)
-        .replace(
-            /https?:\/\/\S+/gi,
-            " "
-        )
-        .replace(
-            /[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu,
-            " "
-        )
-        .replace(
-            /[*_`#~\[\]{}<>|\\/+=@#$%^&;:"'“”‘’!?.,…-]/g,
-            " "
-        )
-        .replace(
-            /\s+/g,
-            " "
-        )
-        .trim();
-}
-
-function speak(text){
-
-    if(
-        !AURA.voiceEnabled ||
-        !("speechSynthesis" in window)
-    ){
-        return;
-    }
-
-    const clean=
-        cleanSpeechText(text);
-
-    if(!clean)return;
-
-    speechSynthesis.cancel();
-
-    const utterance=
-        new SpeechSynthesisUtterance(
-            clean
-        );
-
-    utterance.lang=
-        "tr-TR";
-
-    utterance.rate=
-        .92;
-
-    utterance.pitch=
-        1;
-
-    utterance.volume=
-        1;
-
-    utterance.onstart=
-        ()=>{
-            AURA.speaking=true;
-        };
-
-    utterance.onend=
-        ()=>{
-            AURA.speaking=false;
-        };
-
-    speechSynthesis.speak(
-        utterance
-    );
-}
-
-function setupRecognition(){
-
-    const Recognition=
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
-    if(!Recognition){
-        return;
-    }
-
-    AURA.recognition=
-        new Recognition();
-
-    AURA.recognition.lang=
-        "tr-TR";
-
-    AURA.recognition.continuous=
-        false;
-
-    AURA.recognition.interimResults=
-        false;
-
-    AURA.recognition.onstart=
-        ()=>{
-            AURA.listening=true;
-            heart.style.transform=
-                "scale(1.06)";
-        };
-
-    AURA.recognition.onresult=
-        event=>{
-
-            const text=
-                event.results[0][0]
-                    .transcript
-                    .trim();
-
-            if(text){
-
-                input.value=
-                    text;
-
-                sendMessage(
-                    true
-                );
-            }
-        };
-
-    AURA.recognition.onerror=
-        ()=>{
-            AURA.listening=false;
-            heart.style.transform="";
-            toast(
-                "Mikrofon kullanılamadı."
-            );
-        };
-
-    AURA.recognition.onend=
-        ()=>{
-            AURA.listening=false;
-            heart.style.transform="";
-        };
-}
-
-function startListening(){
-
-    if(!AURA.recognition){
-
-        toast(
-            "Bu tarayıcı sesli komutu desteklemiyor."
-        );
-
-        return;
-    }
-
-    if(AURA.listening)return;
-
-    toggleChat(true);
-
-    try{
-        AURA.recognition.start();
-    }catch{}
-}
-  function buildSystemPrompt(){
-
-    return `
-Sen AURA adında kişisel bir yapay zeka asistanısın.
-
-Kullanıcının adı:
-${USER_NAME}
-
-Kullanıcının sevgilisi:
-${GIRLFRIEND_NAME}
-
-Türkçe konuş.
-
-Doğal, samimi ve net cevap ver.
-
-Kullanıcı hakkında kayıtlı bilgiler:
-${memoryContext()}
-
-Görevler ve hatırlatıcılar:
-${AURA.tasks.length}
-
-Kullanıcı masallar hakkında soru sorarsa
-Masallarım özelliğinin cihazdaki gerçek
-ses kayıtlarını kullandığını unutma.
-
-Bir ses kaydını dinlemiş gibi davranma.
-Bir masalın mevcut olup olmadığını
-bilmiyorsan uydurma.
-
-Bilmediğin bilgileri uydurma.
-`;
-
-}
-
-function extractAIText(
-    response
-){
-
-    if(!response){
-        return "";
-    }
-
-    if(
-        typeof response==="string"
-    ){
-        return response.trim();
-    }
-
-    if(
-        typeof response?.message?.content===
-            "string"
-    ){
-        return response.message
-            .content
-            .trim();
-    }
-
-    if(
-        Array.isArray(
-            response?.message?.content
-        )
-    ){
-
-        return response.message
-            .content
-            .map(
-                part=>
-                    typeof part==="string"
-                        ? part
-                        : part?.text||""
-            )
-            .join("")
-            .trim();
-    }
-
-    if(
-        typeof response?.text==="string"
-    ){
-        return response.text.trim();
-    }
-
-    return "";
-}
-
-async function askAI(
-    text
-){
-
-    if(
-        typeof puter==="undefined" ||
-        !puter.ai ||
-        typeof puter.ai.chat!=="function"
-    ){
-
-        throw new Error(
-            "Puter AI hazır değil."
-        );
-    }
-
-    const messages=[
-        {
-            role:"system",
-            content:
-                buildSystemPrompt()
-        },
-
-        ...AURA.history
-            .slice(-12)
-            .flatMap(
-                item=>[
-                    {
-                        role:"user",
-                        content:item.user
-                    },
-                    {
-                        role:"assistant",
-                        content:item.aura
-                    }
-                ]
-            ),
-
-        {
-            role:"user",
-            content:text
-        }
-    ];
-
-    const response=
-        await puter.ai.chat(
-            messages,
-            {
-                model:"gpt-5.6-luna",
-                temperature:.3,
-                max_tokens:1800
-            }
-        );
-
-    const answer=
-        extractAIText(
-            response
-        );
-
-    if(!answer){
-        throw new Error(
-            "AURA boş cevap aldı."
-        );
-    }
-
-    return answer;
-}
-  async function sendMessage(
-    voiceInput=false
-){
-
-    const text=
-        input.value.trim();
-
-    if(
-        !text ||
-        AURA.processing
-    ){
-        return;
-    }
-
-    input.value="";
-
-    toggleChat(true);
-
-    addMessage(
-        text,
-        "user",
-        false
-    );
-
-    AURA.processing=true;
-
-    typing.classList.add(
-        "show"
-    );
-
-    try{
-
-        let answer="";
-
-        const lower=
-            text.toLocaleLowerCase(
-                "tr-TR"
-            );
-
-        if(
-            lower.includes(
-                "saat kaç"
-            )
-        ){
-
-            answer=
-                "Şu an saat "+
-                new Date()
-                    .toLocaleTimeString(
-                        "tr-TR",
-                        {
-                            hour:"2-digit",
-                            minute:"2-digit"
-                        }
-                    )+".";
-
-        }else if(
-            lower.includes(
-                "sen kimsin"
-            ) ||
-            lower.includes(
-                "adın ne"
-            )
-        ){
-
-            answer=
-                "Ben AURA. Edanur için hazırlanan kişisel yapay zeka asistanıyım.";
-
-        }else{
-
-            answer=
-                await askAI(text);
-        }
-
-        recordHistory(
-            text,
-            answer
-        );
-
-        addMessage(
-            answer,
-            "aura",
-            voiceInput ||
-            AURA.voiceEnabled
-        );
-
-    }catch(error){
-
-        console.error(
-            "EDANUR AURA:",
-            error
-        );
-
-        addMessage(
-            "AURA bağlantısında bir sorun oluştu. Lütfen tekrar deneyin.",
-            "aura",
-            false
-        );
-
-    }finally{
-
-        AURA.processing=false;
-
-        typing.classList.remove(
-            "show"
-        );
-    }
-}
-
-sendButton.addEventListener(
-    "click",
-    ()=>{
-        sendMessage(false);
-    }
-);
-
-input.addEventListener(
-    "keydown",
-    event=>{
-
-        if(
-            event.key==="Enter"
-        ){
-
-            event.preventDefault();
-
-            sendMessage(false);
-        }
-    }
-);
-
-document
-    .getElementById("fairyButton")
-    .addEventListener(
-        "click",
-        ()=>{
-            addMessage(
-                "Edanur için AURA hazır. Masallarım bölümünden senin sesinden kaydedilmiş masalları dinleyebilirsin.",
-                "aura",
-                false
-            );
-
-            toggleChat(true);
-        }
-    );
-
-document
-    .getElementById("fileButton")
-    .addEventListener(
-        "click",
-        ()=>{
-            fileInput.click();
-        }
-    );
-
-fileInput.addEventListener(
-    "change",
-    async ()=>{
-
-        const file=
-            fileInput.files?.[0];
-
-        if(!file)return;
-
-        try{
-
-            const text=
-                await file.text();
-
-            toggleChat(true);
-
-            addMessage(
-                `${file.name} dosyası alındı.`,
-                "aura",
-                false
-            );
-
-            const answer=
-                await askAI(
-                    `Bu dosyayı Türkçe analiz et. Dosya adı: ${file.name}\n\n${text.slice(0,50000)}`
-                );
-
-            addMessage(
-                answer,
-                "aura",
-                false
-            );
-
-        }catch{
-
-            toast(
-                "Dosya okunamadı."
-            );
-
-        }finally{
-
-            fileInput.value="";
-        }
-    }
-);
-  const periodDate=
-    document.getElementById(
-        "periodDate"
-    );
-
-const cycleLength=
-    document.getElementById(
-        "cycleLength"
-    );
-
-const periodResult=
-    document.getElementById(
-        "periodResult"
-    );
-
-function calculatePeriod(){
-
-    const date=
-        periodDate.value;
-
-    const cycle=
-        Number(
-            cycleLength.value
-        );
-
-    if(
-        !date ||
-        cycle<15 ||
-        cycle>60
-    ){
-        periodResult.textContent="";
-        return;
-    }
-
-    const start=
-        new Date(
-            date+"T00:00:00"
-        );
-
-    const next=
-        new Date(start);
-
-    next.setDate(
-        next.getDate()+cycle
-    );
-
-    periodResult.textContent=
-        "Tahmini sonraki başlangıç: "+
-        next.toLocaleDateString(
-            "tr-TR"
         );
 }
 
 document
     .getElementById(
-        "reglButton"
+        "storiesButton"
     )
     .addEventListener(
         "click",
         ()=>{
-            const saved=
+
+            closeAllPanels();
+
+            storiesPanel.classList.add(
+                "open"
+            );
+
+            renderStories();
+        }
+    );
+
+document
+    .getElementById(
+        "closeStories"
+    )
+    .addEventListener(
+        "click",
+        ()=>{
+            storiesPanel.classList.remove(
+                "open"
+            );
+        }
+    );
+
+document
+    .getElementById(
+        "storyList"
+    )
+    .addEventListener(
+        "click",
+        event=>{
+
+            const button =
+                event.target.closest(
+                    ".storyPlay"
+                );
+
+            if(!button){
+                return;
+            }
+
+            playStory(
+                button.dataset.story
+            );
+        }
+    );
+
+document
+    .getElementById(
+        "storyList"
+    )
+    .addEventListener(
+        "input",
+        event=>{
+
+            if(
+                !event.target.classList.contains(
+                    "storyProgress"
+                )
+            ){
+                return;
+            }
+
+            if(
+                !activeAudio ||
+                activeStory !==
+                    event.target.dataset.progress
+            ){
+                return;
+            }
+
+            if(
+                activeAudio.duration > 0
+            ){
+
+                activeAudio.currentTime =
+                    activeAudio.duration *
+                    Number(
+                        event.target.value
+                    ) /
+                    100;
+            }
+        }
+    );
+
+</script>
+<script>
+
+/* =========================
+   REGL
+========================= */
+
+document
+    .getElementById(
+        "periodButton"
+    )
+    .addEventListener(
+        "click",
+        ()=>{
+
+            closeAllPanels();
+
+            periodPanel.classList.add(
+                "open"
+            );
+
+            const saved =
                 loadJSON(
                     STORAGE.period,
                     null
@@ -2776,22 +2554,22 @@ document
 
             if(saved){
 
-                periodDate.value=
-                    saved.date||"";
+                document
+                    .getElementById(
+                        "periodDate"
+                    )
+                    .value =
+                        saved.date || "";
 
-                cycleLength.value=
-                    saved.cycle||28;
+                document
+                    .getElementById(
+                        "cycleLength"
+                    )
+                    .value =
+                        saved.cycle || 28;
+
+                calculatePeriod();
             }
-
-            calculatePeriod();
-
-            document
-                .getElementById(
-                    "reglPanel"
-                )
-                .classList.add(
-                    "open"
-                );
         }
     );
 
@@ -2802,15 +2580,62 @@ document
     .addEventListener(
         "click",
         ()=>{
-            document
-                .getElementById(
-                    "reglPanel"
-                )
-                .classList.remove(
-                    "open"
-                );
+            periodPanel.classList.remove(
+                "open"
+            );
         }
     );
+
+function calculatePeriod(){
+
+    const date =
+        document
+            .getElementById(
+                "periodDate"
+            )
+            .value;
+
+    const cycle =
+        Number(
+            document
+                .getElementById(
+                    "cycleLength"
+                )
+                .value
+        );
+
+    const result =
+        document
+            .getElementById(
+                "periodResult"
+            );
+
+    if(
+        !date ||
+        cycle < 15 ||
+        cycle > 60
+    ){
+
+        result.textContent = "";
+
+        return;
+    }
+
+    const start =
+        new Date(
+            date+"T00:00:00"
+        );
+
+    start.setDate(
+        start.getDate()+cycle
+    );
+
+    result.textContent =
+        "Tahmini sonraki başlangıç: "+
+        start.toLocaleDateString(
+            "tr-TR"
+        );
+}
 
 document
     .getElementById(
@@ -2820,12 +2645,22 @@ document
         "click",
         ()=>{
 
-            const data={
+            const data = {
+
                 date:
-                    periodDate.value,
+                    document
+                        .getElementById(
+                            "periodDate"
+                        )
+                        .value,
+
                 cycle:
                     Number(
-                        cycleLength.value
+                        document
+                            .getElementById(
+                                "cycleLength"
+                            )
+                            .value
                     )
             };
 
@@ -2835,50 +2670,437 @@ document
             );
 
             calculatePeriod();
+        }
+    );
 
-            toast(
-                "Regl bilgisi kaydedildi."
+/* =========================
+   ÖZEL GÜNLER
+========================= */
+
+function renderSpecialDays(){
+
+    const list =
+        document.getElementById(
+            "specialList"
+        );
+
+    list.innerHTML = "";
+
+    if(
+        specialDays.length === 0
+    ){
+
+        list.innerHTML = `
+            <div class="emptyText">
+                Henüz özel gün eklenmedi.
+            </div>
+        `;
+
+        return;
+    }
+
+    specialDays.forEach(
+        (item,index)=>{
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+            div.className =
+                "specialItem";
+
+            div.innerHTML = `
+
+                <div>
+
+                    <div class="specialName">
+                        ${escapeHTML(item.name)}
+                    </div>
+
+                    <div class="specialDate">
+                        ${escapeHTML(item.date)}
+                    </div>
+
+                </div>
+
+                <button
+                    data-delete="${index}"
+                    class="panelClose">
+                    ×
+                </button>
+
+            `;
+
+            list.appendChild(
+                div
+            );
+        }
+    );
+}
+
+function escapeHTML(
+    text
+){
+
+    return String(text)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        );
+}
+
+document
+    .getElementById(
+        "specialButton"
+    )
+    .addEventListener(
+        "click",
+        ()=>{
+
+            closeAllPanels();
+
+            specialPanel.classList.add(
+                "open"
+            );
+
+            renderSpecialDays();
+        }
+    );
+
+document
+    .getElementById(
+        "closeSpecial"
+    )
+    .addEventListener(
+        "click",
+        ()=>{
+            specialPanel.classList.remove(
+                "open"
             );
         }
     );
 
-cycleLength.addEventListener(
-    "input",
-    calculatePeriod
-);
+document
+    .getElementById(
+        "saveSpecial"
+    )
+    .addEventListener(
+        "click",
+        ()=>{
 
-periodDate.addEventListener(
-    "change",
-    calculatePeriod
-);
+            const name =
+                document
+                    .getElementById(
+                        "specialName"
+                    )
+                    .value
+                    .trim();
 
-window.addEventListener(
-    "online",
-    ()=>{
-        AURA.online=true;
+            const date =
+                document
+                    .getElementById(
+                        "specialDate"
+                    )
+                    .value;
 
-        cacheAllStories();
-    }
-);
+            if(
+                !name ||
+                !date
+            ){
 
-window.addEventListener(
-    "offline",
-    ()=>{
-        AURA.online=false;
+                alert(
+                    "Özel gün adı ve tarihini gir."
+                );
 
-        toast(
-            "Çevrimdışı mod aktif."
+                return;
+            }
+
+            specialDays.push({
+
+                name,
+                date
+
+            });
+
+            saveJSON(
+                STORAGE.special,
+                specialDays
+            );
+
+            document
+                .getElementById(
+                    "specialName"
+                )
+                .value = "";
+
+            document
+                .getElementById(
+                    "specialDate"
+                )
+                .value = "";
+
+            renderSpecialDays();
+        }
+    );
+
+document
+    .getElementById(
+        "specialList"
+    )
+    .addEventListener(
+        "click",
+        event=>{
+
+            const button =
+                event.target.closest(
+                    "[data-delete]"
+                );
+
+            if(!button){
+                return;
+            }
+
+            const index =
+                Number(
+                    button.dataset.delete
+                );
+
+            specialDays.splice(
+                index,
+                1
+            );
+
+            saveJSON(
+                STORAGE.special,
+                specialDays
+            );
+
+            renderSpecialDays();
+        }
+    );
+
+/* =========================
+   SOHBET
+========================= */
+
+async function askAI(
+    text
+){
+
+    if(
+        typeof puter === "undefined" ||
+        !puter.ai ||
+        typeof puter.ai.chat !==
+            "function"
+    ){
+
+        throw new Error(
+            "AI servisi hazır değil."
         );
     }
+
+    const response =
+        await puter.ai.chat(
+            [
+                {
+                    role:"system",
+                    content:`
+Sen AURA'sın.
+
+Kullanıcı:
+${USER_NAME}
+
+Sevgilisi:
+${GIRLFRIEND_NAME}
+
+Türkçe cevap ver.
+Kısa, doğal ve doğru cevaplar ver.
+Bilmediğin şeyi uydurma.
+
+Kayıtlı bilgiler:
+${memories
+    .slice(-30)
+    .map(
+        x =>
+            x.key+
+            ": "+
+            x.value
+    )
+    .join("\n")}
+`
+                },
+
+                ...history.slice(-10),
+
+                {
+                    role:"user",
+                    content:text
+                }
+            ]
+        );
+
+    if(
+        typeof response ===
+            "string"
+    ){
+        return response;
+    }
+
+    if(
+        response?.message?.content
+    ){
+
+        if(
+            typeof response.message.content ===
+                "string"
+        ){
+
+            return response.message.content;
+        }
+
+        if(
+            Array.isArray(
+                response.message.content
+            )
+        ){
+
+            return response.message.content
+                .map(
+                    x =>
+                        typeof x ===
+                            "string"
+                            ? x
+                            : x?.text || ""
+                )
+                .join("");
+        }
+    }
+
+    return (
+        response?.text ||
+        "AURA cevap oluşturamadı."
+    );
+}
+
+async function sendMessage(){
+
+    const text =
+        userInput.value.trim();
+
+    if(!text){
+        return;
+    }
+
+    userInput.value = "";
+
+    addMessage(
+        text,
+        "user"
+    );
+
+    typing.classList.add(
+        "show"
+    );
+
+    try{
+
+        const answer =
+            await askAI(
+                text
+            );
+
+        addMessage(
+            answer,
+            "aura"
+        );
+
+        history.push(
+            {
+                role:"user",
+                content:text
+            },
+            {
+                role:"assistant",
+                content:answer
+            }
+        );
+
+        saveJSON(
+            STORAGE.history,
+            history.slice(-40)
+        );
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+        addMessage(
+            "AURA şu anda cevap oluşturamadı.",
+            "aura"
+        );
+
+    }finally{
+
+        typing.classList.remove(
+            "show"
+        );
+
+        scrollChat();
+    }
+}
+
+sendButton.addEventListener(
+    "click",
+    sendMessage
 );
+
+userInput.addEventListener(
+    "keydown",
+    event=>{
+
+        if(
+            event.key ===
+            "Enter"
+        ){
+
+            event.preventDefault();
+
+            sendMessage();
+        }
+    }
+);
+
+/* =========================
+   PANEL SÜRÜKLEME
+========================= */
+
+let dragStartY = null;
 
 chatPanel.addEventListener(
     "touchstart",
     event=>{
-        window.__dragY=
+
+        dragStartY =
             event.touches[0].clientY;
     },
-    {passive:true}
+    {
+        passive:true
+    }
 );
 
 chatPanel.addEventListener(
@@ -2886,98 +3108,49 @@ chatPanel.addEventListener(
     event=>{
 
         if(
-            window.__dragY===undefined
+            dragStartY === null
         ){
             return;
         }
 
-        const diff=
+        const endY =
             event.changedTouches[0]
-                .clientY-
-            window.__dragY;
+                .clientY;
 
-        window.__dragY=
-            undefined;
+        const difference =
+            endY -
+            dragStartY;
 
-        if(diff>70){
-            toggleChat(false);
+        dragStartY = null;
+
+        if(
+            difference > 70
+        ){
+
+            closeChat();
         }
     },
-    {passive:true}
-);
-
-window.addEventListener(
-    "beforeunload",
-    ()=>{
-        saveJSON(
-            STORAGE.memories,
-            AURA.memories
-        );
-
-        saveJSON(
-            STORAGE.history,
-            AURA.history
-        );
+    {
+        passive:true
     }
 );
 
-function init(){
+/* =========================
+   BAŞLANGIÇ
+========================= */
 
-    renderStories();
+addMessage(
+    "Selam Edanur. AURA hazır.",
+    "aura"
+);
 
-    setupRecognition();
+renderStories();
 
-    if(
-        !chat.children.length
-    ){
+renderSpecialDays();
 
-        addMessage(
-            "Selam Edanur. AURA hazır.",
-            "aura",
-            false
-        );
-    }
-
-    if(navigator.onLine){
-
-        setTimeout(
-            cacheAllStories,
-            1500
-        );
-    }
-}
-
-init();
-
-window.AURA_EDANUR_API={
-
-    version:VERSION,
-
-    openChat:
-        ()=>toggleChat(true),
-
-    closeChat:
-        ()=>toggleChat(false),
-
-    openStories:
-        openStories,
-
-    closeStories:
-        closeStories,
-
-    playStory:
-        playStory,
-
-    cacheStories:
-        cacheAllStories,
-
-    getStories:
-        ()=>[...STORIES],
-
-    getMemories:
-        ()=>[...AURA.memories]
-
-};
+console.log(
+    "AURA EDANUR sürümü hazır."
+);
 
 </script>
 
