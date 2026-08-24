@@ -38,8 +38,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 @keyframes heartbeat{0%,100%{transform:rotate(-45deg) scale(1)}50%{transform:rotate(-45deg) scale(1.08)}}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes spinReverse{from{transform:rotate(360deg)}to{transform:rotate(0)}}
-        
-.chatArea{position:absolute;left:0;right:0;top:58px;bottom:118px;padding:12px max(12px,calc((100% - 720px)/2));overflow-y:auto;scrollbar-width:none;z-index:5}
+       .chatArea{position:absolute;left:0;right:0;top:58px;bottom:118px;padding:12px max(12px,calc((100% - 720px)/2));overflow-y:auto;scrollbar-width:none;z-index:5}
 .chatArea::-webkit-scrollbar{display:none}
 .chat{display:flex;flex-direction:column;gap:8px;padding-bottom:20px}
 .message{max-width:78%;padding:10px 14px;border-radius:17px;font-size:14px;line-height:1.4;word-break:break-word;white-space:pre-wrap}
@@ -85,7 +84,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .actionButton{width:45px;height:45px;flex:0 0 45px;border:0;border-radius:50%;background:linear-gradient(135deg,#ff77bb,#d40070);color:white;font-size:20px;cursor:pointer}
 </style>
 </head>
-<body>
+    <body>
 <div class="background">
 <div class="glow one"></div><div class="glow two"></div>
 <div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
@@ -111,7 +110,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <button class="moodButton" id="moodButton" type="button" title="Ruh Hali">🎭</button>
 <button class="specialButton" id="specialButton" type="button" title="Özel Alan">👑</button>
 <button class="periodButton" id="periodButton" type="button" title="Regl Takibi">🌸</button>
-<div class="overlay" id="specialOverlay">
+  <div class="overlay" id="specialOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">👑 Edanur'un Özel Alanı</div><button class="closeButton" id="closeSpecial" type="button">×</button></div>
 
@@ -128,13 +127,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
   <div class="cardItem">
     <div style="font-weight:bold;margin-bottom:6px;">🎙️ Masal / Ses Kaydı Yükle</div>
     <input type="text" id="storyTitle" class="input" placeholder="Masal Başlığı (Örn: Tatlı Rüyalar)">
+    <input type="text" id="storyAudioUrl" class="input" placeholder="Ses Linki / URL (Vocaroo vb.)">
+    <div style="font-size:11px;color:#ffb8d8;margin:4px 0;text-align:center;">— VEYA KISA SES DOSYASI SEÇ (Max 2MB) —</div>
     <input type="file" id="storyAudioFile" class="input" accept="audio/*">
     <button class="saveButton" id="addStoryBtn" type="button">✨ Masalı Kaydet (Bulut)</button>
   </div>
   <div id="storyList"></div>
 </div>
-
-<!-- FOTOĞRAF VE ANI GALERİSİ -->
+      <!-- FOTOĞRAF VE ANI GALERİSİ -->
 <div class="tabContent" id="photosContent">
   <div class="cardItem">
     <div style="font-weight:bold;margin-bottom:6px;">📸 Yeni Anı Ekle</div>
@@ -174,7 +174,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div>
 
 </div></div>
-<!-- RUH HALİ MODAL -->
+        <!-- RUH HALİ MODAL -->
 <div class="overlay" id="moodOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">🎭 Bugünkü Ruh Halin Nasıl?</div><button class="closeButton" id="closeMood" type="button">×</button></div>
@@ -211,7 +211,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div>
 
 <script src="https://js.puter.com/v2/"></script>
-<script>
+     <script>
 const input = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
 const micButton = document.getElementById("micButton");
@@ -268,7 +268,7 @@ ${text}
   if(!response) throw new Error("Boş cevap.");
   return typeof response === "string" ? response.trim() : (response.message?.content || response.text || String(response)).trim();
 }
-   async function sendMessage(overrideText = "", moodContext = ""){
+    async function sendMessage(overrideText = "", moodContext = ""){
   if(busy) return;
   const text = overrideText || input.value.trim();
   if(!text) return;
@@ -321,8 +321,8 @@ if(SpeechRecognition){
   micButton.onclick = () => { try{ recognition.start(); }catch(err){} };
 } else {
   micButton.onclick = () => addMessage("Tarayıcınız sesli konuşmayı desteklemiyor.", "aura");
-}
-    /* MASALLAR BÖLÜMÜ (SES BOYUT KONTROLLERİ & BULUT DESTEKLİ) */
+        }
+           /* MASALLAR BÖLÜMÜ (SES LİNKİ VE DOSYA DESTEKLİ BULUT KODU) */
 async function loadStories(){
   const list = document.getElementById("storyList");
   list.innerHTML = "<div class='cardItem' style='font-size:12px;color:#aaa;'>Masallar yükleniyor...</div>";
@@ -355,6 +355,7 @@ async function loadStories(){
 
 document.getElementById("addStoryBtn").onclick = async () => {
   const title = document.getElementById("storyTitle").value.trim();
+  const urlInput = document.getElementById("storyAudioUrl").value.trim();
   const fileInput = document.getElementById("storyAudioFile");
 
   if(!title){
@@ -362,10 +363,18 @@ document.getElementById("addStoryBtn").onclick = async () => {
     return;
   }
 
+  // 1. Ses Linki Girildiyse
+  if(urlInput){
+    await saveStoryToCloud(title, urlInput);
+    document.getElementById("storyAudioUrl").value = "";
+    return;
+  }
+
+  // 2. Doğrudan Dosya Seçildiyse (Max 2MB)
   if(fileInput.files[0]){
     const file = fileInput.files[0];
     if(file.size > 2 * 1024 * 1024){
-      alert("Ses dosyası bulut sınırı için çok büyük! Lütfen sesi Vocaroo.com'a yükleyip link olarak ekleyin ya da daha kısa bir ses seçin.");
+      alert("Seçtiğin dosya 2MB'tan büyük! Lütfen sesi Vocaroo.com'a yükleyip linkini üstteki alana yapıştırın.");
       return;
     }
 
@@ -375,7 +384,7 @@ document.getElementById("addStoryBtn").onclick = async () => {
     };
     reader.readAsDataURL(file);
   } else {
-    alert("Lütfen bir ses dosyası seçin!");
+    alert("Lütfen bir ses linki girin veya ses dosyası seçin!");
   }
 };
 
@@ -391,7 +400,7 @@ async function saveStoryToCloud(title, audioSrc){
     loadStories();
     alert("Masal başarıyla buluta kaydedildi!");
   } catch(err) {
-    alert("Bulut hafıza sınırı aşıldı! Ses dosyasının süresini/boyutunu küçültüp tekrar deneyin.");
+    alert("Bulut hafıza sınırı aşıldı! Ses linki (Vocaroo vb.) kullanmanız önerilir.");
   }
 }
 
@@ -404,7 +413,7 @@ async function deleteStory(index){
     loadStories();
   } catch(err) {}
 }
-
+             
 /* FOTOĞRAF GALERİSİ */
 function loadPhotos(){
   const grid = document.getElementById("photoGrid");
@@ -446,7 +455,8 @@ function deletePhoto(index){
   localStorage.setItem("auraPhotos", JSON.stringify(photos));
   loadPhotos();
 }
-    /* MİNİ OYUN: BEDİRHAN QUIZ */
+
+/* MİNİ OYUN: BEDİRHAN QUIZ */
 const quizData = [
   { q: "Bedirhan'ın hayattaki en değerli varlığı kimdir?", a: ["Edanur", "Arabası", "Telefonu"], correct: 0 },
   { q: "AURA'yı senin için kim geliştirdi?", a: ["Siri", "Bedirhan Kahraman", "Google"], correct: 1 },
@@ -477,8 +487,7 @@ function initQuiz(){
     opts.appendChild(btn);
   });
 }
-
-/* ÖZEL GÜNLER VE NOTLAR */
+    /* ÖZEL GÜNLER VE NOTLAR */
 function renderEvents(){
   const list = document.getElementById("eventList");
   const events = JSON.parse(localStorage.getItem("auraEvents") || "[]");
@@ -539,7 +548,7 @@ function deleteNote(index){
   localStorage.setItem("auraNotes", JSON.stringify(notes));
   renderNotes();
 }
-    /* RUH HALİ SEÇİMİ */
+   /* RUH HALİ SEÇİMİ */
 const moodOverlay = document.getElementById("moodOverlay");
 document.getElementById("moodButton").onclick = () => moodOverlay.classList.add("show");
 document.getElementById("closeMood").onclick = () => moodOverlay.classList.remove("show");
