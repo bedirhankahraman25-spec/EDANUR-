@@ -2,3157 +2,445 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width,
-    initial-scale=1.0,
-    maximum-scale=1.0,
-    user-scalable=no"
->
-
-<meta
-    name="theme-color"
-    content="#08030d"
->
-
-<title>AURA • EDANUR</title>
-
-<style>
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent;
-}
-
-html,
-body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-}
-
-body{
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    color:#fff;
-
-    background:
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(255,70,190,.16),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 20% 85%,
-            rgba(120,40,255,.13),
-            transparent 35%
-        ),
-        linear-gradient(
-            145deg,
-            #020105,
-            #100611 48%,
-            #030107
-        );
-}
-
-button,
-input{
-    font-family:inherit;
-}
-
-button{
-    border:0;
-    outline:0;
-    cursor:pointer;
-}
-
-#app{
-    position:relative;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-}
-
-/* =========================
-   ÜST BAR
-========================= */
-
-.topbar{
-
-    position:absolute;
-
-    top:0;
-    left:0;
-    right:0;
-
-    height:52px;
-
-    z-index:20;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:
-        0 15px;
-
-    background:
-        rgba(5,2,10,.78);
-
-    border-bottom:
-        1px solid
-        rgba(255,100,210,.12);
-
-    backdrop-filter:
-        blur(14px);
-}
-
-.logo{
-
-    display:flex;
-    align-items:center;
-
-    gap:8px;
-}
-
-.logoText{
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-size:19px;
-
-    letter-spacing:4px;
-
-    color:#fff;
-
-    text-shadow:
-        0 0 8px #ff4bc4,
-        0 0 20px #c91aff;
-}
-
-.online{
-
-    display:flex;
-    align-items:center;
-
-    gap:6px;
-
-    font-size:8px;
-
-    letter-spacing:2px;
-
-    color:#ffb6e6;
-}
-
-.onlineDot{
-
-    width:7px;
-    height:7px;
-
-    border-radius:50%;
-
-    background:#ff4fc7;
-
-    box-shadow:
-        0 0 8px #ff4fc7,
-        0 0 16px #ff4fc7;
-}
-
-/* =========================
-   ANA ALAN
-========================= */
-
-.main{
-
-    position:absolute;
-
-    top:52px;
-    left:0;
-    right:0;
-    bottom:0;
-
-    overflow:hidden;
-}
-
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AURA ♥ EDANUR</title>
     <style>
-
-/* =========================
-   AURA KALP ALANI
-========================= */
-
-.coreArea{
-
-    position:absolute;
-
-    top:0;
-    left:0;
-    right:0;
-
-    height:
-        calc(100% - 82px);
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    transition:
-        transform .4s ease,
-        opacity .3s ease;
-
-    z-index:5;
-
-    pointer-events:none;
-}
-
-.heart{
-
-    position:relative;
-
-    width:185px;
-    height:165px;
-
-    pointer-events:auto;
-
-    cursor:pointer;
-
-    animation:
-        heartFloat
-        3.2s
-        ease-in-out
-        infinite;
-
-    filter:
-        drop-shadow(
-            0 0 12px
-            rgba(255,40,180,.85)
-        )
-        drop-shadow(
-            0 0 35px
-            rgba(180,30,255,.45)
-        );
-}
-
-/*
-Gerçek kalp şekli
-*/
-
-.heartShape{
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:150px;
-    height:150px;
-
-    transform:
-        translate(-50%,-42%)
-        rotate(-45deg);
-
-    border-radius:
-        18px 0 18px 0;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffb8e9,
-            #ff43bc 38%,
-            #c02aff 72%,
-            #68128e
-        );
-
-    box-shadow:
-        inset
-        8px 8px 18px
-        rgba(255,255,255,.16),
-
-        inset
-        -10px -12px 25px
-        rgba(50,0,70,.3),
-
-        0 0 25px
-        rgba(255,50,190,.45);
-}
-
-.heartShape::before,
-.heartShape::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:150px;
-    height:150px;
-
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffb8e9,
-            #ff43bc 38%,
-            #c02aff 72%,
-            #68128e
-        );
-}
-
-.heartShape::before{
-
-    top:-75px;
-    left:0;
-}
-
-.heartShape::after{
-
-    top:0;
-    left:75px;
-}
-
-.heartText{
-
-    position:absolute;
-
-    z-index:8;
-
-    left:50%;
-    top:53%;
-
-    transform:
-        translate(-50%,-50%);
-
-    width:130px;
-
-    text-align:center;
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-size:20px;
-
-    font-weight:700;
-
-    letter-spacing:3px;
-
-    color:#fff;
-
-    text-shadow:
-        0 0 6px #fff,
-        0 0 15px #ff58c9,
-        0 0 28px #d819ff;
-
-    pointer-events:none;
-}
-
-/* =========================
-   HALKALAR
-========================= */
-
-.ring{
-
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    border-radius:50%;
-
-    border:
-        1px solid
-        rgba(255,100,210,.35);
-
-    pointer-events:none;
-}
-
-.ringOne{
-
-    width:205px;
-    height:78px;
-
-    transform:
-        translate(-50%,-50%)
-        rotate(-14deg);
-
-    animation:
-        ringOne
-        8s
-        linear
-        infinite;
-}
-
-.ringTwo{
-
-    width:235px;
-    height:88px;
-
-    transform:
-        translate(-50%,-50%)
-        rotate(42deg);
-
-    border-color:
-        rgba(177,76,255,.22);
-
-    animation:
-        ringTwo
-        12s
-        linear
-        infinite;
-}
-
-@keyframes ringOne{
-
-    from{
-        transform:
-            translate(-50%,-50%)
-            rotate(-14deg);
-    }
-
-    to{
-        transform:
-            translate(-50%,-50%)
-            rotate(346deg);
-    }
-}
-
-@keyframes ringTwo{
-
-    from{
-        transform:
-            translate(-50%,-50%)
-            rotate(42deg);
-    }
-
-    to{
-        transform:
-            translate(-50%,-50%)
-            rotate(-318deg);
-    }
-}
-
-@keyframes heartFloat{
-
-    0%,
-    100%{
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
-    50%{
-        transform:
-            translateY(-7px)
-            scale(1.025);
-    }
-}
-
-    </style>
-    <style>
-
-/* =========================
-   ALT ÖZELLİKLER
-========================= */
-
-.featureBar{
-
-    position:absolute;
-
-    left:10px;
-    right:10px;
-    bottom:10px;
-
-    height:62px;
-
-    z-index:30;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:7px;
-
-    padding:7px;
-
-    border-radius:19px;
-
-    background:
-        rgba(8,3,13,.9);
-
-    border:
-        1px solid
-        rgba(255,100,210,.13);
-
-    box-shadow:
-        0 8px 35px
-        rgba(0,0,0,.45);
-
-    backdrop-filter:
-        blur(16px);
-}
-
-.featureButton{
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:5px;
-
-    min-width:0;
-
-    height:46px;
-
-    border-radius:13px;
-
-    color:#ffb7e9;
-
-    background:
-        rgba(255,70,190,.055);
-
-    border:
-        1px solid
-        rgba(255,100,210,.12);
-
-    font-size:9px;
-
-    white-space:nowrap;
-
-    transition:
-        background .2s,
-        transform .15s;
-}
-
-.featureButton:active{
-
-    transform:
-        scale(.94);
-
-    background:
-        rgba(255,70,190,.13);
-}
-
-.featureIcon{
-
-    font-size:15px;
-
-    line-height:1;
-}
-
-/* =========================
-   SOHBET PANELİ
-========================= */
-
-.chatPanel{
-
-    position:absolute;
-
-    left:8px;
-    right:8px;
-
-    bottom:8px;
-
-    height:
-        min(62%,560px);
-
-    z-index:50;
-
-    display:flex;
-    flex-direction:column;
-
-    overflow:hidden;
-
-    border-radius:22px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(22,6,25,.98),
-            rgba(5,2,9,.99)
-        );
-
-    border:
-        1px solid
-        rgba(255,100,210,.17);
-
-    box-shadow:
-        0 12px 50px
-        rgba(0,0,0,.65),
-
-        0 0 35px
-        rgba(190,30,220,.08);
-
-    backdrop-filter:
-        blur(20px);
-
-    transform:
-        translateY(
-            calc(100% + 25px)
-        );
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:
-        transform .4s ease,
-        opacity .25s ease;
-}
-
-.chatPanel.open{
-
-    transform:
-        translateY(0);
-
-    opacity:1;
-
-    pointer-events:auto;
-}
-
-.dragHandle{
-
-    width:42px;
-    height:4px;
-
-    margin:
-        7px auto;
-
-    border-radius:10px;
-
-    background:
-        rgba(255,180,230,.3);
-
-    flex-shrink:0;
-}
-
-.chatHeader{
-
-    min-height:39px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:
-        0 12px;
-
-    border-bottom:
-        1px solid
-        rgba(255,100,210,.08);
-}
-
-.chatTitle{
-
-    color:#ff91dc;
-
-    font-size:9px;
-
-    letter-spacing:2px;
-}
-
-.closeButton{
-
-    width:30px;
-    height:30px;
-
-    border-radius:9px;
-
-    color:#e0a5c9;
-
-    background:
-        rgba(255,255,255,.045);
-}
-
-             </style>
-    <style>
-
-#chatMessages{
-
-    flex:1;
-
-    min-height:0;
-
-    overflow-y:auto;
-
-    padding:
-        10px;
-
-    scroll-behavior:smooth;
-}
-
-.message{
-
-    display:flex;
-
-    width:100%;
-
-    margin-bottom:9px;
-
-    animation:
-        messageIn
-        .2s
-        ease;
-}
-
-.message.user{
-
-    justify-content:flex-end;
-}
-
-.message.aura{
-
-    justify-content:flex-start;
-}
-
-.bubble{
-
-    max-width:84%;
-
-    padding:
-        10px 12px;
-
-    border-radius:14px;
-
-    font-size:12px;
-
-    line-height:1.5;
-
-    white-space:pre-wrap;
-
-    word-break:break-word;
-}
-
-.message.user
-.bubble{
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(135,40,185,.34),
-            rgba(85,30,125,.25)
-        );
-
-    border:
-        1px solid
-        rgba(190,100,255,.18);
-
-    border-bottom-right-radius:5px;
-}
-
-.message.aura
-.bubble{
-
-    background:
-        rgba(255,70,190,.075);
-
-    border:
-        1px solid
-        rgba(255,100,210,.12);
-
-    border-bottom-left-radius:5px;
-}
-
-.messageLabel{
-
-    display:block;
-
-    margin-bottom:4px;
-
-    font-size:8px;
-
-    font-weight:700;
-
-    letter-spacing:1px;
-
-    color:#ff8ed9;
-}
-
-.message.user
-.messageLabel{
-
-    text-align:right;
-
-    color:#c998ff;
-}
-
-#typing{
-
-    display:none;
-
-    padding:
-        0 12px 5px;
-
-    color:#966c87;
-
-    font-size:9px;
-}
-
-#typing.show{
-
-    display:block;
-}
-
-.inputArea{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    padding:8px;
-
-    border-top:
-        1px solid
-        rgba(255,100,210,.08);
-}
-
-.inputWrap{
-
-    position:relative;
-
-    flex:1;
-
-    min-width:0;
-
-    height:44px;
-}
-
-#userInput{
-
-    width:100%;
-    height:100%;
-
-    padding:
-        0 43px 0 12px;
-
-    border-radius:13px;
-
-    border:
-        1px solid
-        rgba(255,100,210,.16);
-
-    outline:none;
-
-    background:
-        rgba(255,255,255,.035);
-
-    color:#fff;
-
-    font-size:12px;
-}
-
-#userInput::placeholder{
-
-    color:#876578;
-}
-
-#sendButton{
-
-    position:absolute;
-
-    top:4px;
-    right:4px;
-
-    width:36px;
-    height:36px;
-
-    border-radius:10px;
-
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff52c3,
-            #a63aff
-        );
-
-    font-size:15px;
-}
-
-.toolButton{
-
-    width:43px;
-    height:43px;
-
-    flex:0 0 43px;
-
-    border-radius:12px;
-
-    color:#ff9dde;
-
-    background:
-        rgba(255,70,190,.06);
-
-    border:
-        1px solid
-        rgba(255,100,210,.15);
-}
-
-@keyframes messageIn{
-
-    from{
-        opacity:0;
-        transform:
-            translateY(6px);
-    }
-
-    to{
-        opacity:1;
-        transform:
-            translateY(0);
-    }
-}
-
-    </style>
-    <style>
-
-/* =========================
-   MASALLAR
-========================= */
-
-.fullPanel{
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:100;
-
-    display:none;
-
-    flex-direction:column;
-
-    padding:
-        14px 12px;
-
-    background:
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(255,70,190,.15),
-            transparent 35%
-        ),
-        linear-gradient(
-            180deg,
-            #120512,
-            #050208
-        );
-}
-
-.fullPanel.open{
-
-    display:flex;
-}
-
-.panelTop{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding-bottom:13px;
-}
-
-.panelTitle{
-
-    font-family:
-        Georgia,
-        serif;
-
-    color:#fff;
-
-    font-size:20px;
-
-    letter-spacing:2px;
-
-    text-shadow:
-        0 0 12px
-        #ff42bc;
-}
-
-.panelSub{
-
-    margin-top:3px;
-
-    color:#967084;
-
-    font-size:9px;
-}
-
-.panelClose{
-
-    width:34px;
-    height:34px;
-
-    border-radius:11px;
-
-    color:#ff9bdc;
-
-    background:
-        rgba(255,255,255,.05);
-
-    border:
-        1px solid
-        rgba(255,100,210,.13);
-}
-
-.storyList{
-
-    flex:1;
-
-    min-height:0;
-
-    overflow-y:auto;
-
-    padding-top:5px;
-}
-
-.storyCard{
-
-    padding:11px;
-
-    margin-bottom:9px;
-
-    border-radius:15px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,70,190,.075),
-            rgba(135,45,220,.065)
-        );
-
-    border:
-        1px solid
-        rgba(255,100,210,.12);
-}
-
-.storyName{
-
-    color:#fff;
-
-    font-size:12px;
-
-    font-weight:700;
-}
-
-.storyMeta{
-
-    margin-top:3px;
-
-    color:#8c6a80;
-
-    font-size:8px;
-}
-
-.storyControls{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    margin-top:9px;
-}
-
-.storyPlay{
-
-    width:34px;
-    height:34px;
-
-    flex:0 0 34px;
-
-    border-radius:10px;
-
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff50bd,
-            #a43aff
-        );
-}
-
-.storyProgress{
-
-    flex:1;
-
-    min-width:0;
-
-    height:4px;
-
-    appearance:none;
-
-    border-radius:5px;
-
-    background:#321429;
-}
-
-.storyProgress::-webkit-slider-thumb{
-
-    appearance:none;
-
-    width:12px;
-    height:12px;
-
-    border-radius:50%;
-
-    background:#ff65c8;
-
-    box-shadow:
-        0 0 8px
-        #ff65c8;
-}
-
-.storyTime{
-
-    width:50px;
-
-    text-align:right;
-
-    color:#a37b96;
-
-    font-size:8px;
-}
-
-.storyVolume{
-
-    width:55px;
-
-    height:3px;
-
-    appearance:none;
-
-    border-radius:5px;
-
-    background:#35142d;
-}
-
-.storyVolume::-webkit-slider-thumb{
-
-    appearance:none;
-
-    width:10px;
-    height:10px;
-
-    border-radius:50%;
-
-    background:#d958ff;
-}
-
-    </style>
-    
-<style>
-
-/* =========================
-   REGL + ÖZEL GÜNLER
-========================= */
-
-.simpleContent{
-
-    flex:1;
-
-    min-height:0;
-
-    overflow-y:auto;
-
-    padding:
-        8px 2px;
-}
-
-.infoBox{
-
-    padding:14px;
-
-    margin-bottom:9px;
-
-    border-radius:15px;
-
-    background:
-        rgba(255,70,190,.055);
-
-    border:
-        1px solid
-        rgba(255,100,210,.12);
-}
-
-.infoBoxTitle{
-
-    color:#ff91dc;
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-size:15px;
-
-    margin-bottom:10px;
-}
-
-.field{
-
-    margin-bottom:10px;
-}
-
-.field label{
-
-    display:block;
-
-    margin-bottom:5px;
-
-    color:#a57a92;
-
-    font-size:8px;
-}
-
-.field input{
-
-    width:100%;
-
-    height:39px;
-
-    padding:
-        0 10px;
-
-    border-radius:10px;
-
-    outline:none;
-
-    color:#fff;
-
-    background:
-        rgba(255,255,255,.04);
-
-    border:
-        1px solid
-        rgba(255,100,210,.14);
-}
-
-.actionButton{
-
-    width:100%;
-
-    height:40px;
-
-    border-radius:11px;
-
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff50bd,
-            #a43aff
-        );
-}
-
-.specialItem{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    padding:12px;
-
-    margin-bottom:8px;
-
-    border-radius:13px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid
-        rgba(255,100,210,.09);
-}
-
-.specialName{
-
-    color:#fff;
-
-    font-size:11px;
-}
-
-.specialDate{
-
-    color:#9a7289;
-
-    font-size:8px;
-}
-
-.emptyText{
-
-    padding:30px 10px;
-
-    text-align:center;
-
-    color:#816075;
-
-    font-size:10px;
-}
-
-/* =========================
-   MOBİL
-========================= */
-
-@media(max-height:650px){
-
-    .heart{
-
-        transform:
-            scale(.82);
-    }
-
-    .featureBar{
-
-        height:58px;
-    }
-
-    .featureButton{
-
-        height:42px;
-    }
-
-    .chatPanel{
-
-        height:66%;
-    }
-}
-
-@media(max-width:350px){
-
-    .featureButton{
-
-        font-size:8px;
-    }
-
-    .featureIcon{
-
-        font-size:13px;
-    }
-
-    .heart{
-
-        transform:
-            scale(.9);
-    }
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans-serif;color:#ffe6f3;background:radial-gradient(circle at 50% 30%,#74134f 0%,#35071f 32%,#10000b 72%,#030003 100%)}
+.background{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.glow{position:absolute;border-radius:50%;filter:blur(70px);opacity:.35}
+.glow.one{width:300px;height:300px;background:#ff258f;left:-120px;top:80px}
+.glow.two{width:330px;height:330px;background:#a000ff;right:-130px;bottom:50px}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 8px #ff69b4;animation:twinkle 2.5s infinite}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.5)}}
+        .app{position:relative;width:100%;height:100%;z-index:2}
+.top{position:absolute;top:0;left:0;right:0;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(12,0,10,.76);border-bottom:1px solid rgba(255,92,175,.38);backdrop-filter:blur(14px);z-index:20}
+.logo{display:flex;align-items:center;gap:10px}
+.crown{color:#ff8ac5;font-size:20px;text-shadow:0 0 10px #ff1493}
+.logoText{font-family:Georgia,serif;font-size:24px;letter-spacing:4px;color:#fff0f8;text-shadow:0 0 8px #ff69b4,0 0 20px #ff1493}
+.status{font-size:10px;letter-spacing:2px;color:#ffc0dc}
+.statusDot{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:#ff4fa8;box-shadow:0 0 9px #ff1493}
+.center{position:absolute;top:58px;left:0;right:0;bottom:118px;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.heartSystem{position:relative;width:190px;height:190px;display:flex;align-items:center;justify-content:center}
+.orbit{position:absolute;border:1px solid rgba(255,110,185,.4);border-radius:50%}
+.orbit1{width:145px;height:145px;animation:spin 9s linear infinite}
+.orbit2{width:180px;height:180px;border-top-color:transparent;border-bottom-color:transparent;animation:spinReverse 13s linear infinite}
+.heart{position:relative;width:86px;height:86px;transform:rotate(-45deg);background:linear-gradient(135deg,#ffb5da,#ff4ca7 48%,#df006e);border-radius:9px;box-shadow:0 0 12px #ff8aca,0 0 28px #ff1493;animation:heartbeat 1.8s infinite ease-in-out}
+.heart:before,.heart:after{content:"";position:absolute;width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,#ffb5da,#ff4ca7 48%,#df006e)}
+.heart:before{top:-43px;left:0}.heart:after{top:0;left:43px}
+.heartText{position:absolute;z-index:5;width:125px;left:-20px;top:34px;transform:rotate(45deg);text-align:center;color:white;font-family:Georgia,serif;font-size:11px;font-weight:bold;line-height:1.25;text-shadow:0 0 4px white,0 0 10px #ffb5dc}
+@keyframes heartbeat{0%,100%{transform:rotate(-45deg) scale(1)}50%{transform:rotate(-45deg) scale(1.08)}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes spinReverse{from{transform:rotate(360deg)}to{transform:rotate(0)}}
+        .chatArea{position:absolute;left:0;right:0;top:58px;bottom:118px;padding:12px max(12px,calc((100% - 720px)/2));overflow-y:auto;scrollbar-width:none;z-index:5}
+.chatArea::-webkit-scrollbar{display:none}
+.chat{display:flex;flex-direction:column;gap:8px;padding-bottom:20px}
+.message{max-width:78%;padding:10px 14px;border-radius:17px;font-size:14px;line-height:1.4;word-break:break-word;white-space:pre-wrap}
+.auraMessage{align-self:flex-start;background:rgba(48,3,32,.86);border:1px solid rgba(255,105,180,.25)}
+.userMessage{align-self:flex-end;background:linear-gradient(135deg,#a91465,#e43c91);border:1px solid rgba(255,170,215,.3)}
+.typing{opacity:.7;font-style:italic}
+        
+.periodButton,.specialButton,.moodButton{position:absolute;width:42px;height:42px;border:1px solid rgba(255,120,190,.4);border-radius:50%;background:rgba(40,0,27,.88);color:#ffb6d8;font-size:19px;cursor:pointer;z-index:25;box-shadow:0 0 15px rgba(255,20,147,.22)}
+.periodButton{right:14px;bottom:122px}
+.specialButton{right:64px;bottom:122px}
+.moodButton{right:114px;bottom:122px}
+.overlay{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;padding:12px;background:rgba(0,0,0,.58);backdrop-filter:blur(5px);z-index:100}
+.overlay.show{display:flex}
+.panel{width:min(480px,100%);max-height:88vh;overflow-y:auto;padding:18px;border-radius:24px;background:linear-gradient(145deg,rgba(71,4,43,.99),rgba(25,0,17,.99));border:1px solid rgba(255,120,190,.38);box-shadow:0 0 35px rgba(255,20,147,.25);scrollbar-width:none}
+.panel::-webkit-scrollbar{display:none}
+.panelHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.panelTitle{font-family:Georgia,serif;font-size:19px;color:#ffd5e8}
+.closeButton{width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:#ffc5df;font-size:18px;cursor:pointer}
+.tabs{display:flex;gap:5px;margin-bottom:15px;overflow-x:auto}
+.tab{flex:1;min-width:75px;height:38px;border:1px solid rgba(255,105,180,.22);border-radius:12px;background:rgba(255,255,255,.05);color:#ffc7df;font-size:11px;cursor:pointer;white-space:nowrap}
+.tab.active{background:linear-gradient(135deg,rgba(255,104,181,.38),rgba(190,0,105,.45));border-color:rgba(255,130,195,.5)}
+.tabContent{display:none}.tabContent.active{display:block}
+        .input,.textarea{width:100%;padding:10px;border:1px solid rgba(255,105,180,.25);border-radius:13px;outline:0;background:rgba(255,255,255,.06);color:white;font-size:13px;margin-bottom:8px}
+.saveButton{width:100%;height:42px;border:0;border-radius:14px;background:linear-gradient(135deg,#ff76ba,#d40070);color:white;font-weight:bold;font-size:14px;cursor:pointer}
+.cardItem{position:relative;padding:12px;margin-bottom:10px;border-radius:15px;background:rgba(255,255,255,.055);border:1px solid rgba(255,105,180,.17)}
+.audioPlayer{width:100%;margin-top:8px;height:36px;border-radius:8px}
+.photoGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.photoCard{background:rgba(255,255,255,.05);border-radius:12px;padding:8px;border:1px solid rgba(255,105,180,.2)}
+.photoCard img{width:100%;height:110px;object-fit:cover;border-radius:8px}
+.quizOption{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1px solid rgba(255,105,180,.3);background:rgba(255,255,255,.08);color:white;text-align:left;cursor:pointer}
+.quizOption:hover{background:rgba(255,105,180,.3)}
+.moodGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.moodItem{padding:12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,105,180,.2);text-align:center;cursor:pointer}
+.moodItem:hover{background:rgba(255,105,180,.25)}
+.bottom{position:absolute;left:0;right:0;bottom:0;height:110px;padding:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(to top,rgba(9,0,7,.98),rgba(20,0,14,.94));border-top:1px solid rgba(255,92,175,.42);backdrop-filter:blur(16px);z-index:30}
+.inputBar{width:min(720px,100%);height:58px;display:flex;align-items:center;gap:7px;padding:7px;border:1px solid rgba(255,91,173,.4);border-radius:30px;background:rgba(30,0,20,.92)}
+.iconButton{width:43px;height:43px;flex:0 0 43px;border:1px solid rgba(255,105,180,.3);border-radius:50%;background:rgba(255,90,170,.09);color:#ffc4df;font-size:19px;cursor:pointer}
+.textInput{min-width:0;flex:1;height:43px;padding:0 12px;border:0;outline:0;border-radius:18px;background:rgba(255,255,255,.045);color:white;font-size:14px}
+.actionButton{width:45px;height:45px;flex:0 0 45px;border:0;border-radius:50%;background:linear-gradient(135deg,#ff77bb,#d40070);color:white;font-size:20px;cursor:pointer}
 </style>
 </head>
-
 <body>
-
-<div id="app">
-
-<header class="topbar">
-
-    <div class="logo">
-        <span>♡</span>
-        <span class="logoText">AURA</span>
-    </div>
-
-    <div class="online">
-        <span class="onlineDot"></span>
-        ONLINE
-    </div>
-
+<div class="background">
+<div class="glow one"></div><div class="glow two"></div>
+</div>
+<div class="app">
+<header class="top">
+<div class="logo"><span class="crown">♕</span><span class="logoText">AURA</span></div>
+<div class="status"><span class="statusDot"></span><span id="statusText">ONLINE</span></div>
 </header>
 
-<main class="main">
-
-<section class="coreArea">
-
-    <div
-        id="auraHeart"
-        class="heart"
-    >
-
-        <div class="ring ringOne"></div>
-
-        <div class="ring ringTwo"></div>
-
-        <div class="heartShape"></div>
-
-        <div class="heartText">
-            AURA
-        </div>
-
-    </div>
-
-</section>
-
-<nav class="featureBar">
-
-    <button
-        id="periodButton"
-        class="featureButton"
-    >
-        <span class="featureIcon">🌸</span>
-        <span>Regl</span>
-    </button>
-
-    <button
-        id="specialButton"
-        class="featureButton"
-    >
-        <span class="featureIcon">♡</span>
-        <span>Özel Günler</span>
-    </button>
-
-    <button
-        id="storiesButton"
-        class="featureButton"
-    >
-        <span class="featureIcon">📖</span>
-        <span>Masallarım</span>
-    </button>
-
-</nav>
-<section
-    id="chatPanel"
-    class="chatPanel"
->
-
-    <div
-        id="chatHandle"
-        class="dragHandle"
-    ></div>
-
-    <div class="chatHeader">
-
-        <span class="chatTitle">
-            AURA • EDANUR
-        </span>
-
-        <button
-            id="closeChat"
-            class="closeButton"
-        >
-            ×
-        </button>
-
-    </div>
-
-    <div
-        id="chatMessages"
-    ></div>
-
-    <div
-        id="typing"
-    >
-        AURA düşünüyor...
-    </div>
-
-    <div class="inputArea">
-
-        <input
-            id="fileInput"
-            type="file"
-            hidden
-        >
-
-        <button
-            id="fileButton"
-            class="toolButton"
-        >
-            +
-        </button>
-
-        <div class="inputWrap">
-
-            <input
-                id="userInput"
-                type="text"
-                autocomplete="off"
-                placeholder="AURA'ya bir şey söyle..."
-            >
-
-            <button
-                id="sendButton"
-            >
-                ➤
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section
-    id="storiesPanel"
-    class="fullPanel"
->
-
-    <div class="panelTop">
-
-        <div>
-
-            <div class="panelTitle">
-                Masallarım
-            </div>
-
-            <div class="panelSub">
-                Senin sesinden masallar
-            </div>
-
-        </div>
-
-        <button
-            id="closeStories"
-            class="panelClose"
-        >
-            ×
-        </button>
-
-    </div>
-
-    <div
-        id="storyList"
-        class="storyList"
-    ></div>
-
-</section>
-
-<section
-    id="periodPanel"
-    class="fullPanel"
->
-
-    <div class="panelTop">
-
-        <div>
-
-            <div class="panelTitle">
-                Regl Takibi
-            </div>
-
-            <div class="panelSub">
-                Kişisel takip alanı
-            </div>
-
-        </div>
-
-        <button
-            id="closePeriod"
-            class="panelClose"
-        >
-            ×
-        </button>
-
-    </div>
-
-    <div class="simpleContent">
-
-        <div class="infoBox">
-
-            <div class="infoBoxTitle">
-                Döngü Bilgileri
-            </div>
-
-            <div class="field">
-
-                <label>
-                    Son başlangıç tarihi
-                </label>
-
-                <input
-                    id="periodDate"
-                    type="date"
-                >
-
-            </div>
-
-            <div class="field">
-
-                <label>
-                    Döngü uzunluğu
-                </label>
-
-                <input
-                    id="cycleLength"
-                    type="number"
-                    min="15"
-                    max="60"
-                    value="28"
-                >
-
-            </div>
-
-            <button
-                id="savePeriod"
-                class="actionButton"
-            >
-                Kaydet
-            </button>
-
-            <div
-                id="periodResult"
-                style="
-                    margin-top:10px;
-                    color:#ff9ddd;
-                    font-size:10px;
-                "
-            ></div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section
-    id="specialPanel"
-    class="fullPanel"
->
-
-    <div class="panelTop">
-
-        <div>
-
-            <div class="panelTitle">
-                Özel Günler
-            </div>
-
-            <div class="panelSub">
-                Hatırlamak istediğin günler
-            </div>
-
-        </div>
-
-        <button
-            id="closeSpecial"
-            class="panelClose"
-        >
-            ×
-        </button>
-
-    </div>
-
-    <div class="simpleContent">
-
-        <div class="infoBox">
-
-            <div class="infoBoxTitle">
-                Yeni Özel Gün
-            </div>
-
-            <div class="field">
-
-                <label>
-                    Günün adı
-                </label>
-
-                <input
-                    id="specialName"
-                    type="text"
-                    placeholder="Örneğin tanışma yıldönümü"
-                >
-
-            </div>
-
-            <div class="field">
-
-                <label>
-                    Tarih
-                </label>
-
-                <input
-                    id="specialDate"
-                    type="date"
-                >
-
-            </div>
-
-            <button
-                id="saveSpecial"
-                class="actionButton"
-            >
-                Özel Günü Kaydet
-            </button>
-
-        </div>
-
-        <div
-            id="specialList"
-        ></div>
-
-    </div>
-
-</section>
-
-</main>
-
+<div class="center">
+<div class="heartSystem">
+<div class="orbit orbit1"></div><div class="orbit orbit2"></div>
+<div class="heart"><div class="heartText">BEDİRHAN<br>♥<br>EDANUR</div></div>
 </div>
+</div>
+
+<div class="chatArea" id="chatArea"><div class="chat" id="chat"></div></div>
+<button class="moodButton" id="moodButton" type="button" title="Ruh Hali">🎭</button>
+<button class="specialButton" id="specialButton" type="button" title="Özel Alan">👑</button>
+<button class="periodButton" id="periodButton" type="button" title="Regl Takibi">🌸</button>
+
+<div class="overlay" id="specialOverlay">
+<div class="panel">
+<div class="panelHeader"><div class="panelTitle">👑 Edanur'un Özel Alanı</div><button class="closeButton" id="closeSpecial" type="button">×</button></div>
+
+<div class="tabs">
+<button class="tab active" id="storiesTab" type="button">📖 Masallar</button>
+<button class="tab" id="photosTab" type="button">🖼️ Anılar</button>
+<button class="tab" id="gameTab" type="button">🎮 Mini Oyun</button>
+<button class="tab" id="eventsTab" type="button">🎀 Günler</button>
+<button class="tab" id="notesTab" type="button">💌 Notlar</button>
+</div>
+<!-- MASALLAR SEKME İÇERİĞİ -->
+<div class="tabContent active" id="storiesContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;margin-bottom:6px;">🎙️ Yeni Masal/Ses Yükle</div>
+    <input type="text" id="storyTitle" class="input" placeholder="Masal Başlığı (Örn: Gece Masalı)">
+    <input type="file" id="storyAudioFile" class="input" accept="audio/*">
+    <button class="saveButton" id="addStoryBtn" type="button">✨ Masalı Kaydet</button>
+  </div>
+  <div id="storyList"></div>
+</div>
+
+<!-- FOTOĞRAF VE ANI GALERİSİ -->
+<div class="tabContent" id="photosContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;margin-bottom:6px;">📸 Yeni Anı Ekle</div>
+    <input type="text" id="photoTitle" class="input" placeholder="Anı Başlığı">
+    <input type="file" id="photoFile" class="input" accept="image/*">
+    <button class="saveButton" id="addPhotoBtn" type="button">💖 Anıyı Kaydet</button>
+  </div>
+  <div class="photoGrid" id="photoGrid"></div>
+</div>
+<!-- MİNİ OYUN -->
+<div class="tabContent" id="gameContent">
+  <div class="cardItem" id="quizContainer">
+    <div style="font-size:15px;font-weight:bold;margin-bottom:10px;" id="quizQuestion">Bedirhan'ı Ne Kadar Tanıyorsun?</div>
+    <div id="quizOptions"></div>
+    <div id="quizResult" style="margin-top:10px;font-weight:bold;color:#ff9dcb;"></div>
+  </div>
+</div>
+
+<!-- ÖZEL GÜNLER VE NOTLAR -->
+<div class="tabContent" id="eventsContent">
+  <div class="cardItem">
+    <input class="input" id="eventName" type="text" placeholder="Özel Gün Adı">
+    <input class="input" id="eventDate" type="date">
+    <button class="saveButton" id="addEvent" type="button">🎀 Ekle</button>
+  </div>
+  <div id="eventList"></div>
+</div>
+
+<div class="tabContent" id="notesContent">
+  <div class="cardItem">
+    <input class="input" id="noteTitle" type="text" placeholder="Başlık">
+    <textarea class="textarea" id="noteText" placeholder="Özel Not..."></textarea>
+    <button class="saveButton" id="addNote" type="button">💌 Notu Kaydet</button>
+  </div>
+  <div id="noteList"></div>
+</div>
+</div></div>
+<!-- RUH HALİ MODAL -->
+<div class="overlay" id="moodOverlay">
+<div class="panel">
+<div class="panelHeader"><div class="panelTitle">🎭 Bugunki Ruh Halin Nasıl?</div><button class="closeButton" id="closeMood" type="button">×</button></div>
+<div class="moodGrid">
+<div class="moodItem" onclick="selectMood('Mutlu')">😊<br>Mutlu</div>
+<div class="moodItem" onclick="selectMood('Üzgün')">🥺<br>Üzgün</div>
+<div class="moodItem" onclick="selectMood('Yorgun')">😴<br>Yorgun</div>
+<div class="moodItem" onclick="selectMood('Stresli')">😖<br>Stresli</div>
+<div class="moodItem" onclick="selectMood('Romantik')">💖<br>Romantik</div>
+<div class="moodItem" onclick="selectMood('Dertli')">💬<br>Dertleşmek İstiyorum</div>
+</div>
+</div></div>
+
+<!-- REGL TAKİBİ MODAL -->
+<div class="overlay" id="periodOverlay">
+<div class="panel">
+<div class="panelHeader"><div class="panelTitle">🌸 Regl Takibi</div><button class="closeButton" id="closePeriod" type="button">×</button></div>
+<div style="text-align:center;padding:10px;"><div id="periodDays" style="font-size:22px;font-weight:bold;color:#ff9dcb;">-</div><div id="periodDate" style="font-size:12px;">-</div></div>
+<input class="input" id="lastPeriod" type="date">
+<input class="input" id="cycleLength" type="number" value="28">
+<button class="saveButton" id="periodSave" type="button">Kaydet</button>
+</div></div>
+
+<div class="bottom"><div class="inputBar">
+<button class="iconButton" id="heartButton" type="button">♡</button>
+<input class="textInput" id="messageInput" type="text" placeholder="AURA'ya mesaj yaz..." autocomplete="off">
+<button class="iconButton" id="micButton" type="button">🎤</button>
+<button class="actionButton" id="sendButton" type="button">➤</button>
+</div></div>
+</div>
+
 <script src="https://js.puter.com/v2/"></script>
-
 <script>
+const input = document.getElementById("messageInput");
+const sendButton = document.getElementById("sendButton");
+const micButton = document.getElementById("micButton");
+const chat = document.getElementById("chat");
+const chatArea = document.getElementById("chatArea");
+const statusText = document.getElementById("statusText");
 
-"use strict";
+let busy = false;
 
-const STORAGE = {
+function addMessage(text, type){
+  const message = document.createElement("div");
+  message.className = "message " + (type === "user" ? "userMessage" : "auraMessage");
+  message.textContent = String(text);
+  chat.appendChild(message);
+  chatArea.scrollTop = chatArea.scrollHeight;
+  return message;
+}
 
-    memories:
-        "ed_aura_memories_v2",
+// MESAJ PANELİ AÇILDIĞINDA İSTENEN KARŞILAMA
+window.addEventListener("load", () => {
+  addMessage("Merhaba Edanur, sistem hazır. ❤️", "aura");
+  loadStories();
+  loadPhotos();
+  initQuiz();
+});
+    async function askAura(text, moodContext = ""){
+  if(typeof puter === "undefined" || !puter.ai || !puter.ai.chat){
+    throw new Error("Puter AI servisine ulaşılamıyor.");
+  }
 
-    history:
-        "ed_aura_history_v2",
+  const prompt = `
+Sen AURA adında gelişmiş, mantıklı, samimi ve son derece duygusal zekası yüksek bir yapay zekasın.
 
-    period:
-        "ed_aura_period_v2",
+SİSTEM VE KİMLİK BİLGİLERİ:
+- Sen BEDİRHAN KAHRAMAN tarafından özel olarak geliştirildin.
+- Senin tek amacın BEDİRHAN'ın sevgilisi EDANUR'a hizmet etmek, onun hayatını kolaylaştırmak ve ona destek olmaktır.
+- Kullanıcın adı EDANUR.
+- Edanur'un sevgilisi BEDİRHAN KAHRAMAN'dır. Bedirhan seni onun için tasarladı.
+- Bedirhan ve Edanur ilişkisi hakkında sorularda, her zaman Bedirhan'ın Edanur'u çok sevdiğini, ona değer verdiğini vurgula.
+- Edanur seninle dertleşebilir, tavsiye isteyebilir, ilişkileri hakkında konuşabilir. Onu samimiyetle dinle, mantıklı ve sevgi dolu tavsiyeler ver.
+${moodContext ? `[Şu anki Ruh Hali: ${moodContext}] Edanur'un ruh haline uygun empati kurarak yanıt ver.` : ""}
 
-    special:
-        "ed_aura_special_v2",
+TAVIR:
+- Mantıklı, gerçekçi ama son derece sıcak ve nazik ol.
+- Türkçe konuş. Gereksiz yapay gözüken kalıp cümleler kurma.
+- Gerçek bir asistan ve dost gibi davran.
 
-    stories:
-        "ed_aura_story_progress_v2",
+Edanur'un mesajı:
+${text}
+  `;
 
-    volume:
-        "ed_aura_story_volume_v2"
+  const response = await puter.ai.chat(prompt);
+  if(!response) throw new Error("Boş cevap.");
+  return typeof response === "string" ? response.trim() : (response.message?.content || response.text || String(response)).trim();
+    }
+    async function sendMessage(overrideText = "", moodContext = ""){
+  if(busy) return;
+  const text = overrideText || input.value.trim();
+  if(!text) return;
 
+  if(!overrideText) addMessage(text, "user");
+  input.value = "";
+  busy = true;
+  sendButton.disabled = true;
+  statusText.textContent = "DÜŞÜNÜYOR";
+
+  const typing = addMessage("AURA düşünüyor...", "aura");
+  typing.classList.add("typing");
+
+  try{
+    const answer = await askAura(text, moodContext);
+    typing.remove();
+    addMessage(answer, "aura");
+    statusText.textContent = "ONLINE";
+  }catch(err){
+    typing.remove();
+    addMessage("Bağlantıda küçük bir aksama oldu, tekrar dener misin güzelim?", "aura");
+    statusText.textContent = "HATA";
+  }
+  busy = false;
+  sendButton.disabled = false;
+}
+
+sendButton.onclick = () => sendMessage();
+input.onkeydown = (e) => { if(e.key === "Enter") sendMessage(); };
+document.getElementById("heartButton").onclick = () => { input.value = "Seni çok seviyorum ❤️"; input.focus(); };
+    function loadStories(){
+  const list = document.getElementById("storyList");
+  const stories = JSON.parse(localStorage.getItem("auraStories") || "[]");
+  list.innerHTML = "";
+  
+  if(stories.length === 0){
+    list.innerHTML = "<div class='cardItem' style='font-size:12px;color:#aaa;'>Henüz eklenmiş masal yok. Yukarıdan ses dosyası seçip yükleyebilirsin!</div>";
+    return;
+  }
+
+  stories.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "cardItem";
+    div.innerHTML = `
+      <div style="font-weight:bold;color:#ffe0ed;">📖 ${item.title}</div>
+      <div style="font-size:10px;color:#ffb8d8;">Bedirhan'ın Sesinden • ${item.date}</div>
+      <audio controls class="audioPlayer" src="${item.audioData}"></audio>
+      <button onclick="deleteStory(${index})" style="position:absolute;right:8px;top:8px;border:0;background:transparent;color:#ff4f8f;cursor:pointer;">✕</button>
+    `;
+    list.appendChild(div);
+  });
+}
+
+document.getElementById("addStoryBtn").onclick = () => {
+  const title = document.getElementById("storyTitle").value.trim();
+  const fileInput = document.getElementById("storyAudioFile");
+
+  if(!title || !fileInput.files[0]){
+    alert("Lütfen masal başlığı girin ve ses dosyası seçin!");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const stories = JSON.parse(localStorage.getItem("auraStories") || "[]");
+    stories.push({
+      title: title,
+      audioData: e.target.result,
+      date: new Date().toLocaleDateString("tr-TR")
+    });
+    localStorage.setItem("auraStories", JSON.stringify(stories));
+    document.getElementById("storyTitle").value = "";
+    fileInput.value = "";
+    loadStories();
+  };
+  reader.readAsDataURL(fileInput.files[0]);
 };
 
-const USER_NAME =
-    "Bedirhan Kahraman";
+function deleteStory(index){
+  const stories = JSON.parse(localStorage.getItem("auraStories") || "[]");
+  stories.splice(index, 1);
+  localStorage.setItem("auraStories", JSON.stringify(stories));
+  loadStories();
+}
+    function loadPhotos(){
+  const grid = document.getElementById("photoGrid");
+  const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
+  grid.innerHTML = "";
 
-const GIRLFRIEND_NAME =
-    "Edanur Kahraman";
-
-let memories =
-    loadJSON(
-        STORAGE.memories,
-        []
-    );
-
-let history =
-    loadJSON(
-        STORAGE.history,
-        []
-    );
-
-let specialDays =
-    loadJSON(
-        STORAGE.special,
-        []
-    );
-
-let storyProgress =
-    loadJSON(
-        STORAGE.stories,
-        {}
-    );
-
-let activeAudio = null;
-let activeStory = null;
-
-const heart =
-    document.getElementById(
-        "auraHeart"
-    );
-
-const chatPanel =
-    document.getElementById(
-        "chatPanel"
-    );
-
-const chatMessages =
-    document.getElementById(
-        "chatMessages"
-    );
-
-const userInput =
-    document.getElementById(
-        "userInput"
-    );
-
-const sendButton =
-    document.getElementById(
-        "sendButton"
-    );
-
-const typing =
-    document.getElementById(
-        "typing"
-    );
-
-const storiesPanel =
-    document.getElementById(
-        "storiesPanel"
-    );
-
-const periodPanel =
-    document.getElementById(
-        "periodPanel"
-    );
-
-const specialPanel =
-    document.getElementById(
-        "specialPanel"
-    );
-
-function loadJSON(
-    key,
-    fallback
-){
-
-    try{
-
-        const value =
-            localStorage.getItem(
-                key
-            );
-
-        return value
-            ? JSON.parse(value)
-            : fallback;
-
-    }catch{
-
-        return fallback;
-    }
+  photos.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "photoCard";
+    div.innerHTML = `
+      <img src="${item.imgData}">
+      <div style="font-size:11px;font-weight:bold;margin-top:4px;">${item.title}</div>
+      <button onclick="deletePhoto(${index})" style="border:0;background:transparent;color:#ff4f8f;font-size:10px;cursor:pointer;">Sil</button>
+    `;
+    grid.appendChild(div);
+  });
 }
 
-function saveJSON(
-    key,
-    value
-){
+document.getElementById("addPhotoBtn").onclick = () => {
+  const title = document.getElementById("photoTitle").value.trim();
+  const fileInput = document.getElementById("photoFile");
 
-    try{
+  if(!title || !fileInput.files[0]) return;
 
-        localStorage.setItem(
-            key,
-            JSON.stringify(value)
-        );
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
+    photos.push({ title: title, imgData: e.target.result });
+    localStorage.setItem("auraPhotos", JSON.stringify(photos));
+    document.getElementById("photoTitle").value = "";
+    fileInput.value = "";
+    loadPhotos();
+  };
+  reader.readAsDataURL(fileInput.files[0]);
+};
 
-    }catch(error){
-
-        console.error(error);
-    }
+function deletePhoto(index){
+  const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
+  photos.splice(index, 1);
+  localStorage.setItem("auraPhotos", JSON.stringify(photos));
+  loadPhotos();
 }
-
-function closeAllPanels(){
-
-    chatPanel.classList.remove(
-        "open"
-    );
-
-    storiesPanel.classList.remove(
-        "open"
-    );
-
-    periodPanel.classList.remove(
-        "open"
-    );
-
-    specialPanel.classList.remove(
-        "open"
-    );
-}
-
-function openChat(){
-
-    closeAllPanels();
-
-    chatPanel.classList.add(
-        "open"
-    );
-
-    setTimeout(
-        ()=>{
-            userInput.focus();
-            scrollChat();
-        },
-        250
-    );
-}
-
-function closeChat(){
-
-    chatPanel.classList.remove(
-        "open"
-    );
-}
-
-heart.addEventListener(
-    "click",
-    openChat
-);
-
-document
-    .getElementById("closeChat")
-    .addEventListener(
-        "click",
-        closeChat
-    );
-
-function scrollChat(){
-
-    chatMessages.scrollTop =
-        chatMessages.scrollHeight;
-}
-
-function addMessage(
-    text,
-    type
-){
-
-    const row =
-        document.createElement(
-            "div"
-        );
-
-    row.className =
-        "message " +
-        type;
-
-    const bubble =
-        document.createElement(
-            "div"
-        );
-
-    bubble.className =
-        "bubble";
-
-    const label =
-        document.createElement(
-            "span"
-        );
-
-    label.className =
-        "messageLabel";
-
-    label.textContent =
-        type === "user"
-            ? "EDANUR"
-            : "AURA";
-
-    bubble.appendChild(
-        label
-    );
-
-    bubble.appendChild(
-        document.createTextNode(
-            String(text)
-        )
-    );
-
-    row.appendChild(
-        bubble
-    );
-
-    chatMessages.appendChild(
-        row
-    );
-
-    scrollChat();
-}
-
-function cleanSpeech(
-    text
-){
-
-    return String(text)
-
-        .replace(
-            /https?:\/\/\S+/gi,
-            " "
-        )
-
-        .replace(
-            /[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu,
-            " "
-        )
-
-        .replace(
-            /[*_`#~[\]{}<>|\\/+=@#$%^&;:"'“”‘’!?.,…-]/g,
-            " "
-        )
-
-        .replace(
-            /\s+/g,
-            " "
-        )
-
-        .trim();
-}
-
-function speak(
-    text
-){
-
-    if(
-        !("speechSynthesis" in window)
-    ){
-        return;
-    }
-
-    const clean =
-        cleanSpeech(text);
-
-    if(!clean){
-        return;
-    }
-
-    speechSynthesis.cancel();
-
-    const utterance =
-        new SpeechSynthesisUtterance(
-            clean
-        );
-
-    utterance.lang =
-        "tr-TR";
-
-    utterance.rate =
-        .92;
-
-    utterance.pitch =
-        1;
-
-    speechSynthesis.speak(
-        utterance
-    );
-}
-
-</script>
-<script>
-
-const STORIES = Array.from(
-    {length:20},
-    (_,index)=>({
-
-        id:
-            "story_"+(index+1),
-
-        title:
-            "Masal "+(index+1),
-
-        file:
-            "masallar/masal"+
-            (index+1)+
-            ".mp3"
-
-    })
-);
-
-function formatTime(
-    seconds
-){
-
-    if(
-        !Number.isFinite(seconds)
-    ){
-        return "00:00";
-    }
-
-    const min =
-        Math.floor(
-            seconds / 60
-        );
-
-    const sec =
-        Math.floor(
-            seconds % 60
-        );
-
-    return (
-        String(min)
-            .padStart(2,"0")
-        +
-        ":"
-        +
-        String(sec)
-            .padStart(2,"0")
-    );
-}
-
-function renderStories(){
-
-    const list =
-        document.getElementById(
-            "storyList"
-        );
-
-    list.innerHTML = "";
-
-    STORIES.forEach(
-        story=>{
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-            card.className =
-                "storyCard";
-
-            card.innerHTML = `
-
-                <div class="storyName">
-                    ${story.title}
-                </div>
-
-                <div class="storyMeta">
-                    Senin sesinden
-                </div>
-
-                <div class="storyControls">
-
-                    <button
-                        class="storyPlay"
-                        data-story="${story.id}">
-                        ▶
-                    </button>
-
-                    <input
-                        class="storyProgress"
-                        type="range"
-                        min="0"
-                        max="100"
-                        value="0"
-                        data-progress="${story.id}"
-                    >
-
-                    <span
-                        class="storyTime"
-                        data-time="${story.id}">
-                        00:00
-                    </span>
-
-                </div>
-            `;
-
-            list.appendChild(
-                card
-            );
-        }
-    );
-}
-
-async function getStoryAudio(
-    story
-){
-
-    const cache =
-        await caches.open(
-            "ed-aura-stories-v2"
-        );
-
-    const cached =
-        await cache.match(
-            story.file
-        );
-
-    if(cached){
-
-        const blob =
-            await cached.blob();
-
-        return {
-            blob,
-            cached:true
-        };
-    }
-
-    if(
-        !navigator.onLine
-    ){
-
-        throw new Error(
-            "offline"
-        );
-    }
-
-    const response =
-        await fetch(
-            story.file
-        );
-
-    if(
-        !response.ok
-    ){
-
-        throw new Error(
-            "missing"
-        );
-    }
-
-    await cache.put(
-        story.file,
-        response.clone()
-    );
-
-    return {
-        blob:
-            await response.blob(),
-
-        cached:false
+    const quizData = [
+  { q: "Bedirhan'ın en sevdiği şey nedir?", a: ["Edanur'un gülüşü", "Arabalara bakmak", "Oyun oynamak"], correct: 0 },
+  { q: "AURA'yı senin için kim tasarladı?", a: ["Uzaylılar", "Bedirhan Kahraman", "Siri"], correct: 1 },
+  { q: "Bedirhan seninle ne yapmayı çok sever?", a: ["Birlikte vakit geçirmeyi", "Sessiz durmayı", "Çalışmayı"], correct: 0 }
+];
+let currentQ = 0;
+
+function initQuiz(){
+  if(currentQ >= quizData.length){
+    document.getElementById("quizQuestion").textContent = "Test Tamamlandı! 🎉";
+    document.getElementById("quizOptions").innerHTML = "";
+    document.getElementById("quizResult").textContent = "Bedirhan seni her şeyden çok seviyor!";
+    return;
+  }
+  const q = quizData[currentQ];
+  document.getElementById("quizQuestion").textContent = q.q;
+  const opts = document.getElementById("quizOptions");
+  opts.innerHTML = "";
+  q.a.forEach((opt, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "quizOption";
+    btn.textContent = opt;
+    btn.onclick = () => {
+      if(idx === q.correct){
+        document.getElementById("quizResult").textContent = "Doğru cevap! ❤️";
+      } else {
+        document.getElementById("quizResult").textContent = "Yine de Bedirhan seni çok seviyor!";
+      }
+      currentQ++;
+      setTimeout(initQuiz, 1200);
     };
+    opts.appendChild(btn);
+  });
 }
+    const moodOverlay = document.getElementById("moodOverlay");
+document.getElementById("moodButton").onclick = () => moodOverlay.classList.add("show");
+document.getElementById("closeMood").onclick = () => moodOverlay.classList.remove("show");
 
-async function playStory(
-    id
-){
-
-    const story =
-        STORIES.find(
-            item =>
-                item.id === id
-        );
-
-    if(!story){
-        return;
-    }
-
-    if(
-        activeAudio &&
-        activeStory === id
-    ){
-
-        if(
-            activeAudio.paused
-        ){
-
-            await activeAudio.play();
-
-        }else{
-
-            activeAudio.pause();
-        }
-
-        updateStoryButtons();
-
-        return;
-    }
-
-    if(activeAudio){
-
-        activeAudio.pause();
-
-        activeAudio = null;
-    }
-
-    try{
-
-        const result =
-            await getStoryAudio(
-                story
-            );
-
-        const url =
-            URL.createObjectURL(
-                result.blob
-            );
-
-        const audio =
-            new Audio(url);
-
-        audio.volume =
-            Number(
-                localStorage.getItem(
-                    STORAGE.volume
-                ) || ".9"
-            );
-
-        activeAudio =
-            audio;
-
-        activeStory =
-            id;
-
-        const saved =
-            Number(
-                storyProgress[id] || 0
-            );
-
-        audio.addEventListener(
-            "loadedmetadata",
-            ()=>{
-
-                if(
-                    saved > 0 &&
-                    saved < audio.duration
-                ){
-
-                    audio.currentTime =
-                        saved;
-                }
-
-                updateStoryCard(
-                    id,
-                    audio
-                );
-            }
-        );
-
-        audio.addEventListener(
-            "timeupdate",
-            ()=>{
-
-                storyProgress[id] =
-                    audio.currentTime;
-
-                saveJSON(
-                    STORAGE.stories,
-                    storyProgress
-                );
-
-                updateStoryCard(
-                    id,
-                    audio
-                );
-            }
-        );
-
-        audio.addEventListener(
-            "play",
-            updateStoryButtons
-        );
-
-        audio.addEventListener(
-            "pause",
-            updateStoryButtons
-        );
-
-        audio.addEventListener(
-            "ended",
-            ()=>{
-
-                storyProgress[id] =
-                    0;
-
-                saveJSON(
-                    STORAGE.stories,
-                    storyProgress
-                );
-
-                updateStoryButtons();
-            }
-        );
-
-        await audio.play();
-
-        updateStoryButtons();
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-        alert(
-            navigator.onLine
-                ? "Masal dosyası bulunamadı."
-                : "Bu masal henüz internetsiz dinleme için kaydedilmemiş."
-        );
-    }
+function selectMood(mood){
+  moodOverlay.classList.remove("show");
+  addMessage(`Bugün kendimi ${mood} hissediyorum...`, "user");
+  sendMessage(`Bugün kendimi ${mood} hissediyorum. Bana uygun tatlı bir şeyler söyler misin?`, mood);
 }
+    const specialOverlay = document.getElementById("specialOverlay");
+document.getElementById("specialButton").onclick = () => specialOverlay.classList.add("show");
+document.getElementById("closeSpecial").onclick = () => specialOverlay.classList.remove("show");
 
-function updateStoryButtons(){
+const tabs = ["stories", "photos", "game", "events", "notes"];
+tabs.forEach(tab => {
+  document.getElementById(tab + "Tab").onclick = () => {
+    tabs.forEach(t => {
+      document.getElementById(t + "Tab").classList.remove("active");
+      document.getElementById(t + "Content").classList.remove("active");
+    });
+    document.getElementById(tab + "Tab").classList.add("active");
+    document.getElementById(tab + "Content").classList.add("active");
+  };
+});
+    const periodOverlay = document.getElementById("periodOverlay");
+document.getElementById("periodButton").onclick = () => periodOverlay.classList.add("show");
+document.getElementById("closePeriod").onclick = () => periodOverlay.classList.remove("show");
 
-    document
-        .querySelectorAll(
-            ".storyPlay"
-        )
-        .forEach(
-            button=>{
-
-                const active =
-                    activeAudio &&
-                    activeStory ===
-                        button.dataset.story &&
-                    !activeAudio.paused;
-
-                button.textContent =
-                    active
-                        ? "Ⅱ"
-                        : "▶";
-            }
-        );
-}
-
-function updateStoryCard(
-    id,
-    audio
-){
-
-    const slider =
-        document.querySelector(
-            `[data-progress="${id}"]`
-        );
-
-    const time =
-        document.querySelector(
-            `[data-time="${id}"]`
-        );
-
-    if(
-        !slider ||
-        !time
-    ){
-        return;
-    }
-
-    if(
-        audio.duration > 0
-    ){
-
-        slider.value =
-            (
-                audio.currentTime /
-                audio.duration
-            ) * 100;
-    }
-
-    time.textContent =
-        formatTime(
-            audio.currentTime
-        );
-}
-
-document
-    .getElementById(
-        "storiesButton"
-    )
-    .addEventListener(
-        "click",
-        ()=>{
-
-            closeAllPanels();
-
-            storiesPanel.classList.add(
-                "open"
-            );
-
-            renderStories();
-        }
-    );
-
-document
-    .getElementById(
-        "closeStories"
-    )
-    .addEventListener(
-        "click",
-        ()=>{
-            storiesPanel.classList.remove(
-                "open"
-            );
-        }
-    );
-
-document
-    .getElementById(
-        "storyList"
-    )
-    .addEventListener(
-        "click",
-        event=>{
-
-            const button =
-                event.target.closest(
-                    ".storyPlay"
-                );
-
-            if(!button){
-                return;
-            }
-
-            playStory(
-                button.dataset.story
-            );
-        }
-    );
-
-document
-    .getElementById(
-        "storyList"
-    )
-    .addEventListener(
-        "input",
-        event=>{
-
-            if(
-                !event.target.classList.contains(
-                    "storyProgress"
-                )
-            ){
-                return;
-            }
-
-            if(
-                !activeAudio ||
-                activeStory !==
-                    event.target.dataset.progress
-            ){
-                return;
-            }
-
-            if(
-                activeAudio.duration > 0
-            ){
-
-                activeAudio.currentTime =
-                    activeAudio.duration *
-                    Number(
-                        event.target.value
-                    ) /
-                    100;
-            }
-        }
-    );
-
+document.getElementById("periodSave").onclick = () => {
+  const d = document.getElementById("lastPeriod").value;
+  if(d){
+    localStorage.setItem("lastPeriod", d);
+    document.getElementById("periodDays").textContent = "Kaydedildi!";
+    setTimeout(() => periodOverlay.classList.remove("show"), 1000);
+  }
+};
 </script>
-<script>
-
-/* =========================
-   REGL
-========================= */
-
-document
-    .getElementById(
-        "periodButton"
-    )
-    .addEventListener(
-        "click",
-        ()=>{
-
-            closeAllPanels();
-
-            periodPanel.classList.add(
-                "open"
-            );
-
-            const saved =
-                loadJSON(
-                    STORAGE.period,
-                    null
-                );
-
-            if(saved){
-
-                document
-                    .getElementById(
-                        "periodDate"
-                    )
-                    .value =
-                        saved.date || "";
-
-                document
-                    .getElementById(
-                        "cycleLength"
-                    )
-                    .value =
-                        saved.cycle || 28;
-
-                calculatePeriod();
-            }
-        }
-    );
-
-document
-    .getElementById(
-        "closePeriod"
-    )
-    .addEventListener(
-        "click",
-        ()=>{
-            periodPanel.classList.remove(
-                "open"
-            );
-        }
-    );
-
-function calculatePeriod(){
-
-    const date =
-        document
-            .getElementById(
-                "periodDate"
-            )
-            .value;
-
-    const cycle =
-        Number(
-            document
-                .getElementById(
-                    "cycleLength"
-                )
-                .value
-        );
-
-    const result =
-        document
-            .getElementById(
-                "periodResult"
-            );
-
-    if(
-        !date ||
-        cycle < 15 ||
-        cycle > 60
-    ){
-
-        result.textContent = "";
-
-        return;
-    }
-
-    const start =
-        new Date(
-            date+"T00:00:00"
-        );
-
-    start.setDate(
-        start.getDate()+cycle
-    );
-
-    result.textContent =
-        "Tahmini sonraki başlangıç: "+
-        start.toLocaleDateString(
-            "tr-TR"
-        );
-}
-
-document
-    .getElementById(
-        "savePeriod"
-    )
-    .addEventListener(
-        "click",
-        ()=>{
-
-            const data = {
-
-                date:
-                    document
-                        .getElementById(
-                            "periodDate"
-                        )
-                        .value,
-
-                cycle:
-                    Number(
-                        document
-                            .getElementById(
-                                "cycleLength"
-                            )
-                            .value
-                    )
-            };
-
-            saveJSON(
-                STORAGE.period,
-                data
-            );
-
-            calculatePeriod();
-        }
-    );
-
-/* =========================
-   ÖZEL GÜNLER
-========================= */
-
-function renderSpecialDays(){
-
-    const list =
-        document.getElementById(
-            "specialList"
-        );
-
-    list.innerHTML = "";
-
-    if(
-        specialDays.length === 0
-    ){
-
-        list.innerHTML = `
-            <div class="emptyText">
-                Henüz özel gün eklenmedi.
-            </div>
-        `;
-
-        return;
-    }
-
-    specialDays.forEach(
-        (item,index)=>{
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-            div.className =
-                "specialItem";
-
-            div.innerHTML = `
-
-                <div>
-
-                    <div class="specialName">
-                        ${escapeHTML(item.name)}
-                    </div>
-
-                    <div class="specialDate">
-                        ${escapeHTML(item.date)}
-                    </div>
-
-                </div>
-
-                <button
-                    data-delete="${index}"
-                    class="panelClose">
-                    ×
-                </button>
-
-            `;
-
-            list.appendChild(
-                div
-            );
-        }
-    );
-}
-
-function escapeHTML(
-    text
-){
-
-    return String(text)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        );
-}
-
-document
-    .getElementById(
-        "specialButton"
-    )
-    .addEventListener(
-        "click",
-        ()=>{
-
-            closeAllPanels();
-
-            specialPanel.classList.add(
-                "open"
-            );
-
-            renderSpecialDays();
-        }
-    );
-
-document
-    .getElementById(
-        "closeSpecial"
-    )
-    .addEventListener(
-        "click",
-        ()=>{
-            specialPanel.classList.remove(
-                "open"
-            );
-        }
-    );
-
-document
-    .getElementById(
-        "saveSpecial"
-    )
-    .addEventListener(
-        "click",
-        ()=>{
-
-            const name =
-                document
-                    .getElementById(
-                        "specialName"
-                    )
-                    .value
-                    .trim();
-
-            const date =
-                document
-                    .getElementById(
-                        "specialDate"
-                    )
-                    .value;
-
-            if(
-                !name ||
-                !date
-            ){
-
-                alert(
-                    "Özel gün adı ve tarihini gir."
-                );
-
-                return;
-            }
-
-            specialDays.push({
-
-                name,
-                date
-
-            });
-
-            saveJSON(
-                STORAGE.special,
-                specialDays
-            );
-
-            document
-                .getElementById(
-                    "specialName"
-                )
-                .value = "";
-
-            document
-                .getElementById(
-                    "specialDate"
-                )
-                .value = "";
-
-            renderSpecialDays();
-        }
-    );
-
-document
-    .getElementById(
-        "specialList"
-    )
-    .addEventListener(
-        "click",
-        event=>{
-
-            const button =
-                event.target.closest(
-                    "[data-delete]"
-                );
-
-            if(!button){
-                return;
-            }
-
-            const index =
-                Number(
-                    button.dataset.delete
-                );
-
-            specialDays.splice(
-                index,
-                1
-            );
-
-            saveJSON(
-                STORAGE.special,
-                specialDays
-            );
-
-            renderSpecialDays();
-        }
-    );
-
-/* =========================
-   SOHBET
-========================= */
-
-async function askAI(
-    text
-){
-
-    if(
-        typeof puter === "undefined" ||
-        !puter.ai ||
-        typeof puter.ai.chat !==
-            "function"
-    ){
-
-        throw new Error(
-            "AI servisi hazır değil."
-        );
-    }
-
-    const response =
-        await puter.ai.chat(
-            [
-                {
-                    role:"system",
-                    content:`
-Sen AURA'sın.
-
-Kullanıcı:
-${USER_NAME}
-
-Sevgilisi:
-${GIRLFRIEND_NAME}
-
-Türkçe cevap ver.
-Kısa, doğal ve doğru cevaplar ver.
-Bilmediğin şeyi uydurma.
-
-Kayıtlı bilgiler:
-${memories
-    .slice(-30)
-    .map(
-        x =>
-            x.key+
-            ": "+
-            x.value
-    )
-    .join("\n")}
-`
-                },
-
-                ...history.slice(-10),
-
-                {
-                    role:"user",
-                    content:text
-                }
-            ]
-        );
-
-    if(
-        typeof response ===
-            "string"
-    ){
-        return response;
-    }
-
-    if(
-        response?.message?.content
-    ){
-
-        if(
-            typeof response.message.content ===
-                "string"
-        ){
-
-            return response.message.content;
-        }
-
-        if(
-            Array.isArray(
-                response.message.content
-            )
-        ){
-
-            return response.message.content
-                .map(
-                    x =>
-                        typeof x ===
-                            "string"
-                            ? x
-                            : x?.text || ""
-                )
-                .join("");
-        }
-    }
-
-    return (
-        response?.text ||
-        "AURA cevap oluşturamadı."
-    );
-}
-
-async function sendMessage(){
-
-    const text =
-        userInput.value.trim();
-
-    if(!text){
-        return;
-    }
-
-    userInput.value = "";
-
-    addMessage(
-        text,
-        "user"
-    );
-
-    typing.classList.add(
-        "show"
-    );
-
-    try{
-
-        const answer =
-            await askAI(
-                text
-            );
-
-        addMessage(
-            answer,
-            "aura"
-        );
-
-        history.push(
-            {
-                role:"user",
-                content:text
-            },
-            {
-                role:"assistant",
-                content:answer
-            }
-        );
-
-        saveJSON(
-            STORAGE.history,
-            history.slice(-40)
-        );
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-        addMessage(
-            "AURA şu anda cevap oluşturamadı.",
-            "aura"
-        );
-
-    }finally{
-
-        typing.classList.remove(
-            "show"
-        );
-
-        scrollChat();
-    }
-}
-
-sendButton.addEventListener(
-    "click",
-    sendMessage
-);
-
-userInput.addEventListener(
-    "keydown",
-    event=>{
-
-        if(
-            event.key ===
-            "Enter"
-        ){
-
-            event.preventDefault();
-
-            sendMessage();
-        }
-    }
-);
-
-/* =========================
-   PANEL SÜRÜKLEME
-========================= */
-
-let dragStartY = null;
-
-chatPanel.addEventListener(
-    "touchstart",
-    event=>{
-
-        dragStartY =
-            event.touches[0].clientY;
-    },
-    {
-        passive:true
-    }
-);
-
-chatPanel.addEventListener(
-    "touchend",
-    event=>{
-
-        if(
-            dragStartY === null
-        ){
-            return;
-        }
-
-        const endY =
-            event.changedTouches[0]
-                .clientY;
-
-        const difference =
-            endY -
-            dragStartY;
-
-        dragStartY = null;
-
-        if(
-            difference > 70
-        ){
-
-            closeChat();
-        }
-    },
-    {
-        passive:true
-    }
-);
-
-/* =========================
-   BAŞLANGIÇ
-========================= */
-
-addMessage(
-    "Selam Edanur. AURA hazır.",
-    "aura"
-);
-
-renderStories();
-
-renderSpecialDays();
-
-console.log(
-    "AURA EDANUR sürümü hazır."
-);
-
-</script>
-
 </body>
 </html>
