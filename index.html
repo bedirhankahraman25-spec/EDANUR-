@@ -38,8 +38,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 @keyframes heartbeat{0%,100%{transform:rotate(-45deg) scale(1)}50%{transform:rotate(-45deg) scale(1.08)}}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes spinReverse{from{transform:rotate(360deg)}to{transform:rotate(0)}}
-    
-.chatArea{position:absolute;left:0;right:0;top:58px;bottom:118px;padding:12px max(12px,calc((100% - 720px)/2));overflow-y:auto;scrollbar-width:none;z-index:5}
+    .chatArea{position:absolute;left:0;right:0;top:58px;bottom:118px;padding:12px max(12px,calc((100% - 720px)/2));overflow-y:auto;scrollbar-width:none;z-index:5}
 .chatArea::-webkit-scrollbar{display:none}
 .chat{display:flex;flex-direction:column;gap:8px;padding-bottom:20px}
 .message{max-width:78%;padding:10px 14px;border-radius:17px;font-size:14px;line-height:1.4;word-break:break-word;white-space:pre-wrap}
@@ -85,7 +84,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .actionButton{width:45px;height:45px;flex:0 0 45px;border:0;border-radius:50%;background:linear-gradient(135deg,#ff77bb,#d40070);color:white;font-size:20px;cursor:pointer}
 </style>
 </head>
-<body>
+  <body>
 <div class="background">
 <div class="glow one"></div><div class="glow two"></div>
 <div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
@@ -111,7 +110,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <button class="moodButton" id="moodButton" type="button" title="Ruh Hali">🎭</button>
 <button class="specialButton" id="specialButton" type="button" title="Özel Alan">👑</button>
 <button class="periodButton" id="periodButton" type="button" title="Regl Takibi">🌸</button>
-<div class="overlay" id="specialOverlay">
+    <div class="overlay" id="specialOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">👑 Edanur'un Özel Alanı</div><button class="closeButton" id="closeSpecial" type="button">×</button></div>
 
@@ -129,7 +128,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
     <div style="font-weight:bold;margin-bottom:6px;">🎙️ Masal / Ses Kaydı Yükle</div>
     <input type="text" id="storyTitle" class="input" placeholder="Masal Başlığı (Örn: Tatlı Rüyalar)">
     <input type="file" id="storyAudioFile" class="input" accept="audio/*">
-    <button class="saveButton" id="addStoryBtn" type="button">✨ Masalı Kaydet</button>
+    <button class="saveButton" id="addStoryBtn" type="button">✨ Masalı Kaydet (Bulut)</button>
   </div>
   <div id="storyList"></div>
 </div>
@@ -174,7 +173,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div>
 
 </div></div>
-<!-- RUH HALİ MODAL -->
+   <!-- RUH HALİ MODAL -->
 <div class="overlay" id="moodOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">🎭 Bugünkü Ruh Halin Nasıl?</div><button class="closeButton" id="closeMood" type="button">×</button></div>
@@ -211,7 +210,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div>
 
 <script src="https://js.puter.com/v2/"></script>
-<script>
+    <script>
 const input = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
 const micButton = document.getElementById("micButton");
@@ -230,7 +229,6 @@ function addMessage(text, type){
   return message;
 }
 
-// MESAJ PANELİ AÇILDIĞINDA İSTENEN KARŞILAMA
 window.addEventListener("load", () => {
   addMessage("Merhaba Edanur, sistem hazır. ❤️", "aura");
   loadStories();
@@ -239,7 +237,6 @@ window.addEventListener("load", () => {
   loadPeriodData();
 });
 
-// AURA YAPAY ZEKA BEYNİ VE BİLGİ ALANI
 async function askAura(text, moodContext = ""){
   if(typeof puter === "undefined" || !puter.ai || !puter.ai.chat){
     throw new Error("Puter AI hazır değil.");
@@ -270,7 +267,7 @@ ${text}
   if(!response) throw new Error("Boş cevap.");
   return typeof response === "string" ? response.trim() : (response.message?.content || response.text || String(response)).trim();
 }
-    async function sendMessage(overrideText = "", moodContext = ""){
+       async function sendMessage(overrideText = "", moodContext = ""){
   if(busy) return;
   const text = overrideText || input.value.trim();
   if(!text) return;
@@ -306,7 +303,6 @@ sendButton.onclick = (e) => { e.preventDefault(); sendMessage(); };
 input.onkeydown = (e) => { if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); sendMessage(); } };
 document.getElementById("heartButton").onclick = () => { input.value = "Seni seviyorum ❤️"; input.focus(); };
 
-/* SESLİ MESAJ DİNLEME */
 let recognition = null;
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -325,28 +321,35 @@ if(SpeechRecognition){
 } else {
   micButton.onclick = () => addMessage("Tarayıcınız sesli konuşmayı desteklemiyor.", "aura");
 }
-    /* MASALLAR BÖLÜMÜ (KUSURSUZ ÇALIŞAN SES OYNATICI) */
-function loadStories(){
+        /* MASALLAR BÖLÜMÜ (PUTER BULUT SENKRONİZASYONLU) */
+async function loadStories(){
   const list = document.getElementById("storyList");
-  const stories = JSON.parse(localStorage.getItem("auraStories") || "[]");
-  list.innerHTML = "";
+  list.innerHTML = "<div class='cardItem' style='font-size:12px;color:#aaa;'>Masallar yükleniyor...</div>";
   
-  if(stories.length === 0){
-    list.innerHTML = "<div class='cardItem' style='font-size:12px;color:#aaa;'>Henüz masal eklenmemiş. Yukarıdan Bedirhan'ın ses kaydını seçip ekleyebilirsin!</div>";
-    return;
-  }
+  try {
+    let stories = await puter.kv.get("auraStories");
+    stories = stories ? JSON.parse(stories) : [];
+    
+    list.innerHTML = "";
+    if(stories.length === 0){
+      list.innerHTML = "<div class='cardItem' style='font-size:12px;color:#aaa;'>Henüz masal eklenmemiş. Yüklediğin an Edanur'un ekranında da görünecek!</div>";
+      return;
+    }
 
-  stories.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.className = "cardItem";
-    div.innerHTML = `
-      <div style="font-weight:bold;color:#ffe0ed;">📖 ${item.title}</div>
-      <div style="font-size:10px;color:#ffb8d8;">Bedirhan'ın Sesinden • ${item.date}</div>
-      <audio controls class="audioPlayer" src="${item.audioData}"></audio>
-      <button onclick="deleteStory(${index})" style="position:absolute;right:10px;top:10px;border:0;background:transparent;color:#ff4f8f;cursor:pointer;font-weight:bold;">✕</button>
-    `;
-    list.appendChild(div);
-  });
+    stories.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.className = "cardItem";
+      div.innerHTML = `
+        <div style="font-weight:bold;color:#ffe0ed;">📖 ${item.title}</div>
+        <div style="font-size:10px;color:#ffb8d8;">Bedirhan'ın Sesinden • ${item.date}</div>
+        <audio controls class="audioPlayer" src="${item.audioData}"></audio>
+        <button onclick="deleteStory(${index})" style="position:absolute;right:10px;top:10px;border:0;background:transparent;color:#ff4f8f;cursor:pointer;font-weight:bold;">✕</button>
+      `;
+      list.appendChild(div);
+    });
+  } catch(err) {
+    list.innerHTML = "<div class='cardItem' style='font-size:12px;color:#aaa;'>Henüz masal eklenmemiş.</div>";
+  }
 }
 
 document.getElementById("addStoryBtn").onclick = () => {
@@ -359,22 +362,31 @@ document.getElementById("addStoryBtn").onclick = () => {
   }
 
   const reader = new FileReader();
-  reader.onload = (e) => {
-    const stories = JSON.parse(localStorage.getItem("auraStories") || "[]");
-    stories.push({ title: title, audioData: e.target.result, date: new Date().toLocaleDateString("tr-TR") });
-    localStorage.setItem("auraStories", JSON.stringify(stories));
-    document.getElementById("storyTitle").value = "";
-    fileInput.value = "";
-    loadStories();
+  reader.onload = async (e) => {
+    try {
+      let stories = await puter.kv.get("auraStories");
+      stories = stories ? JSON.parse(stories) : [];
+      stories.push({ title: title, audioData: e.target.result, date: new Date().toLocaleDateString("tr-TR") });
+      await puter.kv.set("auraStories", JSON.stringify(stories));
+      
+      document.getElementById("storyTitle").value = "";
+      fileInput.value = "";
+      loadStories();
+    } catch(err) {
+      alert("Bulut bağlantısı sağlanamadı, tekrar dene.");
+    }
   };
   reader.readAsDataURL(fileInput.files[0]);
 };
 
-function deleteStory(index){
-  const stories = JSON.parse(localStorage.getItem("auraStories") || "[]");
-  stories.splice(index, 1);
-  localStorage.setItem("auraStories", JSON.stringify(stories));
-  loadStories();
+async function deleteStory(index){
+  try {
+    let stories = await puter.kv.get("auraStories");
+    stories = stories ? JSON.parse(stories) : [];
+    stories.splice(index, 1);
+    await puter.kv.set("auraStories", JSON.stringify(stories));
+    loadStories();
+  } catch(err) {}
 }
 
 /* FOTOĞRAF GALERİSİ */
@@ -511,7 +523,7 @@ function deleteNote(index){
   localStorage.setItem("auraNotes", JSON.stringify(notes));
   renderNotes();
 }
-    /* RUH HALİ SEÇİMİ */
+      /* RUH HALİ SEÇİMİ */
 const moodOverlay = document.getElementById("moodOverlay");
 document.getElementById("moodButton").onclick = () => moodOverlay.classList.add("show");
 document.getElementById("closeMood").onclick = () => moodOverlay.classList.remove("show");
