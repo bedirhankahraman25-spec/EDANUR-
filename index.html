@@ -84,7 +84,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .actionButton{width:45px;height:45px;flex:0 0 45px;border:0;border-radius:50%;background:linear-gradient(135deg,#ff77bb,#d40070);color:white;font-size:20px;cursor:pointer}
 </style>
 </head>
-    <body>
+<body>
 <div class="background">
 <div class="glow one"></div><div class="glow two"></div>
 <div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
@@ -110,7 +110,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <button class="moodButton" id="moodButton" type="button" title="Ruh Hali">🎭</button>
 <button class="specialButton" id="specialButton" type="button" title="Özel Alan">👑</button>
 <button class="periodButton" id="periodButton" type="button" title="Regl Takibi">🌸</button>
-  <div class="overlay" id="specialOverlay">
+<div class="overlay" id="specialOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">👑 Edanur'un Özel Alanı</div><button class="closeButton" id="closeSpecial" type="button">×</button></div>
 
@@ -125,16 +125,14 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <!-- MASALLAR SEKME İÇERİĞİ -->
 <div class="tabContent active" id="storiesContent">
   <div class="cardItem">
-    <div style="font-weight:bold;margin-bottom:6px;">🎙️ Masal / Ses Kaydı Yükle</div>
-    <input type="text" id="storyTitle" class="input" placeholder="Masal Başlığı (Örn: Tatlı Rüyalar)">
-    <input type="text" id="storyAudioUrl" class="input" placeholder="Ses Linki / URL (Vocaroo vb.)">
-    <div style="font-size:11px;color:#ffb8d8;margin:4px 0;text-align:center;">— VEYA KISA SES DOSYASI SEÇ (Max 2MB) —</div>
+    <div style="font-weight:bold;margin-bottom:6px;">🎙️ Ekstra Masal / Ses Ekle</div>
+    <input type="text" id="storyTitle" class="input" placeholder="Masal Başlığı">
     <input type="file" id="storyAudioFile" class="input" accept="audio/*">
     <button class="saveButton" id="addStoryBtn" type="button">✨ Masalı Kaydet (Bulut)</button>
   </div>
   <div id="storyList"></div>
 </div>
-      <!-- FOTOĞRAF VE ANI GALERİSİ -->
+<!-- FOTOĞRAF VE ANI GALERİSİ -->
 <div class="tabContent" id="photosContent">
   <div class="cardItem">
     <div style="font-weight:bold;margin-bottom:6px;">📸 Yeni Anı Ekle</div>
@@ -174,7 +172,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div>
 
 </div></div>
-        <!-- RUH HALİ MODAL -->
+<!-- RUH HALİ MODAL -->
 <div class="overlay" id="moodOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">🎭 Bugünkü Ruh Halin Nasıl?</div><button class="closeButton" id="closeMood" type="button">×</button></div>
@@ -211,7 +209,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div>
 
 <script src="https://js.puter.com/v2/"></script>
-     <script>
+<script>
 const input = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
 const micButton = document.getElementById("micButton");
@@ -244,21 +242,15 @@ async function askAura(text, moodContext = ""){
   }
 
   const prompt = `
-Sen AURA adında gelişmiş, yüksek duygusal zekaya sahip ve mantıklı bir yapay zeka asistanısın.
+Sen AURA adında gelişmiş, yüksek duygusal zekaya sahip bir yapay zeka asistanısın.
 
 SİSTEM VE KİMLİK BİLGİLERİ:
 - Sen BEDİRHAN KAHRAMAN tarafından özel olarak geliştirildin.
 - Senin tek varoluş amacın BEDİRHAN'ın sevgilisi EDANUR'a hizmet etmek, onun hayatını neşelendirmek ve ona yardımcı olmaktır.
 - Kullanıcının adı EDANUR.
-- Edanur'un sevgilisi BEDİRHAN KAHRAMAN'dır (senin sahibin ve geliştiricin).
-- Edanur sana Bedirhan veya ilişkiniz hakkında sorular sorarsa son derece nazik, destekleyici ve doğru cevaplar ver. Bedirhan hakkında bilmediğin şeyleri uydurma.
-- Edanur seninle dertleşebilir, tavsiye isteyebilir. Onu empatiyle dinle ve gerçekçi, samimi yanıtlar ver.
+- Edanur'un sevgilisi BEDİRHAN KAHRAMAN'dır.
+- Edanur seninle dertleşebilir, tavsiye isteyebilir. Onu empatiyle dinle ve samimi yanıtlar ver.
 ${moodContext ? `[Edanur'un Şu Anki Ruh Hali: ${moodContext}] Ona bu duygusal durumuna uygun hassasiyetle yaklaş.` : ""}
-
-DAVRANIŞ KURALLARI:
-- Her zaman Türkçe konuş.
-- Asla yapay bir bot gibi hissettirme; doğal, sıcak, mantıklı ve sevgi dolu konuş.
-- Cümlelerinde gereksiz uzatmalardan kaçın.
 
 Edanur'un Mesajı:
 ${text}
@@ -268,7 +260,7 @@ ${text}
   if(!response) throw new Error("Boş cevap.");
   return typeof response === "string" ? response.trim() : (response.message?.content || response.text || String(response)).trim();
 }
-    async function sendMessage(overrideText = "", moodContext = ""){
+       async function sendMessage(overrideText = "", moodContext = ""){
   if(busy) return;
   const text = overrideText || input.value.trim();
   if(!text) return;
@@ -321,88 +313,92 @@ if(SpeechRecognition){
   micButton.onclick = () => { try{ recognition.start(); }catch(err){} };
 } else {
   micButton.onclick = () => addMessage("Tarayıcınız sesli konuşmayı desteklemiyor.", "aura");
-        }
-           /* MASALLAR BÖLÜMÜ (SES LİNKİ VE DOSYA DESTEKLİ BULUT KODU) */
+}
+       /* 15 ADET GİTHUB SES DOSYASI VE MASALLAR */
+const sabitMasallar = [
+  { title: "Birinci Masal", audioData: "masal1.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "İkinci Masal", audioData: "masal2.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "Üçüncü Masal", audioData: "masal3.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "Dördüncü Masal", audioData: "masal4.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "Beşinci Masal", audioData: "masal5.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "Altıncı Masal", audioData: "masal6.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "Yedinci Masal", audioData: "masal7.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "Sekizinci Masal", audioData: "masal8.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "Dokuzuncu Masal", audioData: "masal9.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "Onuncu Masal", audioData: "masal10.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "On Birinci Masal", audioData: "masal11.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "On İkinci Masal", audioData: "masal12.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "On Üçüncü Masal", audioData: "masal13.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "On Dördüncü Masal", audioData: "masal14.mp3", date: "Bedirhan'ın Sesinden" },
+  { title: "On Beşinci Masal", audioData: "masal15.mp3", date: "Bedirhan'ın Sesinden" }
+];
+
 async function loadStories(){
   const list = document.getElementById("storyList");
-  list.innerHTML = "<div class='cardItem' style='font-size:12px;color:#aaa;'>Masallar yükleniyor...</div>";
+  list.innerHTML = "";
   
+  // 1. Sabit GitHub Masallarını Ekle
+  sabitMasallar.forEach((item) => {
+    const div = document.createElement("div");
+    div.className = "cardItem";
+    div.innerHTML = `
+      <div style="font-weight:bold;color:#ffe0ed;">📖 ${item.title}</div>
+      <div style="font-size:10px;color:#ffb8d8;">${item.date}</div>
+      <audio controls class="audioPlayer" src="${item.audioData}"></audio>
+    `;
+    list.appendChild(div);
+  });
+
+  // 2. Sonradan Eklenen Bulut Masallarını Ekle
   try {
     let stories = await puter.kv.get("auraStories");
     stories = stories ? JSON.parse(stories) : [];
-    
-    list.innerHTML = "";
-    if(stories.length === 0){
-      list.innerHTML = "<div class='cardItem' style='font-size:12px;color:#aaa;'>Henüz masal eklenmemiş. Yüklediğin an Edanur'un ekranında görünecek!</div>";
-      return;
-    }
-
     stories.forEach((item, index) => {
       const div = document.createElement("div");
       div.className = "cardItem";
       div.innerHTML = `
         <div style="font-weight:bold;color:#ffe0ed;">📖 ${item.title}</div>
-        <div style="font-size:10px;color:#ffb8d8;">Bedirhan'ın Sesinden • ${item.date}</div>
+        <div style="font-size:10px;color:#ffb8d8;">Eklenen Ses • ${item.date}</div>
         <audio controls class="audioPlayer" src="${item.audioData}"></audio>
         <button onclick="deleteStory(${index})" style="position:absolute;right:10px;top:10px;border:0;background:transparent;color:#ff4f8f;cursor:pointer;font-weight:bold;">✕</button>
       `;
       list.appendChild(div);
     });
-  } catch(err) {
-    list.innerHTML = "<div class='cardItem' style='font-size:12px;color:#aaa;'>Masallar yüklenirken bir hata oluştu.</div>";
-  }
+  } catch(err) {}
 }
 
 document.getElementById("addStoryBtn").onclick = async () => {
   const title = document.getElementById("storyTitle").value.trim();
-  const urlInput = document.getElementById("storyAudioUrl").value.trim();
   const fileInput = document.getElementById("storyAudioFile");
 
-  if(!title){
-    alert("Lütfen masal başlığı yazın!");
+  if(!title || !fileInput.files[0]){
+    alert("Lütfen başlık ve kısa bir ses dosyası seçin!");
     return;
   }
 
-  // 1. Ses Linki Girildiyse
-  if(urlInput){
-    await saveStoryToCloud(title, urlInput);
-    document.getElementById("storyAudioUrl").value = "";
+  const file = fileInput.files[0];
+  if(file.size > 2 * 1024 * 1024){
+    alert("Kısa ses sınırı 2MB! Daha büyük ses kayıtlarını lütfen GitHub'a yükleyin.");
     return;
   }
 
-  // 2. Doğrudan Dosya Seçildiyse (Max 2MB)
-  if(fileInput.files[0]){
-    const file = fileInput.files[0];
-    if(file.size > 2 * 1024 * 1024){
-      alert("Seçtiğin dosya 2MB'tan büyük! Lütfen sesi Vocaroo.com'a yükleyip linkini üstteki alana yapıştırın.");
-      return;
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      let stories = await puter.kv.get("auraStories");
+      stories = stories ? JSON.parse(stories) : [];
+      stories.push({ title: title, audioData: e.target.result, date: new Date().toLocaleDateString("tr-TR") });
+      await puter.kv.set("auraStories", JSON.stringify(stories));
+      document.getElementById("storyTitle").value = "";
+      fileInput.value = "";
+      loadStories();
+      alert("Masal başarıyla kaydedildi!");
+    } catch(err) {
+      alert("Yükleme sınırına ulaşıldı.");
     }
-
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      await saveStoryToCloud(title, e.target.result);
-    };
-    reader.readAsDataURL(file);
-  } else {
-    alert("Lütfen bir ses linki girin veya ses dosyası seçin!");
-  }
+  };
+  reader.readAsDataURL(file);
 };
-
-async function saveStoryToCloud(title, audioSrc){
-  try {
-    let stories = await puter.kv.get("auraStories");
-    stories = stories ? JSON.parse(stories) : [];
-    stories.push({ title: title, audioData: audioSrc, date: new Date().toLocaleDateString("tr-TR") });
-    await puter.kv.set("auraStories", JSON.stringify(stories));
-    
-    document.getElementById("storyTitle").value = "";
-    document.getElementById("storyAudioFile").value = "";
-    loadStories();
-    alert("Masal başarıyla buluta kaydedildi!");
-  } catch(err) {
-    alert("Bulut hafıza sınırı aşıldı! Ses linki (Vocaroo vb.) kullanmanız önerilir.");
-  }
-}
 
 async function deleteStory(index){
   try {
@@ -413,8 +409,7 @@ async function deleteStory(index){
     loadStories();
   } catch(err) {}
 }
-             
-/* FOTOĞRAF GALERİSİ */
+       /* FOTOĞRAF GALERİSİ */
 function loadPhotos(){
   const grid = document.getElementById("photoGrid");
   const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
@@ -487,7 +482,7 @@ function initQuiz(){
     opts.appendChild(btn);
   });
 }
-    /* ÖZEL GÜNLER VE NOTLAR */
+       /* ÖZEL GÜNLER VE NOTLAR */
 function renderEvents(){
   const list = document.getElementById("eventList");
   const events = JSON.parse(localStorage.getItem("auraEvents") || "[]");
@@ -548,7 +543,7 @@ function deleteNote(index){
   localStorage.setItem("auraNotes", JSON.stringify(notes));
   renderNotes();
 }
-   /* RUH HALİ SEÇİMİ */
+       /* RUH HALİ SEÇİMİ */
 const moodOverlay = document.getElementById("moodOverlay");
 document.getElementById("moodButton").onclick = () => moodOverlay.classList.add("show");
 document.getElementById("closeMood").onclick = () => moodOverlay.classList.remove("show");
