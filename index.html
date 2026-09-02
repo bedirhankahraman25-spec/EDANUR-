@@ -47,10 +47,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .userMessage{align-self:flex-end;background:linear-gradient(135deg,#a91465,#e43c91);border:1px solid rgba(255,170,215,.3)}
 .typing{opacity:.7;font-style:italic}
 
-.periodButton,.specialButton,.moodButton{position:absolute;width:42px;height:42px;border:1px solid rgba(255,120,190,.4);border-radius:50%;background:rgba(40,0,27,.88);color:#ffb6d8;font-size:19px;cursor:pointer;z-index:25;box-shadow:0 0 15px rgba(255,20,147,.22)}
+.periodButton,.specialButton,.moodButton,.dailyButton{position:absolute;width:42px;height:42px;border:1px solid rgba(255,120,190,.4);border-radius:50%;background:rgba(40,0,27,.88);color:#ffb6d8;font-size:19px;cursor:pointer;z-index:25;box-shadow:0 0 15px rgba(255,20,147,.22)}
 .periodButton{right:14px;bottom:122px}
 .specialButton{right:64px;bottom:122px}
 .moodButton{right:114px;bottom:122px}
+.dailyButton{right:164px;bottom:122px}
 
 .overlay{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;padding:12px;background:rgba(0,0,0,.58);backdrop-filter:blur(5px);z-index:100}
 .overlay.show{display:flex}
@@ -74,7 +75,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .moodGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
 .moodItem{padding:12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,105,180,.2);text-align:center;cursor:pointer}
 
-/* SAYAÇ VE TEST ÖZEL STİLLERİ */
 .counterGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;text-align:center}
 .counterBox{background:rgba(255,255,255,.08);padding:10px 4px;border-radius:12px;border:1px solid rgba(255,105,180,.3)}
 .counterVal{font-size:18px;font-weight:bold;color:#ff8ac5}
@@ -89,7 +89,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .actionButton{width:45px;height:45px;flex:0 0 45px;border:0;border-radius:50%;background:linear-gradient(135deg,#ff77bb,#d40070);color:white;font-size:20px;cursor:pointer}
 </style>
 </head>
-<body>
+  <body>
 <div class="background">
 <div class="glow one"></div><div class="glow two"></div>
 <div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
@@ -112,10 +112,19 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 
 <div class="chatArea" id="chatArea"><div class="chat" id="chat"></div></div>
 
+<button class="dailyButton" id="dailyButton" type="button" title="Günün Anısı">📸</button>
 <button class="moodButton" id="moodButton" type="button" title="Ruh Hali">🎭</button>
 <button class="specialButton" id="specialButton" type="button" title="Özel Alan">👑</button>
 <button class="periodButton" id="periodButton" type="button" title="Regl Takibi">🌸</button>
 
+<!-- GÜNÜN ANISI MODAL -->
+<div class="overlay" id="dailyOverlay">
+<div class="panel">
+<div class="panelHeader"><div class="panelTitle">📸 Günün Anısı</div><button class="closeButton" id="closeDaily" type="button">×</button></div>
+<div id="dailyMemoryBox" style="text-align:center;padding:10px;"></div>
+</div></div>
+
+<!-- ÖZEL ALAN MODAL -->
 <div class="overlay" id="specialOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">👑 Edanur'un Özel Alanı</div><button class="closeButton" id="closeSpecial" type="button">×</button></div>
@@ -123,7 +132,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <div class="tabs">
 <button class="tab active" id="counterTab" type="button">⏳ Sayacımız</button>
 <button class="tab" id="quizTab" type="button">🧩 Mini Test</button>
-<button class="tab" id="randomMemoryTab" type="button">🎲 Rastgele Anı</button>
 <button class="tab" id="storiesTab" type="button">📖 Masallar</button>
 <button class="tab" id="musicTab" type="button">🎵 Şarkılar</button>
 <button class="tab" id="wheelTab" type="button">🎡 Çark</button>
@@ -148,21 +156,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
   </div>
 </div>
 
-<!-- MİNİ TEST -->
+<!-- MİNİ TEST (GÜNCELLENDİ) -->
 <div class="tabContent" id="quizContent">
   <div class="cardItem">
-    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:8px;" id="quizTitle">🧩 Bizim Testimiz</div>
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:8px;" id="quizTitle">🧩 Bedirhan'ı Ne Kadar Tanıyorsun?</div>
     <div id="quizBox"></div>
-  </div>
-</div>
-
-<!-- RASTGELE ANI HATIRLATICI -->
-<div class="tabContent" id="randomMemoryContent">
-  <div class="cardItem" style="text-align:center;">
-    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:6px;">🎲 Rastgele Anı Hatırlatıcı</div>
-    <p style="font-size:12px;color:#ffc5df;margin-bottom:10px;">Yüklediğin anılardan bir tanesini senin için getiriyorum!</p>
-    <button class="saveButton" id="getRandomMemoryBtn" type="button" style="margin-bottom:10px;">✨ Sürpriz Anı Getir</button>
-    <div id="randomMemoryDisplay"></div>
   </div>
 </div>
 
@@ -235,7 +233,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div>
 
 </div></div>
-<!-- RUH HALİ MODAL -->
+  <!-- RUH HALİ MODAL -->
 <div class="overlay" id="moodOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">🎭 Bugünkü Ruh Halin Nasıl?</div><button class="closeButton" id="closeMood" type="button">×</button></div>
@@ -383,7 +381,7 @@ async function loadStories(){
   });
 }
 
-/* 10 ADET ŞARKILARIN ALANI */
+/* ŞARKILARIN */
 const sabitSarkilar = Array.from({ length: 10 }, (_, i) => ({
   title: "ŞARKILARIN",
   base: `sarki${i + 1}`
@@ -410,7 +408,38 @@ function loadMusic(){
   });
 }
 </script>
-<script>
+    <script>
+/* GÜNÜN ANISI ÖZELLİĞİ (HER GÜNE ÖZEL FOTOĞRAF SEÇER) */
+function openDailyMemory(){
+  const box = document.getElementById("dailyMemoryBox");
+  const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
+  
+  if(photos.length === 0){
+    box.innerHTML = `
+      <div style="color:#ff8ac5;font-size:13px;padding:15px 0;">
+        Henüz hiç anı fotoğrafı eklemediniz! 📸<br>
+        <b>Özel Alan > Anılar</b> sekmesinden fotoğraf eklediğinizde her gün burada sürpriz bir anı çıkacak!
+      </div>
+    `;
+    return;
+  }
+  
+  // Günün tarihine göre sabit ama her gün değişen indeks seçimi
+  const today = new Date();
+  const dateSeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+  const dailyIndex = dateSeed % photos.length;
+  const item = photos[dailyIndex];
+
+  box.innerHTML = `
+    <div class="photoCard" style="padding:12px;">
+      <div style="font-size:12px;color:#ff9dcb;font-weight:bold;margin-bottom:8px;">✨ Bugüne Özel Anınız</div>
+      <img src="${item.imgData}" style="max-height:240px;width:100%;object-fit:cover;border-radius:12px;">
+      <div style="font-weight:bold;color:#fff;margin-top:8px;font-size:14px;">${item.title}</div>
+      <div style="font-size:11px;color:#ffd0e5;margin-top:6px;font-style:italic;">"Her yeni günde seninle olan anılarımız yeniden parlıyor Edanur..." ❤️</div>
+    </div>
+  `;
+}
+
 /* CANLI AŞK SAYACI (6 EYLÜL 2025 BAŞLANGIÇLI) */
 function startCounter(){
   const startDate = new Date("2025-09-06T00:00:00");
@@ -435,11 +464,38 @@ function startCounter(){
   setInterval(update, 1000);
 }
 
-/* MİNİ TEST KODLARI */
+/* YENİ GELİŞTİRİLMİŞ MİNİ TEST (BEDİRHAN ÖZEL) */
 const quizQuestions = [
-  { q: "Bizim tanışma tarihimiz hangisidir?", options: ["6 Eylül 2025", "13 Eylül 2025", "16 Mart 2025"], answer: 0 },
-  { q: "Edanur'un burcu nedir?", options: ["Akrep", "Balık", "Yengeç"], answer: 1 },
-  { q: "Bedirhan seni ne kadar seviyor?", options: ["Dünyalar kadar", "Sonsuza kadar", "İfadelere sığmayacak kadar çok! ❤️"], answer: 2 }
+  { 
+    q: "Bedirhan'ın en sevdiği yemek hangisidir?", 
+    options: ["İskender", "Adana Kebap", "Pizza", "Mantar Sote"], 
+    answer: 0 
+  },
+  { 
+    q: "Bedirhan'ın doğum tarihi nedir?", 
+    options: ["16.10.2008", "06.09.2005", "12.05.2007", "16.10.2007"], 
+    answer: 0 
+  },
+  { 
+    q: "Bedirhan'ın hayattaki en değerlisi kimdir?", 
+    options: ["Edanur ❤️", "Arabası", "Telefonu", "Bilgisayarı"], 
+    answer: 0 
+  },
+  { 
+    q: "Bedirhan'ın en sevdiği renk hangisidir?", 
+    options: ["Mavi", "Kırmızı", "Siyah", "Yeşil"], 
+    answer: 1 
+  },
+  { 
+    q: "Bedirhan'ın en sevdiği içecek nedir?", 
+    options: ["Kola", "Fanta", "Soğuk Çay", "Ayran"], 
+    answer: 0 
+  },
+  { 
+    q: "Bedirhan'ın en sevdiği araba hangisidir?", 
+    options: ["BMW M5", "Honda Civic", "Mercedes C200", "Audi A4"], 
+    answer: 1 
+  }
 ];
 
 let currentQuizIdx = 0;
@@ -455,17 +511,17 @@ function renderQuiz(){
   const box = document.getElementById("quizBox");
   if(currentQuizIdx >= quizQuestions.length){
     box.innerHTML = `
-      <div style="text-align:center;padding:10px;">
-        <div style="font-size:18px;font-weight:bold;color:#ff9dcb;">🎉 Test Tamamlandı!</div>
-        <div style="font-size:13px;margin:8px 0;">Skorun: ${quizScore} / ${quizQuestions.length}</div>
-        <div style="font-size:12px;color:#ffd5e8;">Sen Bedirhan'ın bir tanesisin! ❤️</div>
-        <button class="saveButton" onclick="initQuiz()" style="margin-top:10px;">Tekrar Çöz</button>
+      <div style="text-align:center;padding:12px;">
+        <div style="font-size:19px;font-weight:bold;color:#ff9dcb;">🎉 Test Tamamlandı!</div>
+        <div style="font-size:14px;margin:10px 0;">Skorun: ${quizScore} / ${quizQuestions.length}</div>
+        <div style="font-size:12px;color:#ffd5e8;">${quizScore === quizQuestions.length ? "Harikasın Edanur! Bedirhan'ı ezbere biliyorsun! ❤️" : "Bedirhan seni çok seviyor, bir dahakine full yaparsın! 💕"}</div>
+        <button class="saveButton" onclick="initQuiz()" style="margin-top:12px;">Tekrar Çöz</button>
       </div>
     `;
     return;
   }
   const qData = quizQuestions[currentQuizIdx];
-  let html = `<div style="font-size:14px;color:#fff;margin-bottom:10px;">Soru ${currentQuizIdx+1}: ${qData.q}</div>`;
+  let html = `<div style="font-size:14px;color:#fff;margin-bottom:10px;font-weight:bold;">Soru ${currentQuizIdx+1}: ${qData.q}</div>`;
   qData.options.forEach((opt, idx) => {
     html += `<button class="quizOption" onclick="answerQuiz(${idx})">${opt}</button>`;
   });
@@ -479,26 +535,16 @@ function answerQuiz(optionIdx){
   currentQuizIdx++;
   renderQuiz();
 }
-
-/* RASTGELE ANI HATIRLATICI */
-document.getElementById("getRandomMemoryBtn").onclick = () => {
-  const display = document.getElementById("randomMemoryDisplay");
-  const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
-  if(photos.length === 0){
-    display.innerHTML = `<div style="color:#ff8ac5;font-size:12px;margin-top:10px;">Henüz hiç anı fotoğrafı yüklemediniz! "Anılar" sekmesinden fotoğraf ekleyebilirsin.</div>`;
-    return;
-  }
-  const randomItem = photos[Math.floor(Math.random() * photos.length)];
-  display.innerHTML = `
-    <div class="photoCard" style="margin-top:10px;">
-      <img src="${randomItem.imgData}" style="max-height:200px;object-fit:cover;border-radius:10px;">
-      <div style="font-weight:bold;color:#fff;margin-top:6px;font-size:13px;">${randomItem.title}</div>
-      <div style="font-size:11px;color:#ffc2dd;margin-top:4px;">✨ AURA: "Bu anı hatırladın mı Edanur? Çok tatlısınız!"</div>
-    </div>
-  `;
+    </script>
+    <script>
+/* GÜNÜN ANISI MODAL ETKİLEŞİMİ */
+const dailyOverlay = document.getElementById("dailyOverlay");
+document.getElementById("dailyButton").onclick = () => {
+  openDailyMemory();
+  dailyOverlay.classList.add("show");
 };
-</script>
-<script>
+document.getElementById("closeDaily").onclick = () => dailyOverlay.classList.remove("show");
+
 /* KARAR ÇARKI */
 let wheelOptions = JSON.parse(localStorage.getItem("auraWheelOptions") || '["Pizza", "Kahve Kaçamağı", "Film İzlemek", "Sahil Yürüyüşü"]');
 
@@ -612,7 +658,7 @@ document.getElementById("specialButton").onclick = () => {
 };
 document.getElementById("closeSpecial").onclick = () => specialOverlay.classList.remove("show");
 
-const tabs = ["counter", "quiz", "randomMemory", "stories", "music", "wheel", "astrology", "photos", "events", "notes"];
+const tabs = ["counter", "quiz", "stories", "music", "wheel", "astrology", "photos", "events", "notes"];
 tabs.forEach(tab => {
   const btn = document.getElementById(tab + "Tab");
   if(btn){
