@@ -111,17 +111,18 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <button class="moodButton" id="moodButton" type="button" title="Ruh Hali">🎭</button>
 <button class="specialButton" id="specialButton" type="button" title="Özel Alan">👑</button>
 <button class="periodButton" id="periodButton" type="button" title="Regl Takibi">🌸</button>
+
 <!-- RUH HALİ MODAL -->
 <div class="overlay" id="moodOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">🎭 Bugünkü Ruh Halin Nasıl?</div><button class="closeButton" id="closeMood" type="button">×</button></div>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;">
-<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Mutlu')">😊<br>Mutlu</div>
-<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Üzgün')">🥺<br>Üzgün</div>
-<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Yorgun')">😴<br>Yorgun</div>
-<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Stresli')">😖<br>Stresli</div>
-<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Romantik')">💖<br>Romantik</div>
-<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Dertli')">💬<br>Dertli</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" id="moodMutlu">😊<br>Mutlu</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" id="moodUzgun">🥺<br>Üzgün</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" id="moodYorgun">😴<br>Yorgun</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" id="moodStresli">😖<br>Stresli</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" id="moodRomantik">💖<br>Romantik</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" id="moodDertli">💬<br>Dertli</div>
 </div>
 </div></div>
 
@@ -146,12 +147,45 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <div class="tabs">
 <button class="tab active" id="counterTab" type="button">⏳ Sayacımız</button>
 <button class="tab" id="bucketTab" type="button">📝 YAPILACAKLAR</button>
-<button class="tab" id="quizTab" type="button">🧩 Sen mi Ben mi? (50 Soru)</button>
+<button class="tab" id="quizTab" type="button">🧩 Sen mi Ben mi?</button>
 <button class="tab" id="dreamTab" type="button">🌙 Rüya Günlüğü</button>
 <button class="tab" id="moodLogTab" type="button">📊 Mod Takvimi</button>
 <button class="tab" id="zodiacTab" type="button">♓ Burç Yorumu</button>
 <button class="tab" id="secretTab" type="button">🔒 Sürpriz Kutu</button>
 <button class="tab" id="storiesTab" type="button">📖 Masallar</button>
+</div>
+<!-- CANLI AŞK SAYACI -->
+<div class="tabContent active" id="counterContent">
+  <div class="cardItem" style="text-align:center;">
+    <div style="font-weight:bold;color:#ffe0ed;font-size:15px;margin-bottom:4px;">💖 Bedirhan & Edanur</div>
+    <div style="font-size:11px;color:#ffb8d8;margin-bottom:12px;">6 Eylül 2025 Tanışma Tarihimizden Beri...</div>
+    <div class="counterGrid">
+      <div class="counterBox"><div class="counterVal" id="cntDays">0</div><div class="counterLbl">Gün</div></div>
+      <div class="counterBox"><div class="counterVal" id="cntHours">0</div><div class="counterLbl">Saat</div></div>
+      <div class="counterBox"><div class="counterVal" id="cntMinutes">0</div><div class="counterLbl">Dakika</div></div>
+      <div class="counterBox"><div class="counterVal" id="cntSeconds">0</div><div class="counterLbl">Saniye</div></div>
+    </div>
+    <div style="font-size:11px;color:#ff9dcb;margin-top:12px;font-style:italic;">"Her saniye seni sevmeye devam ediyorum..."</div>
+  </div>
+</div>
+
+<!-- YAPILACAKLAR LISTESI -->
+<div class="tabContent" id="bucketContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:8px;">📌 Yapılacaklar Listemiz</div>
+    <input type="text" id="bucketInput" class="input" placeholder="Yeni bir plan ekle (Örn: Kapadokya'da balon turu)">
+    <button class="saveButton" id="addBucketBtn" type="button">➕ Listeye Ekle</button>
+  </div>
+  <div id="bucketList"></div>
+</div>
+
+<!-- SEN Mİ BEN Mİ? 50 SORULUK UZUN ANKET -->
+<div class="tabContent" id="quizContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:4px;" id="quizTitle">🧩 Sen mi Ben mi?</div>
+    <div style="font-size:11px;color:#ffb8d8;margin-bottom:10px;">50 soruluk eğlenceli çift anketi!</div>
+    <div id="quizBox"></div>
+  </div>
 </div>
 <!-- RÜYA GÜNLÜĞÜ VE AURA YORUMCUSU -->
 <div class="tabContent" id="dreamContent">
@@ -222,338 +256,349 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div></div>
 
 </div>
-
 <script src="https://js.puter.com/v2/"></script>
 <script>
-const input = document.getElementById("messageInput");
-const sendButton = document.getElementById("sendButton");
-const micButton = document.getElementById("micButton");
-const chat = document.getElementById("chat");
-const chatArea = document.getElementById("chatArea");
-const statusText = document.getElementById("statusText");
+document.addEventListener("DOMContentLoaded", function() {
+  const input = document.getElementById("messageInput");
+  const sendButton = document.getElementById("sendButton");
+  const micButton = document.getElementById("micButton");
+  const chat = document.getElementById("chat");
+  const chatArea = document.getElementById("chatArea");
+  const statusText = document.getElementById("statusText");
 
-let busy = false;
+  let busy = false;
 
-function addMessage(text, type){
-  const message = document.createElement("div");
-  message.className = "message " + (type === "user" ? "userMessage" : "auraMessage");
-  message.textContent = String(text);
-  chat.appendChild(message);
-  chatArea.scrollTop = chatArea.scrollHeight;
-  return message;
-}
-
-window.addEventListener("load", () => {
-  addMessage("Merhaba Edanur, tüm isteklerinle sistem güncellendi. ❤️", "aura");
-  loadStories();
-  startCounter();
-  initQuiz();
-  loadBucketList();
-  loadMoodLogs();
-});
-
-async function askAura(text, moodContext = ""){
-  if(typeof puter === "undefined" || !puter.ai || !puter.ai.chat){
-    throw new Error("Puter AI hazır değil.");
+  function addMessage(text, type){
+    const message = document.createElement("div");
+    message.className = "message " + (type === "user" ? "userMessage" : "auraMessage");
+    message.textContent = String(text);
+    chat.appendChild(message);
+    chatArea.scrollTop = chatArea.scrollHeight;
+    return message;
   }
 
-  const prompt = `
-Sen AURA adında gelişmiş, yüksek duygusal zekaya sahip romantik bir asistanısın.
-SİSTEM BİLGİLERİ:
-- BEDİRHAN KAHRAMAN tarafından geliştirildin.
-- Kullanıcının adı EDANUR (Balık Burcu).
-- Edanur'un sevgilisi BEDİRHAN KAHRAMAN'dır (Terazi Burcu).
-${moodContext ? `[Edanur'un Şu Anki Ruh Hali: ${moodContext}]` : ""}
-
-KURAL VE KİŞİLİK:
-Eğer Edanur sana üzgün, yorgun, stresli, dertli olduğunu söylerse ya da modu düşükse; ona son derece şefkatli, teselli edici, içten, samimi, onun yanında olduğunu hissettiren ve moral verici romantik bir dille yaklaş. Bedirhan'ın onu ne kadar çok sevdiğini hatırlat.
-
-Edanur'un Mesajı:
-${text}
-  `;
-
-  const response = await puter.ai.chat(prompt);
-  if(!response) throw new Error("Boş cevap.");
-  return typeof response === "string" ? response.trim() : (response.message?.content || response.text || String(response)).trim();
-}
-
-async function sendMessage(overrideText = "", moodContext = ""){
-  if(busy) return;
-  const text = overrideText || input.value.trim();
-  if(!text) return;
-
-  if(!overrideText) addMessage(text, "user");
-  input.value = "";
-  busy = true;
-  sendButton.disabled = true;
-  micButton.disabled = true;
-  statusText.textContent = "DÜŞÜNÜYOR";
-
-  const typing = addMessage("AURA düşünüyor...", "aura");
-  typing.classList.add("typing");
-
-  try{
-    const answer = await askAura(text, moodContext);
-    typing.remove();
-    addMessage(answer, "aura");
-    statusText.textContent = "ONLINE";
-  }catch(error){
-    typing.remove();
-    addMessage("Bağlantıda küçük bir aksama oldu Edanur, tekrar dener misin?", "aura");
-    statusText.textContent = "BAĞLANTI HATASI";
-  }
-  busy = false;
-  sendButton.disabled = false;
-  micButton.disabled = false;
-  input.focus();
-}
-
-sendButton.onclick = (e) => { e.preventDefault(); sendMessage(); };
-input.onkeydown = (e) => { if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); sendMessage(); } };
-document.getElementById("heartButton").onclick = () => { input.value = "Seni seviyorum ❤️"; input.focus(); };
-
-const sabitMasallar = [
-  { title: "Birinci Masal", audioData: "masal1mp3.aac", date: "Bedirhan'ın Sesinden" },
-  { title: "İkinci Masal", audioData: "masal2mp3.aac", date: "Bedirhan'ın Sesinden" },
-  { title: "Üçüncü Masal", audioData: "masal3mp3.aac", date: "Bedirhan'ın Sesinden" }
-];
-
-function loadStories(){
-  const list = document.getElementById("storyList");
-  list.innerHTML = "";
-  sabitMasallar.forEach((item) => {
-    const div = document.createElement("div");
-    div.className = "cardItem";
-    div.innerHTML = `
-      <div style="font-weight:bold;color:#ffe0ed;">📖 ${item.title}</div>
-      <div style="font-size:10px;color:#ffb8d8;">${item.date}</div>
-      <audio controls class="audioPlayer" src="${item.audioData}"></audio>
-    `;
-    list.appendChild(div);
-  });
-}
-     </script>
-     <script>
-/* CANLI AŞK SAYACI (6 EYLÜL 2025) */
-function startCounter(){
-  const startDate = new Date("2025-09-06T00:00:00");
-  function update(){
-    const now = new Date();
-    const diff = now - startDate;
-    if(diff > 0){
-      document.getElementById("cntDays").textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
-      document.getElementById("cntHours").textContent = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      document.getElementById("cntMinutes").textContent = Math.floor((diff / (1000 * 60)) % 60);
-      document.getElementById("cntSeconds").textContent = Math.floor((diff / 1000) % 60);
+  async function askAura(text, moodContext = ""){
+    if(typeof puter === "undefined" || !puter.ai || !puter.ai.chat){
+      throw new Error("Puter AI henüz hazır değil.");
     }
+    const moodInfo = moodContext ? '[Edanur Ruh Hali: ' + moodContext + ']' : '';
+    const prompt = "Sen AURA adında gelişmiş, yüksek duygusal zekaya sahip romantik bir asistanısın.\n" +
+      "SİSTEM BİLGİLERİ:\n" +
+      "- BEDİRHAN KAHRAMAN tarafından geliştirildin.\n" +
+      "- Kullanıcının adı EDANUR (Balık Burcu).\n" +
+      "- Edanur'un sevgilisi BEDİRHAN KAHRAMAN'dır (Terazi Burcu).\n" +
+      moodInfo + "\n\n" +
+      "KURAL VE KİŞİLİK:\n" +
+      "Eğer Edanur sana üzgün, yorgun, stresli, dertli olduğunu söylerse ya da modu düşükse; ona son derece şefkatli, teselli edici, içten, samimi, onun yanında olduğunu hissettiren ve moral verici romantik bir dille yaklaş. Bedirhan'ın onu ne kadar çok sevdiğini hatırlat.\n\n" +
+      "Edanur'un Mesajı:\n" + text;
+
+    const response = await puter.ai.chat(prompt);
+    if(!response) throw new Error("Boş cevap.");
+    return typeof response === "string" ? response.trim() : (response.message?.content || response.text || String(response)).trim();
   }
-  update();
-  setInterval(update, 1000);
-}
 
-/* SEN Mİ BEN Mİ? (TAM 50 SORULUK ANKET) */
-const longQuiz = [
-  { q: "İki dakikada kim daha çabuk acıkır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Sabahları uyanmakta kim daha çok zorlanır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "İlk mesajı kim attı?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha kıskanç?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Bir tartışmada ilk kim alttan alır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Alışverişte kim daha çok para harcar?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha romantiğe dönüşür?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha uykucu?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Yolda yürürken kim kaybolmaya daha yatkındır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Sürpriz yapmayı kim daha çok sever?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Filmin ortasında kim uyuyakalır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha çok fotoğraf çeker?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Hediye seçmekte kim daha yetenekli?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha inatçıdır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Tatlı krizine kim daha sık girer?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha çok konuşur?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Soğuk havayı kim daha çok sever?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha tez canlı ve sabırsızdır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Espri yapınca kim daha çok güler?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Şarkılara kim daha çok eşlik eder?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha düzenli ve tertiplidir?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha çok sakarlık yapar?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Telefon ekran süresi kimin daha yüksek?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Gece geç saatlere kadar kim ayakta kalır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha duygusaldır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Yemeğin en güzel yerini kim diğerine verir?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha çabuk sinirlenip hemen yumuşar?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Gezi planlarını kim daha iyi yapar?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha çok kahve/çay içer?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Yağmurlu havaları kim daha çok sever?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Mesajlara kim daha hızlı cevap verir?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Eski anıları kim daha detaylı hatırlar?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Bir şey kaybolduğunda ilk kime sorulur?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha anaç / koruyucudur?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Lunaparkta tehlikeli oyuncaklara kim cesaretle biner?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha çok trip atar?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Yeni yerler keşfetmeyi kim daha çok ister?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kimin sürpriz saklama yeteneği daha zayıftır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Şımartılmayı kim daha çok sever?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha iyi dinleyicidir?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Bir kedi/köpek gördüğünde kim sevmeye koşar?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Sarılmayı kim daha çok başlatır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha tatlı uydurma kelimeler kullanır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Tatilde kim daha çok dinlenmek ister?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha garantici ve planlıdır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kimin romantik jestleri daha yaratıcıdır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Kim daha çok rüya görür ve anlatır?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Aynanın karşısında kim daha fazla vakit geçirir?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Birbirini özlediğinde ilk kim 'özledim' der?", opts: ["Edanur", "Bedirhan"] },
-  { q: "Bu ilişkide kim daha şanslı?", opts: ["Edanur", "Bedirhan"] }
-];
+  async function sendMessage(overrideText = "", moodContext = ""){
+    if(busy) return;
+    const text = overrideText || input.value.trim();
+    if(!text) return;
 
-let qIdx = 0;
-function initQuiz(){ qIdx = 0; renderQuiz(); }
-function renderQuiz(){
-  const box = document.getElementById("quizBox");
-  if(qIdx >= longQuiz.length){
-    box.innerHTML = `<div style="text-align:center;padding:10px;color:#ff9dcb;font-weight:bold;">🎉 50 Soruluk Anketi Tamamladınız! İkiniz Harika Bir Çiftsiniz! ❤️</div><button class="saveButton" onclick="initQuiz()">Tekrar Başlat</button>`;
-    return;
+    if(!overrideText) addMessage(text, "user");
+    input.value = "";
+    busy = true;
+    sendButton.disabled = true;
+    micButton.disabled = true;
+    statusText.textContent = "DÜŞÜNÜYOR";
+
+    const typing = addMessage("AURA düşünüyor...", "aura");
+    typing.classList.add("typing");
+
+    try{
+      const answer = await askAura(text, moodContext);
+      typing.remove();
+      addMessage(answer, "aura");
+      statusText.textContent = "ONLINE";
+    }catch(error){
+      typing.remove();
+      addMessage("Bağlantıda küçük bir aksama oldu Edanur, tekrar dener misin?", "aura");
+      statusText.textContent = "BAĞLANTI HATASI";
+    }
+    busy = false;
+    sendButton.disabled = false;
+    micButton.disabled = false;
+    input.focus();
   }
-  const item = longQuiz[qIdx];
-  box.innerHTML = `
-    <div style="font-size:13px;color:#fff;margin-bottom:8px;font-weight:bold;">Soru ${qIdx+1}/50: ${item.q}</div>
-    <button class="quizOption" onclick="qIdx++;renderQuiz();">👉 ${item.opts[0]}</button>
-    <button class="quizOption" onclick="qIdx++;renderQuiz();">👉 ${item.opts[1]}</button>
-  `;
-}
 
-/* YAPILACAKLAR LISTESI */
-let bucketItems = JSON.parse(localStorage.getItem("auraBucket") || '["Kapadokya Balon Turu", "Birlikte Kamp Yapmak", "Gün Batımında Kahve İçmek"]');
-function loadBucketList(){
-  const list = document.getElementById("bucketList");
-  list.innerHTML = "";
-  bucketItems.forEach((item, idx) => {
-    const div = document.createElement("div");
-    div.className = "cardItem";
-    div.style.padding = "8px 12px";
-    div.innerHTML = `<span style="font-size:13px;">📌 ${item}</span><button onclick="removeBucket(${idx})" style="position:absolute;right:10px;top:6px;border:0;background:transparent;color:#ff4f8f;cursor:pointer;">✕</button>`;
-    list.appendChild(div);
+  sendButton.onclick = (e) => { e.preventDefault(); sendMessage(); };
+  input.onkeydown = (e) => { if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); sendMessage(); } };
+  document.getElementById("heartButton").onclick = () => { input.value = "Seni seviyorum ❤️"; input.focus(); };
+
+  /* 50 SORULUK ANKET */
+  const longQuiz = [
+    { q: "İki dakikada kim daha çabuk acıkır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Sabahları uyanmakta kim daha çok zorlanır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "İlk mesajı kim attı?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha kıskanç?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Bir tartışmada ilk kim alttan alır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Alışverişte kim daha çok para harcar?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha romantiğe dönüşür?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha uykucu?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Yolda yürürken kim kaybolmaya daha yatkındır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Sürpriz yapmayı kim daha çok sever?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Filmin ortasında kim uyuyakalır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha çok fotoğraf çeker?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Hediye seçmekte kim daha yetenekli?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha inatçıdır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Tatlı krizine kim daha sık girer?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha çok konuşur?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Soğuk havayı kim daha çok sever?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha tez canlı ve sabırsızdır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Espri yapınca kim daha çok güler?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Şarkılara kim daha çok eşlik eder?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha düzenli ve tertiplidir?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha çok sakarlık yapar?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Telefon ekran süresi kimin daha yüksek?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Gece geç saatlere kadar kim ayakta kalır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha duygusaldır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Yemeğin en güzel yerini kim diğerine verir?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha çabuk sinirlenip hemen yumuşar?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Gezi planlarını kim daha iyi yapar?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha çok kahve/çay içer?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Yağmurlu havaları kim daha çok sever?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Mesajlara kim daha hızlı cevap verir?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Eski anıları kim daha detaylı hatırlar?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Bir şey kaybolduğunda ilk kime sorulur?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha anaç / koruyucudur?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Lunaparkta tehlikeli oyuncaklara kim cesaretle biner?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha çok trip atar?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Yeni yerler keşfetmeyi kim daha çok ister?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kimin sürpriz saklama yeteneği daha zayıftır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Şımartılmayı kim daha çok sever?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha iyi dinleyicidir?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Bir kedi/köpek gördüğünde kim sevmeye koşar?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Sarılmayı kim daha çok başlatır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha tatlı uydurma kelimeler kullanır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Tatilde kim daha çok dinlenmek ister?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha garantici ve planlıdır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kimin romantik jestleri daha yaratıcıdır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Kim daha çok rüya görür ve anlatır?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Aynanın karşısında kim daha fazla vakit geçirir?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Birbirini özlediğinde ilk kim 'özledim' der?", opts: ["Edanur", "Bedirhan"] },
+    { q: "Bu ilişkide kim daha şanslı?", opts: ["Edanur", "Bedirhan"] }
+  ];
+
+  let qIdx = 0;
+  function renderQuiz(){
+    const box = document.getElementById("quizBox");
+    if(!box) return;
+    if(qIdx >= longQuiz.length){
+      box.innerHTML = '<div style="text-align:center;padding:10px;color:#ff9dcb;font-weight:bold;">🎉 50 Soruluk Anketi Tamamladınız! İkiniz Harika Bir Çiftsiniz! ❤️</div><button class="saveButton" id="resetQuizBtn">Tekrar Başlat</button>';
+      document.getElementById("resetQuizBtn").onclick = () => { qIdx = 0; renderQuiz(); };
+      return;
+    }
+    const item = longQuiz[qIdx];
+    box.innerHTML = '<div style="font-size:13px;color:#fff;margin-bottom:8px;font-weight:bold;">Soru ' + (qIdx + 1) + '/50: ' + item.q + '</div>' +
+      '<button class="quizOption" id="opt0">👉 ' + item.opts[0] + '</button>' +
+      '<button class="quizOption" id="opt1">👉 ' + item.opts[1] + '</button>';
+    document.getElementById("opt0").onclick = () => { qIdx++; renderQuiz(); };
+    document.getElementById("opt1").onclick = () => { qIdx++; renderQuiz(); };
+  }
+
+  /* YAPILACAKLAR LISTESI */
+  let bucketItems = JSON.parse(localStorage.getItem("auraBucket") || '["Kapadokya Balon Turu", "Birlikte Kamp Yapmak", "Gün Batımında Kahve İçmek"]');
+  function loadBucketList(){
+    const list = document.getElementById("bucketList");
+    if(!list) return;
+    list.innerHTML = "";
+    bucketItems.forEach((item, idx) => {
+      const div = document.createElement("div");
+      div.className = "cardItem";
+      div.style.padding = "8px 12px";
+      div.innerHTML = '<span style="font-size:13px;">📌 ' + item + '</span><button class="rmBtn" data-idx="' + idx + '" style="position:absolute;right:10px;top:6px;border:0;background:transparent;color:#ff4f8f;cursor:pointer;">✕</button>';
+      list.appendChild(div);
+    });
+    document.querySelectorAll(".rmBtn").forEach(btn => {
+      btn.onclick = (e) => {
+        const idx = parseInt(e.target.getAttribute("data-idx"), 10);
+        bucketItems.splice(idx, 1);
+        localStorage.setItem("auraBucket", JSON.stringify(bucketItems));
+        loadBucketList();
+      };
+    });
+  }
+
+  document.getElementById("addBucketBtn").onclick = () => {
+    const val = document.getElementById("bucketInput").value.trim();
+    if(!val) return;
+    bucketItems.push(val);
+    localStorage.setItem("auraBucket", JSON.stringify(bucketItems));
+    document.getElementById("bucketInput").value = "";
+    loadBucketList();
+  };
+
+  /* SAYAÇ */
+  function startCounter(){
+    const startDate = new Date("2025-09-06T00:00:00");
+    function update(){
+      const diff = new Date() - startDate;
+      if(diff > 0){
+        document.getElementById("cntDays").textContent = Math.floor(diff / 86400000);
+        document.getElementById("cntHours").textContent = Math.floor((diff / 3600000) % 24);
+        document.getElementById("cntMinutes").textContent = Math.floor((diff / 60000) % 60);
+        document.getElementById("cntSeconds").textContent = Math.floor((diff / 1000) % 60);
+      }
+    }
+    update();
+    setInterval(update, 1000);
+  }
+
+  /* RÜYA YORUMU */
+  document.getElementById("interpretDreamBtn").onclick = async () => {
+    const dream = document.getElementById("dreamInput").value.trim();
+    const resDiv = document.getElementById("dreamResult");
+    if(!dream) return;
+    resDiv.style.display = "block";
+    resDiv.textContent = "AURA rüyanın derin anlamlarını çözümlüyor... 🌙";
+    try {
+      const ans = await askAura('Edanur bu rüyayı gördü: "' + dream + '". Bu rüyayı son derece olumlu, romantik, tatlı ve iç açıcı bir dille yorumla.');
+      resDiv.textContent = ans;
+    } catch(e) {
+      resDiv.textContent = "Rüyan güzel günlerin habercisi! ✨";
+    }
+  };
+
+  /* MOD TAKVİMİ */
+  const range = document.getElementById("moodRange");
+  if(range) range.oninput = () => document.getElementById("moodVal").textContent = range.value + "/10";
+  let moodLogs = JSON.parse(localStorage.getItem("auraMoodLogs") || "[]");
+  function loadMoodLogs(){
+    const list = document.getElementById("moodLogList");
+    if(!list) return;
+    list.innerHTML = "";
+    moodLogs.slice().reverse().forEach(log => {
+      const div = document.createElement("div");
+      div.className = "cardItem";
+      div.style.padding = "8px 12px";
+      div.innerHTML = '<div style="font-size:12px;font-weight:bold;color:#ff9dcb;">Puan: ' + log.val + '/10 - <span style="color:#fff;">' + log.date + '</span></div><div style="font-size:11px;color:#ffd5e8;margin-top:2px;">' + (log.note || "Not yok") + '</div>';
+      list.appendChild(div);
+    });
+  }
+  document.getElementById("saveMoodLogBtn").onclick = () => {
+    const val = range.value;
+    const note = document.getElementById("moodNote").value.trim();
+    moodLogs.push({ val, note, date: new Date().toLocaleDateString("tr-TR") });
+    localStorage.setItem("auraMoodLogs", JSON.stringify(moodLogs));
+    document.getElementById("moodNote").value = "";
+    loadMoodLogs();
+  };
+
+  /* ŞİFRELİ SÜRPRİZ KUTU (0913) */
+  document.getElementById("unlockSecretBtn").onclick = () => {
+    const pass = document.getElementById("secretPassInput").value.trim();
+    if(pass === "0913"){
+      document.getElementById("secretPassArea").style.display = "none";
+      document.getElementById("secretMessageArea").style.display = "block";
+    } else {
+      alert("Hatalı şifre bir tanem! 💕");
+    }
+  };
+
+  /* MODALLAR VE AÇILIŞLAR */
+  const moodOverlay = document.getElementById("moodOverlay");
+  const specialOverlay = document.getElementById("specialOverlay");
+  const periodOverlay = document.getElementById("periodOverlay");
+
+  document.getElementById("moodButton").onclick = () => moodOverlay.classList.add("show");
+  document.getElementById("closeMood").onclick = () => moodOverlay.classList.remove("show");
+
+  document.getElementById("specialButton").onclick = () => { specialOverlay.classList.add("show"); loadStories(); };
+  document.getElementById("closeSpecial").onclick = () => specialOverlay.classList.remove("show");
+
+  document.getElementById("periodButton").onclick = () => { periodOverlay.classList.add("show"); calculatePeriod(); };
+  document.getElementById("closePeriod").onclick = () => periodOverlay.classList.remove("show");
+
+  function selectMood(m){
+    moodOverlay.classList.remove("show");
+    addMessage("Bugün kendimi " + m + " hissediyorum...", "user");
+    sendMessage("Bugün kendimi " + m + " hissediyorum.", m);
+  }
+
+  ["Mutlu", "Uzgun", "Yorgun", "Stresli", "Romantik", "Dertli"].forEach(m => {
+    const el = document.getElementById("mood" + m);
+    if(el) el.onclick = () => selectMood(m);
   });
-}
-document.getElementById("addBucketBtn").onclick = () => {
-  const val = document.getElementById("bucketInput").value.trim();
-  if(!val) return;
-  bucketItems.push(val);
-  localStorage.setItem("auraBucket", JSON.stringify(bucketItems));
-  document.getElementById("bucketInput").value = "";
+
+  /* SEKMELER */
+  const tabs = ["counter", "bucket", "quiz", "dream", "moodLog", "zodiac", "secret", "stories"];
+  tabs.forEach(t => {
+    const btn = document.getElementById(t + "Tab");
+    if(btn){
+      btn.onclick = () => {
+        tabs.forEach(x => {
+          const b = document.getElementById(x + "Tab");
+          const c = document.getElementById(x + "Content");
+          if(b) b.classList.remove("active");
+          if(c) c.classList.remove("active");
+        });
+        btn.classList.add("active");
+        const targetContent = document.getElementById(t + "Content");
+        if(targetContent) targetContent.classList.add("active");
+      };
+    }
+  });
+
+  /* REGL HESAPLAMA */
+  function calculatePeriod(){
+    const d = localStorage.getItem("auraPeriodDate");
+    const c = parseInt(localStorage.getItem("auraPeriodCycle") || "28", 10);
+    if(!d){ document.getElementById("periodDays").textContent = "Bilgi Yok"; return; }
+    const parts = d.split("-");
+    const nextDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+    nextDate.setDate(nextDate.getDate() + c);
+    const today = new Date(); today.setHours(0,0,0,0);
+    const diff = Math.ceil((nextDate.getTime() - today.getTime()) / 86400000);
+    document.getElementById("periodDays").textContent = diff > 0 ? diff + " Gün Kaldı" : Math.abs(diff) + " Gün Geçti";
+    document.getElementById("periodDate").textContent = "Tahmini: " + nextDate.toLocaleDateString("tr-TR");
+  }
+
+  document.getElementById("periodSave").onclick = () => {
+    const d = document.getElementById("lastPeriod").value;
+    const c = document.getElementById("cycleLength").value;
+    if(d){
+      localStorage.setItem("auraPeriodDate", d);
+      localStorage.setItem("auraPeriodCycle", c);
+      calculatePeriod();
+      setTimeout(() => periodOverlay.classList.remove("show"), 500);
+    }
+  };
+
+  /* MASALLAR */
+  const sabitMasallar = [
+    { title: "Birinci Masal", audioData: "masal1mp3.aac", date: "Bedirhan'ın Sesinden" },
+    { title: "İkinci Masal", audioData: "masal2mp3.aac", date: "Bedirhan'ın Sesinden" },
+    { title: "Üçüncü Masal", audioData: "masal3mp3.aac", date: "Bedirhan'ın Sesinden" }
+  ];
+
+  function loadStories(){
+    const list = document.getElementById("storyList");
+    if(!list) return;
+    list.innerHTML = "";
+    sabitMasallar.forEach((item) => {
+      const div = document.createElement("div");
+      div.className = "cardItem";
+      div.innerHTML = '<div style="font-weight:bold;color:#ffe0ed;">📖 ' + item.title + '</div>' +
+        '<div style="font-size:10px;color:#ffb8d8;">' + item.date + '</div>' +
+        '<audio controls class="audioPlayer" src="' + item.audioData + '"></audio>';
+      list.appendChild(div);
+    });
+  }
+
+  /* SİSTEMİ BAŞLAT */
+  addMessage("Merhaba Edanur, tüm butonlar ve özel alanlar tamamen aktifleştirildi. ❤️", "aura");
+  startCounter();
+  renderQuiz();
   loadBucketList();
-};
-function removeBucket(idx){ bucketItems.splice(idx, 1); localStorage.setItem("auraBucket", JSON.stringify(bucketItems)); loadBucketList(); }
-
-/* RÜYA YORUMCUSU */
-document.getElementById("interpretDreamBtn").onclick = async () => {
-  const dream = document.getElementById("dreamInput").value.trim();
-  const resDiv = document.getElementById("dreamResult");
-  if(!dream) return;
-  resDiv.style.display = "block";
-  resDiv.textContent = "AURA rüyanın derin anlamlarını çözümlüyor... 🌙";
-  try {
-    const ans = await askAura(`Edanur bu rüyayı gördü: "${dream}". Bu rüyayı son derece olumlu, romantik, tatlı ve iç açıcı bir dille yorumla.`);
-    resDiv.textContent = ans;
-  } catch(e) {
-    resDiv.textContent = "Rüyan güzel günlerin habercisi! ✨";
-  }
-};
-
-/* MOD TAKVİMİ */
-const range = document.getElementById("moodRange");
-if(range) range.oninput = () => document.getElementById("moodVal").textContent = range.value + "/10";
-let moodLogs = JSON.parse(localStorage.getItem("auraMoodLogs") || "[]");
-function loadMoodLogs(){
-  const list = document.getElementById("moodLogList");
-  list.innerHTML = "";
-  moodLogs.slice().reverse().forEach(log => {
-    const div = document.createElement("div");
-    div.className = "cardItem";
-    div.style.padding = "8px 12px";
-    div.innerHTML = `<div style="font-size:12px;font-weight:bold;color:#ff9dcb;">Puan: ${log.val}/10 - <span style="color:#fff;">${log.date}</span></div><div style="font-size:11px;color:#ffd5e8;margin-top:2px;">${log.note || "Not yok"}</div>`;
-    list.appendChild(div);
-  });
-}
-document.getElementById("saveMoodLogBtn").onclick = () => {
-  const val = range.value;
-  const note = document.getElementById("moodNote").value.trim();
-  moodLogs.push({ val, note, date: new Date().toLocaleDateString("tr-TR") });
-  localStorage.setItem("auraMoodLogs", JSON.stringify(moodLogs));
-  document.getElementById("moodNote").value = "";
   loadMoodLogs();
-};
-
-/* ŞİFRELİ SÜRPRİZ KUTU (ŞİFRE: 0913) */
-document.getElementById("unlockSecretBtn").onclick = () => {
-  const pass = document.getElementById("secretPassInput").value.trim();
-  if(pass === "0913"){
-    document.getElementById("secretPassArea").style.display = "none";
-    document.getElementById("secretMessageArea").style.display = "block";
-  } else {
-    alert("Hatalı şifre bir tanem! 💕");
-  }
-};
-
-/* MODALLAR VE SEKMELER */
-const moodOverlay = document.getElementById("moodOverlay");
-document.getElementById("moodButton").onclick = () => moodOverlay.classList.add("show");
-document.getElementById("closeMood").onclick = () => moodOverlay.classList.remove("show");
-
-function selectMood(m){
-  moodOverlay.classList.remove("show");
-  addMessage(`Bugün kendimi ${m} hissediyorum...`, "user");
-  sendMessage(`Bugün kendimi ${m} hissediyorum.`, m);
-}
-
-const specialOverlay = document.getElementById("specialOverlay");
-document.getElementById("specialButton").onclick = () => { specialOverlay.classList.add("show"); loadStories(); };
-document.getElementById("closeSpecial").onclick = () => specialOverlay.classList.remove("show");
-
-const tabs = ["counter", "bucket", "quiz", "dream", "moodLog", "zodiac", "secret", "stories"];
-tabs.forEach(t => {
-  const btn = document.getElementById(t + "Tab");
-  if(btn){
-    btn.onclick = () => {
-      tabs.forEach(x => {
-        const b = document.getElementById(x + "Tab");
-        const c = document.getElementById(x + "Content");
-        if(b) b.classList.remove("active");
-        if(c) c.classList.remove("active");
-      });
-      btn.classList.add("active");
-      document.getElementById(t + "Content").classList.add("active");
-    };
-  }
 });
-
-/* REGL TAKİBİ */
-const periodOverlay = document.getElementById("periodOverlay");
-document.getElementById("periodButton").onclick = () => { periodOverlay.classList.add("show"); calculatePeriod(); };
-document.getElementById("closePeriod").onclick = () => periodOverlay.classList.remove("show");
-
-function calculatePeriod(){
-  const d = localStorage.getItem("auraPeriodDate");
-  const c = parseInt(localStorage.getItem("auraPeriodCycle") || "28", 10);
-  if(!d){ document.getElementById("periodDays").textContent = "Bilgi Yok"; return; }
-  const parts = d.split("-");
-  const nextDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
-  nextDate.setDate(nextDate.getDate() + c);
-  const today = new Date(); today.setHours(0,0,0,0);
-  const diff = Math.ceil((nextDate.getTime() - today.getTime()) / 86400000);
-  document.getElementById("periodDays").textContent = diff > 0 ? `${diff} Gün Kaldı` : `${Math.abs(diff)} Gün Geçti`;
-  document.getElementById("periodDate").textContent = "Tahmini: " + nextDate.toLocaleDateString("tr-TR");
-}
-
-document.getElementById("periodSave").onclick = () => {
-  const d = document.getElementById("lastPeriod").value;
-  const c = document.getElementById("cycleLength").value;
-  if(d){
-    localStorage.setItem("auraPeriodDate", d);
-    localStorage.setItem("auraPeriodCycle", c);
-    calculatePeriod();
-    setTimeout(() => periodOverlay.classList.remove("show"), 500);
-  }
-};
 </script>
 </body>
 </html>
