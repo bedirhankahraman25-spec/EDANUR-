@@ -47,36 +47,41 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .userMessage{align-self:flex-end;background:linear-gradient(135deg,#a91465,#e43c91);border:1px solid rgba(255,170,215,.3)}
 .typing{opacity:.7;font-style:italic}
 
+.dogWidget{position:absolute;left:14px;bottom:122px;width:48px;height:48px;border-radius:50%;background:rgba(40,0,27,.9);border:2px solid #ff77bb;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;z-index:25;box-shadow:0 0 15px rgba(255,105,180,.4);animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
 .periodButton,.specialButton,.moodButton{position:absolute;width:42px;height:42px;border:1px solid rgba(255,120,190,.4);border-radius:50%;background:rgba(40,0,27,.88);color:#ffb6d8;font-size:19px;cursor:pointer;z-index:25;box-shadow:0 0 15px rgba(255,20,147,.22)}
 .periodButton{right:14px;bottom:122px}
 .specialButton{right:64px;bottom:122px}
 .moodButton{right:114px;bottom:122px}
 
-.overlay{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;padding:12px;background:rgba(0,0,0,.58);backdrop-filter:blur(5px);z-index:100}
+.overlay{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;padding:12px;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);z-index:100}
 .overlay.show{display:flex}
-.panel{width:min(480px,100%);max-height:88vh;overflow-y:auto;padding:18px;border-radius:24px;background:linear-gradient(145deg,rgba(71,4,43,.99),rgba(25,0,17,.99));border:1px solid rgba(255,120,190,.38);box-shadow:0 0 35px rgba(255,20,147,.25);scrollbar-width:none}
+.panel{width:min(520px,100%);max-height:88vh;overflow-y:auto;padding:18px;border-radius:24px;background:linear-gradient(145deg,rgba(71,4,43,.99),rgba(25,0,17,.99));border:1px solid rgba(255,120,190,.38);box-shadow:0 0 35px rgba(255,20,147,.25);scrollbar-width:none}
 .panel::-webkit-scrollbar{display:none}
 .panelHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
-.panelTitle{font-family:Georgia,serif;font-size:19px;color:#ffd5e8}
+.panelTitle{font-family:Georgia,serif;font-size:18px;color:#ffd5e8}
 .closeButton{width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:#ffc5df;font-size:18px;cursor:pointer}
-.tabs{display:flex;gap:5px;margin-bottom:15px;overflow-x:auto;padding-bottom:5px}
-.tab{flex:1;min-width:75px;height:36px;border:1px solid rgba(255,105,180,.22);border-radius:12px;background:rgba(255,255,255,.05);color:#ffc7df;font-size:11px;cursor:pointer;white-space:nowrap}
+.tabs{display:flex;gap:5px;margin-bottom:15px;overflow-x:auto;padding-bottom:5px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:0 12px;height:36px;border:1px solid rgba(255,105,180,.22);border-radius:12px;background:rgba(255,255,255,.05);color:#ffc7df;font-size:11px;cursor:pointer;white-space:nowrap}
 .tab.active{background:linear-gradient(135deg,rgba(255,104,181,.38),rgba(190,0,105,.45));border-color:rgba(255,130,195,.5)}
 .tabContent{display:none}.tabContent.active{display:block}
 
 .input,.textarea{width:100%;padding:10px;border:1px solid rgba(255,105,180,.25);border-radius:13px;outline:0;background:rgba(255,255,255,.06);color:white;font-size:13px;margin-bottom:8px}
-.saveButton{width:100%;height:42px;border:0;border-radius:14px;background:linear-gradient(135deg,#ff76ba,#d40070);color:white;font-weight:bold;font-size:14px;cursor:pointer}
+.saveButton{width:100%;height:40px;border:0;border-radius:14px;background:linear-gradient(135deg,#ff76ba,#d40070);color:white;font-weight:bold;font-size:13px;cursor:pointer;margin-top:4px}
 .cardItem{position:relative;padding:12px;margin-bottom:10px;border-radius:15px;background:rgba(255,255,255,.055);border:1px solid rgba(255,105,180,.17)}
 .audioPlayer{width:100%;margin-top:8px;height:36px;border-radius:8px}
-.moodGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
-.moodItem{padding:12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,105,180,.2);text-align:center;cursor:pointer}
 
 .counterGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;text-align:center}
 .counterBox{background:rgba(255,255,255,.08);padding:10px 4px;border-radius:12px;border:1px solid rgba(255,105,180,.3)}
 .counterVal{font-size:18px;font-weight:bold;color:#ff8ac5}
 .counterLbl{font-size:10px;color:#ffd0e5;margin-top:2px}
-.quizOption{width:100%;padding:10px;margin-top:6px;border-radius:10px;border:1px solid rgba(255,105,180,.3);background:rgba(255,255,255,.06);color:white;text-align:left;font-size:13px;cursor:pointer}
+
+.quizOption{width:100%;padding:10px;margin-top:6px;border-radius:10px;border:1px solid rgba(255,105,180,.3);background:rgba(255,255,255,.06);color:white;text-align:left;font-size:13px;cursor:pointer;transition:.2s}
 .quizOption:active{background:rgba(255,105,180,.3)}
+
+.canvasBox{width:100%;height:200px;background:#1a0313;border:1px dashed rgba(255,105,180,.4);border-radius:14px;touch-action:none;cursor:crosshair}
 
 .bottom{position:absolute;left:0;right:0;bottom:0;height:110px;padding:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(to top,rgba(9,0,7,.98),rgba(20,0,14,.94));border-top:1px solid rgba(255,92,175,.42);backdrop-filter:blur(16px);z-index:30}
 .inputBar{width:min(720px,100%);height:58px;display:flex;align-items:center;gap:7px;padding:7px;border:1px solid rgba(255,91,173,.4);border-radius:30px;background:rgba(30,0,20,.92)}
@@ -85,7 +90,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .actionButton{width:45px;height:45px;flex:0 0 45px;border:0;border-radius:50%;background:linear-gradient(135deg,#ff77bb,#d40070);color:white;font-size:20px;cursor:pointer}
 </style>
 </head>
-  <body>
+<body>
 <div class="background">
 <div class="glow one"></div><div class="glow two"></div>
 <div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
@@ -108,113 +113,25 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 
 <div class="chatArea" id="chatArea"><div class="chat" id="chat"></div></div>
 
+<!-- SANAL KÖPEK MASKOTU (9) -->
+<div class="dogWidget" id="dogWidget" title="Meyra 🐶">🐶</div>
+
+<!-- BUTONLAR -->
 <button class="moodButton" id="moodButton" type="button" title="Ruh Hali">🎭</button>
 <button class="specialButton" id="specialButton" type="button" title="Özel Alan">👑</button>
 <button class="periodButton" id="periodButton" type="button" title="Regl Takibi">🌸</button>
-
-<!-- ÖZEL ALAN MODAL -->
-<div class="overlay" id="specialOverlay">
-<div class="panel">
-<div class="panelHeader"><div class="panelTitle">👑 Edanur'un Özel Alanı</div><button class="closeButton" id="closeSpecial" type="button">×</button></div>
-
-<div class="tabs">
-<button class="tab active" id="counterTab" type="button">⏳ Sayacımız</button>
-<button class="tab" id="quizTab" type="button">🧩 Mini Test</button>
-<button class="tab" id="storiesTab" type="button">📖 Masallar</button>
-<button class="tab" id="musicTab" type="button">🎵 Şarkılar</button>
-<button class="tab" id="wheelTab" type="button">🎡 Çark</button>
-<button class="tab" id="astrologyTab" type="button">♓ Burç</button>
-<button class="tab" id="eventsTab" type="button">🎀 Günler</button>
-<button class="tab" id="notesTab" type="button">💌 Notlar</button>
-</div>
-
-<!-- AŞK SAYACI -->
-<div class="tabContent active" id="counterContent">
-  <div class="cardItem" style="text-align:center;">
-    <div style="font-weight:bold;color:#ffe0ed;font-size:15px;margin-bottom:4px;">💖 Bedirhan & Edanur</div>
-    <div style="font-size:11px;color:#ffb8d8;margin-bottom:12px;">6 Eylül 2025 Tanışma Tarihimizden Beri...</div>
-    <div class="counterGrid">
-      <div class="counterBox"><div class="counterVal" id="cntDays">0</div><div class="counterLbl">Gün</div></div>
-      <div class="counterBox"><div class="counterVal" id="cntHours">0</div><div class="counterLbl">Saat</div></div>
-      <div class="counterBox"><div class="counterVal" id="cntMinutes">0</div><div class="counterLbl">Dakika</div></div>
-      <div class="counterBox"><div class="counterVal" id="cntSeconds">0</div><div class="counterLbl">Saniye</div></div>
-    </div>
-    <div style="font-size:11px;color:#ff9dcb;margin-top:12px;font-style:italic;">"Her saniye seni sevmeye devam ediyorum..."</div>
-  </div>
-</div>
-
-<!-- MİNİ TEST -->
-<div class="tabContent" id="quizContent">
-  <div class="cardItem">
-    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:8px;" id="quizTitle">🧩 Bedirhan'ı Ne Kadar Tanıyorsun?</div>
-    <div id="quizBox"></div>
-  </div>
-</div>
-
-<!-- MASALLAR -->
-<div class="tabContent" id="storiesContent">
-  <div id="storyList"></div>
-</div>
-
-<!-- ŞARKILARIN -->
-<div class="tabContent" id="musicContent">
-  <div style="font-size:13px;color:#ffb8d8;margin-bottom:10px;font-weight:bold;">ŞARKILARIN</div>
-  <div id="musicList"></div>
-</div>
-
-<!-- KARAR ÇARKI -->
-<div class="tabContent" id="wheelContent">
-  <div class="cardItem">
-    <div style="font-weight:bold;margin-bottom:6px;">🎡 Ne Yapalım / Ne Yesek?</div>
-    <input type="text" id="wheelInput" class="input" placeholder="Yeni seçenek yaz (Örn: Kahve, Film, Döner)">
-    <button class="saveButton" id="addWheelOptionBtn" type="button" style="margin-bottom:8px;">➕ Seçeneği Ekle</button>
-    <button class="saveButton" id="spinWheelBtn" type="button" style="background:linear-gradient(135deg,#a000ff,#ff258f);">🎲 Karar Ver (Çarkı Çevir)</button>
-  </div>
-  <div id="wheelResult" style="text-align:center;font-size:16px;font-weight:bold;color:#ff9dcb;margin:10px 0;"></div>
-  <div id="wheelOptionsList"></div>
-</div>
-
-<!-- ASTROLOJİ -->
-<div class="tabContent" id="astrologyContent">
-  <div class="cardItem">
-    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:8px;">♓ Balık Burcu Günlük Yorumu</div>
-    <div id="astrologyText" style="font-size:13px;line-height:1.5;color:#ffd5e8;">AURA burç yorumunu yüklüyor...</div>
-    <button class="saveButton" id="getAstrologyBtn" type="button" style="margin-top:10px;">✨ Bugünün Yorumunu Yenile</button>
-  </div>
-</div>
-
-<!-- ÖZEL GÜNLER VE NOTLAR -->
-<div class="tabContent" id="eventsContent">
-  <div class="cardItem">
-    <input class="input" id="eventName" type="text" placeholder="Özel Gün Adı">
-    <input class="input" id="eventDate" type="date">
-    <button class="saveButton" id="addEvent" type="button">🎀 Özel Gün Ekle</button>
-  </div>
-  <div id="eventList"></div>
-</div>
-
-<div class="tabContent" id="notesContent">
-  <div class="cardItem">
-    <input class="input" id="noteTitle" type="text" placeholder="Not Başlığı">
-    <textarea class="textarea" id="noteText" placeholder="Aklımdaki özel not..."></textarea>
-    <button class="saveButton" id="addNote" type="button">💌 Notu Kaydet</button>
-  </div>
-  <div id="noteList"></div>
-</div>
-
-</div></div>
 
 <!-- RUH HALİ MODAL -->
 <div class="overlay" id="moodOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">🎭 Bugünkü Ruh Halin Nasıl?</div><button class="closeButton" id="closeMood" type="button">×</button></div>
-<div class="moodGrid">
-<div class="moodItem" onclick="selectMood('Mutlu')">😊<br>Mutlu</div>
-<div class="moodItem" onclick="selectMood('Üzgün')">🥺<br>Üzgün</div>
-<div class="moodItem" onclick="selectMood('Yorgun')">😴<br>Yorgun</div>
-<div class="moodItem" onclick="selectMood('Stresli')">😖<br>Stresli</div>
-<div class="moodItem" onclick="selectMood('Romantik')">💖<br>Romantik</div>
-<div class="moodItem" onclick="selectMood('Dertli')">💬<br>Dertleşmek İstiyorum</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;">
+<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Mutlu')">😊<br>Mutlu</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Üzgün')">🥺<br>Üzgün</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Yorgun')">😴<br>Yorgun</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Stresli')">😖<br>Stresli</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Romantik')">💖<br>Romantik</div>
+<div class="cardItem" style="text-align:center;cursor:pointer;" onclick="selectMood('Dertli')">💬<br>Dertli</div>
 </div>
 </div></div>
 
@@ -229,6 +146,134 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <input class="input" id="cycleLength" type="number" value="28">
 <button class="saveButton" id="periodSave" type="button">Kaydet</button>
 </div></div>
+<!-- ÖZEL ALAN MODAL -->
+<div class="overlay" id="specialOverlay">
+<div class="panel">
+<div class="panelHeader"><div class="panelTitle">👑 Edanur'un Özel Dünyası</div><button class="closeButton" id="closeSpecial" type="button">×</button></div>
+
+<!-- SEKMELER -->
+<div class="tabs">
+<button class="tab active" id="counterTab" type="button">⏳ Sayacımız</button>
+<button class="tab" id="bucketTab" type="button">📝 Bucket List</button>
+<button class="tab" id="quizTab" type="button">🧩 Sen mi Ben mi?</button>
+<button class="tab" id="dreamTab" type="button">🌙 Rüya Günlüğü</button>
+<button class="tab" id="moodLogTab" type="button">📊 Mod Takvimi</button>
+<button class="tab" id="zodiacTab" type="button">♓ Burç Uyumu</button>
+<button class="tab" id="drawTab" type="button">🎨 Çizim Tahtası</button>
+<button class="tab" id="secretTab" type="button">🔒 Sürpriz Kutu</button>
+<button class="tab" id="relaxTab" type="button">🎧 Arka Plan Sesleri</button>
+<button class="tab" id="storiesTab" type="button">📖 Masallar</button>
+</div>
+<!-- CANLI AŞK SAYACI -->
+<div class="tabContent active" id="counterContent">
+  <div class="cardItem" style="text-align:center;">
+    <div style="font-weight:bold;color:#ffe0ed;font-size:15px;margin-bottom:4px;">💖 Bedirhan & Edanur</div>
+    <div style="font-size:11px;color:#ffb8d8;margin-bottom:12px;">6 Eylül 2025 Tanışma Tarihimizden Beri...</div>
+    <div class="counterGrid">
+      <div class="counterBox"><div class="counterVal" id="cntDays">0</div><div class="counterLbl">Gün</div></div>
+      <div class="counterBox"><div class="counterVal" id="cntHours">0</div><div class="counterLbl">Saat</div></div>
+      <div class="counterBox"><div class="counterVal" id="cntMinutes">0</div><div class="counterLbl">Dakika</div></div>
+      <div class="counterBox"><div class="counterVal" id="cntSeconds">0</div><div class="counterLbl">Saniye</div></div>
+    </div>
+    <div style="font-size:11px;color:#ff9dcb;margin-top:12px;font-style:italic;">"Her saniye seni sevmeye devam ediyorum..."</div>
+  </div>
+</div>
+
+<!-- ORTAK YAPILACAKLAR LISTESI / BUCKET LIST (2) -->
+<div class="tabContent" id="bucketContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:8px;">📌 Birlikte Yapılacaklar Listesi</div>
+    <input type="text" id="bucketInput" class="input" placeholder="Yeni hayal/plan ekle (Örn: Kapadokya'da balon turu)">
+    <button class="saveButton" id="addBucketBtn" type="button">➕ Listeye Ekle</button>
+  </div>
+  <div id="bucketList"></div>
+</div>
+
+<!-- SEN Mİ BEN Mİ? UZUN ANKET (3) -->
+<div class="tabContent" id="quizContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:4px;" id="quizTitle">🧩 Sen mi Ben mi? (Çift Anketi)</div>
+    <div style="font-size:11px;color:#ffb8d8;margin-bottom:10px;">Soruları cevapla, ikinizin uyumunu gör!</div>
+    <div id="quizBox"></div>
+  </div>
+</div>
+
+<!-- RÜYA GÜNLÜĞÜ VE AURA YORUMCUSU (7) -->
+<div class="tabContent" id="dreamContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:6px;">🌙 Dün Gece Ne Gördün Edanur?</div>
+    <textarea id="dreamInput" class="textarea" rows="3" placeholder="Gördüğün rüyayı detaylıca anlat, AURA senin için yorumlasın..."></textarea>
+    <button class="saveButton" id="interpretDreamBtn" type="button">✨ AURA Rüyamı Yorumla!</button>
+  </div>
+  <div class="cardItem" id="dreamResult" style="display:none;font-size:13px;line-height:1.5;color:#ffd5e8;"></div>
+</div>
+<!-- GÜNLÜK MOD TAKVİMİ (8) -->
+<div class="tabContent" id="moodLogContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:6px;">📊 Bugünkü Modun Kaç Üzerinden Kaç?</div>
+    <div style="display:flex;gap:5px;margin-bottom:8px;">
+      <input type="range" id="moodRange" min="1" max="10" value="8" style="flex:1;">
+      <span id="moodVal" style="font-weight:bold;color:#ff8ac5;min-width:30px;">8/10</span>
+    </div>
+    <input type="text" id="moodNote" class="input" placeholder="Günün hakkında kısa bir not...">
+    <button class="saveButton" id="saveMoodLogBtn" type="button">💾 Modumu Kaydet</button>
+  </div>
+  <div id="moodLogList"></div>
+</div>
+
+<!-- BURÇ UYUMU (13) -->
+<div class="tabContent" id="zodiacContent">
+  <div class="cardItem" style="text-align:center;">
+    <div style="font-size:18px;font-weight:bold;color:#ffe0ed;">♓ Balık & ♎ Terazi</div>
+    <div style="font-size:12px;color:#ffb8d8;margin-top:2px;">Edanur & Bedirhan Aşk Uyum Analizi</div>
+    <div style="font-size:36px;font-weight:bold;color:#ff4fa8;margin:10px 0;text-shadow:0 0 10px #ff1493;">%98 UYUM</div>
+    <div style="font-size:12px;line-height:1.5;color:#ffd5e8;text-align:left;background:rgba(0,0,0,.2);padding:10px;border-radius:10px;">
+      Balık burcunun derin duygusallığı ve sezgileri, Terazi burcunun zarafeti, romantizmi ve adil yaklaşımıyla mükemmel bir denge oluşturur. Terazi Bedirhan, Balık Edanur'a huzur ve güven verirken; Edanur, Bedirhan'ın hayatına sonsuz bir aşk ve renk katar! ❤️
+    </div>
+  </div>
+</div>
+
+<!-- MİNİK ÇİZİM TAHTASI (16) -->
+<div class="tabContent" id="drawContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:6px;">🎨 Parmağınla Kalp Çiz!</div>
+    <canvas id="drawCanvas" class="canvasBox"></canvas>
+    <button class="saveButton" id="clearCanvasBtn" type="button" style="background:#55002b;margin-top:8px;">🗑️ Temizle</button>
+  </div>
+</div>
+
+<!-- ŞİFRELİ SÜRPRİZ KUTU (6) -->
+<div class="tabContent" id="secretContent">
+  <div class="cardItem" id="secretPassArea">
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:6px;">🔒 Şifreli Sürpriz Kutu</div>
+    <div style="font-size:11px;color:#ffb8d8;margin-bottom:8px;">Bedirhan'ın sana bıraktığı mühürlü mektubu açmak için şifreyi gir:</div>
+    <input type="password" id="secretPassInput" class="input" placeholder="4 Haneli Şifre">
+    <button class="saveButton" id="unlockSecretBtn" type="button">🔑 Mührü Aç</button>
+  </div>
+  <div class="cardItem" id="secretMessageArea" style="display:none;background:rgba(255,105,180,.15);border:1px solid #ff77bb;">
+    <div style="font-weight:bold;color:#fff;font-size:15px;margin-bottom:8px;">💌 Bedirhan'dan Edanur'a Özel Mektup</div>
+    <div style="font-size:13px;line-height:1.6;color:#ffe0ed;font-style:italic;">
+      "Güzel gözlü sevdiğim Edanur,<br><br>
+      Bu satırları okuyorsan şifreyi doğru girdin demektir... Hayatımda olduğun her gün için, yüzümü güldürdüğün her an için sana minnettarım. Sen benim en güzel iyikim, en tatlı huzurum ve geleceğimsin. Ne olursa olsun seni her zaman sonsuz bir aşkla seveceğim. İyi ki varsın bir tanem! ❤️"
+    </div>
+  </div>
+</div>
+
+<!-- ARKA PLAN SESLERİ / SPOTIFY (5) -->
+<div class="tabContent" id="relaxContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:8px;">🎧 Rahatlatıcı Arka Plan Sesleri</div>
+    <div style="font-size:12px;color:#ffb8d8;margin-bottom:6px;">🌧️ Yağmur Sesi</div>
+    <audio controls class="audioPlayer" src="https://www.soundjay.com/nature/sounds/rain-01.mp3" loop></audio>
+  </div>
+</div>
+
+<!-- MASALLAR -->
+<div class="tabContent" id="storiesContent">
+  <div id="storyList"></div>
+</div>
+
+</div></div>
 
 <!-- ALT MESAJ GİRİŞ BARI -->
 <div class="bottom"><div class="inputBar">
@@ -239,7 +284,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div></div>
 
 </div>
-    <script src="https://js.puter.com/v2/"></script>
+<script src="https://js.puter.com/v2/"></script>
 
 <script>
 const input = document.getElementById("messageInput");
@@ -261,26 +306,32 @@ function addMessage(text, type){
 }
 
 window.addEventListener("load", () => {
-  addMessage("Merhaba Edanur, sistem hazır. ❤️", "aura");
+  addMessage("Merhaba Edanur, sistem ve yeni özelliklerin hazır. ❤️", "aura");
   loadStories();
-  loadMusic();
-  loadPeriodData();
   startCounter();
   initQuiz();
+  loadBucketList();
+  loadMoodLogs();
+  initCanvas();
 });
 
+/* AURA ZEKASI VE ÖZEL TESELLİ SİSTEMİ */
 async function askAura(text, moodContext = ""){
   if(typeof puter === "undefined" || !puter.ai || !puter.ai.chat){
     throw new Error("Puter AI hazır değil.");
   }
 
   const prompt = `
-Sen AURA adında gelişmiş, yüksek duygusal zekaya sahip bir yapay zeka asistanısın.
+Sen AURA adında gelişmiş, yüksek duygusal zekaya sahip romantic bir asistanısın.
 SİSTEM BİLGİLERİ:
 - BEDİRHAN KAHRAMAN tarafından geliştirildin.
-- Kullanıcının adı EDANUR.
-- Edanur'un sevgilisi BEDİRHAN KAHRAMAN'dır.
-${moodContext ? `[Edanur'un Ruh Hali: ${moodContext}]` : ""}
+- Kullanıcının adı EDANUR (Balık Burcu).
+- Edanur'un sevgilisi BEDİRHAN KAHRAMAN'dır (Terazi Burcu).
+${moodContext ? `[Edanur'un Şu Anki Ruh Hali: ${moodContext}]` : ""}
+
+KURAL VE KİŞİLİK:
+Eğer Edanur sana üzgün, yorgun, stresli, dertli olduğunu söylerse ya da modu düşükse; ona son derece şefkatli, teselli edici, içten, samimi, onun yanında olduğunu hissettiren ve moral verici romantik bir dille yaklaş. Bedirhan'ın onu ne kadar çok sevdiğini hatırlat.
+
 Edanur'un Mesajı:
 ${text}
   `;
@@ -329,11 +380,7 @@ document.getElementById("heartButton").onclick = () => { input.value = "Seni sev
 const sabitMasallar = [
   { title: "Birinci Masal", audioData: "masal1mp3.aac", date: "Bedirhan'ın Sesinden" },
   { title: "İkinci Masal", audioData: "masal2mp3.aac", date: "Bedirhan'ın Sesinden" },
-  { title: "Üçüncü Masal", audioData: "masal3mp3.aac", date: "Bedirhan'ın Sesinden" },
-  { title: "Dördüncü Masal", audioData: "masal4mp3.aac", date: "Bedirhan'ın Sesinden" },
-  { title: "Beşinci Masal", audioData: "masal5mp3.aac", date: "Bedirhan'ın Sesinden" },
-  { title: "Altıncı Masal", audioData: "masal6mp3.aac", date: "Bedirhan'ın Sesinden" },
-  { title: "Yedinci Masal", audioData: "masal7mp3.aac", date: "Bedirhan'ın Sesinden" }
+  { title: "Üçüncü Masal", audioData: "masal3mp3.aac", date: "Bedirhan'ın Sesinden" }
 ];
 
 function loadStories(){
@@ -350,222 +397,202 @@ function loadStories(){
     list.appendChild(div);
   });
 }
+    </script>
+    <script>
+/* SANAL KÖPEK ETKİLEŞİMİ (9) */
+document.getElementById("dogWidget").onclick = () => {
+  const msgs = [
+    "Hav hav! Edanur seni çok seviyorum! 🐾❤️",
+    "Bedirhan sana kucak dolusu sevgiler gönderdi! 🐶💖",
+    "Bugün çok güzelsin Edanur! Hav hav! 🌸",
+    "Meyra sana pati uzatıyor! 🐾"
+  ];
+  const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
+  addMessage(randomMsg, "aura");
+};
 
-/* ŞARKILARIN */
-const sabitSarkilar = Array.from({ length: 10 }, (_, i) => ({
-  title: "ŞARKILARIN",
-  base: `sarki${i + 1}`
-}));
-
-function loadMusic(){
-  const list = document.getElementById("musicList");
-  list.innerHTML = "";
-  sabitSarkilar.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "cardItem";
-    div.innerHTML = `
-      <div style="font-weight:bold;color:#ffe0ed;margin-bottom:6px;">🎵 ${item.title}</div>
-      <audio controls class="audioPlayer">
-        <source src="${item.base}.mp3" type="audio/mpeg">
-        <source src="${item.base}.m4a" type="audio/mp4">
-        <source src="${item.base}.aac" type="audio/aac">
-        <source src="${item.base}.wav" type="audio/wav">
-        <source src="${item.base}.ogg" type="audio/ogg">
-        Tarayıcınız bu ses formatını desteklemiyor.
-      </audio>
-    `;
-    list.appendChild(div);
-  });
-}
-</script>
-    
-<script>
 /* CANLI AŞK SAYACI (6 EYLÜL 2025) */
 function startCounter(){
   const startDate = new Date("2025-09-06T00:00:00");
-  
   function update(){
     const now = new Date();
     const diff = now - startDate;
-
     if(diff > 0){
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById("cntDays").textContent = days;
-      document.getElementById("cntHours").textContent = hours;
-      document.getElementById("cntMinutes").textContent = minutes;
-      document.getElementById("cntSeconds").textContent = seconds;
+      document.getElementById("cntDays").textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("cntHours").textContent = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.getElementById("cntMinutes").textContent = Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById("cntSeconds").textContent = Math.floor((diff / 1000) % 60);
     }
   }
   update();
   setInterval(update, 1000);
 }
 
-/* BEDİRHAN ÖZEL MİNİ TESTİ */
-const quizQuestions = [
-  { 
-    q: "Bedirhan'ın en sevdiği yemek hangisidir?", 
-    options: ["İskender", "Adana Kebap", "Pizza", "Mantar Sote"], 
-    answer: 0 
-  },
-  { 
-    q: "Bedirhan'ın doğum tarihi nedir?", 
-    options: ["16.10.2008", "06.09.2005", "12.05.2007", "16.10.2007"], 
-    answer: 0 
-  },
-  { 
-    q: "Bedirhan'ın hayattaki en değerlisi kimdir?", 
-    options: ["Edanur ❤️", "Arabası", "Telefonu", "Bilgisayarı"], 
-    answer: 0 
-  },
-  { 
-    q: "Bedirhan'ın en sevdiği renk hangisidir?", 
-    options: ["Mavi", "Kırmızı", "Siyah", "Yeşil"], 
-    answer: 1 
-  },
-  { 
-    q: "Bedirhan'ın en sevdiği içecek nedir?", 
-    options: ["Kola", "Fanta", "Soğuk Çay", "Ayran"], 
-    answer: 0 
-  },
-  { 
-    q: "Bedirhan'ın en sevdiği araba hangisidir?", 
-    options: ["BMW M5", "Honda Civic", "Mercedes C200", "Audi A4"], 
-    answer: 1 
-  }
+/* SEN Mİ BEN Mİ? UZUN ANKETİ (3) */
+const longQuiz = [
+  { q: "İki dakikada kim daha çabuk acıkır?", opts: ["Edanur", "Bedirhan"] },
+  { q: "Sabahları uyanmakta kim daha çok zorlanır?", opts: ["Edanur", "Bedirhan"] },
+  { q: "İlk mesajı kim attı?", opts: ["Edanur", "Bedirhan"] },
+  { q: "Kim daha kıskanç?", opts: ["Edanur", "Bedirhan"] },
+  { q: "Bir tartışmada ilk kim alttan alır?", opts: ["Edanur", "Bedirhan"] },
+  { q: "Alışverişte kim daha çok para harcar?", opts: ["Edanur", "Bedirhan"] },
+  { q: "Kim daha romantiğe dönüşür?", opts: ["Edanur", "Bedirhan"] },
+  { q: "Kim daha uykucu?", opts: ["Edanur", "Bedirhan"] },
+  { q: "Yolda yürürken kim kaybolmaya daha yatkındır?", opts: ["Edanur", "Bedirhan"] },
+  { q: "Sürpriz yapmayı kim daha çok sever?", opts: ["Edanur", "Bedirhan"] }
 ];
-
-let currentQuizIdx = 0;
-let quizScore = 0;
-
-function initQuiz(){
-  currentQuizIdx = 0;
-  quizScore = 0;
-  renderQuiz();
-}
-
+let qIdx = 0;
+function initQuiz(){ qIdx = 0; renderQuiz(); }
 function renderQuiz(){
   const box = document.getElementById("quizBox");
-  if(currentQuizIdx >= quizQuestions.length){
-    box.innerHTML = `
-      <div style="text-align:center;padding:12px;">
-        <div style="font-size:19px;font-weight:bold;color:#ff9dcb;">🎉 Test Tamamlandı!</div>
-        <div style="font-size:14px;margin:10px 0;">Skorun: ${quizScore} / ${quizQuestions.length}</div>
-        <div style="font-size:12px;color:#ffd5e8;">${quizScore === quizQuestions.length ? "Harikasın Edanur! Bedirhan'ı ezbere biliyorsun! ❤️" : "Bedirhan seni çok seviyor, bir dahakine full yaparsın! 💕"}</div>
-        <button class="saveButton" onclick="initQuiz()" style="margin-top:12px;">Tekrar Çöz</button>
-      </div>
-    `;
+  if(qIdx >= longQuiz.length){
+    box.innerHTML = `<div style="text-align:center;padding:10px;color:#ff9dcb;font-weight:bold;">🎉 Anketi Tamamladınız! İkiniz Harika Bir Çiftsiniz! ❤️</div><button class="saveButton" onclick="initQuiz()">Tekrar Çöz</button>`;
     return;
   }
-  const qData = quizQuestions[currentQuizIdx];
-  let html = `<div style="font-size:14px;color:#fff;margin-bottom:10px;font-weight:bold;">Soru ${currentQuizIdx+1}: ${qData.q}</div>`;
-  qData.options.forEach((opt, idx) => {
-    html += `<button class="quizOption" onclick="answerQuiz(${idx})">${opt}</button>`;
-  });
-  box.innerHTML = html;
+  const item = longQuiz[qIdx];
+  box.innerHTML = `
+    <div style="font-size:13px;color:#fff;margin-bottom:8px;font-weight:bold;">Soru ${qIdx+1}/${longQuiz.length}: ${item.q}</div>
+    <button class="quizOption" onclick="qIdx++;renderQuiz();">👉 ${item.opts[0]}</button>
+    <button class="quizOption" onclick="qIdx++;renderQuiz();">👉 ${item.opts[1]}</button>
+  `;
 }
 
-function answerQuiz(optionIdx){
-  if(optionIdx === quizQuestions[currentQuizIdx].answer){
-    quizScore++;
-  }
-  currentQuizIdx++;
-  renderQuiz();
-}
-
-/* KARAR ÇARKI */
-let wheelOptions = JSON.parse(localStorage.getItem("auraWheelOptions") || '["Pizza", "Kahve Kaçamağı", "Film İzlemek", "Sahil Yürüyüşü"]');
-
-function renderWheelOptions(){
-  const list = document.getElementById("wheelOptionsList");
+/* ORTAK YAPILACAKLAR LISTESI (2) */
+let bucketItems = JSON.parse(localStorage.getItem("auraBucket") || '["Kapadokya Balon Turu", "Birlikte Kamp Yapmak", "Gün Batımında Kahve İçek"]');
+function loadBucketList(){
+  const list = document.getElementById("bucketList");
   list.innerHTML = "";
-  wheelOptions.forEach((opt, index) => {
+  bucketItems.forEach((item, idx) => {
     const div = document.createElement("div");
     div.className = "cardItem";
     div.style.padding = "8px 12px";
-    div.innerHTML = `
-      <span style="font-size:13px;">📌 ${opt}</span>
-      <button onclick="deleteWheelOption(${index})" style="position:absolute;right:10px;top:6px;border:0;background:transparent;color:#ff4f8f;cursor:pointer;">✕</button>
-    `;
+    div.innerHTML = `<span style="font-size:13px;">📌 ${item}</span><button onclick="removeBucket(${idx})" style="position:absolute;right:10px;top:6px;border:0;background:transparent;color:#ff4f8f;cursor:pointer;">✕</button>`;
     list.appendChild(div);
   });
 }
-
-document.getElementById("addWheelOptionBtn").onclick = () => {
-  const input = document.getElementById("wheelInput");
-  const val = input.value.trim();
+document.getElementById("addBucketBtn").onclick = () => {
+  const val = document.getElementById("bucketInput").value.trim();
   if(!val) return;
-  wheelOptions.push(val);
-  localStorage.setItem("auraWheelOptions", JSON.stringify(wheelOptions));
-  input.value = "";
-  renderWheelOptions();
+  bucketItems.push(val);
+  localStorage.setItem("auraBucket", JSON.stringify(bucketItems));
+  document.getElementById("bucketInput").value = "";
+  loadBucketList();
 };
+function removeBucket(idx){ bucketItems.splice(idx, 1); localStorage.setItem("auraBucket", JSON.stringify(bucketItems)); loadBucketList(); }
 
-function deleteWheelOption(index){
-  wheelOptions.splice(index, 1);
-  localStorage.setItem("auraWheelOptions", JSON.stringify(wheelOptions));
-  renderWheelOptions();
-}
-
-document.getElementById("spinWheelBtn").onclick = () => {
-  if(wheelOptions.length === 0){ alert("Lütfen seçenek ekleyin!"); return; }
-  const resultDiv = document.getElementById("wheelResult");
-  resultDiv.textContent = "Çark dönüyor... 🎲";
-  setTimeout(() => {
-    const selected = wheelOptions[Math.floor(Math.random() * wheelOptions.length)];
-    resultDiv.textContent = `🎯 Sonuç: ${selected}`;
-  }, 800);
-};
-
-/* ASTROLOJİ */
-async function loadAstrology(){
-  const target = document.getElementById("astrologyText");
-  target.textContent = "AURA yorumu hazırlıyor...";
+/* RÜYA YORUMCUSU (7) */
+document.getElementById("interpretDreamBtn").onclick = async () => {
+  const dream = document.getElementById("dreamInput").value.trim();
+  const resDiv = document.getElementById("dreamResult");
+  if(!dream) return;
+  resDiv.style.display = "block";
+  resDiv.textContent = "AURA rüyanın derin anlamlarını çözümlüyor... 🌙";
   try {
-    const response = await askAura("Edanur bir BALIK burcu. Bugün için sadece ona özel tatlı bir günlük Balık burcu yorumu yaz.");
-    target.textContent = response;
+    const ans = await askAura(`Edanur bu rüyayı gördü: "${dream}". Bu rüyayı son derece olumlu, romantik, tatlı ve iç açıcı bir dille yorumla.`);
+    resDiv.textContent = ans;
   } catch(e) {
-    target.textContent = "Sezgilerin bugün çok güçlü Balık! Hayallerinin peşinden git. ✨";
+    resDiv.textContent = "Rüyan güzel günlerin habercisi! ✨";
   }
+};
+
+/* MOD TAKVİMİ (8) */
+const range = document.getElementById("moodRange");
+if(range) range.oninput = () => document.getElementById("moodVal").textContent = range.value + "/10";
+let moodLogs = JSON.parse(localStorage.getItem("auraMoodLogs") || "[]");
+function loadMoodLogs(){
+  const list = document.getElementById("moodLogList");
+  list.innerHTML = "";
+  moodLogs.slice().reverse().forEach(log => {
+    const div = document.createElement("div");
+    div.className = "cardItem";
+    div.style.padding = "8px 12px";
+    div.innerHTML = `<div style="font-size:12px;font-weight:bold;color:#ff9dcb;">Puan: ${log.val}/10 - <span style="color:#fff;">${log.date}</span></div><div style="font-size:11px;color:#ffd5e8;margin-top:2px;">${log.note || "Not yok"}</div>`;
+    list.appendChild(div);
+  });
 }
-document.getElementById("getAstrologyBtn").onclick = loadAstrology;
+document.getElementById("saveMoodLogBtn").onclick = () => {
+  const val = range.value;
+  const note = document.getElementById("moodNote").value.trim();
+  moodLogs.push({ val, note, date: new Date().toLocaleDateString("tr-TR") });
+  localStorage.setItem("auraMoodLogs", JSON.stringify(moodLogs));
+  document.getElementById("moodNote").value = "";
+  loadMoodLogs();
+};
+
+/* MİNİK ÇİZİM TAHTASI (16) */
+function initCanvas(){
+  const cvs = document.getElementById("drawCanvas");
+  if(!cvs) return;
+  const ctx = cvs.getContext("2d");
+  cvs.width = cvs.offsetWidth;
+  cvs.height = cvs.offsetHeight;
+  let drawing = false;
+
+  function start(e){ drawing = true; draw(e); }
+  function end(){ drawing = false; ctx.beginPath(); }
+  function draw(e){
+    if(!drawing) return;
+    const rect = cvs.getBoundingClientRect();
+    const x = (e.clientX || e.touches[0].clientX) - rect.left;
+    const y = (e.clientY || e.touches[0].clientY) - rect.top;
+    ctx.lineWidth = 3;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "#ff77bb";
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+  }
+
+  cvs.addEventListener("mousedown", start);
+  cvs.addEventListener("mouseup", end);
+  cvs.addEventListener("mousemove", draw);
+  cvs.addEventListener("touchstart", start);
+  cvs.addEventListener("touchend", end);
+  cvs.addEventListener("touchmove", draw);
+
+  document.getElementById("clearCanvasBtn").onclick = () => ctx.clearRect(0, 0, cvs.width, cvs.height);
+}
+
+/* ŞİFRELİ SÜRPRİZ KUTU (6 - ŞİFRE: 0913) */
+document.getElementById("unlockSecretBtn").onclick = () => {
+  const pass = document.getElementById("secretPassInput").value.trim();
+  if(pass === "0913"){
+    document.getElementById("secretPassArea").style.display = "none";
+    document.getElementById("secretMessageArea").style.display = "block";
+  } else {
+    alert("Hatalı şifre bir tanem! 💕");
+  }
+};
 
 /* MODALLAR VE SEKMELER */
 const moodOverlay = document.getElementById("moodOverlay");
 document.getElementById("moodButton").onclick = () => moodOverlay.classList.add("show");
 document.getElementById("closeMood").onclick = () => moodOverlay.classList.remove("show");
 
-function selectMood(mood){
+function selectMood(m){
   moodOverlay.classList.remove("show");
-  addMessage(`Bugün kendimi ${mood} hissediyorum...`, "user");
-  sendMessage(`Bugün kendimi ${mood} hissediyorum. Bana tatlı bir şeyler söyler misin?`, mood);
+  addMessage(`Bugün kendimi ${m} hissediyorum...`, "user");
+  sendMessage(`Bugün kendimi ${m} hissediyorum.`, m);
 }
 
 const specialOverlay = document.getElementById("specialOverlay");
-document.getElementById("specialButton").onclick = () => { 
-  specialOverlay.classList.add("show"); 
-  loadMusic();
-  renderWheelOptions();
-  loadAstrology();
-};
+document.getElementById("specialButton").onclick = () => { specialOverlay.classList.add("show"); loadStories(); };
 document.getElementById("closeSpecial").onclick = () => specialOverlay.classList.remove("show");
 
-const tabs = ["counter", "quiz", "stories", "music", "wheel", "astrology", "events", "notes"];
-tabs.forEach(tab => {
-  const btn = document.getElementById(tab + "Tab");
+const tabs = ["counter", "bucket", "quiz", "dream", "moodLog", "zodiac", "draw", "secret", "relax", "stories"];
+tabs.forEach(t => {
+  const btn = document.getElementById(t + "Tab");
   if(btn){
     btn.onclick = () => {
-      tabs.forEach(t => {
-        const tBtn = document.getElementById(t + "Tab");
-        const tContent = document.getElementById(t + "Content");
-        if(tBtn) tBtn.classList.remove("active");
-        if(tContent) tContent.classList.remove("active");
+      tabs.forEach(x => {
+        const b = document.getElementById(x + "Tab");
+        const c = document.getElementById(x + "Content");
+        if(b) b.classList.remove("active");
+        if(c) c.classList.remove("active");
       });
       btn.classList.add("active");
-      document.getElementById(tab + "Content").classList.add("active");
+      document.getElementById(t + "Content").classList.add("active");
     };
   }
 });
@@ -576,29 +603,16 @@ document.getElementById("periodButton").onclick = () => { periodOverlay.classLis
 document.getElementById("closePeriod").onclick = () => periodOverlay.classList.remove("show");
 
 function calculatePeriod(){
-  const savedDate = localStorage.getItem("auraPeriodDate");
-  const savedCycle = parseInt(localStorage.getItem("auraPeriodCycle") || "28", 10);
-  if(!savedDate){
-    document.getElementById("periodDays").textContent = "Bilgi Yok";
-    document.getElementById("periodDate").textContent = "Lütfen tarih kaydedin.";
-    return;
-  }
-  const parts = savedDate.split("-");
+  const d = localStorage.getItem("auraPeriodDate");
+  const c = parseInt(localStorage.getItem("auraPeriodCycle") || "28", 10);
+  if(!d){ document.getElementById("periodDays").textContent = "Bilgi Yok"; return; }
+  const parts = d.split("-");
   const nextDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
-  nextDate.setDate(nextDate.getDate() + savedCycle);
-  
-  const today = new Date();
-  today.setHours(0,0,0,0);
+  nextDate.setDate(nextDate.getDate() + c);
+  const today = new Date(); today.setHours(0,0,0,0);
   const diff = Math.ceil((nextDate.getTime() - today.getTime()) / 86400000);
-  
-  document.getElementById("periodDays").textContent = diff > 0 ? `${diff} Gün Kaldı` : (diff === 0 ? "Bugün Bekleniyor" : `${Math.abs(diff)} Gün Geçti`);
+  document.getElementById("periodDays").textContent = diff > 0 ? `${diff} Gün Kaldı` : `${Math.abs(diff)} Gün Geçti`;
   document.getElementById("periodDate").textContent = "Tahmini: " + nextDate.toLocaleDateString("tr-TR");
-}
-
-function loadPeriodData(){
-  const savedDate = localStorage.getItem("auraPeriodDate");
-  if(savedDate) document.getElementById("lastPeriod").value = savedDate;
-  calculatePeriod();
 }
 
 document.getElementById("periodSave").onclick = () => {
