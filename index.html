@@ -70,8 +70,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .cardItem{position:relative;padding:12px;margin-bottom:10px;border-radius:15px;background:rgba(255,255,255,.055);border:1px solid rgba(255,105,180,.17)}
 .audioPlayer{width:100%;margin-top:8px;height:36px;border-radius:8px}
 .photoGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.photoCard{background:rgba(255,255,255,.05);border-radius:12px;padding:8px;border:1px solid rgba(255,105,180,.2)}
-.photoCard img{width:100%;height:110px;object-fit:cover;border-radius:8px}
+.photoCard{background:rgba(255,255,255,.05);border-radius:12px;padding:8px;border:1px solid rgba(255,105,180,.2);text-align:center}
+.photoCard img{width:100%;height:120px;object-fit:cover;border-radius:8px}
 .moodGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
 .moodItem{padding:12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,105,180,.2);text-align:center;cursor:pointer}
 
@@ -156,7 +156,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
   </div>
 </div>
 
-<!-- MİNİ TEST (GÜNCELLENDİ) -->
+<!-- MİNİ TEST -->
 <div class="tabContent" id="quizContent">
   <div class="cardItem">
     <div style="font-weight:bold;color:#ffe0ed;margin-bottom:8px;" id="quizTitle">🧩 Bedirhan'ı Ne Kadar Tanıyorsun?</div>
@@ -166,12 +166,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 
 <!-- MASALLAR -->
 <div class="tabContent" id="storiesContent">
-  <div class="cardItem">
-    <div style="font-weight:bold;margin-bottom:6px;">🎙️ Ekstra Masal / Ses Ekle</div>
-    <input type="text" id="storyTitle" class="input" placeholder="Masal Başlığı">
-    <input type="file" id="storyAudioFile" class="input" accept="audio/*">
-    <button class="saveButton" id="addStoryBtn" type="button">✨ Masalı Kaydet (Bulut)</button>
-  </div>
   <div id="storyList"></div>
 </div>
 
@@ -193,7 +187,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
   <div id="wheelOptionsList"></div>
 </div>
 
-<!-- BALIK BURCU ASTROLOJİ -->
+<!-- ASTROLOJİ -->
 <div class="tabContent" id="astrologyContent">
   <div class="cardItem">
     <div style="font-weight:bold;color:#ffe0ed;margin-bottom:8px;">♓ Balık Burcu Günlük Yorumu</div>
@@ -202,13 +196,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
   </div>
 </div>
 
-<!-- FOTOĞRAF GALERİSİ -->
+<!-- FOTOĞRAF GALERİSİ (SADECE KLASÖRDEN OKUR) -->
 <div class="tabContent" id="photosContent">
-  <div class="cardItem">
-    <div style="font-weight:bold;margin-bottom:6px;">📸 Yeni Anı Ekle</div>
-    <input type="text" id="photoTitle" class="input" placeholder="Anı Başlığı">
-    <input type="file" id="photoFile" class="input" accept="image/*">
-    <button class="saveButton" id="addPhotoBtn" type="button">💖 Anıyı Kaydet</button>
+  <div style="font-size:12px;color:#ffb8d8;margin-bottom:8px;text-align:center;">
+    📸 Fotoğraflar index.html ile aynı klasördeki <b>foto1.jpg, foto2.jpg</b> gibi dosyalardan çekilmektedir.
   </div>
   <div class="photoGrid" id="photoGrid"></div>
 </div>
@@ -233,7 +224,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div>
 
 </div></div>
-  <!-- RUH HALİ MODAL -->
+
+<!-- RUH HALİ MODAL -->
 <div class="overlay" id="moodOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">🎭 Bugünkü Ruh Halin Nasıl?</div><button class="closeButton" id="closeMood" type="button">×</button></div>
@@ -268,9 +260,17 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div></div>
 
 </div>
-<script src="https://js.puter.com/v2/"></script>
+    <script src="https://js.puter.com/v2/"></script>
 
 <script>
+/* KLASÖRDEKİ FOTOĞRAFLARIN LİSTESİ */
+const klasorFotograflari = [
+  { title: "Birlikte İlk Anımız", src: "foto1.jpg" },
+  { title: "En Tatlı Gülüşün", src: "foto2.jpg" },
+  { title: "Unutulmaz Gün", src: "foto3.jpg" },
+  { title: "Güzel Bir Anı", src: "foto4.jpg" }
+];
+
 const input = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
 const micButton = document.getElementById("micButton");
@@ -366,7 +366,7 @@ const sabitMasallar = [
   { title: "Yedinci Masal", audioData: "masal7mp3.aac", date: "Bedirhan'ın Sesinden" }
 ];
 
-async function loadStories(){
+function loadStories(){
   const list = document.getElementById("storyList");
   list.innerHTML = "";
   sabitMasallar.forEach((item) => {
@@ -407,40 +407,49 @@ function loadMusic(){
     list.appendChild(div);
   });
 }
-</script>
-    <script>
-/* GÜNÜN ANISI ÖZELLİĞİ (HER GÜNE ÖZEL FOTOĞRAF SEÇER) */
+
+/* GÜNÜN ANISI (KLASÖRDEN ÇEKER) */
 function openDailyMemory(){
   const box = document.getElementById("dailyMemoryBox");
-  const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
   
-  if(photos.length === 0){
-    box.innerHTML = `
-      <div style="color:#ff8ac5;font-size:13px;padding:15px 0;">
-        Henüz hiç anı fotoğrafı eklemediniz! 📸<br>
-        <b>Özel Alan > Anılar</b> sekmesinden fotoğraf eklediğinizde her gün burada sürpriz bir anı çıkacak!
-      </div>
-    `;
+  if(klasorFotograflari.length === 0){
+    box.innerHTML = `<div style="color:#ff8ac5;font-size:13px;padding:15px 0;">Henüz fotoğraflar tanımlanmadı!</div>`;
     return;
   }
   
-  // Günün tarihine göre sabit ama her gün değişen indeks seçimi
   const today = new Date();
   const dateSeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-  const dailyIndex = dateSeed % photos.length;
-  const item = photos[dailyIndex];
+  const dailyIndex = dateSeed % klasorFotograflari.length;
+  const item = klasorFotograflari[dailyIndex];
 
   box.innerHTML = `
     <div class="photoCard" style="padding:12px;">
       <div style="font-size:12px;color:#ff9dcb;font-weight:bold;margin-bottom:8px;">✨ Bugüne Özel Anınız</div>
-      <img src="${item.imgData}" style="max-height:240px;width:100%;object-fit:cover;border-radius:12px;">
+      <img src="${item.src}" style="max-height:240px;width:100%;object-fit:cover;border-radius:12px;" onerror="this.src='https://via.placeholder.com/300x200?text=Fotograf+Bulunamadi'">
       <div style="font-weight:bold;color:#fff;margin-top:8px;font-size:14px;">${item.title}</div>
       <div style="font-size:11px;color:#ffd0e5;margin-top:6px;font-style:italic;">"Her yeni günde seninle olan anılarımız yeniden parlıyor Edanur..." ❤️</div>
     </div>
   `;
 }
 
-/* CANLI AŞK SAYACI (6 EYLÜL 2025 BAŞLANGIÇLI) */
+/* FOTOĞRAF GALERİSİ (KLASÖRDEN ÇEKER) */
+function loadPhotos(){
+  const grid = document.getElementById("photoGrid");
+  grid.innerHTML = "";
+  
+  klasorFotograflari.forEach((item) => {
+    const div = document.createElement("div");
+    div.className = "photoCard";
+    div.innerHTML = `
+      <img src="${item.src}" onerror="this.src='https://via.placeholder.com/150?text=Resim+Yok'">
+      <div style="font-size:11px;font-weight:bold;margin-top:4px;">${item.title}</div>
+    `;
+    grid.appendChild(div);
+  });
+}
+</script>
+    <script>
+/* CANLI AŞK SAYACI (6 EYLÜL 2025) */
 function startCounter(){
   const startDate = new Date("2025-09-06T00:00:00");
   
@@ -464,7 +473,7 @@ function startCounter(){
   setInterval(update, 1000);
 }
 
-/* YENİ GELİŞTİRİLMİŞ MİNİ TEST (BEDİRHAN ÖZEL) */
+/* BEDİRHAN ÖZEL MİNİ TESTİ */
 const quizQuestions = [
   { 
     q: "Bedirhan'ın en sevdiği yemek hangisidir?", 
@@ -535,9 +544,8 @@ function answerQuiz(optionIdx){
   currentQuizIdx++;
   renderQuiz();
 }
-    </script>
-    <script>
-/* GÜNÜN ANISI MODAL ETKİLEŞİMİ */
+
+/* GÜNÜN ANISI MODAL */
 const dailyOverlay = document.getElementById("dailyOverlay");
 document.getElementById("dailyButton").onclick = () => {
   openDailyMemory();
@@ -602,43 +610,7 @@ async function loadAstrology(){
 }
 document.getElementById("getAstrologyBtn").onclick = loadAstrology;
 
-/* FOTOĞRAF GALERİSİ */
-function loadPhotos(){
-  const grid = document.getElementById("photoGrid");
-  const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
-  grid.innerHTML = "";
-  photos.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.className = "photoCard";
-    div.innerHTML = `<img src="${item.imgData}"><div style="font-size:11px;font-weight:bold;margin-top:4px;">${item.title}</div><button onclick="deletePhoto(${index})" style="border:0;background:transparent;color:#ff4f8f;font-size:10px;cursor:pointer;">Sil</button>`;
-    grid.appendChild(div);
-  });
-}
-
-document.getElementById("addPhotoBtn").onclick = () => {
-  const title = document.getElementById("photoTitle").value.trim();
-  const fileInput = document.getElementById("photoFile");
-  if(!title || !fileInput.files[0]) return;
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
-    photos.push({ title: title, imgData: e.target.result });
-    localStorage.setItem("auraPhotos", JSON.stringify(photos));
-    document.getElementById("photoTitle").value = "";
-    fileInput.value = "";
-    loadPhotos();
-  };
-  reader.readAsDataURL(fileInput.files[0]);
-};
-
-function deletePhoto(index){
-  const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
-  photos.splice(index, 1);
-  localStorage.setItem("auraPhotos", JSON.stringify(photos));
-  loadPhotos();
-}
-
-/* RUH HALİ VE SEKMELER */
+/* MODALLAR VE SEKMELER */
 const moodOverlay = document.getElementById("moodOverlay");
 document.getElementById("moodButton").onclick = () => moodOverlay.classList.add("show");
 document.getElementById("closeMood").onclick = () => moodOverlay.classList.remove("show");
