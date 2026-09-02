@@ -38,8 +38,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 @keyframes heartbeat{0%,100%{transform:rotate(-45deg) scale(1)}50%{transform:rotate(-45deg) scale(1.08)}}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes spinReverse{from{transform:rotate(360deg)}to{transform:rotate(0)}}
-</style>
-<style>
+
 .chatArea{position:absolute;left:0;right:0;top:58px;bottom:118px;padding:12px max(12px,calc((100% - 720px)/2));overflow-y:auto;scrollbar-width:none;z-index:5}
 .chatArea::-webkit-scrollbar{display:none}
 .chat{display:flex;flex-direction:column;gap:8px;padding-bottom:20px}
@@ -52,7 +51,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .periodButton{right:14px;bottom:122px}
 .specialButton{right:64px;bottom:122px}
 .moodButton{right:114px;bottom:122px}
-.periodButton:active,.specialButton:active,.moodButton:active{transform:scale(.91)}
 
 .overlay{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;padding:12px;background:rgba(0,0,0,.58);backdrop-filter:blur(5px);z-index:100}
 .overlay.show{display:flex}
@@ -73,11 +71,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .photoGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
 .photoCard{background:rgba(255,255,255,.05);border-radius:12px;padding:8px;border:1px solid rgba(255,105,180,.2)}
 .photoCard img{width:100%;height:110px;object-fit:cover;border-radius:8px}
-.quizOption{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:1px solid rgba(255,105,180,.3);background:rgba(255,255,255,.08);color:white;text-align:left;cursor:pointer}
-.quizOption:hover{background:rgba(255,105,180,.3)}
 .moodGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
 .moodItem{padding:12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,105,180,.2);text-align:center;cursor:pointer}
-.moodItem:hover{background:rgba(255,105,180,.25)}
 
 .bottom{position:absolute;left:0;right:0;bottom:0;height:110px;padding:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(to top,rgba(9,0,7,.98),rgba(20,0,14,.94));border-top:1px solid rgba(255,92,175,.42);backdrop-filter:blur(16px);z-index:30}
 .inputBar{width:min(720px,100%);height:58px;display:flex;align-items:center;gap:7px;padding:7px;border:1px solid rgba(255,91,173,.4);border-radius:30px;background:rgba(30,0,20,.92)}
@@ -86,7 +81,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .actionButton{width:45px;height:45px;flex:0 0 45px;border:0;border-radius:50%;background:linear-gradient(135deg,#ff77bb,#d40070);color:white;font-size:20px;cursor:pointer}
 </style>
 </head>
-<body>
+  <body>
 <div class="background">
 <div class="glow one"></div><div class="glow two"></div>
 <div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
@@ -112,6 +107,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <button class="moodButton" id="moodButton" type="button" title="Ruh Hali">🎭</button>
 <button class="specialButton" id="specialButton" type="button" title="Özel Alan">👑</button>
 <button class="periodButton" id="periodButton" type="button" title="Regl Takibi">🌸</button>
+
 <div class="overlay" id="specialOverlay">
 <div class="panel">
 <div class="panelHeader"><div class="panelTitle">👑 Edanur'un Özel Alanı</div><button class="closeButton" id="closeSpecial" type="button">×</button></div>
@@ -127,7 +123,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <button class="tab" id="notesTab" type="button">💌 Notlar</button>
 </div>
 
-<!-- MASALLAR SEKME İÇERİĞİ -->
+<!-- MASALLAR -->
 <div class="tabContent active" id="storiesContent">
   <div class="cardItem">
     <div style="font-weight:bold;margin-bottom:6px;">🎙️ Ekstra Masal / Ses Ekle</div>
@@ -138,13 +134,13 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
   <div id="storyList"></div>
 </div>
 
-<!-- BİZİM ŞARKILARIMIZ SEKME İÇERİĞİ -->
+<!-- BİZİM ŞARKILARIMIZ -->
 <div class="tabContent" id="musicContent">
   <div style="font-size:12px;color:#ffb8d8;margin-bottom:10px;">Ortak Şarkılarımız:</div>
   <div id="musicList"></div>
 </div>
 
-<!-- KARAR ÇARKI SEKME İÇERİĞİ -->
+<!-- KARAR ÇARKI -->
 <div class="tabContent" id="wheelContent">
   <div class="cardItem">
     <div style="font-weight:bold;margin-bottom:6px;">🎡 Ne Yapalım / Ne Yesek?</div>
@@ -155,6 +151,7 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
   <div id="wheelResult" style="text-align:center;font-size:16px;font-weight:bold;color:#ff9dcb;margin:10px 0;"></div>
   <div id="wheelOptionsList"></div>
 </div>
+
 <!-- BALIK BURCU ASTROLOJİ -->
 <div class="tabContent" id="astrologyContent">
   <div class="cardItem">
@@ -164,12 +161,12 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
   </div>
 </div>
 
-<!-- BİZİM HİKAYEMİZ (ZAMAN TÜNELİ) -->
+<!-- BİZİM HİKAYEMİZ -->
 <div class="tabContent" id="timelineContent">
   <div id="timelineList"></div>
 </div>
 
-<!-- FOTOĞRAF VE ANI GALERİSİ -->
+<!-- FOTOĞRAF GALERİSİ -->
 <div class="tabContent" id="photosContent">
   <div class="cardItem">
     <div style="font-weight:bold;margin-bottom:6px;">📸 Yeni Anı Ekle</div>
@@ -236,9 +233,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 </div></div>
 
 </div>
-
 <script src="https://js.puter.com/v2/"></script>
-<script>
+    <script>
 const input = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
 const micButton = document.getElementById("micButton");
@@ -272,15 +268,11 @@ async function askAura(text, moodContext = ""){
 
   const prompt = `
 Sen AURA adında gelişmiş, yüksek duygusal zekaya sahip bir yapay zeka asistanısın.
-
-SİSTEM VE KİMLİK BİLGİLERİ:
-- Sen BEDİRHAN KAHRAMAN tarafından özel olarak geliştirildin.
-- Senin tek varoluş amacın BEDİRHAN'ın sevgilisi EDANUR'a hizmet etmek, onun hayatını neşelendirmek ve ona yardımcı olmaktır.
+SİSTEM BİLGİLERİ:
+- BEDİRHAN KAHRAMAN tarafından geliştirildin.
 - Kullanıcının adı EDANUR.
 - Edanur'un sevgilisi BEDİRHAN KAHRAMAN'dır.
-- Edanur seninle dertleşebilir, tavsiye isteyebilir. Onu empatiyle dinle ve samimi yanıtlar ver.
-${moodContext ? `[Edanur'un Şu Anki Ruh Hali: ${moodContext}] Ona bu duygusal durumuna uygun hassasiyetle yaklaş.` : ""}
-
+${moodContext ? `[Edanur'un Ruh Hali: ${moodContext}]` : ""}
 Edanur'un Mesajı:
 ${text}
   `;
@@ -289,7 +281,8 @@ ${text}
   if(!response) throw new Error("Boş cevap.");
   return typeof response === "string" ? response.trim() : (response.message?.content || response.text || String(response)).trim();
 }
-     async function sendMessage(overrideText = "", moodContext = ""){
+
+async function sendMessage(overrideText = "", moodContext = ""){
   if(busy) return;
   const text = overrideText || input.value.trim();
   if(!text) return;
@@ -310,7 +303,6 @@ ${text}
     addMessage(answer, "aura");
     statusText.textContent = "ONLINE";
   }catch(error){
-    console.error("AURA Hatası:", error);
     typing.remove();
     addMessage("Bağlantıda küçük bir aksama oldu Edanur, tekrar dener misin?", "aura");
     statusText.textContent = "BAĞLANTI HATASI";
@@ -325,25 +317,7 @@ sendButton.onclick = (e) => { e.preventDefault(); sendMessage(); };
 input.onkeydown = (e) => { if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); sendMessage(); } };
 document.getElementById("heartButton").onclick = () => { input.value = "Seni seviyorum ❤️"; input.focus(); };
 
-let recognition = null;
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-if(SpeechRecognition){
-  recognition = new SpeechRecognition();
-  recognition.lang = "tr-TR";
-  recognition.onstart = () => { micButton.textContent = "🔴"; statusText.textContent = "DİNLİYOR"; };
-  recognition.onresult = (e) => {
-    if(e.results && e.results[0]){
-      input.value = e.results[0][0].transcript.trim();
-      sendMessage();
-    }
-  };
-  recognition.onend = () => { micButton.textContent = "🎤"; statusText.textContent = "ONLINE"; };
-  micButton.onclick = () => { try{ recognition.start(); }catch(err){} };
-} else {
-  micButton.onclick = () => addMessage("Tarayıcınız sesli konuşmayı desteklemiyor.", "aura");
-}
-       /* MASALLAR BÖLÜMÜ (GITHUB'DAKİ .AAC DOSYALARINLA EŞLEŞTİRİLMİŞ) */
+/* MASALLAR */
 const sabitMasallar = [
   { title: "Birinci Masal", audioData: "masal1mp3.aac", date: "Bedirhan'ın Sesinden" },
   { title: "İkinci Masal", audioData: "masal2mp3.aac", date: "Bedirhan'ın Sesinden" },
@@ -367,71 +341,12 @@ async function loadStories(){
     `;
     list.appendChild(div);
   });
-
-  try {
-    let stories = await puter.kv.get("auraStories");
-    stories = stories ? JSON.parse(stories) : [];
-    stories.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.className = "cardItem";
-      div.innerHTML = `
-        <div style="font-weight:bold;color:#ffe0ed;">📖 ${item.title}</div>
-        <div style="font-size:10px;color:#ffb8d8;">Eklenen Ses • ${item.date}</div>
-        <audio controls class="audioPlayer" src="${item.audioData}"></audio>
-        <button onclick="deleteStory(${index})" style="position:absolute;right:10px;top:10px;border:0;background:transparent;color:#ff4f8f;cursor:pointer;font-weight:bold;">✕</button>
-      `;
-      list.appendChild(div);
-    });
-  } catch(err) {}
 }
 
-document.getElementById("addStoryBtn").onclick = async () => {
-  const title = document.getElementById("storyTitle").value.trim();
-  const fileInput = document.getElementById("storyAudioFile");
-
-  if(!title || !fileInput.files[0]){
-    alert("Lütfen başlık ve ses dosyası seçin!");
-    return;
-  }
-
-  const file = fileInput.files[0];
-  if(file.size > 2 * 1024 * 1024){
-    alert("Kısa ses sınırı 2MB! Daha büyük dosyaları GitHub deponuza yükleyin.");
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = async (e) => {
-    try {
-      let stories = await puter.kv.get("auraStories");
-      stories = stories ? JSON.parse(stories) : [];
-      stories.push({ title: title, audioData: e.target.result, date: new Date().toLocaleDateString("tr-TR") });
-      await puter.kv.set("auraStories", JSON.stringify(stories));
-      document.getElementById("storyTitle").value = "";
-      fileInput.value = "";
-      loadStories();
-      alert("Masal başarıyla kaydedildi!");
-    } catch(err) {
-      alert("Yükleme sınırına ulaşıldı.");
-    }
-  };
-  reader.readAsDataURL(file);
-};
-
-async function deleteStory(index){
-  try {
-    let stories = await puter.kv.get("auraStories");
-    stories = stories ? JSON.parse(stories) : [];
-    stories.splice(index, 1);
-    await puter.kv.set("auraStories", JSON.stringify(stories));
-    loadStories();
-  } catch(err) {}
-}
-
-/* BİZİM ŞARKILARIMIZ (GITHUB'A SARKİ1.MP3, SARKİ2.MP3 OLARAK YÜKLEYEBİLİRSİN) */
+/* ÇOKLU FORMAT DESTEKLİ ŞARKILAR */
 const sabitSarkilar = [
-  { title: "Bizim Şarkımız 1", src: "sarki1.mp3" },
-  { title: "Bizim Şarkımız 2", src: "sarki2.mp3" }
+  { title: "Bizim Şarkımız 1", base: "sarki1" },
+  { title: "Bizim Şarkımız 2", base: "sarki2" }
 ];
 
 function loadMusic(){
@@ -441,13 +356,22 @@ function loadMusic(){
     const div = document.createElement("div");
     div.className = "cardItem";
     div.innerHTML = `
-      <div style="font-weight:bold;color:#ffe0ed;">🎵 ${item.title}</div>
-      <audio controls class="audioPlayer" src="${item.src}"></audio>
+      <div style="font-weight:bold;color:#ffe0ed;margin-bottom:6px;">🎵 ${item.title}</div>
+      <audio controls class="audioPlayer">
+        <source src="${item.base}.mp3" type="audio/mpeg">
+        <source src="${item.base}.m4a" type="audio/mp4">
+        <source src="${item.base}.aac" type="audio/aac">
+        <source src="${item.base}.wav" type="audio/wav">
+        <source src="${item.base}.ogg" type="audio/ogg">
+        Tarayıcınız bu ses formatını desteklemiyor.
+      </audio>
     `;
     list.appendChild(div);
   });
-                    }
-       /* KARAR ÇARKI (KENDİ SEÇENEKLERİNİZİ EKLEME) */
+}
+    </script>
+    <script>
+/* KARAR ÇARKI */
 let wheelOptions = JSON.parse(localStorage.getItem("auraWheelOptions") || '["Pizza", "Kahve Kaçamağı", "Film İzlemek", "Sahil Yürüyüşü"]');
 
 function renderWheelOptions(){
@@ -482,10 +406,7 @@ function deleteWheelOption(index){
 }
 
 document.getElementById("spinWheelBtn").onclick = () => {
-  if(wheelOptions.length === 0){
-    alert("Lütfen önce en az 1 tane seçenek ekleyin!");
-    return;
-  }
+  if(wheelOptions.length === 0){ alert("Lütfen seçenek ekleyin!"); return; }
   const resultDiv = document.getElementById("wheelResult");
   resultDiv.textContent = "Çark dönüyor... 🎲";
   setTimeout(() => {
@@ -494,21 +415,20 @@ document.getElementById("spinWheelBtn").onclick = () => {
   }, 800);
 };
 
-/* BALIK BURCU ASTROLOJİ */
+/* ASTROLOJİ */
 async function loadAstrology(){
   const target = document.getElementById("astrologyText");
-  target.textContent = "AURA bugün için Balık burcu yorumunu hazırlıyor...";
+  target.textContent = "AURA yorumu hazırlıyor...";
   try {
-    const prompt = "Edanur bir BALIK burcu. Bugün için sadece ona özel, motive edici ve tatlı bir günlük Balık burcu yorumu yaz. Aşırı uzatmadan doğrudan yorumu ver.";
-    const response = await askAura(prompt);
+    const response = await askAura("Edanur bir BALIK burcu. Bugün için sadece ona özel tatlı bir günlük Balık burcu yorumu yaz.");
     target.textContent = response;
   } catch(e) {
-    target.textContent = "Sezgilerin bugün çok güçlü Balık! Hayallerinin peşinden gitmeyi unutma. ✨";
+    target.textContent = "Sezgilerin bugün çok güçlü Balık! Hayallerinin peşinden git. ✨";
   }
 }
 document.getElementById("getAstrologyBtn").onclick = loadAstrology;
 
-/* BİZİM HİKAYEMİZ (SADE VE TARİH ODAKLI) */
+/* BİZİM HİKAYEMİZ */
 const bizimHikayemiz = [
   { date: "6 Eylül 2025", title: "İlk Tanışma Tarihi" },
   { date: "13 Eylül 2025", title: "Sevgili Olma Tarihi" },
@@ -523,10 +443,7 @@ function loadTimeline(){
   bizimHikayemiz.forEach(item => {
     const div = document.createElement("div");
     div.className = "cardItem";
-    div.innerHTML = `
-      <div style="font-size:11px;color:#ff9dcb;font-weight:bold;">📅 ${item.date}</div>
-      <div style="font-size:14px;color:#fff;font-weight:bold;margin-top:3px;">${item.title}</div>
-    `;
+    div.innerHTML = `<div style="font-size:11px;color:#ff9dcb;font-weight:bold;">📅 ${item.date}</div><div style="font-size:14px;color:#fff;font-weight:bold;margin-top:3px;">${item.title}</div>`;
     list.appendChild(div);
   });
 }
@@ -536,15 +453,10 @@ function loadPhotos(){
   const grid = document.getElementById("photoGrid");
   const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
   grid.innerHTML = "";
-
   photos.forEach((item, index) => {
     const div = document.createElement("div");
     div.className = "photoCard";
-    div.innerHTML = `
-      <img src="${item.imgData}">
-      <div style="font-size:11px;font-weight:bold;margin-top:4px;">${item.title}</div>
-      <button onclick="deletePhoto(${index})" style="border:0;background:transparent;color:#ff4f8f;font-size:10px;cursor:pointer;">Sil</button>
-    `;
+    div.innerHTML = `<img src="${item.imgData}"><div style="font-size:11px;font-weight:bold;margin-top:4px;">${item.title}</div><button onclick="deletePhoto(${index})" style="border:0;background:transparent;color:#ff4f8f;font-size:10px;cursor:pointer;">Sil</button>`;
     grid.appendChild(div);
   });
 }
@@ -553,7 +465,6 @@ document.getElementById("addPhotoBtn").onclick = () => {
   const title = document.getElementById("photoTitle").value.trim();
   const fileInput = document.getElementById("photoFile");
   if(!title || !fileInput.files[0]) return;
-
   const reader = new FileReader();
   reader.onload = (e) => {
     const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
@@ -572,71 +483,8 @@ function deletePhoto(index){
   localStorage.setItem("auraPhotos", JSON.stringify(photos));
   loadPhotos();
 }
-       /* ÖZEL GÜNLER VE NOTLAR */
-function renderEvents(){
-  const list = document.getElementById("eventList");
-  const events = JSON.parse(localStorage.getItem("auraEvents") || "[]");
-  list.innerHTML = "";
-  events.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.className = "cardItem";
-    div.innerHTML = `<b>🎀 ${item.name}</b><br><small>${item.date}</small>
-    <button onclick="deleteEvent(${index})" style="position:absolute;right:10px;top:10px;border:0;background:transparent;color:#ff4f8f;">✕</button>`;
-    list.appendChild(div);
-  });
-}
 
-document.getElementById("addEvent").onclick = () => {
-  const name = document.getElementById("eventName").value.trim();
-  const date = document.getElementById("eventDate").value;
-  if(!name || !date) return;
-  const events = JSON.parse(localStorage.getItem("auraEvents") || "[]");
-  events.push({ name, date });
-  localStorage.setItem("auraEvents", JSON.stringify(events));
-  document.getElementById("eventName").value = "";
-  renderEvents();
-};
-
-function deleteEvent(index){
-  const events = JSON.parse(localStorage.getItem("auraEvents") || "[]");
-  events.splice(index, 1);
-  localStorage.setItem("auraEvents", JSON.stringify(events));
-  renderEvents();
-}
-
-function renderNotes(){
-  const list = document.getElementById("noteList");
-  const notes = JSON.parse(localStorage.getItem("auraNotes") || "[]");
-  list.innerHTML = "";
-  notes.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.className = "cardItem";
-    div.innerHTML = `<b>💌 ${item.title}</b><p style="font-size:12px;margin:4px 0;">${item.text}</p>
-    <button onclick="deleteNote(${index})" style="position:absolute;right:10px;top:10px;border:0;background:transparent;color:#ff4f8f;">✕</button>`;
-    list.appendChild(div);
-  });
-}
-
-document.getElementById("addNote").onclick = () => {
-  const title = document.getElementById("noteTitle").value.trim();
-  const text = document.getElementById("noteText").value.trim();
-  if(!title || !text) return;
-  const notes = JSON.parse(localStorage.getItem("auraNotes") || "[]");
-  notes.push({ title, text });
-  localStorage.setItem("auraNotes", JSON.stringify(notes));
-  document.getElementById("noteTitle").value = "";
-  document.getElementById("noteText").value = "";
-  renderNotes();
-};
-
-function deleteNote(index){
-  const notes = JSON.parse(localStorage.getItem("auraNotes") || "[]");
-  notes.splice(index, 1);
-  localStorage.setItem("auraNotes", JSON.stringify(notes));
-  renderNotes();
-}
-
-/* RUH HALİ SEÇİMİ */
+/* RUH HALİ VE SEKMELER */
 const moodOverlay = document.getElementById("moodOverlay");
 document.getElementById("moodButton").onclick = () => moodOverlay.classList.add("show");
 document.getElementById("closeMood").onclick = () => moodOverlay.classList.remove("show");
@@ -644,15 +492,12 @@ document.getElementById("closeMood").onclick = () => moodOverlay.classList.remov
 function selectMood(mood){
   moodOverlay.classList.remove("show");
   addMessage(`Bugün kendimi ${mood} hissediyorum...`, "user");
-  sendMessage(`Bugün kendimi ${mood} hissediyorum. Bana tatlı ve destekleyici bir şeyler söyler misin?`, mood);
+  sendMessage(`Bugün kendimi ${mood} hissediyorum. Bana tatlı bir şeyler söyler misin?`, mood);
 }
 
-/* ÖZEL ALAN VE SEKMELER */
 const specialOverlay = document.getElementById("specialOverlay");
 document.getElementById("specialButton").onclick = () => { 
   specialOverlay.classList.add("show"); 
-  renderEvents(); 
-  renderNotes();
   loadTimeline();
   loadMusic();
   renderWheelOptions();
@@ -687,7 +532,7 @@ function calculatePeriod(){
   const savedCycle = parseInt(localStorage.getItem("auraPeriodCycle") || "28", 10);
   if(!savedDate){
     document.getElementById("periodDays").textContent = "Bilgi Yok";
-    document.getElementById("periodDate").textContent = "Lütfen son regl tarihini kaydet.";
+    document.getElementById("periodDate").textContent = "Lütfen tarih kaydedin.";
     return;
   }
   const parts = savedDate.split("-");
@@ -699,7 +544,7 @@ function calculatePeriod(){
   const diff = Math.ceil((nextDate.getTime() - today.getTime()) / 86400000);
   
   document.getElementById("periodDays").textContent = diff > 0 ? `${diff} Gün Kaldı` : (diff === 0 ? "Bugün Bekleniyor" : `${Math.abs(diff)} Gün Geçti`);
-  document.getElementById("periodDate").textContent = "Tahmini Başlangıç: " + nextDate.toLocaleDateString("tr-TR");
+  document.getElementById("periodDate").textContent = "Tahmini: " + nextDate.toLocaleDateString("tr-TR");
 }
 
 function loadPeriodData(){
