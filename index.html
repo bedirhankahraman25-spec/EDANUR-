@@ -39,7 +39,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes spinReverse{from{transform:rotate(360deg)}to{transform:rotate(0)}}
 </style>
-       
 <style>
 .chatArea{position:absolute;left:0;right:0;top:58px;bottom:118px;padding:12px max(12px,calc((100% - 720px)/2));overflow-y:auto;scrollbar-width:none;z-index:5}
 .chatArea::-webkit-scrollbar{display:none}
@@ -62,8 +61,8 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .panelHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
 .panelTitle{font-family:Georgia,serif;font-size:19px;color:#ffd5e8}
 .closeButton{width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:#ffc5df;font-size:18px;cursor:pointer}
-.tabs{display:flex;gap:5px;margin-bottom:15px;overflow-x:auto}
-.tab{flex:1;min-width:75px;height:38px;border:1px solid rgba(255,105,180,.22);border-radius:12px;background:rgba(255,255,255,.05);color:#ffc7df;font-size:11px;cursor:pointer;white-space:nowrap}
+.tabs{display:flex;gap:5px;margin-bottom:15px;overflow-x:auto;padding-bottom:5px}
+.tab{flex:1;min-width:68px;height:36px;border:1px solid rgba(255,105,180,.22);border-radius:12px;background:rgba(255,255,255,.05);color:#ffc7df;font-size:11px;cursor:pointer;white-space:nowrap}
 .tab.active{background:linear-gradient(135deg,rgba(255,104,181,.38),rgba(190,0,105,.45));border-color:rgba(255,130,195,.5)}
 .tabContent{display:none}.tabContent.active{display:block}
 
@@ -119,8 +118,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 
 <div class="tabs">
 <button class="tab active" id="storiesTab" type="button">📖 Masallar</button>
+<button class="tab" id="musicTab" type="button">🎵 Şarkılar</button>
+<button class="tab" id="wheelTab" type="button">🎡 Çark</button>
+<button class="tab" id="astrologyTab" type="button">♓ Burç</button>
+<button class="tab" id="timelineTab" type="button">⏳ Hikayemiz</button>
 <button class="tab" id="photosTab" type="button">🖼️ Anılar</button>
-<button class="tab" id="gameTab" type="button">🎮 Mini Oyun</button>
 <button class="tab" id="eventsTab" type="button">🎀 Günler</button>
 <button class="tab" id="notesTab" type="button">💌 Notlar</button>
 </div>
@@ -136,6 +138,37 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
   <div id="storyList"></div>
 </div>
 
+<!-- BİZİM ŞARKILARIMIZ SEKME İÇERİĞİ -->
+<div class="tabContent" id="musicContent">
+  <div style="font-size:12px;color:#ffb8d8;margin-bottom:10px;">Ortak Şarkılarımız:</div>
+  <div id="musicList"></div>
+</div>
+
+<!-- KARAR ÇARKI SEKME İÇERİĞİ -->
+<div class="tabContent" id="wheelContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;margin-bottom:6px;">🎡 Ne Yapalım / Ne Yesek?</div>
+    <input type="text" id="wheelInput" class="input" placeholder="Yeni seçenek yaz (Örn: Kahve, Film, Döner)">
+    <button class="saveButton" id="addWheelOptionBtn" type="button" style="margin-bottom:8px;">➕ Seçeneği Ekle</button>
+    <button class="saveButton" id="spinWheelBtn" type="button" style="background:linear-gradient(135deg,#a000ff,#ff258f);">🎲 Karar Ver (Çarkı Çevir)</button>
+  </div>
+  <div id="wheelResult" style="text-align:center;font-size:16px;font-weight:bold;color:#ff9dcb;margin:10px 0;"></div>
+  <div id="wheelOptionsList"></div>
+</div>
+<!-- BALIK BURCU ASTROLOJİ -->
+<div class="tabContent" id="astrologyContent">
+  <div class="cardItem">
+    <div style="font-weight:bold;color:#ffe0ed;margin-bottom:8px;">♓ Balık Burcu Günlük Yorumu</div>
+    <div id="astrologyText" style="font-size:13px;line-height:1.5;color:#ffd5e8;">AURA burç yorumunu yüklüyor...</div>
+    <button class="saveButton" id="getAstrologyBtn" type="button" style="margin-top:10px;">✨ Bugünün Yorumunu Yenile</button>
+  </div>
+</div>
+
+<!-- BİZİM HİKAYEMİZ (ZAMAN TÜNELİ) -->
+<div class="tabContent" id="timelineContent">
+  <div id="timelineList"></div>
+</div>
+
 <!-- FOTOĞRAF VE ANI GALERİSİ -->
 <div class="tabContent" id="photosContent">
   <div class="cardItem">
@@ -146,19 +179,11 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
   </div>
   <div class="photoGrid" id="photoGrid"></div>
 </div>
-<!-- MİNİ OYUN -->
-<div class="tabContent" id="gameContent">
-  <div class="cardItem" id="quizContainer">
-    <div style="font-size:15px;font-weight:bold;margin-bottom:10px;" id="quizQuestion">Bedirhan'ı Ne Kadar Tanıyorsun?</div>
-    <div id="quizOptions"></div>
-    <div id="quizResult" style="margin-top:10px;font-weight:bold;color:#ff9dcb;"></div>
-  </div>
-</div>
 
 <!-- ÖZEL GÜNLER VE NOTLAR -->
 <div class="tabContent" id="eventsContent">
   <div class="cardItem">
-    <input class="input" id="eventName" type="text" placeholder="Özel Gün Adı (Doğum günü, Yıldönümü)">
+    <input class="input" id="eventName" type="text" placeholder="Özel Gün Adı">
     <input class="input" id="eventDate" type="date">
     <button class="saveButton" id="addEvent" type="button">🎀 Özel Gün Ekle</button>
   </div>
@@ -235,8 +260,8 @@ function addMessage(text, type){
 window.addEventListener("load", () => {
   addMessage("Merhaba Edanur, sistem hazır. ❤️", "aura");
   loadStories();
+  loadMusic();
   loadPhotos();
-  initQuiz();
   loadPeriodData();
 });
 
@@ -264,7 +289,7 @@ ${text}
   if(!response) throw new Error("Boş cevap.");
   return typeof response === "string" ? response.trim() : (response.message?.content || response.text || String(response)).trim();
 }
-   async function sendMessage(overrideText = "", moodContext = ""){
+     async function sendMessage(overrideText = "", moodContext = ""){
   if(busy) return;
   const text = overrideText || input.value.trim();
   if(!text) return;
@@ -318,7 +343,7 @@ if(SpeechRecognition){
 } else {
   micButton.onclick = () => addMessage("Tarayıcınız sesli konuşmayı desteklemiyor.", "aura");
 }
-       /* GİTHUB'DAKİ .AAC SES DOSYALARINA DÜZELTİLMİŞ MASAL LİSTESİ */
+       /* MASALLAR BÖLÜMÜ (GITHUB'DAKİ .AAC DOSYALARINLA EŞLEŞTİRİLMİŞ) */
 const sabitMasallar = [
   { title: "Birinci Masal", audioData: "masal1mp3.aac", date: "Bedirhan'ın Sesinden" },
   { title: "İkinci Masal", audioData: "masal2mp3.aac", date: "Bedirhan'ın Sesinden" },
@@ -332,8 +357,6 @@ const sabitMasallar = [
 async function loadStories(){
   const list = document.getElementById("storyList");
   list.innerHTML = "";
-  
-  // 1. Sabit GitHub Masallarını Yükle
   sabitMasallar.forEach((item) => {
     const div = document.createElement("div");
     div.className = "cardItem";
@@ -345,7 +368,6 @@ async function loadStories(){
     list.appendChild(div);
   });
 
-  // 2. Sonradan Eklenen Bulut Masallarını Yükle
   try {
     let stories = await puter.kv.get("auraStories");
     stories = stories ? JSON.parse(stories) : [];
@@ -368,13 +390,13 @@ document.getElementById("addStoryBtn").onclick = async () => {
   const fileInput = document.getElementById("storyAudioFile");
 
   if(!title || !fileInput.files[0]){
-    alert("Lütfen başlık ve kısa bir ses dosyası seçin!");
+    alert("Lütfen başlık ve ses dosyası seçin!");
     return;
   }
 
   const file = fileInput.files[0];
   if(file.size > 2 * 1024 * 1024){
-    alert("Kısa ses sınırı 2MB! Daha büyük ses kayıtlarını lütfen GitHub deponuza yükleyin.");
+    alert("Kısa ses sınırı 2MB! Daha büyük dosyaları GitHub deponuza yükleyin.");
     return;
   }
 
@@ -405,7 +427,111 @@ async function deleteStory(index){
     loadStories();
   } catch(err) {}
 }
-       /* FOTOĞRAF GALERİSİ */
+
+/* BİZİM ŞARKILARIMIZ (GITHUB'A SARKİ1.MP3, SARKİ2.MP3 OLARAK YÜKLEYEBİLİRSİN) */
+const sabitSarkilar = [
+  { title: "Bizim Şarkımız 1", src: "sarki1.mp3" },
+  { title: "Bizim Şarkımız 2", src: "sarki2.mp3" }
+];
+
+function loadMusic(){
+  const list = document.getElementById("musicList");
+  list.innerHTML = "";
+  sabitSarkilar.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "cardItem";
+    div.innerHTML = `
+      <div style="font-weight:bold;color:#ffe0ed;">🎵 ${item.title}</div>
+      <audio controls class="audioPlayer" src="${item.src}"></audio>
+    `;
+    list.appendChild(div);
+  });
+                    }
+       /* KARAR ÇARKI (KENDİ SEÇENEKLERİNİZİ EKLEME) */
+let wheelOptions = JSON.parse(localStorage.getItem("auraWheelOptions") || '["Pizza", "Kahve Kaçamağı", "Film İzlemek", "Sahil Yürüyüşü"]');
+
+function renderWheelOptions(){
+  const list = document.getElementById("wheelOptionsList");
+  list.innerHTML = "";
+  wheelOptions.forEach((opt, index) => {
+    const div = document.createElement("div");
+    div.className = "cardItem";
+    div.style.padding = "8px 12px";
+    div.innerHTML = `
+      <span style="font-size:13px;">📌 ${opt}</span>
+      <button onclick="deleteWheelOption(${index})" style="position:absolute;right:10px;top:6px;border:0;background:transparent;color:#ff4f8f;cursor:pointer;">✕</button>
+    `;
+    list.appendChild(div);
+  });
+}
+
+document.getElementById("addWheelOptionBtn").onclick = () => {
+  const input = document.getElementById("wheelInput");
+  const val = input.value.trim();
+  if(!val) return;
+  wheelOptions.push(val);
+  localStorage.setItem("auraWheelOptions", JSON.stringify(wheelOptions));
+  input.value = "";
+  renderWheelOptions();
+};
+
+function deleteWheelOption(index){
+  wheelOptions.splice(index, 1);
+  localStorage.setItem("auraWheelOptions", JSON.stringify(wheelOptions));
+  renderWheelOptions();
+}
+
+document.getElementById("spinWheelBtn").onclick = () => {
+  if(wheelOptions.length === 0){
+    alert("Lütfen önce en az 1 tane seçenek ekleyin!");
+    return;
+  }
+  const resultDiv = document.getElementById("wheelResult");
+  resultDiv.textContent = "Çark dönüyor... 🎲";
+  setTimeout(() => {
+    const selected = wheelOptions[Math.floor(Math.random() * wheelOptions.length)];
+    resultDiv.textContent = `🎯 Sonuç: ${selected}`;
+  }, 800);
+};
+
+/* BALIK BURCU ASTROLOJİ */
+async function loadAstrology(){
+  const target = document.getElementById("astrologyText");
+  target.textContent = "AURA bugün için Balık burcu yorumunu hazırlıyor...";
+  try {
+    const prompt = "Edanur bir BALIK burcu. Bugün için sadece ona özel, motive edici ve tatlı bir günlük Balık burcu yorumu yaz. Aşırı uzatmadan doğrudan yorumu ver.";
+    const response = await askAura(prompt);
+    target.textContent = response;
+  } catch(e) {
+    target.textContent = "Sezgilerin bugün çok güçlü Balık! Hayallerinin peşinden gitmeyi unutma. ✨";
+  }
+}
+document.getElementById("getAstrologyBtn").onclick = loadAstrology;
+
+/* BİZİM HİKAYEMİZ (SADE VE TARİH ODAKLI) */
+const bizimHikayemiz = [
+  { date: "6 Eylül 2025", title: "İlk Tanışma Tarihi" },
+  { date: "13 Eylül 2025", title: "Sevgili Olma Tarihi" },
+  { date: "16 Mart", title: "Edanur'un Doğum Günü" },
+  { date: "17 Mart 2026", title: "İlk Buluşma Tarihi" },
+  { date: "13 Eylül 2026", title: "1. Yıldönümü Tarihi" }
+];
+
+function loadTimeline(){
+  const list = document.getElementById("timelineList");
+  list.innerHTML = "";
+  bizimHikayemiz.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "cardItem";
+    div.innerHTML = `
+      <div style="font-size:11px;color:#ff9dcb;font-weight:bold;">📅 ${item.date}</div>
+      <div style="font-size:14px;color:#fff;font-weight:bold;margin-top:3px;">${item.title}</div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+/* FOTOĞRAF GALERİSİ */
 function loadPhotos(){
   const grid = document.getElementById("photoGrid");
   const photos = JSON.parse(localStorage.getItem("auraPhotos") || "[]");
@@ -446,38 +572,6 @@ function deletePhoto(index){
   localStorage.setItem("auraPhotos", JSON.stringify(photos));
   loadPhotos();
 }
-
-/* MİNİ OYUN: BEDİRHAN QUIZ */
-const quizData = [
-  { q: "Bedirhan'ın hayattaki en değerli varlığı kimdir?", a: ["Edanur", "Arabası", "Telefonu"], correct: 0 },
-  { q: "AURA'yı senin için kim geliştirdi?", a: ["Siri", "Bedirhan Kahraman", "Google"], correct: 1 },
-  { q: "Bedirhan seni ne kadar çok seviyor?", a: ["Çok", "Dünyalar kadar", "Sonsuza dek 3000"], correct: 2 }
-];
-let currentQ = 0;
-
-function initQuiz(){
-  if(currentQ >= quizData.length){
-    document.getElementById("quizQuestion").textContent = "Test Tamamlandı! 🎉";
-    document.getElementById("quizOptions").innerHTML = "";
-    document.getElementById("quizResult").textContent = "Sonuç: Bedirhan seni her şeyden çok seviyor!";
-    return;
-  }
-  const q = quizData[currentQ];
-  document.getElementById("quizQuestion").textContent = q.q;
-  const opts = document.getElementById("quizOptions");
-  opts.innerHTML = "";
-  q.a.forEach((opt, idx) => {
-    const btn = document.createElement("button");
-    btn.className = "quizOption";
-    btn.textContent = opt;
-    btn.onclick = () => {
-      document.getElementById("quizResult").textContent = (idx === q.correct) ? "Harika! Doğru Cevap 💖" : "Fark etmez, Bedirhan seni yine çok seviyor! ❤️";
-      currentQ++;
-      setTimeout(initQuiz, 1200);
-    };
-    opts.appendChild(btn);
-  });
-}
        /* ÖZEL GÜNLER VE NOTLAR */
 function renderEvents(){
   const list = document.getElementById("eventList");
@@ -502,6 +596,7 @@ document.getElementById("addEvent").onclick = () => {
   document.getElementById("eventName").value = "";
   renderEvents();
 };
+
 function deleteEvent(index){
   const events = JSON.parse(localStorage.getItem("auraEvents") || "[]");
   events.splice(index, 1);
@@ -533,6 +628,7 @@ document.getElementById("addNote").onclick = () => {
   document.getElementById("noteText").value = "";
   renderNotes();
 };
+
 function deleteNote(index){
   const notes = JSON.parse(localStorage.getItem("auraNotes") || "[]");
   notes.splice(index, 1);
@@ -553,19 +649,32 @@ function selectMood(mood){
 
 /* ÖZEL ALAN VE SEKMELER */
 const specialOverlay = document.getElementById("specialOverlay");
-document.getElementById("specialButton").onclick = () => { specialOverlay.classList.add("show"); renderEvents(); renderNotes(); };
+document.getElementById("specialButton").onclick = () => { 
+  specialOverlay.classList.add("show"); 
+  renderEvents(); 
+  renderNotes();
+  loadTimeline();
+  loadMusic();
+  renderWheelOptions();
+  loadAstrology();
+};
 document.getElementById("closeSpecial").onclick = () => specialOverlay.classList.remove("show");
 
-const tabs = ["stories", "photos", "game", "events", "notes"];
+const tabs = ["stories", "music", "wheel", "astrology", "timeline", "photos", "events", "notes"];
 tabs.forEach(tab => {
-  document.getElementById(tab + "Tab").onclick = () => {
-    tabs.forEach(t => {
-      document.getElementById(t + "Tab").classList.remove("active");
-      document.getElementById(t + "Content").classList.remove("active");
-    });
-    document.getElementById(tab + "Tab").classList.add("active");
-    document.getElementById(tab + "Content").classList.add("active");
-  };
+  const btn = document.getElementById(tab + "Tab");
+  if(btn){
+    btn.onclick = () => {
+      tabs.forEach(t => {
+        const tBtn = document.getElementById(t + "Tab");
+        const tContent = document.getElementById(t + "Content");
+        if(tBtn) tBtn.classList.remove("active");
+        if(tContent) tContent.classList.remove("active");
+      });
+      btn.classList.add("active");
+      document.getElementById(tab + "Content").classList.add("active");
+    };
+  }
 });
 
 /* REGL TAKİBİ */
