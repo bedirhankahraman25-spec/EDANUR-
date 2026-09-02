@@ -47,11 +47,10 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .userMessage{align-self:flex-end;background:linear-gradient(135deg,#a91465,#e43c91);border:1px solid rgba(255,170,215,.3)}
 .typing{opacity:.7;font-style:italic}
 
-.periodButton,.specialButton,.moodButton,.dailyButton{position:absolute;width:42px;height:42px;border:1px solid rgba(255,120,190,.4);border-radius:50%;background:rgba(40,0,27,.88);color:#ffb6d8;font-size:19px;cursor:pointer;z-index:25;box-shadow:0 0 15px rgba(255,20,147,.22)}
+.periodButton,.specialButton,.moodButton{position:absolute;width:42px;height:42px;border:1px solid rgba(255,120,190,.4);border-radius:50%;background:rgba(40,0,27,.88);color:#ffb6d8;font-size:19px;cursor:pointer;z-index:25;box-shadow:0 0 15px rgba(255,20,147,.22)}
 .periodButton{right:14px;bottom:122px}
 .specialButton{right:64px;bottom:122px}
 .moodButton{right:114px;bottom:122px}
-.dailyButton{right:164px;bottom:122px}
 
 .overlay{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;padding:12px;background:rgba(0,0,0,.58);backdrop-filter:blur(5px);z-index:100}
 .overlay.show{display:flex}
@@ -69,9 +68,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 .saveButton{width:100%;height:42px;border:0;border-radius:14px;background:linear-gradient(135deg,#ff76ba,#d40070);color:white;font-weight:bold;font-size:14px;cursor:pointer}
 .cardItem{position:relative;padding:12px;margin-bottom:10px;border-radius:15px;background:rgba(255,255,255,.055);border:1px solid rgba(255,105,180,.17)}
 .audioPlayer{width:100%;margin-top:8px;height:36px;border-radius:8px}
-.photoGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.photoCard{background:rgba(255,255,255,.05);border-radius:12px;padding:8px;border:1px solid rgba(255,105,180,.2);text-align:center}
-.photoCard img{width:100%;height:120px;object-fit:cover;border-radius:8px}
 .moodGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
 .moodItem{padding:12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,105,180,.2);text-align:center;cursor:pointer}
 
@@ -112,17 +108,9 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 
 <div class="chatArea" id="chatArea"><div class="chat" id="chat"></div></div>
 
-<button class="dailyButton" id="dailyButton" type="button" title="Günün Anısı">📸</button>
 <button class="moodButton" id="moodButton" type="button" title="Ruh Hali">🎭</button>
 <button class="specialButton" id="specialButton" type="button" title="Özel Alan">👑</button>
 <button class="periodButton" id="periodButton" type="button" title="Regl Takibi">🌸</button>
-
-<!-- GÜNÜN ANISI MODAL -->
-<div class="overlay" id="dailyOverlay">
-<div class="panel">
-<div class="panelHeader"><div class="panelTitle">📸 Günün Anısı</div><button class="closeButton" id="closeDaily" type="button">×</button></div>
-<div id="dailyMemoryBox" style="text-align:center;padding:10px;"></div>
-</div></div>
 
 <!-- ÖZEL ALAN MODAL -->
 <div class="overlay" id="specialOverlay">
@@ -136,7 +124,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
 <button class="tab" id="musicTab" type="button">🎵 Şarkılar</button>
 <button class="tab" id="wheelTab" type="button">🎡 Çark</button>
 <button class="tab" id="astrologyTab" type="button">♓ Burç</button>
-<button class="tab" id="photosTab" type="button">🖼️ Anılar</button>
 <button class="tab" id="eventsTab" type="button">🎀 Günler</button>
 <button class="tab" id="notesTab" type="button">💌 Notlar</button>
 </div>
@@ -194,14 +181,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
     <div id="astrologyText" style="font-size:13px;line-height:1.5;color:#ffd5e8;">AURA burç yorumunu yüklüyor...</div>
     <button class="saveButton" id="getAstrologyBtn" type="button" style="margin-top:10px;">✨ Bugünün Yorumunu Yenile</button>
   </div>
-</div>
-
-<!-- FOTOĞRAF GALERİSİ (SADECE KLASÖRDEN OKUR) -->
-<div class="tabContent" id="photosContent">
-  <div style="font-size:12px;color:#ffb8d8;margin-bottom:8px;text-align:center;">
-    📸 Fotoğraflar index.html ile aynı klasördeki <b>foto1.jpg, foto2.jpg</b> gibi dosyalardan çekilmektedir.
-  </div>
-  <div class="photoGrid" id="photoGrid"></div>
 </div>
 
 <!-- ÖZEL GÜNLER VE NOTLAR -->
@@ -263,14 +242,6 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:Arial,sans
     <script src="https://js.puter.com/v2/"></script>
 
 <script>
-/* KLASÖRDEKİ FOTOĞRAFLARIN LİSTESİ */
-const klasorFotograflari = [
-  { title: "Birlikte İlk Anımız", src: "foto1.jpg" },
-  { title: "En Tatlı Gülüşün", src: "foto2.jpg" },
-  { title: "Unutulmaz Gün", src: "foto3.jpg" },
-  { title: "Güzel Bir Anı", src: "foto4.jpg" }
-];
-
 const input = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
 const micButton = document.getElementById("micButton");
@@ -293,7 +264,6 @@ window.addEventListener("load", () => {
   addMessage("Merhaba Edanur, sistem hazır. ❤️", "aura");
   loadStories();
   loadMusic();
-  loadPhotos();
   loadPeriodData();
   startCounter();
   initQuiz();
@@ -407,48 +377,9 @@ function loadMusic(){
     list.appendChild(div);
   });
 }
-
-/* GÜNÜN ANISI (KLASÖRDEN ÇEKER) */
-function openDailyMemory(){
-  const box = document.getElementById("dailyMemoryBox");
-  
-  if(klasorFotograflari.length === 0){
-    box.innerHTML = `<div style="color:#ff8ac5;font-size:13px;padding:15px 0;">Henüz fotoğraflar tanımlanmadı!</div>`;
-    return;
-  }
-  
-  const today = new Date();
-  const dateSeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-  const dailyIndex = dateSeed % klasorFotograflari.length;
-  const item = klasorFotograflari[dailyIndex];
-
-  box.innerHTML = `
-    <div class="photoCard" style="padding:12px;">
-      <div style="font-size:12px;color:#ff9dcb;font-weight:bold;margin-bottom:8px;">✨ Bugüne Özel Anınız</div>
-      <img src="${item.src}" style="max-height:240px;width:100%;object-fit:cover;border-radius:12px;" onerror="this.src='https://via.placeholder.com/300x200?text=Fotograf+Bulunamadi'">
-      <div style="font-weight:bold;color:#fff;margin-top:8px;font-size:14px;">${item.title}</div>
-      <div style="font-size:11px;color:#ffd0e5;margin-top:6px;font-style:italic;">"Her yeni günde seninle olan anılarımız yeniden parlıyor Edanur..." ❤️</div>
-    </div>
-  `;
-}
-
-/* FOTOĞRAF GALERİSİ (KLASÖRDEN ÇEKER) */
-function loadPhotos(){
-  const grid = document.getElementById("photoGrid");
-  grid.innerHTML = "";
-  
-  klasorFotograflari.forEach((item) => {
-    const div = document.createElement("div");
-    div.className = "photoCard";
-    div.innerHTML = `
-      <img src="${item.src}" onerror="this.src='https://via.placeholder.com/150?text=Resim+Yok'">
-      <div style="font-size:11px;font-weight:bold;margin-top:4px;">${item.title}</div>
-    `;
-    grid.appendChild(div);
-  });
-}
 </script>
-    <script>
+    
+<script>
 /* CANLI AŞK SAYACI (6 EYLÜL 2025) */
 function startCounter(){
   const startDate = new Date("2025-09-06T00:00:00");
@@ -545,14 +476,6 @@ function answerQuiz(optionIdx){
   renderQuiz();
 }
 
-/* GÜNÜN ANISI MODAL */
-const dailyOverlay = document.getElementById("dailyOverlay");
-document.getElementById("dailyButton").onclick = () => {
-  openDailyMemory();
-  dailyOverlay.classList.add("show");
-};
-document.getElementById("closeDaily").onclick = () => dailyOverlay.classList.remove("show");
-
 /* KARAR ÇARKI */
 let wheelOptions = JSON.parse(localStorage.getItem("auraWheelOptions") || '["Pizza", "Kahve Kaçamağı", "Film İzlemek", "Sahil Yürüyüşü"]');
 
@@ -630,7 +553,7 @@ document.getElementById("specialButton").onclick = () => {
 };
 document.getElementById("closeSpecial").onclick = () => specialOverlay.classList.remove("show");
 
-const tabs = ["counter", "quiz", "stories", "music", "wheel", "astrology", "photos", "events", "notes"];
+const tabs = ["counter", "quiz", "stories", "music", "wheel", "astrology", "events", "notes"];
 tabs.forEach(tab => {
   const btn = document.getElementById(tab + "Tab");
   if(btn){
